@@ -34,7 +34,9 @@ struct SiteHeadersMiddleware: AsyncMiddleware {
         "connect-src 'self'",
         "object-src 'none'",
         "base-uri 'self'",
-        "form-action 'self'",
+        // The contact form POSTs to FormSubmit — the single external
+        // destination this site allows, and it is allowed narrowly.
+        "form-action 'self' https://formsubmit.co",
         "frame-ancestors 'none'",
     ].joined(separator: "; ")
 

@@ -3,8 +3,8 @@
 // (enforced by AppTests). Code and templates reference codes only.
 
 // Meta
-"meta_title" = "Juan Carlos Estévez Rodríguez — Swift Developer";
-"meta_description" = "Swift developer building for iOS, iPadOS, macOS and visionOS. Four shipped apps, ten localizations, on the App Store since 2018.";
+"meta_title" = "Juan Carlos Estévez Rodríguez — Senior iOS Engineer";
+"meta_description" = "Senior iOS Engineer building for iOS, iPadOS, macOS and visionOS. Four shipped apps, ten localizations, on the App Store since 2018.";
 
 // Accessibility
 "skip_to_content" = "Skip to content";
@@ -14,30 +14,67 @@
 "site_label" = "JC-ROOT.XYZ";
 "brand_short" = "JC";
 "hero_name" = "Juan Carlos Estévez Rodríguez";
-"hero_tagline" = "Swift developer — iOS · iPadOS · macOS · visionOS";
+"hero_role" = "Senior iOS Engineer";
+"hero_platforms" = "iOS · iPadOS · macOS · visionOS";
+"hero_status" = "Spanish citizen, authorized to work in the EU · Remote or relocation (Barcelona / Paris)";
 "hero_cta_projects" = "View my projects →";
 "hero_cta_github" = "GitHub";
 
-// Stats
-"stats_projects_value" = "4";
-"stats_projects_label" = "Shipped projects";
-"stats_platforms_value" = "4";
-"stats_platforms_label" = "Apple platforms";
-"stats_localizations_value" = "10";
-"stats_localizations_label" = "Localizations";
-"stats_since_value" = "2018";
-"stats_since_label" = "On the App Store since";
-
 // Navigation
-"nav_projects" = "Projects";
 "nav_about" = "About";
+"nav_experience" = "Experience";
+"nav_projects" = "Projects";
 "nav_contact" = "Contact";
 "lang_en" = "EN";
 "lang_es" = "ES";
 
+// About
+"about_heading" = "About";
+"about_body" = "Senior iOS Engineer with 6 years of professional experience, plus 2 earlier years shipping production code while completing my engineering degree. I modernize legacy codebases, build design systems, and treat testing as part of the craft, not an afterthought. On the App Store since 2018 with four shipped apps across four Apple platforms in ten languages. Currently independent: client apps and deep work with AI-assisted and agentic development (Claude, OpenAI, xAI, local models via Ollama). Passionate about health and wellness technology. When I'm not shipping, I'm doing yoga, climbing, or kitesurfing.";
+
+// Experience
+"exp_heading" = "Experience";
+
+"exp1_role" = "Independent iOS Developer & Consultant";
+"exp1_company" = "Self Employed";
+"exp1_meta" = "Remote · Jan 2026 – Present";
+"exp1_desc" = "Client iOS apps end-to-end; my own App Store products; AI and agentic development integrations.";
+
+"exp2_role" = "Senior iOS Engineer";
+"exp2_company" = "The Home Depot";
+"exp2_meta" = "Remote (US) · Aug 2025 – Dec 2025";
+"exp2_desc" = "Real-time features for the internal store-operations app used by associates across US stores.";
+
+"exp3_role" = "Senior Software Engineer";
+"exp3_company" = "Alaska Airlines";
+"exp3_meta" = "Remote (US) · Jul 2024 – Mar 2025";
+"exp3_desc" = "Led an atomic design system standardizing reusable UI components across the app.";
+
+"exp4_role" = "Senior Software Engineer, Technical Lead";
+"exp4_company" = "Peek.com";
+"exp4_meta" = "Remote · Feb 2022 – Apr 2024";
+"exp4_desc" = "Modernized a decade-old marketplace app: SwiftUI migration with 10,000+ item lists kept performant; automated testing culture built from zero (Robot Pattern + XCUITest); release cycles cut 30% with GitHub Actions CI/CD; integrated WiFi-connected terminal hardware via custom connection managers; mentored engineers.";
+
+"exp5_role" = "Lead Software Engineer";
+"exp5_company" = "Xplain";
+"exp5_meta" = "Remote (US) · Aug 2020 – Feb 2022";
+"exp5_desc" = "Two production iOS apps; secure Stripe payment flows.";
+
+"exp6_role" = "Full Stack Engineer (iOS Focus)";
+"exp6_company" = "Sunwise";
+"exp6_meta" = "Mérida, MX · Jun 2019 – Aug 2020";
+"exp6_desc" = "Production iOS in Swift and Objective-C, concurrent with final university coursework.";
+
+"exp7_role" = "Full Stack Engineer";
+"exp7_company" = "DaCodes";
+"exp7_meta" = "Mérida, MX · Aug 2018 – Jun 2019";
+"exp7_desc" = "First engineering role; full-stack agency work on AWS-backed stacks.";
+
 // Selected work
 "work_heading" = "Selected work";
 "placeholder_screenshot" = "app screenshot";
+"link_appstore" = "App Store →";
+"link_github" = "GitHub →";
 
 "p1_tags" = "iOS · iPadOS · macOS · visionOS";
 "p1_name" = "Tapper Counters";
@@ -55,15 +92,30 @@
 "p4_name" = "iBase";
 "p4_desc" = "Fast, simple converter between binary, octal, decimal and hexadecimal. On the App Store since 2018.";
 
-// Stack
-"stack_heading" = "Stack";
-"stack_items" = "Swift 6|SwiftUI|Swift Concurrency|SwiftData|CryptoKit|Swift Package Manager|XCTest|StoreKit 2|GitHub Actions|Bootstrap 5";
+// Education & Languages
+"edu_heading" = "Education & Languages";
+"edu1" = "Software Engineering — Anáhuac University Mérida (2014–2018). Student Council member; entrepreneurship program.";
+"edu2" = "Entrepreneurship diploma — Management Center Innsbruck (2019–2020).";
+"edu3" = "M.S. in Cybersecurity — weekend program, starting October 2026.";
+"edu4" = "Certification: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
+"langs_line" = "Languages: English C2 · Spanish native · French B2";
 
-// Contact CTA
+// Skills
+"stack_heading" = "Skills";
+"stack_core_label" = "Core";
+"stack_also_label" = "Also";
+"stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Atomic design systems|Performance optimization|AI / agentic development (Claude, OpenAI, xAI, Ollama)|IoT / home automation|SwiftData|CryptoKit|StoreKit 2";
+
+// Contact
 "cta_heading" = "Building something for Apple platforms?";
 "cta_all_links" = "All contact links";
-"copy_email" = "Copy email";
-"copied_label" = "Copied!";
+"form_name" = "Name";
+"form_email" = "Email";
+"form_message" = "Message";
+"form_send" = "Send message";
+"form_subject" = "New message from jc-root.xyz";
+"form_sent" = "Thanks — your message is on its way. I'll reply soon.";
 
 // Footer
 "footer_name" = "Juan Carlos Estévez Rodríguez";

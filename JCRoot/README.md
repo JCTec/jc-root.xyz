@@ -38,10 +38,21 @@ swift test
 | `CANONICAL_HOST` | unset | When set (`jc-root.xyz`), other hosts 301 to it. Leave unset locally. |
 | `SITE_BASE_URL` | derived from host, else `http://localhost:8080` | Base for canonical/hreflang/sitemap URLs. |
 | `ASSET_VERSION` | `dev` | Deploy stamp for `?v=` cache busting. Set by CI to the Git SHA. |
-| `CONTACT_EMAIL` | `juancarlos_tec@proton.me` | CTA / mailto address. |
+| `CONTACT_EMAIL` | `juancarlos_tec@proton.me` | Only feeds the default FormSubmit endpoint; never rendered on the page. |
+| `FORMSUBMIT_ENDPOINT` | `https://formsubmit.co/<CONTACT_EMAIL>` | Contact-form POST target. **After FormSubmit activation, set this to the random alias endpoint** so the address leaves the HTML entirely. |
 | `GITHUB_URL` | `https://github.com/JCTec` | Hero + footer link. |
-| `LINKEDIN_URL` | `#` (**TODO: set real URL**) | Footer link. |
-| `APPSTORE_URL` | `#` (**TODO: set real URL**) | Footer link. |
+| `LINKEDIN_URL` | `https://www.linkedin.com/in/jctec` | Footer link. |
+| `APPSTORE_URL` | developer page `id1346871945` | Footer link. |
+
+## Contact form (FormSubmit)
+
+The form POSTs to FormSubmit — no server-side mail code, no SMTP secrets.
+One-time setup: submit the form once after deploy, click the activation
+link FormSubmit emails you, copy the random alias endpoint from them, and
+`heroku config:set FORMSUBMIT_ENDPOINT=https://formsubmit.co/<alias>`.
+Until the alias is set, the fallback endpoint contains the raw address in
+the form's `action` attribute. The CSP allows exactly one external
+`form-action`: `https://formsubmit.co`.
 
 ## Upgrading Bootstrap
 
@@ -66,8 +77,10 @@ Heroku container stack, built from this directory's `Dockerfile` via
 
 - Real project screenshots to replace the two placeholders (`hasScreenshot`
   cards in `PageController`).
-- Real `LINKEDIN_URL` / `APPSTORE_URL` values.
+- FormSubmit activation + switch `FORMSUBMIT_ENDPOINT` to the alias (see
+  above).
+- GitHub repo links for Tapper Counters and MacAlarm when/if public
+  (`repoURL` in `PageController`).
 - `Package.resolved` should be committed after the first local
   `swift package resolve` so Docker builds are reproducible
   (`--force-resolved-versions`).
-- The design's `About` nav link currently anchors to the Stack section.

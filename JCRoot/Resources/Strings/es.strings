@@ -2,8 +2,8 @@
 // en.strings (lo verifica AppTests). El código y las plantillas usan códigos.
 
 // Meta
-"meta_title" = "Juan Carlos Estévez Rodríguez — Desarrollador Swift";
-"meta_description" = "Desarrollador Swift para iOS, iPadOS, macOS y visionOS. Cuatro apps publicadas, diez localizaciones, en el App Store desde 2018.";
+"meta_title" = "Juan Carlos Estévez Rodríguez — Ingeniero iOS Senior";
+"meta_description" = "Ingeniero iOS Senior para iOS, iPadOS, macOS y visionOS. Cuatro apps publicadas, diez localizaciones, en el App Store desde 2018.";
 
 // Accesibilidad
 "skip_to_content" = "Saltar al contenido";
@@ -13,30 +13,67 @@
 "site_label" = "JC-ROOT.XYZ";
 "brand_short" = "JC";
 "hero_name" = "Juan Carlos Estévez Rodríguez";
-"hero_tagline" = "Desarrollador Swift — iOS · iPadOS · macOS · visionOS";
+"hero_role" = "Ingeniero iOS Senior";
+"hero_platforms" = "iOS · iPadOS · macOS · visionOS";
+"hero_status" = "Ciudadano español, autorizado para trabajar en la UE · Remoto o reubicación (Barcelona / París)";
 "hero_cta_projects" = "Ver mis proyectos →";
 "hero_cta_github" = "GitHub";
 
-// Cifras
-"stats_projects_value" = "4";
-"stats_projects_label" = "Proyectos publicados";
-"stats_platforms_value" = "4";
-"stats_platforms_label" = "Plataformas Apple";
-"stats_localizations_value" = "10";
-"stats_localizations_label" = "Localizaciones";
-"stats_since_value" = "2018";
-"stats_since_label" = "En el App Store desde";
-
 // Navegación
-"nav_projects" = "Proyectos";
 "nav_about" = "Acerca de";
+"nav_experience" = "Experiencia";
+"nav_projects" = "Proyectos";
 "nav_contact" = "Contacto";
 "lang_en" = "EN";
 "lang_es" = "ES";
 
+// Acerca de
+"about_heading" = "Acerca de";
+"about_body" = "Ingeniero iOS Senior con 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras terminaba la carrera de ingeniería. Modernizo bases de código legadas, construyo sistemas de diseño y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con cuatro apps publicadas en cuatro plataformas Apple y diez idiomas. Actualmente independiente: apps para clientes y trabajo a fondo con desarrollo asistido por IA y agentes (Claude, OpenAI, xAI, modelos locales con Ollama). Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
+
+// Experiencia
+"exp_heading" = "Experiencia";
+
+"exp1_role" = "Desarrollador iOS independiente y consultor";
+"exp1_company" = "Independiente";
+"exp1_meta" = "Remoto · Ene 2026 – Presente";
+"exp1_desc" = "Apps iOS para clientes de principio a fin; mis propios productos en el App Store; integraciones de IA y desarrollo con agentes.";
+
+"exp2_role" = "Ingeniero iOS Senior";
+"exp2_company" = "The Home Depot";
+"exp2_meta" = "Remoto (EE. UU.) · Ago 2025 – Dic 2025";
+"exp2_desc" = "Funciones en tiempo real para la app interna de operaciones de tienda usada por asociados en tiendas de EE. UU.";
+
+"exp3_role" = "Ingeniero de software Senior";
+"exp3_company" = "Alaska Airlines";
+"exp3_meta" = "Remoto (EE. UU.) · Jul 2024 – Mar 2025";
+"exp3_desc" = "Lideré un sistema de diseño atómico que estandarizó componentes de UI reutilizables en toda la app.";
+
+"exp4_role" = "Ingeniero de software Senior, Líder técnico";
+"exp4_company" = "Peek.com";
+"exp4_meta" = "Remoto · Feb 2022 – Abr 2024";
+"exp4_desc" = "Modernicé una app de marketplace con una década de antigüedad: migración a SwiftUI con listas de más de 10,000 elementos manteniendo el rendimiento; cultura de pruebas automatizadas construida desde cero (Robot Pattern + XCUITest); ciclos de release reducidos 30% con CI/CD en GitHub Actions; integración de terminales conectadas por WiFi mediante gestores de conexión propios; mentoría a ingenieros.";
+
+"exp5_role" = "Ingeniero de software Líder";
+"exp5_company" = "Xplain";
+"exp5_meta" = "Remoto (EE. UU.) · Ago 2020 – Feb 2022";
+"exp5_desc" = "Dos apps iOS en producción; flujos de pago seguros con Stripe.";
+
+"exp6_role" = "Ingeniero Full Stack (enfoque iOS)";
+"exp6_company" = "Sunwise";
+"exp6_meta" = "Mérida, MX · Jun 2019 – Ago 2020";
+"exp6_desc" = "iOS en producción con Swift y Objective-C, en paralelo con los últimos cursos de la universidad.";
+
+"exp7_role" = "Ingeniero Full Stack";
+"exp7_company" = "DaCodes";
+"exp7_meta" = "Mérida, MX · Ago 2018 – Jun 2019";
+"exp7_desc" = "Primer puesto de ingeniería; trabajo full-stack de agencia sobre stacks respaldados por AWS.";
+
 // Trabajo seleccionado
 "work_heading" = "Trabajo seleccionado";
 "placeholder_screenshot" = "captura de la app";
+"link_appstore" = "App Store →";
+"link_github" = "GitHub →";
 
 "p1_tags" = "iOS · iPadOS · macOS · visionOS";
 "p1_name" = "Tapper Counters";
@@ -54,15 +91,30 @@
 "p4_name" = "iBase";
 "p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018.";
 
-// Stack
-"stack_heading" = "Stack";
-"stack_items" = "Swift 6|SwiftUI|Swift Concurrency|SwiftData|CryptoKit|Swift Package Manager|XCTest|StoreKit 2|GitHub Actions|Bootstrap 5";
+// Educación e idiomas
+"edu_heading" = "Educación e idiomas";
+"edu1" = "Ingeniería de Software — Universidad Anáhuac Mérida (2014–2018). Miembro del Consejo Estudiantil; programa de emprendimiento.";
+"edu2" = "Diplomado en emprendimiento — Management Center Innsbruck (2019–2020).";
+"edu3" = "Maestría en Ciberseguridad — programa de fin de semana, inicia en octubre de 2026.";
+"edu4" = "Certificación: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
+"langs_line" = "Idiomas: Inglés C2 · Español nativo · Francés B2";
+
+// Habilidades
+"stack_heading" = "Habilidades";
+"stack_core_label" = "Principal";
+"stack_also_label" = "También";
+"stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Sistemas de diseño atómico|Optimización de rendimiento|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|IoT / domótica|SwiftData|CryptoKit|StoreKit 2";
 
 // Contacto
 "cta_heading" = "¿Construyendo algo para plataformas Apple?";
 "cta_all_links" = "Todos mis contactos";
-"copy_email" = "Copiar correo";
-"copied_label" = "¡Copiado!";
+"form_name" = "Nombre";
+"form_email" = "Correo electrónico";
+"form_message" = "Mensaje";
+"form_send" = "Enviar mensaje";
+"form_subject" = "Nuevo mensaje desde jc-root.xyz";
+"form_sent" = "Gracias — tu mensaje va en camino. Te responderé pronto.";
 
 // Pie de página
 "footer_name" = "Juan Carlos Estévez Rodríguez";

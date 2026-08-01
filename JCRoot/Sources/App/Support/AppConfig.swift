@@ -16,22 +16,29 @@ struct AppConfig: Sendable {
     let githubURL: String
     let linkedInURL: String
     let appStoreURL: String
+    /// FormSubmit endpoint the contact form POSTs to. The default is the
+    /// email-based endpoint (needed once for FormSubmit's activation email);
+    /// after activation, set FORMSUBMIT_ENDPOINT to the random alias
+    /// FormSubmit provides so the raw address never appears in the HTML.
+    let formSubmitEndpoint: String
 
     static func load() -> AppConfig {
         let host = Environment.get("CANONICAL_HOST")
         let base = Environment.get("SITE_BASE_URL")
             ?? host.map { "https://\($0)" }
             ?? "http://localhost:8080"
+        let contactEmail = Environment.get("CONTACT_EMAIL") ?? "juancarlos_tec@proton.me"
         return AppConfig(
             canonicalHost: host,
             assetVersion: Environment.get("ASSET_VERSION") ?? "dev",
             siteBaseURL: base,
-            contactEmail: Environment.get("CONTACT_EMAIL") ?? "juancarlos_tec@proton.me",
+            contactEmail: contactEmail,
             githubURL: Environment.get("GITHUB_URL") ?? "https://github.com/JCTec",
-            // TODO: set LINKEDIN_URL / APPSTORE_URL config vars (or replace these
-            // defaults) with the real profile URLs before launch.
-            linkedInURL: Environment.get("LINKEDIN_URL") ?? "#",
-            appStoreURL: Environment.get("APPSTORE_URL") ?? "#"
+            linkedInURL: Environment.get("LINKEDIN_URL") ?? "https://www.linkedin.com/in/jctec",
+            appStoreURL: Environment.get("APPSTORE_URL")
+                ?? "https://apps.apple.com/developer/juan-carlos-estevez-rodriguez/id1346871945",
+            formSubmitEndpoint: Environment.get("FORMSUBMIT_ENDPOINT")
+                ?? "https://formsubmit.co/\(contactEmail)"
         )
     }
 }

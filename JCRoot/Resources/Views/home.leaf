@@ -2,49 +2,13 @@
 #export("body"):
 <a class="skip-link" href="\#main">#(t.skip_to_content)</a>
 
-<header class="hero" id="top">
-    <div class="page-col position-relative">
-        <div class="hero-ghost" aria-hidden="true">#(t.brand_short)</div>
-        <p class="site-label">#(t.site_label)</p>
-        <p class="hero-logo">#(t.brand_short)</p>
-        <h1 class="hero-name">#(t.hero_name)</h1>
-        <p class="hero-tagline">#(t.hero_tagline)</p>
-        <div class="d-flex flex-wrap gap-2 hero-actions">
-            <a class="btn-jc btn-jc-light" href="\#projects">#(t.hero_cta_projects)</a>
-            <a class="btn-jc btn-jc-outline" href="#(links.github)" rel="me noopener">#(t.hero_cta_github)</a>
-        </div>
-    </div>
-</header>
-
-<section class="stats">
-    <div class="page-col">
-        <div class="row gy-4">
-            <div class="col-6">
-                <p class="stat-value">#(t.stats_projects_value)</p>
-                <p class="stat-label">#(t.stats_projects_label)</p>
-            </div>
-            <div class="col-6">
-                <p class="stat-value">#(t.stats_platforms_value)</p>
-                <p class="stat-label">#(t.stats_platforms_label)</p>
-            </div>
-            <div class="col-6">
-                <p class="stat-value">#(t.stats_localizations_value)</p>
-                <p class="stat-label">#(t.stats_localizations_label)</p>
-            </div>
-            <div class="col-6">
-                <p class="stat-value">#(t.stats_since_value)</p>
-                <p class="stat-label">#(t.stats_since_label)</p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <nav class="site-nav sticky-top" aria-label="#(t.nav_label)">
     <div class="page-col d-flex align-items-center justify-content-between">
         <a class="nav-brand" href="\#top">#(t.brand_short)</a>
         <div class="d-flex align-items-center gap-3">
-            <a class="nav-link-mono" href="\#projects">#(t.nav_projects)</a>
             <a class="nav-link-mono" href="\#about">#(t.nav_about)</a>
+            <a class="nav-link-mono" href="\#experience">#(t.nav_experience)</a>
+            <a class="nav-link-mono" href="\#projects">#(t.nav_projects)</a>
             <a class="nav-link-mono" href="\#contact">#(t.nav_contact)</a>
             <div class="lang-toggle">
                 #if(locale == "en"):
@@ -57,7 +21,48 @@
     </div>
 </nav>
 
+<header class="hero" id="top">
+    <div class="page-col position-relative">
+        <div class="hero-ghost" aria-hidden="true">#(t.brand_short)</div>
+        <p class="site-label">#(t.site_label)</p>
+        <p class="hero-logo">#(t.brand_short)</p>
+        <h1 class="hero-name">#(t.hero_name)</h1>
+        <p class="hero-role">#(t.hero_role)</p>
+        <p class="hero-platforms">#(t.hero_platforms)</p>
+        <p class="hero-status">#(t.hero_status)</p>
+        <div class="d-flex flex-wrap gap-2 hero-actions">
+            <a class="btn-jc btn-jc-light" href="\#projects">#(t.hero_cta_projects)</a>
+            <a class="btn-jc btn-jc-outline" href="#(links.github)" rel="me noopener">#(t.hero_cta_github)</a>
+        </div>
+    </div>
+</header>
+
 <main id="main">
+    <section class="about" id="about">
+        <div class="page-col">
+            <h2 class="section-heading">#(t.about_heading)</h2>
+            <p class="about-body">#(t.about_body)</p>
+        </div>
+    </section>
+
+    <section class="experience" id="experience">
+        <div class="page-col">
+            <h2 class="section-heading">#(t.exp_heading)</h2>
+            <div class="vstack exp-list">
+                #for(job in experience):
+                <article class="exp-item">
+                    <div class="d-flex justify-content-between align-items-baseline flex-wrap gap-1">
+                        <h3 class="exp-role">#(job.role)</h3>
+                        <p class="exp-meta">#(job.meta)</p>
+                    </div>
+                    <p class="exp-company">#(job.company)</p>
+                    <p class="exp-desc">#(job.description)</p>
+                </article>
+                #endfor
+            </div>
+        </div>
+    </section>
+
     <section class="work" id="projects">
         <div class="page-col">
             <h2 class="ghost-heading">#(t.work_heading)</h2>
@@ -67,6 +72,12 @@
                     <p class="card-tags">#(project.tags)</p>
                     <h3 class="card-title">#(project.name)</h3>
                     <p class="card-desc">#(project.description)</p>
+                    #if(project.appStoreURL):
+                    <a class="card-link" href="#(project.appStoreURL)" rel="noopener">#(t.link_appstore)</a>
+                    #endif
+                    #if(project.repoURL):
+                    <a class="card-link" href="#(project.repoURL)" rel="noopener">#(t.link_github)</a>
+                    #endif
                     #if(project.hasScreenshot):
                     <div class="shot-placeholder"><span>#(t.placeholder_screenshot)</span></div>
                     #endif
@@ -76,11 +87,29 @@
         </div>
     </section>
 
-    <section class="stack-section" id="about">
+    <section class="edu-section" id="education">
+        <div class="page-col">
+            <h2 class="section-heading">#(t.edu_heading)</h2>
+            <p class="edu-line">#(t.edu1)</p>
+            <p class="edu-line">#(t.edu2)</p>
+            <p class="edu-line">#(t.edu3)</p>
+            <p class="edu-line">#(t.edu4)</p>
+            <p class="langs-line">#(t.langs_line)</p>
+        </div>
+    </section>
+
+    <section class="stack-section" id="skills">
         <div class="page-col">
             <h2 class="section-heading">#(t.stack_heading)</h2>
+            <p class="stack-group-label">#(t.stack_core_label)</p>
             <div class="d-flex flex-wrap gap-2">
-                #for(item in stack):
+                #for(item in stackCore):
+                <span class="chip">#(item)</span>
+                #endfor
+            </div>
+            <p class="stack-group-label">#(t.stack_also_label)</p>
+            <div class="d-flex flex-wrap gap-2">
+                #for(item in stackAlso):
                 <span class="chip">#(item)</span>
                 #endfor
             </div>
@@ -90,16 +119,29 @@
     <section class="cta" id="contact">
         <div class="page-col">
             <h2 class="cta-heading">#(t.cta_heading)</h2>
-            <div class="d-flex flex-wrap gap-2 align-items-center cta-actions">
-                <a class="btn-jc btn-jc-accent" href="mailto:#(email)">#(email)</a>
-                <button class="btn-jc btn-jc-outline" type="button" data-bs-toggle="collapse" data-bs-target="\#contact-links" aria-expanded="false" aria-controls="contact-links">#(t.cta_all_links)</button>
-            </div>
+            #if(sent):
+            <p class="form-sent">#(t.form_sent)</p>
+            #endif
+            <form class="contact-form" action="#(formAction)" method="POST">
+                <input type="hidden" name="_subject" value="#(t.form_subject)">
+                <input type="hidden" name="_next" value="#(formNext)">
+                <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <label class="form-label-jc" for="cf-name">#(t.form_name)</label>
+                <input class="form-control-jc" id="cf-name" type="text" name="name" required>
+                <label class="form-label-jc" for="cf-email">#(t.form_email)</label>
+                <input class="form-control-jc" id="cf-email" type="email" name="email" required>
+                <label class="form-label-jc" for="cf-message">#(t.form_message)</label>
+                <textarea class="form-control-jc" id="cf-message" name="message" rows="5" required></textarea>
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                    <button class="btn-jc btn-jc-accent" type="submit">#(t.form_send)</button>
+                    <button class="btn-jc btn-jc-outline" type="button" data-bs-toggle="collapse" data-bs-target="\#contact-links" aria-expanded="false" aria-controls="contact-links">#(t.cta_all_links)</button>
+                </div>
+            </form>
             <div class="collapse" id="contact-links">
                 <div class="d-flex flex-wrap gap-3 contact-links">
                     <a class="nav-link-mono" href="#(links.github)" rel="me noopener">#(t.footer_github)</a>
                     <a class="nav-link-mono" href="#(links.linkedin)" rel="me noopener">#(t.footer_linkedin)</a>
                     <a class="nav-link-mono" href="#(links.appStore)" rel="me noopener">#(t.footer_appstore)</a>
-                    <button class="nav-link-mono link-button" type="button" data-copy-email="#(email)" data-copied-label="#(t.copied_label)">#(t.copy_email)</button>
                 </div>
             </div>
         </div>
