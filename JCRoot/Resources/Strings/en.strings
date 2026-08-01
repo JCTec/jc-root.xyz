@@ -1,0 +1,72 @@
+// English UI copy — source of truth for the key set.
+// Rules: every key here must exist in es.strings with a non-empty value
+// (enforced by AppTests). Code and templates reference codes only.
+
+// Meta
+"meta_title" = "Juan Carlos Estévez Rodríguez — Swift Developer";
+"meta_description" = "Swift developer building for iOS, iPadOS, macOS and visionOS. Four shipped apps, ten localizations, on the App Store since 2018.";
+
+// Accessibility
+"skip_to_content" = "Skip to content";
+"nav_label" = "Site navigation";
+
+// Hero
+"site_label" = "JC-ROOT.XYZ";
+"brand_short" = "JC";
+"hero_name" = "Juan Carlos Estévez Rodríguez";
+"hero_tagline" = "Swift developer — iOS · iPadOS · macOS · visionOS";
+"hero_cta_projects" = "View my projects →";
+"hero_cta_github" = "GitHub";
+
+// Stats
+"stats_projects_value" = "4";
+"stats_projects_label" = "Shipped projects";
+"stats_platforms_value" = "4";
+"stats_platforms_label" = "Apple platforms";
+"stats_localizations_value" = "10";
+"stats_localizations_label" = "Localizations";
+"stats_since_value" = "2018";
+"stats_since_label" = "On the App Store since";
+
+// Navigation
+"nav_projects" = "Projects";
+"nav_about" = "About";
+"nav_contact" = "Contact";
+"lang_en" = "EN";
+"lang_es" = "ES";
+
+// Selected work
+"work_heading" = "Selected work";
+"placeholder_screenshot" = "app screenshot";
+
+"p1_tags" = "iOS · iPadOS · macOS · visionOS";
+"p1_name" = "Tapper Counters";
+"p1_desc" = "Sleek, customizable tap-to-count app for activities, habits and tallies. One SwiftUI 6 codebase across four Apple platforms, localized in 10 languages.";
+
+"p2_tags" = "macOS";
+"p2_name" = "MacAlarm";
+"p2_desc" = "Consent-first macOS app recording system events — sleep/wake, screen lock, custom — into a tamper-evident HMAC hash-chain ledger with a live SwiftUI timeline.";
+
+"p3_tags" = "Swift Package · Open Source";
+"p3_name" = "iCalendarKit";
+"p3_desc" = "Swift encoder for iCalendar data (RFC 5545) with events and recurrence rules. SPM, CI on Linux and macOS. Creator and co-founder of the swift-calendar org.";
+
+"p4_tags" = "iOS · iPadOS · macOS · visionOS";
+"p4_name" = "iBase";
+"p4_desc" = "Fast, simple converter between binary, octal, decimal and hexadecimal. On the App Store since 2018.";
+
+// Stack
+"stack_heading" = "Stack";
+"stack_items" = "Swift 6|SwiftUI|Swift Concurrency|SwiftData|CryptoKit|Swift Package Manager|XCTest|StoreKit 2|GitHub Actions|Bootstrap 5";
+
+// Contact CTA
+"cta_heading" = "Building something for Apple platforms?";
+"cta_all_links" = "All contact links";
+"copy_email" = "Copy email";
+"copied_label" = "Copied!";
+
+// Footer
+"footer_name" = "Juan Carlos Estévez Rodríguez";
+"footer_github" = "GitHub";
+"footer_linkedin" = "LinkedIn";
+"footer_appstore" = "App Store";

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="#(locale)">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>#(t.meta_title)</title>
+    <meta name="description" content="#(t.meta_description)">
+    <link rel="canonical" href="#(canonicalURL)">
+    <link rel="alternate" hreflang="en" href="#(alternateEN)">
+    <link rel="alternate" hreflang="es" href="#(alternateES)">
+    <link rel="alternate" hreflang="x-default" href="#(alternateEN)">
+    <meta property="og:title" content="#(t.meta_title)">
+    <meta property="og:description" content="#(t.meta_description)">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="#(canonicalURL)">
+    <link rel="icon" href="/icons/favicon.svg?v=#(assetVersion)" type="image/svg+xml">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css?v=#(assetVersion)">
+    <link rel="stylesheet" href="/css/site.css?v=#(assetVersion)">
+</head>
+<body>
+#import("body")
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js?v=#(assetVersion)" defer></script>
+    <script src="/js/app.js?v=#(assetVersion)" defer></script>
+</body>
+</html>

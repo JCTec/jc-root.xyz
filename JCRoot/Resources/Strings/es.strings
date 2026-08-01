@@ -1,0 +1,71 @@
+// Copia de interfaz en español — debe mantener paridad total de claves con
+// en.strings (lo verifica AppTests). El código y las plantillas usan códigos.
+
+// Meta
+"meta_title" = "Juan Carlos Estévez Rodríguez — Desarrollador Swift";
+"meta_description" = "Desarrollador Swift para iOS, iPadOS, macOS y visionOS. Cuatro apps publicadas, diez localizaciones, en el App Store desde 2018.";
+
+// Accesibilidad
+"skip_to_content" = "Saltar al contenido";
+"nav_label" = "Navegación del sitio";
+
+// Portada
+"site_label" = "JC-ROOT.XYZ";
+"brand_short" = "JC";
+"hero_name" = "Juan Carlos Estévez Rodríguez";
+"hero_tagline" = "Desarrollador Swift — iOS · iPadOS · macOS · visionOS";
+"hero_cta_projects" = "Ver mis proyectos →";
+"hero_cta_github" = "GitHub";
+
+// Cifras
+"stats_projects_value" = "4";
+"stats_projects_label" = "Proyectos publicados";
+"stats_platforms_value" = "4";
+"stats_platforms_label" = "Plataformas Apple";
+"stats_localizations_value" = "10";
+"stats_localizations_label" = "Localizaciones";
+"stats_since_value" = "2018";
+"stats_since_label" = "En el App Store desde";
+
+// Navegación
+"nav_projects" = "Proyectos";
+"nav_about" = "Acerca de";
+"nav_contact" = "Contacto";
+"lang_en" = "EN";
+"lang_es" = "ES";
+
+// Trabajo seleccionado
+"work_heading" = "Trabajo seleccionado";
+"placeholder_screenshot" = "captura de la app";
+
+"p1_tags" = "iOS · iPadOS · macOS · visionOS";
+"p1_name" = "Tapper Counters";
+"p1_desc" = "App elegante y personalizable para contar con un toque: actividades, hábitos y conteos. Un solo código SwiftUI 6 para cuatro plataformas Apple, localizada en 10 idiomas.";
+
+"p2_tags" = "macOS";
+"p2_name" = "MacAlarm";
+"p2_desc" = "App de macOS con consentimiento primero que registra eventos del sistema — reposo/activación, bloqueo de pantalla, personalizados — en un registro a prueba de manipulación con cadena de hashes HMAC y una línea de tiempo en vivo en SwiftUI.";
+
+"p3_tags" = "Paquete Swift · Código abierto";
+"p3_name" = "iCalendarKit";
+"p3_desc" = "Codificador Swift para datos iCalendar (RFC 5545) con eventos y reglas de recurrencia. SPM, CI en Linux y macOS. Creador y cofundador de la organización swift-calendar.";
+
+"p4_tags" = "iOS · iPadOS · macOS · visionOS";
+"p4_name" = "iBase";
+"p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018.";
+
+// Stack
+"stack_heading" = "Stack";
+"stack_items" = "Swift 6|SwiftUI|Swift Concurrency|SwiftData|CryptoKit|Swift Package Manager|XCTest|StoreKit 2|GitHub Actions|Bootstrap 5";
+
+// Contacto
+"cta_heading" = "¿Construyendo algo para plataformas Apple?";
+"cta_all_links" = "Todos mis contactos";
+"copy_email" = "Copiar correo";
+"copied_label" = "¡Copiado!";
+
+// Pie de página
+"footer_name" = "Juan Carlos Estévez Rodríguez";
+"footer_github" = "GitHub";
+"footer_linkedin" = "LinkedIn";
+"footer_appstore" = "App Store";

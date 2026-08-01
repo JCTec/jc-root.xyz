@@ -1,0 +1,7 @@
+.build/
+.swiftpm/
+.git/
+.gitignore
+.dockerignore
+Tests/
+README.md

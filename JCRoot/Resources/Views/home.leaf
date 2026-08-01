@@ -1,0 +1,120 @@
+#extend("base"):
+#export("body"):
+<a class="skip-link" href="\#main">#(t.skip_to_content)</a>
+
+<header class="hero" id="top">
+    <div class="page-col position-relative">
+        <div class="hero-ghost" aria-hidden="true">#(t.brand_short)</div>
+        <p class="site-label">#(t.site_label)</p>
+        <p class="hero-logo">#(t.brand_short)</p>
+        <h1 class="hero-name">#(t.hero_name)</h1>
+        <p class="hero-tagline">#(t.hero_tagline)</p>
+        <div class="d-flex flex-wrap gap-2 hero-actions">
+            <a class="btn-jc btn-jc-light" href="\#projects">#(t.hero_cta_projects)</a>
+            <a class="btn-jc btn-jc-outline" href="#(links.github)" rel="me noopener">#(t.hero_cta_github)</a>
+        </div>
+    </div>
+</header>
+
+<section class="stats">
+    <div class="page-col">
+        <div class="row gy-4">
+            <div class="col-6">
+                <p class="stat-value">#(t.stats_projects_value)</p>
+                <p class="stat-label">#(t.stats_projects_label)</p>
+            </div>
+            <div class="col-6">
+                <p class="stat-value">#(t.stats_platforms_value)</p>
+                <p class="stat-label">#(t.stats_platforms_label)</p>
+            </div>
+            <div class="col-6">
+                <p class="stat-value">#(t.stats_localizations_value)</p>
+                <p class="stat-label">#(t.stats_localizations_label)</p>
+            </div>
+            <div class="col-6">
+                <p class="stat-value">#(t.stats_since_value)</p>
+                <p class="stat-label">#(t.stats_since_label)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<nav class="site-nav sticky-top" aria-label="#(t.nav_label)">
+    <div class="page-col d-flex align-items-center justify-content-between">
+        <a class="nav-brand" href="\#top">#(t.brand_short)</a>
+        <div class="d-flex align-items-center gap-3">
+            <a class="nav-link-mono" href="\#projects">#(t.nav_projects)</a>
+            <a class="nav-link-mono" href="\#about">#(t.nav_about)</a>
+            <a class="nav-link-mono" href="\#contact">#(t.nav_contact)</a>
+            <div class="lang-toggle">
+                #if(locale == "en"):
+                <span class="lang-current">#(t.lang_en)</span><span class="lang-sep">/</span><a class="lang-link" href="/es" hreflang="es" lang="es">#(t.lang_es)</a>
+                #else:
+                <a class="lang-link" href="/" hreflang="en" lang="en">#(t.lang_en)</a><span class="lang-sep">/</span><span class="lang-current">#(t.lang_es)</span>
+                #endif
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main id="main">
+    <section class="work" id="projects">
+        <div class="page-col">
+            <h2 class="ghost-heading">#(t.work_heading)</h2>
+            <div class="vstack gap-3 work-list">
+                #for(project in projects):
+                <article class="card-project">
+                    <p class="card-tags">#(project.tags)</p>
+                    <h3 class="card-title">#(project.name)</h3>
+                    <p class="card-desc">#(project.description)</p>
+                    #if(project.hasScreenshot):
+                    <div class="shot-placeholder"><span>#(t.placeholder_screenshot)</span></div>
+                    #endif
+                </article>
+                #endfor
+            </div>
+        </div>
+    </section>
+
+    <section class="stack-section" id="about">
+        <div class="page-col">
+            <h2 class="section-heading">#(t.stack_heading)</h2>
+            <div class="d-flex flex-wrap gap-2">
+                #for(item in stack):
+                <span class="chip">#(item)</span>
+                #endfor
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <div class="page-col">
+            <h2 class="cta-heading">#(t.cta_heading)</h2>
+            <div class="d-flex flex-wrap gap-2 align-items-center cta-actions">
+                <a class="btn-jc btn-jc-accent" href="mailto:#(email)">#(email)</a>
+                <button class="btn-jc btn-jc-outline" type="button" data-bs-toggle="collapse" data-bs-target="\#contact-links" aria-expanded="false" aria-controls="contact-links">#(t.cta_all_links)</button>
+            </div>
+            <div class="collapse" id="contact-links">
+                <div class="d-flex flex-wrap gap-3 contact-links">
+                    <a class="nav-link-mono" href="#(links.github)" rel="me noopener">#(t.footer_github)</a>
+                    <a class="nav-link-mono" href="#(links.linkedin)" rel="me noopener">#(t.footer_linkedin)</a>
+                    <a class="nav-link-mono" href="#(links.appStore)" rel="me noopener">#(t.footer_appstore)</a>
+                    <button class="nav-link-mono link-button" type="button" data-copy-email="#(email)" data-copied-label="#(t.copied_label)">#(t.copy_email)</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="page-col d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <p class="footer-text">© #(year) #(t.footer_name)</p>
+        <div class="d-flex gap-3">
+            <a class="nav-link-mono" href="#(links.github)" rel="me noopener">#(t.footer_github)</a>
+            <a class="nav-link-mono" href="#(links.linkedin)" rel="me noopener">#(t.footer_linkedin)</a>
+            <a class="nav-link-mono" href="#(links.appStore)" rel="me noopener">#(t.footer_appstore)</a>
+        </div>
+    </div>
+</footer>
+#endexport
+#endextend

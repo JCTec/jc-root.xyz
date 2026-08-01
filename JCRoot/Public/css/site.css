@@ -1,0 +1,396 @@
+/* jc-root.xyz — custom polish layer.
+   Bootstrap provides structure (grid, flex, collapse); this file owns
+   borders, spacing rhythm, typography, and color. Design source: Design.pdf. */
+
+:root {
+    --jc-bg: #0a0a0b;
+    --jc-surface: #101012;
+    --jc-card: #131316;
+    --jc-border: #232327;
+    --jc-border-soft: #1b1b1f;
+    --jc-text: #f2f2f3;
+    --jc-muted: #a3a3ab;
+    --jc-faint: #86868e;
+    --jc-ghost: #1c1c20;
+    --jc-accent: #f2a33c;
+    --jc-font-display: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --jc-font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    background: var(--jc-bg);
+    color: var(--jc-text);
+    font-family: var(--jc-font-display);
+    -webkit-font-smoothing: antialiased;
+}
+
+.page-col {
+    max-width: 720px;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+}
+
+a {
+    color: inherit;
+}
+
+/* ---- accessibility -------------------------------------------------- */
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 2000;
+    background: var(--jc-accent);
+    color: #171006;
+    padding: 0.5rem 1rem;
+    font-family: var(--jc-font-mono);
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 0.5rem;
+    top: 0.5rem;
+}
+
+/* ---- shared type ---------------------------------------------------- */
+
+.mono-label,
+.site-label,
+.stat-label,
+.card-tags,
+.nav-link-mono,
+.footer-text,
+.hero-tagline {
+    font-family: var(--jc-font-mono);
+}
+
+.nav-link-mono {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--jc-muted);
+    text-decoration: none;
+}
+
+.nav-link-mono:hover,
+.nav-link-mono:focus {
+    color: var(--jc-text);
+}
+
+.link-button {
+    background: none;
+    border: 0;
+    padding: 0;
+}
+
+/* ---- buttons -------------------------------------------------------- */
+
+.btn-jc {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.6rem 1rem;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.btn-jc-light {
+    background: #f2f2f3;
+    color: #0a0a0b;
+}
+
+.btn-jc-light:hover,
+.btn-jc-light:focus {
+    background: #ffffff;
+    color: #0a0a0b;
+}
+
+.btn-jc-outline {
+    background: transparent;
+    color: var(--jc-text);
+    border-color: #3a3a41;
+}
+
+.btn-jc-outline:hover,
+.btn-jc-outline:focus {
+    border-color: #5a5a63;
+    color: #ffffff;
+}
+
+.btn-jc-accent {
+    background: var(--jc-accent);
+    color: #171006;
+    font-family: var(--jc-font-mono);
+    font-weight: 700;
+}
+
+.btn-jc-accent:hover,
+.btn-jc-accent:focus {
+    background: #ffb554;
+    color: #171006;
+}
+
+/* ---- hero ----------------------------------------------------------- */
+
+.hero {
+    padding: 4.5rem 0 3.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-ghost {
+    position: absolute;
+    top: -1rem;
+    right: -6rem;
+    font-size: 16rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: rgba(255, 255, 255, 0.035);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+.hero .page-col > *:not(.hero-ghost) {
+    position: relative;
+    z-index: 1;
+}
+
+.site-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--jc-accent);
+    margin-bottom: 1.75rem;
+}
+
+.hero-logo {
+    font-size: clamp(4.5rem, 14vw, 7rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.25rem;
+}
+
+.hero-name {
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1.25;
+    max-width: 18ch;
+    margin-bottom: 0.75rem;
+}
+
+.hero-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--jc-faint);
+    margin-bottom: 1.75rem;
+}
+
+/* ---- stats ---------------------------------------------------------- */
+
+.stats {
+    border-top: 1px solid var(--jc-border-soft);
+    padding: 2.25rem 0 2.5rem;
+}
+
+.stat-value {
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin-bottom: 0.15rem;
+}
+
+.stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--jc-faint);
+    margin-bottom: 0;
+}
+
+/* ---- sticky nav ----------------------------------------------------- */
+
+.site-nav {
+    background: rgba(10, 10, 11, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid var(--jc-border-soft);
+    border-bottom: 1px solid var(--jc-border-soft);
+    padding: 0.65rem 0;
+}
+
+.nav-brand {
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+}
+
+.lang-toggle {
+    border: 1px solid var(--jc-border);
+    padding: 0.25rem 0.55rem;
+    font-family: var(--jc-font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+}
+
+.lang-current {
+    color: var(--jc-text);
+    font-weight: 700;
+}
+
+.lang-sep {
+    color: var(--jc-faint);
+    margin: 0 0.35rem;
+}
+
+.lang-link {
+    color: var(--jc-faint);
+    text-decoration: none;
+}
+
+.lang-link:hover,
+.lang-link:focus {
+    color: var(--jc-text);
+}
+
+/* ---- selected work -------------------------------------------------- */
+
+.work {
+    background: var(--jc-surface);
+    padding: 0 0 3rem;
+}
+
+.ghost-heading {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--jc-ghost);
+    padding-top: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-project {
+    background: var(--jc-card);
+    border: 1px solid var(--jc-border);
+    border-radius: 4px;
+    padding: 1.4rem 1.5rem 1.5rem;
+}
+
+.card-tags {
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--jc-accent);
+    margin-bottom: 0.6rem;
+}
+
+.card-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+}
+
+.card-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--jc-muted);
+    margin-bottom: 0;
+}
+
+.shot-placeholder {
+    margin-top: 1.25rem;
+    border: 1px dashed #2e2e34;
+    border-radius: 3px;
+    min-height: 170px;
+    display: grid;
+    place-items: center;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.015) 10px,
+        rgba(255, 255, 255, 0.015) 20px
+    );
+}
+
+.shot-placeholder span {
+    font-family: var(--jc-font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #55555c;
+}
+
+/* ---- stack ---------------------------------------------------------- */
+
+.stack-section {
+    background: var(--jc-surface);
+    padding: 1rem 0 3rem;
+}
+
+.section-heading {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+}
+
+.chip {
+    font-family: var(--jc-font-mono);
+    font-size: 0.68rem;
+    color: #d8d8dc;
+    background: #121215;
+    border: 1px solid #2c2c32;
+    border-radius: 3px;
+    padding: 0.4rem 0.65rem;
+}
+
+/* ---- contact CTA ---------------------------------------------------- */
+
+.cta {
+    padding: 4rem 0 4.5rem;
+}
+
+.cta-heading {
+    font-size: clamp(1.9rem, 6vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    max-width: 16ch;
+    margin-bottom: 1.75rem;
+}
+
+.contact-links {
+    padding-top: 1.25rem;
+}
+
+/* ---- footer --------------------------------------------------------- */
+
+.site-footer {
+    border-top: 1px solid var(--jc-border-soft);
+    padding: 1.4rem 0 2rem;
+}
+
+.footer-text {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--jc-faint);
+    margin-bottom: 0;
+}

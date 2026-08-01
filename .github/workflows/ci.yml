@@ -1,0 +1,86 @@
+# One gate, one deploy. The full gate runs on every PR and every push to
+# main; only a green push to main deploys. Merging is the decision —
+# deploying is a consequence. CI runs in the same image the Dockerfile
+# builds from, so a green run is evidence about the deployed artifact.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    container: swift:6.1-noble
+    steps:
+      - uses: actions/checkout@v4
+
+      # Cheapest checks first.
+      - name: JS syntax check
+        run: |
+          apt-get update -qq >/dev/null
+          apt-get install -y -qq nodejs >/dev/null
+          node --check JCRoot/Public/js/app.js
+
+      - name: Whitespace and conflict markers
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git diff --check
+
+      - name: Resolve dependencies
+        working-directory: JCRoot
+        run: swift package resolve
+
+      - name: Build
+        working-directory: JCRoot
+        run: swift build
+
+      - name: Test
+        working-directory: JCRoot
+        run: swift test
+
+  deploy:
+    needs: tests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Stamp before pushing so the release that the push triggers already
+      # carries the new asset version (cache busting for ?v= URLs).
+      - name: Stamp ASSET_VERSION
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        run: |
+          curl -sf -X PATCH \
+            -H "Authorization: Bearer ${HEROKU_API_KEY}" \
+            -H "Accept: application/vnd.heroku+json; version=3" \
+            -H "Content-Type: application/json" \
+            -d "{\"ASSET_VERSION\":\"${GITHUB_SHA::12}\"}" \
+            "https://api.heroku.com/apps/${HEROKU_APP_NAME}/config-vars" >/dev/null
+
+      # The Heroku app is the JCRoot/ subdirectory of the monorepo: split
+      # that subtree into a synthesized branch and force-push it to Heroku's
+      # git remote. Heroku then builds the Dockerfile (heroku.yml) and
+      # restarts the web dyno. Heroku's git history is not a record — the
+      # GitHub repository is the only source of truth.
+      - name: Deploy to Heroku (subtree split)
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git subtree split --prefix JCRoot -b heroku-main
+          git push "https://heroku:${HEROKU_API_KEY}@git.heroku.com/${HEROKU_APP_NAME}.git" heroku-main:main --force
