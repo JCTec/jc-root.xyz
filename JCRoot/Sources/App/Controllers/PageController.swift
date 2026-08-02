@@ -5,6 +5,7 @@ import Vapor
 /// string table for the request's locale; templates reference codes only.
 struct HomeContext: Encodable {
     let locale: String
+    let ogLocale: String
     let assetVersion: String
     let canonicalURL: String
     let alternateEN: String
@@ -31,6 +32,8 @@ struct ProjectCard: Encodable {
     let name: String
     let description: String
     let hasScreenshot: Bool
+    /// Descriptive alt text (app name + platform) for the screenshot slot.
+    let shotAlt: String?
     let appStoreURL: String?
     let repoURL: String?
 }
@@ -63,22 +66,22 @@ struct PageController: Sendable {
         let projects: [ProjectCard] = [
             ProjectCard(
                 tags: s("p1_tags"), name: s("p1_name"), description: s("p1_desc"),
-                hasScreenshot: true,
+                hasScreenshot: true, shotAlt: s("p1_shot_alt"),
                 appStoreURL: "https://apps.apple.com/us/app/id6475695007", repoURL: nil
             ),
             ProjectCard(
                 tags: s("p2_tags"), name: s("p2_name"), description: s("p2_desc"),
-                hasScreenshot: true,
+                hasScreenshot: true, shotAlt: s("p2_shot_alt"),
                 appStoreURL: nil, repoURL: nil
             ),
             ProjectCard(
                 tags: s("p3_tags"), name: s("p3_name"), description: s("p3_desc"),
-                hasScreenshot: false,
+                hasScreenshot: false, shotAlt: nil,
                 appStoreURL: nil, repoURL: "https://github.com/swift-calendar/icalendarkit"
             ),
             ProjectCard(
                 tags: s("p4_tags"), name: s("p4_name"), description: s("p4_desc"),
-                hasScreenshot: false,
+                hasScreenshot: false, shotAlt: nil,
                 appStoreURL: "https://apps.apple.com/us/app/id1346871946", repoURL: nil
             ),
         ]
@@ -99,6 +102,7 @@ struct PageController: Sendable {
 
         let context = HomeContext(
             locale: locale.htmlLang,
+            ogLocale: locale.ogLocale,
             assetVersion: config.assetVersion,
             canonicalURL: homeURL,
             alternateEN: absolute(AppLocale.en.homePath, base: base),

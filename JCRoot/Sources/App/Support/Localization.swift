@@ -10,6 +10,14 @@ enum AppLocale: String, CaseIterable, Sendable {
 
     var htmlLang: String { rawValue }
 
+    /// Open Graph locale code for social previews.
+    var ogLocale: String {
+        switch self {
+        case .en: "en_US"
+        case .es: "es_ES"
+        }
+    }
+
     var homePath: String {
         switch self {
         case .en: "/"

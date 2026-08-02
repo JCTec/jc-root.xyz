@@ -7,3 +7,4 @@
 .build/
 .swiftpm/
 tmp/
+_to_delete/

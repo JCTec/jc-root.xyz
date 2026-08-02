@@ -234,6 +234,16 @@ a {
     margin-bottom: 0;
 }
 
+.about-availability {
+    font-family: var(--jc-font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    line-height: 1.7;
+    color: var(--jc-accent);
+    max-width: 58ch;
+    margin: 1rem 0 0;
+}
+
 /* ---- experience ------------------------------------------------------ */
 
 .experience {

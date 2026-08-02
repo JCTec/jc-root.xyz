@@ -42,6 +42,7 @@
         <div class="page-col">
             <h2 class="section-heading">#(t.about_heading)</h2>
             <p class="about-body">#(t.about_body)</p>
+            <p class="about-availability">#(t.about_availability)</p>
         </div>
     </section>
 
@@ -73,13 +74,13 @@
                     <h3 class="card-title">#(project.name)</h3>
                     <p class="card-desc">#(project.description)</p>
                     #if(project.appStoreURL):
-                    <a class="card-link" href="#(project.appStoreURL)" rel="noopener">#(t.link_appstore)</a>
+                    <a class="card-link" href="#(project.appStoreURL)" rel="noopener">#(project.name) #(t.link_appstore_suffix)</a>
                     #endif
                     #if(project.repoURL):
-                    <a class="card-link" href="#(project.repoURL)" rel="noopener">#(t.link_github)</a>
+                    <a class="card-link" href="#(project.repoURL)" rel="noopener">#(project.name) #(t.link_github_suffix)</a>
                     #endif
                     #if(project.hasScreenshot):
-                    <div class="shot-placeholder"><span>#(t.placeholder_screenshot)</span></div>
+                    <div class="shot-placeholder" role="img" aria-label="#(project.shotAlt)"><span aria-hidden="true">#(t.placeholder_screenshot)</span></div>
                     #endif
                 </article>
                 #endfor

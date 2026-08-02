@@ -3,8 +3,8 @@
 // (enforced by AppTests). Code and templates reference codes only.
 
 // Meta
-"meta_title" = "Juan Carlos Estévez Rodríguez — Senior iOS Engineer";
-"meta_description" = "Senior iOS Engineer building for iOS, iPadOS, macOS and visionOS. Four shipped apps, ten localizations, on the App Store since 2018.";
+"meta_title" = "Juan Carlos Estévez · Senior iOS Engineer for Hire | Remote & Freelance iOS Developer (Swift, SwiftUI)";
+"meta_description" = "Senior iOS engineer for hire: remote or freelance. 6 years of professional Swift and SwiftUI experience, 8 years shipping on the App Store, apps across iOS, iPadOS, macOS and visionOS. EU work authorization. Available now.";
 
 // Accessibility
 "skip_to_content" = "Skip to content";
@@ -31,6 +31,7 @@
 // About
 "about_heading" = "About";
 "about_body" = "Senior iOS Engineer with 6 years of professional experience, plus 2 earlier years shipping production code while completing my engineering degree. I modernize legacy codebases, build design systems, and treat testing as part of the craft, not an afterthought. On the App Store since 2018 with four shipped apps across four Apple platforms in ten languages. Currently independent: client apps and deep work with AI-assisted and agentic development (Claude, OpenAI, xAI, local models via Ollama). Passionate about health and wellness technology. When I'm not shipping, I'm doing yoga, climbing, or kitesurfing.";
+"about_availability" = "Currently available for hire as a remote iOS developer, freelance or full-time, anywhere in the EU or the Americas.";
 
 // Experience
 "exp_heading" = "Experience";
@@ -73,15 +74,17 @@
 // Selected work
 "work_heading" = "Selected work";
 "placeholder_screenshot" = "app screenshot";
-"link_appstore" = "App Store →";
-"link_github" = "GitHub →";
+"link_appstore_suffix" = "on the App Store →";
+"link_github_suffix" = "on GitHub →";
+"p1_shot_alt" = "Tapper Counters, SwiftUI tap-to-count app for iOS, iPadOS, macOS and visionOS";
+"p2_shot_alt" = "MythLog, consent-first macOS system event logging app with a live SwiftUI timeline";
 
 "p1_tags" = "iOS · iPadOS · macOS · visionOS";
 "p1_name" = "Tapper Counters";
 "p1_desc" = "Sleek, customizable tap-to-count app for activities, habits and tallies. One SwiftUI 6 codebase across four Apple platforms, localized in 10 languages.";
 
 "p2_tags" = "macOS";
-"p2_name" = "MacAlarm";
+"p2_name" = "MythLog";
 "p2_desc" = "Consent-first macOS app recording system events — sleep/wake, screen lock, custom — into a tamper-evident HMAC hash-chain ledger with a live SwiftUI timeline.";
 
 "p3_tags" = "Swift Package · Open Source";
