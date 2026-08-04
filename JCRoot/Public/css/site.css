@@ -365,7 +365,7 @@ a {
     font-size: clamp(2.5rem, 8vw, 3.5rem);
     font-weight: 800;
     letter-spacing: -0.03em;
-    color: var(--jc-ghost);
+    color: var(--jc-text);
     padding-top: 1.25rem;
     margin-bottom: 1.5rem;
 }
