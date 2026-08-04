@@ -83,7 +83,8 @@ struct PageController: Sendable {
             ProjectCard(
                 tags: s("p4_tags"), name: s("p4_name"), description: s("p4_desc"),
                 hasScreenshot: false, shotAlt: nil,
-                appStoreURL: "https://apps.apple.com/us/app/id1346871946", repoURL: nil
+                appStoreURL: "https://apps.apple.com/us/app/id1346871946",
+                repoURL: "https://github.com/JCTec/iBase"
             ),
         ]
 

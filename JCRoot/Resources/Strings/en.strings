@@ -30,7 +30,7 @@
 
 // About
 "about_heading" = "About";
-"about_body" = "Senior iOS Engineer with 6 years of professional experience, plus 2 earlier years shipping production code while completing my engineering degree. I modernize legacy codebases, build design systems, and treat testing as part of the craft, not an afterthought. On the App Store since 2018 with four shipped apps across four Apple platforms in ten languages. Currently independent: client apps and deep work with AI-assisted and agentic development (Claude, OpenAI, xAI, local models via Ollama). Passionate about health and wellness technology. When I'm not shipping, I'm doing yoga, climbing, or kitesurfing.";
+"about_body" = "Senior iOS Engineer with 6 years of professional experience, plus 2 earlier years shipping production code while completing my engineering degree. I modernize legacy codebases, build design systems, and treat testing as part of the craft, not an afterthought. On the App Store since 2018 with three shipped apps across iPhone, iPad and Mac. Currently independent: client apps and deep work with AI-assisted and agentic development (Claude, OpenAI, xAI, local models via Ollama). Passionate about health and wellness technology. When I'm not shipping, I'm doing yoga, climbing, or kitesurfing.";
 "about_availability" = "Currently available for hire as a remote iOS developer, freelance or full-time, anywhere in the EU or the Americas.";
 
 // Experience
@@ -76,24 +76,24 @@
 "placeholder_screenshot" = "app screenshot";
 "link_appstore_suffix" = "on the App Store →";
 "link_github_suffix" = "on GitHub →";
-"p1_shot_alt" = "Tapper Counters, SwiftUI tap-to-count app for iOS, iPadOS, macOS and visionOS";
+"p1_shot_alt" = "Tapper Counters, SwiftUI tap-to-count app for iPhone and iPad";
 "p2_shot_alt" = "MythLog, consent-first macOS system event logging app with a live SwiftUI timeline";
 
-"p1_tags" = "iOS · iPadOS · macOS · visionOS";
+"p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
-"p1_desc" = "Sleek, customizable tap-to-count app for activities, habits and tallies. One SwiftUI 6 codebase across four Apple platforms, localized in 10 languages.";
+"p1_desc" = "Sleek, customizable tap-to-count app for workouts, habits, scores and tallies. Per-counter colors, custom increments, sorting, and a focused full-screen counting view. SwiftUI, SwiftData and App Intents, iOS 17+.";
 
 "p2_tags" = "macOS";
 "p2_name" = "MythLog";
-"p2_desc" = "Consent-first macOS app recording system events — sleep/wake, screen lock, custom — into a tamper-evident HMAC hash-chain ledger with a live SwiftUI timeline.";
+"p2_desc" = "Consent-first macOS app recording system events — sleep/wake, screen lock, app launches, watched-file changes, custom CLI events — into an append-only HMAC-SHA256 hash-chain ledger with a live SwiftUI timeline. Fully local, no account or analytics. macOS 14+.";
 
 "p3_tags" = "Swift Package · Open Source";
 "p3_name" = "iCalendarKit";
-"p3_desc" = "Swift encoder for iCalendar data (RFC 5545) with events and recurrence rules. SPM, CI on Linux and macOS. Creator and co-founder of the swift-calendar org.";
+"p3_desc" = "Swift encoder for iCalendar data (RFC 5545) — events, alarms, timezones and recurrence rules. SPM, CI on Linux and macOS, published DocC docs. Creator and co-founder of the swift-calendar org.";
 
-"p4_tags" = "iOS · iPadOS · macOS · visionOS";
+"p4_tags" = "iOS · iPadOS";
 "p4_name" = "iBase";
-"p4_desc" = "Fast, simple converter between binary, octal, decimal and hexadecimal. On the App Store since 2018.";
+"p4_desc" = "Fast, simple converter between binary, octal, decimal and hexadecimal. On the App Store since 2018, in English, French and Spanish.";
 
 // Education & Languages
 "edu_heading" = "Education & Languages";

@@ -29,7 +29,7 @@
 
 // Acerca de
 "about_heading" = "Acerca de";
-"about_body" = "Ingeniero iOS Senior con 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras terminaba la carrera de ingeniería. Modernizo bases de código legadas, construyo sistemas de diseño y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con cuatro apps publicadas en cuatro plataformas Apple y diez idiomas. Actualmente independiente: apps para clientes y trabajo a fondo con desarrollo asistido por IA y agentes (Claude, OpenAI, xAI, modelos locales con Ollama). Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
+"about_body" = "Ingeniero iOS Senior con 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras terminaba la carrera de ingeniería. Modernizo bases de código legadas, construyo sistemas de diseño y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Actualmente independiente: apps para clientes y trabajo a fondo con desarrollo asistido por IA y agentes (Claude, OpenAI, xAI, modelos locales con Ollama). Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
 "about_availability" = "Actualmente disponible para contratación como desarrollador iOS remoto, freelance o de tiempo completo, en la UE o en América.";
 
 // Experiencia
@@ -75,24 +75,24 @@
 "placeholder_screenshot" = "captura de la app";
 "link_appstore_suffix" = "en el App Store →";
 "link_github_suffix" = "en GitHub →";
-"p1_shot_alt" = "Tapper Counters, app SwiftUI para contar con un toque en iOS, iPadOS, macOS y visionOS";
+"p1_shot_alt" = "Tapper Counters, app SwiftUI para contar con un toque en iPhone y iPad";
 "p2_shot_alt" = "MythLog, app de macOS con consentimiento primero que registra eventos del sistema en una línea de tiempo SwiftUI";
 
-"p1_tags" = "iOS · iPadOS · macOS · visionOS";
+"p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
-"p1_desc" = "App elegante y personalizable para contar con un toque: actividades, hábitos y conteos. Un solo código SwiftUI 6 para cuatro plataformas Apple, localizada en 10 idiomas.";
+"p1_desc" = "App elegante y personalizable para contar con un toque: entrenamientos, hábitos, marcadores y conteos. Colores por contador, incrementos personalizados, ordenamiento y una vista de conteo a pantalla completa. SwiftUI, SwiftData y App Intents, iOS 17+.";
 
 "p2_tags" = "macOS";
 "p2_name" = "MythLog";
-"p2_desc" = "App de macOS con consentimiento primero que registra eventos del sistema — reposo/activación, bloqueo de pantalla, personalizados — en un registro a prueba de manipulación con cadena de hashes HMAC y una línea de tiempo en vivo en SwiftUI.";
+"p2_desc" = "App de macOS con consentimiento primero que registra eventos del sistema — reposo/activación, bloqueo de pantalla, apertura de apps, cambios en archivos vigilados, eventos propios por CLI — en un registro de solo anexado con cadena de hashes HMAC-SHA256 y una línea de tiempo en vivo en SwiftUI. Todo local, sin cuenta ni analítica. macOS 14+.";
 
 "p3_tags" = "Paquete Swift · Código abierto";
 "p3_name" = "iCalendarKit";
-"p3_desc" = "Codificador Swift para datos iCalendar (RFC 5545) con eventos y reglas de recurrencia. SPM, CI en Linux y macOS. Creador y cofundador de la organización swift-calendar.";
+"p3_desc" = "Codificador Swift para datos iCalendar (RFC 5545): eventos, alarmas, zonas horarias y reglas de recurrencia. SPM, CI en Linux y macOS, documentación DocC publicada. Creador y cofundador de la organización swift-calendar.";
 
-"p4_tags" = "iOS · iPadOS · macOS · visionOS";
+"p4_tags" = "iOS · iPadOS";
 "p4_name" = "iBase";
-"p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018.";
+"p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018, en inglés, francés y español.";
 
 // Educación e idiomas
 "edu_heading" = "Educación e idiomas";
