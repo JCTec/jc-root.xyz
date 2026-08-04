@@ -79,9 +79,6 @@
                     #if(project.repoURL):
                     <a class="card-link" href="#(project.repoURL)" rel="noopener">#(project.name) #(t.link_github_suffix)</a>
                     #endif
-                    #if(project.hasScreenshot):
-                    <div class="shot-placeholder" role="img" aria-label="#(project.shotAlt)"><span aria-hidden="true">#(t.placeholder_screenshot)</span></div>
-                    #endif
                 </article>
                 #endfor
             </div>

@@ -67,12 +67,13 @@ struct PageController: Sendable {
             ProjectCard(
                 tags: s("p1_tags"), name: s("p1_name"), description: s("p1_desc"),
                 hasScreenshot: true, shotAlt: s("p1_shot_alt"),
-                appStoreURL: "https://apps.apple.com/us/app/id6475695007", repoURL: nil
+                appStoreURL: "https://apps.apple.com/mx/app/tapper-counters/id6475695007",
+                repoURL: "https://github.com/JCTec/Tapper"
             ),
             ProjectCard(
                 tags: s("p2_tags"), name: s("p2_name"), description: s("p2_desc"),
                 hasScreenshot: true, shotAlt: s("p2_shot_alt"),
-                appStoreURL: nil, repoURL: nil
+                appStoreURL: "https://apps.apple.com/mx/app/mythlog/id6797111874", repoURL: nil
             ),
             ProjectCard(
                 tags: s("p3_tags"), name: s("p3_name"), description: s("p3_desc"),
