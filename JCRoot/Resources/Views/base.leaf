@@ -31,7 +31,8 @@
             "#(links.appStore)"
         ],
         "knowsAbout": ["Swift", "SwiftUI", "UIKit", "iOS development"],
-        "nationality": "Spanish"
+        "nationality": "Spanish",
+        "homeLocation": {"@type": "Place", "name": "Amsterdam, Netherlands"}
     }
     </script>
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css?v=#(assetVersion)">

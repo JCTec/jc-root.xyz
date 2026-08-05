@@ -3,7 +3,7 @@
 
 // Meta
 "meta_title" = "Juan Carlos Estévez · Ingeniero iOS Senior disponible | Desarrollador iOS remoto y freelance (Swift, SwiftUI)";
-"meta_description" = "Ingeniero iOS senior disponible para contratación: remoto o freelance. 6 años de experiencia profesional con Swift y SwiftUI, 8 años publicando en el App Store, apps para iOS, iPadOS, macOS y visionOS. Autorización de trabajo en la UE. Disponible ahora.";
+"meta_description" = "Ingeniero iOS senior disponible para contratación: remoto o freelance. 6 años de experiencia profesional con Swift y SwiftUI, 8 años publicando en el App Store, apps para iOS, iPadOS y macOS. Con base en Ámsterdam, autorización de trabajo en la UE. Disponible ahora.";
 
 // Accesibilidad
 "skip_to_content" = "Saltar al contenido";
@@ -14,8 +14,8 @@
 "brand_short" = "JC";
 "hero_name" = "Juan Carlos Estévez Rodríguez";
 "hero_role" = "Ingeniero iOS Senior";
-"hero_platforms" = "iOS · iPadOS · macOS · visionOS";
-"hero_status" = "Ciudadano español, autorizado para trabajar en la UE · Remoto o reubicación (Barcelona / París)";
+"hero_platforms" = "iOS · iPadOS · macOS";
+"hero_status" = "Con base en Ámsterdam · Ciudadano español, autorizado para trabajar en la UE · Remoto o reubicación (Barcelona / París)";
 "hero_cta_projects" = "Ver mis proyectos →";
 "hero_cta_github" = "GitHub";
 
