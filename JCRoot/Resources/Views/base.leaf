@@ -32,7 +32,7 @@
         ],
         "knowsAbout": ["Swift", "SwiftUI", "UIKit", "iOS development"],
         "nationality": "Spanish",
-        "homeLocation": {"@type": "Place", "name": "Amsterdam, Netherlands"}
+        "homeLocation": {"@type": "Place", "name": "Barcelona, Spain"}
     }
     </script>
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css?v=#(assetVersion)">
