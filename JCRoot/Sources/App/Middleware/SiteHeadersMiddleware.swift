@@ -12,7 +12,7 @@ enum CachePolicy {
         if p.hasSuffix(".css") || p.hasSuffix(".js") || p.hasSuffix(".webmanifest") {
             return "public, max-age=86400, stale-while-revalidate=604800"
         }
-        if p == "/robots.txt" || p == "/sitemap.xml" {
+        if p == "/robots.txt" || p == "/sitemap.xml" || p == "/llms.txt" {
             return "public, max-age=3600"
         }
         return "no-cache, must-revalidate"

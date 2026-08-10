@@ -25,6 +25,8 @@ struct HomeContext: Encodable {
     let formNext: String
     /// True when the visitor just came back from a successful submission.
     let sent: Bool
+    /// Absolute URL of the social preview card (og:image / twitter:image).
+    let ogImageURL: String
 }
 
 struct ProjectCard: Encodable {
@@ -123,7 +125,8 @@ struct PageController: Sendable {
             ),
             formAction: config.formSubmitEndpoint,
             formNext: homeURL + "?sent=1",
-            sent: sent
+            sent: sent,
+            ogImageURL: base + "/icons/og-card.png"
         )
         return try await req.view.render("home", context)
     }
