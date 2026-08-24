@@ -6,6 +6,7 @@ Monorepo for the personal site of Juan Carlos Estévez Rodríguez.
 |---|---|
 | `JCRoot/` | The Vapor app — the only thing deployed. See `JCRoot/README.md`. |
 | `Design.pdf` | The visual design the site implements. |
+| `Scripts/browser-check.mjs` | Pre-deploy checks that need a real browser — layout, focus contrast, animation, and a returning visitor's stale cache. See `JCRoot/README.md`. |
 | `.github/workflows/ci.yml` | One gate (build + test) on every PR/push; green `main` auto-deploys to Heroku via `git subtree split`. |
 
 ## Deploying

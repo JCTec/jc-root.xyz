@@ -28,7 +28,9 @@ jobs:
         run: |
           apt-get update -qq >/dev/null
           apt-get install -y -qq nodejs >/dev/null
-          node --check JCRoot/Public/js/app.js
+          # Every shipped script, found rather than listed: naming one file
+          # here meant roots.js went unchecked from the day it was added.
+          find JCRoot/Public/js -name '*.js' -print0 | xargs -0 -r -n1 node --check
 
       - name: Whitespace and conflict markers
         run: |

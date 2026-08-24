@@ -21,7 +21,15 @@ Bootstrap · no JS framework · no build step · no database.**
   immutable + `?v=ASSET_VERSION` busting; HTML never publicly cached).
 - **The default test suite is hermetic** — no network, no credentials — and
   asserts invariants: locale parity, template/key integrity, headers,
-  discovery surfaces, canonical-host redirect.
+  discovery surfaces, canonical-host redirect, and the markup the server
+  emits (every referenced asset resolves, long-cached assets carry `?v=`,
+  no inline `<script>` the CSP would block).
+- **Assets and markup are cached apart, so they can disagree.** HTML is
+  `no-cache`; CSS and JS are `max-age=86400` keyed on `?v=ASSET_VERSION`,
+  which only CI ever changes. A returning visitor can therefore run today's
+  markup against yesterday's stylesheet. Anything that decides whether an
+  element takes up layout space has to travel *with the markup* — inline —
+  or it will strand that element in normal flow for a day.
 
 ## Running locally
 
@@ -29,6 +37,27 @@ Bootstrap · no JS framework · no build step · no database.**
 swift run App serve --hostname 127.0.0.1 --port 8080
 # http://127.0.0.1:8080  (EN)   http://127.0.0.1:8080/es  (ES)
 swift test
+```
+
+## Testing
+
+Two layers, split by what each can actually see.
+
+**`swift test`** — hermetic, fast, runs in CI on every push. Invariants of
+the server and of the markup it emits.
+
+**`node ../Scripts/browser-check.mjs`** — needs a running server and a local
+Chrome, so it stays out of CI (adding a browser there would mean a
+third-party toolchain this repo deliberately avoids). Run it before a deploy
+that touches CSS, JS or the template. It checks what only an engine can
+compute: layout, focus-ring contrast, `requestAnimationFrame` behaviour, and
+**the returning visitor** — today's markup rendered against the last
+committed CSS/JS, which is the combination that a day of cache staleness
+actually produces.
+
+```sh
+swift run App serve --port 8080 &
+node ../Scripts/browser-check.mjs
 ```
 
 ## Configuration (environment)
