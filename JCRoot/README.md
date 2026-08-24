@@ -17,8 +17,14 @@ Bootstrap · no JS framework · no build step · no database.**
   `Accept-Language` sniffing — both pages stay crawlable and cacheable, with
   canonical + hreflang metadata and both URLs in the sitemap.
 - **Headers are middleware.** `SiteHeadersMiddleware` applies the CSP,
-  `nosniff`, frame denial and a per-path cache policy (vendored assets
-  immutable + `?v=ASSET_VERSION` busting; HTML never publicly cached).
+  `nosniff`, frame denial, HSTS and a per-path cache policy (vendored assets
+  immutable + `?v=` busting; HTML never publicly cached). HSTS is sent only on
+  requests that arrived over TLS, and deliberately carries neither
+  `includeSubDomains` nor `preload` — see the edge notes in the root README for
+  why the subdomains cannot take it.
+- **One canonical origin, one redirect.** `CanonicalURLMiddleware` corrects
+  scheme and host together in a single 301, and does nothing at all when
+  `X-Forwarded-Proto` is absent — that absence is what keeps `localhost` usable.
 - **The default test suite is hermetic** — no network, no credentials — and
   asserts invariants: locale parity, template/key integrity, headers,
   discovery surfaces, canonical-host redirect, and the markup the server
@@ -66,7 +72,7 @@ node ../Scripts/browser-check.mjs
 |---|---|---|
 | `CANONICAL_HOST` | unset | When set (`jc-root.xyz`), other hosts 301 to it. Leave unset locally. |
 | `SITE_BASE_URL` | derived from host, else `http://localhost:8080` | Base for canonical/hreflang/sitemap URLs. |
-| `ASSET_VERSION` | `dev` | Deploy stamp for `?v=` cache busting. Set by CI to the Git SHA. |
+| `ASSET_VERSION` | derived from `Public/` | Stamp for `?v=` cache busting. Normally leave unset: the app hashes the bytes of `Public/` at boot, so the stamp cannot disagree with the assets it names. Setting it **overrides** that — a stale value pins every asset URL. |
 | `CONTACT_EMAIL` | `juancarlos_tec@proton.me` | Only feeds the default FormSubmit endpoint; never rendered on the page. |
 | `FORMSUBMIT_ENDPOINT` | `https://formsubmit.co/<CONTACT_EMAIL>` | Contact-form POST target. **After FormSubmit activation, set this to the random alias endpoint** so the address leaves the HTML entirely. |
 | `GITHUB_URL` | `https://github.com/JCTec` | Hero + footer link. |
@@ -104,12 +110,14 @@ Heroku container stack, built from this directory's `Dockerfile` via
 
 ## Known follow-ups
 
-- Real project screenshots to replace the two placeholders (`hasScreenshot`
-  cards in `PageController`).
+- Real project screenshots for the Tapper Counters and MythLog cards. The
+  unused `hasScreenshot`/`shotAlt` fields and their `*_shot_alt` strings were
+  removed rather than left to rot; recover the alt-text copy from history
+  (`git log -S p1_shot_alt`) when the images actually land.
 - FormSubmit activation + switch `FORMSUBMIT_ENDPOINT` to the alias (see
-  above).
-- GitHub repo links for Tapper Counters and MacAlarm when/if public
-  (`repoURL` in `PageController`).
-- `Package.resolved` should be committed after the first local
-  `swift package resolve` so Docker builds are reproducible
-  (`--force-resolved-versions`).
+  above). Until then the raw address is in the form's `action` attribute.
+- GitHub repo link for MythLog when/if public (`repoURL` in `PageController`).
+- Raise the HSTS `max-age` in steps once the current value has been served
+  without incident: 300 → 86400 → 31536000.
+- The two proxied Mailtrap CNAMEs should probably be DNS-only; see the root
+  README. Doing so would also unblock `includeSubDomains` on HSTS.
