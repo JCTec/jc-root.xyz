@@ -27,15 +27,15 @@ struct HomeContext: Encodable {
     let sent: Bool
     /// Absolute URL of the social preview card (og:image / twitter:image).
     let ogImageURL: String
+    /// Pre-serialized JSON-LD, emitted raw. Built in Swift because Leaf's
+    /// escaping corrupts JSON inside a <script> element; see `StructuredData`.
+    let jsonLD: String
 }
 
 struct ProjectCard: Encodable {
     let tags: String
     let name: String
     let description: String
-    let hasScreenshot: Bool
-    /// Descriptive alt text (app name + platform) for the screenshot slot.
-    let shotAlt: String?
     let appStoreURL: String?
     let repoURL: String?
 }
@@ -62,29 +62,24 @@ struct PageController: Sendable {
         // this never happens for keys referenced by templates or built here.
         let s: (String) -> String = { t[$0] ?? $0 }
 
-        // Project cards are composed from string codes; the card *list*,
-        // links, and which cards carry a screenshot placeholder are
-        // structure, not copy.
+        // Project cards are composed from string codes; the card *list* and
+        // its links are structure, not copy.
         let projects: [ProjectCard] = [
             ProjectCard(
                 tags: s("p1_tags"), name: s("p1_name"), description: s("p1_desc"),
-                hasScreenshot: true, shotAlt: s("p1_shot_alt"),
                 appStoreURL: "https://apps.apple.com/mx/app/tapper-counters/id6475695007",
                 repoURL: "https://github.com/JCTec/Tapper"
             ),
             ProjectCard(
                 tags: s("p2_tags"), name: s("p2_name"), description: s("p2_desc"),
-                hasScreenshot: true, shotAlt: s("p2_shot_alt"),
                 appStoreURL: "https://apps.apple.com/mx/app/mythlog/id6797111874", repoURL: nil
             ),
             ProjectCard(
                 tags: s("p3_tags"), name: s("p3_name"), description: s("p3_desc"),
-                hasScreenshot: false, shotAlt: nil,
                 appStoreURL: nil, repoURL: "https://github.com/swift-calendar/icalendarkit"
             ),
             ProjectCard(
                 tags: s("p4_tags"), name: s("p4_name"), description: s("p4_desc"),
-                hasScreenshot: false, shotAlt: nil,
                 appStoreURL: "https://apps.apple.com/us/app/id1346871946",
                 repoURL: "https://github.com/JCTec/iBase"
             ),
@@ -102,6 +97,11 @@ struct PageController: Sendable {
 
         let base = config.siteBaseURL
         let homeURL = absolute(locale.homePath, base: base)
+        let links = SiteLinks(
+            github: config.githubURL,
+            linkedin: config.linkedInURL,
+            appStore: config.appStoreURL
+        )
         let sent = (try? req.query.get(String.self, at: "sent")) != nil
 
         let context = HomeContext(
@@ -118,15 +118,17 @@ struct PageController: Sendable {
             stackCore: s("stack_core_items").split(separator: "|").map(String.init),
             stackAlso: s("stack_also_items").split(separator: "|").map(String.init),
             year: Calendar(identifier: .gregorian).component(.year, from: Date()),
-            links: SiteLinks(
-                github: config.githubURL,
-                linkedin: config.linkedInURL,
-                appStore: config.appStoreURL
-            ),
+            links: links,
             formAction: config.formSubmitEndpoint,
             formNext: homeURL + "?sent=1",
             sent: sent,
-            ogImageURL: base + "/icons/og-card.png"
+            ogImageURL: base + "/icons/og-card.png",
+            jsonLD: StructuredData.homePerson(
+                name: s("hero_name"),
+                jobTitle: s("hero_role"),
+                url: homeURL,
+                sameAs: [links.github, links.linkedin, links.appStore]
+            )
         )
         return try await req.view.render("home", context)
     }

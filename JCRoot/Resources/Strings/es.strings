@@ -73,11 +73,8 @@
 
 // Trabajo seleccionado
 "work_heading" = "Trabajo seleccionado";
-"placeholder_screenshot" = "captura de la app";
 "link_appstore_suffix" = "en el App Store →";
 "link_github_suffix" = "en GitHub →";
-"p1_shot_alt" = "Tapper Counters, app SwiftUI para contar con un toque en iPhone y iPad";
-"p2_shot_alt" = "MythLog, app de macOS con consentimiento primero que registra eventos del sistema en una línea de tiempo SwiftUI";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";

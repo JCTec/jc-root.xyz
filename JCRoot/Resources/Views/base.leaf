@@ -25,25 +25,12 @@
     <meta name="theme-color" content="#0a0a0b">
     <link rel="icon" href="/icons/favicon.svg?v=#(assetVersion)" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=#(assetVersion)">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "#(t.hero_name)",
-        "jobTitle": "#(t.hero_role)",
-        "url": "#(canonicalURL)",
-        "sameAs": [
-            "#(links.github)",
-            "#(links.linkedin)",
-            "#(links.appStore)"
-        ],
-        "knowsAbout": ["Swift", "SwiftUI", "UIKit", "iOS development"],
-        "nationality": "Spanish",
-        "alumniOf": {"@type": "CollegeOrUniversity", "name": "Universidad Anáhuac Mérida"},
-        "knowsLanguage": ["English", "Spanish", "French"],
-        "homeLocation": {"@type": "Place", "name": "Barcelona, Spain"}
-    }
-    </script>
+    <!-- Serialized in Swift and emitted raw. Leaf interpolation HTML-escapes
+         its values, and HTML parsers do not decode entities inside a script
+         element, so building this block here would publish a literal &amp; to
+         crawlers the first time a value contained an ampersand. StructuredData
+         re-escapes < > and & as JSON escapes, so no value can break out. -->
+    <script type="application/ld+json">#unsafeHTML(jsonLD)</script>
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css?v=#(assetVersion)">
     <link rel="stylesheet" href="/css/site.css?v=#(assetVersion)">
 </head>

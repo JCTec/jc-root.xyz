@@ -74,11 +74,8 @@
 
 // Selected work
 "work_heading" = "Selected work";
-"placeholder_screenshot" = "app screenshot";
 "link_appstore_suffix" = "on the App Store →";
 "link_github_suffix" = "on GitHub →";
-"p1_shot_alt" = "Tapper Counters, SwiftUI tap-to-count app for iPhone and iPad";
-"p2_shot_alt" = "MythLog, consent-first macOS system event logging app with a live SwiftUI timeline";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
