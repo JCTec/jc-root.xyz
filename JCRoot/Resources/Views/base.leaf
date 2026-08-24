@@ -48,7 +48,13 @@
     <link rel="stylesheet" href="/css/site.css?v=#(assetVersion)">
 </head>
 <body>
-    <canvas class="roots-canvas" aria-hidden="true"></canvas>
+    <!-- Layout styles are inline, not in site.css, on purpose: HTML is served
+         no-cache but site.css is public/max-age=86400 under ?v=ASSET_VERSION,
+         which is the constant "dev" outside CI. A stale stylesheet would leave
+         this canvas in normal flow as a viewport-sized block at the top of the
+         page. CSP allows style attributes; it does not allow inline <script>. -->
+    <canvas class="roots-canvas" aria-hidden="true"
+            style="position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;"></canvas>
 #import("body")
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js?v=#(assetVersion)" defer></script>
     <script src="/js/app.js?v=#(assetVersion)" defer></script>
