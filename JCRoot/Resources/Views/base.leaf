@@ -48,8 +48,10 @@
     <link rel="stylesheet" href="/css/site.css?v=#(assetVersion)">
 </head>
 <body>
+    <canvas class="roots-canvas" aria-hidden="true"></canvas>
 #import("body")
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js?v=#(assetVersion)" defer></script>
     <script src="/js/app.js?v=#(assetVersion)" defer></script>
+    <script src="/js/roots.js?v=#(assetVersion)" defer></script>
 </body>
 </html>
