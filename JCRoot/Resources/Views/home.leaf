@@ -92,7 +92,6 @@
             <p class="edu-line">#(t.edu2)</p>
             <p class="edu-line">#(t.edu3)</p>
             <p class="edu-line">#(t.edu4)</p>
-            <p class="edu-line">#(t.edu5)</p>
             <p class="langs-line">#(t.langs_line)</p>
         </div>
     </section>

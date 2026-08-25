@@ -96,10 +96,9 @@
 // Education & Languages
 "edu_heading" = "Education & Languages";
 "edu1" = "Software Engineering (Ingeniería en Informática y Negocios Digitales) — Universidad Anáhuac Mérida, 2016/2017 – July 2021 (9 semesters). Student Council member; entrepreneurship program.";
-"edu2" = "High school graduated 2016 (age 19).";
-"edu3" = "Entrepreneurship diploma — Management Center Innsbruck (2019–2020).";
-"edu4" = "M.S. in Cybersecurity — weekend program, starting October 2026.";
-"edu5" = "Certification: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
+"edu2" = "Entrepreneurship diploma — Management Center Innsbruck (2019–2020).";
+"edu3" = "M.S. in Cybersecurity — weekend program, starting October 2026.";
+"edu4" = "Certification: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
 "langs_line" = "Languages: English C2 · Spanish native · French B2";
 
 // Skills
