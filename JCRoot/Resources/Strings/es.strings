@@ -30,7 +30,7 @@
 
 // Acerca de
 "about_heading" = "Acerca de";
-"about_body" = "Ingeniero iOS Senior con 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras terminaba la carrera de ingeniería. Modernizo bases de código legadas, construyo sistemas de diseño y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Actualmente independiente: apps para clientes y trabajo a fondo con desarrollo asistido por IA y agentes (Claude, OpenAI, xAI, modelos locales con Ollama). Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
+"about_body" = "Ingeniero iOS Senior con 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, concluida en julio de 2021. Modernizo bases de código legadas, construyo sistemas de diseño y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Actualmente independiente: apps para clientes y trabajo a fondo con desarrollo asistido por IA y agentes (Claude, OpenAI, xAI, modelos locales con Ollama). Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
 "about_availability" = "Actualmente disponible para contratación como desarrollador iOS remoto, freelance o de tiempo completo, en la UE o en América.";
 
 // Experiencia
@@ -56,10 +56,10 @@
 "exp4_meta" = "Remoto · Feb 2022 – Abr 2024";
 "exp4_desc" = "Modernicé una app de marketplace con una década de antigüedad: migración a SwiftUI con listas de más de 10,000 elementos manteniendo el rendimiento; cultura de pruebas automatizadas construida desde cero (Robot Pattern + XCUITest); ciclos de release reducidos 30% con CI/CD en GitHub Actions; integración de terminales conectadas por WiFi mediante gestores de conexión propios; mentoría a ingenieros.";
 
-"exp5_role" = "Ingeniero de software Líder";
+"exp5_role" = "Cofundador e Ingeniero de Software Líder";
 "exp5_company" = "Xplain";
-"exp5_meta" = "Remoto (EE. UU.) · Ago 2020 – Feb 2022";
-"exp5_desc" = "Dos apps iOS en producción; flujos de pago seguros con Stripe.";
+"exp5_meta" = "Remoto · Ago 2020 – Feb 2022";
+"exp5_desc" = "Construí y publiqué dos apps iOS en producción con flujos de pago seguros con Stripe. Cofundada con amigos.";
 
 "exp6_role" = "Ingeniero Full Stack (enfoque iOS)";
 "exp6_company" = "Sunwise";
@@ -94,10 +94,11 @@
 
 // Educación e idiomas
 "edu_heading" = "Educación e idiomas";
-"edu1" = "Ingeniería de Software — Universidad Anáhuac Mérida (2014–2018). Miembro del Consejo Estudiantil; programa de emprendimiento.";
-"edu2" = "Diplomado en emprendimiento — Management Center Innsbruck (2019–2020).";
-"edu3" = "Maestría en Ciberseguridad — programa de fin de semana, inicia en octubre de 2026.";
-"edu4" = "Certificación: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
+"edu1" = "Ingeniería en Informática y Negocios Digitales — Universidad Anáhuac Mérida, 2016/2017 – julio de 2021 (9 semestres). Miembro del Consejo Estudiantil; programa de emprendimiento.";
+"edu2" = "Preparatoria concluida en 2016 (a los 19 años).";
+"edu3" = "Diplomado en emprendimiento — Management Center Innsbruck (2019–2020).";
+"edu4" = "Maestría en Ciberseguridad — programa de fin de semana, inicia en octubre de 2026.";
+"edu5" = "Certificación: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
 "langs_line" = "Idiomas: Inglés C2 · Español nativo · Francés B2";
 
 // Habilidades

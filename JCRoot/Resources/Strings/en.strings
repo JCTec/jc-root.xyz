@@ -31,7 +31,7 @@
 
 // About
 "about_heading" = "About";
-"about_body" = "Senior iOS Engineer with 6 years of professional experience, plus 2 earlier years shipping production code while completing my engineering degree. I modernize legacy codebases, build design systems, and treat testing as part of the craft, not an afterthought. On the App Store since 2018 with three shipped apps across iPhone, iPad and Mac. Currently independent: client apps and deep work with AI-assisted and agentic development (Claude, OpenAI, xAI, local models via Ollama). Passionate about health and wellness technology. When I'm not shipping, I'm doing yoga, climbing, or kitesurfing.";
+"about_body" = "Senior iOS Engineer with 6 years of professional experience, plus 2 earlier years shipping production code while studying for my engineering degree, completed in July 2021. I modernize legacy codebases, build design systems, and treat testing as part of the craft, not an afterthought. On the App Store since 2018 with three shipped apps across iPhone, iPad and Mac. Currently independent: client apps and deep work with AI-assisted and agentic development (Claude, OpenAI, xAI, local models via Ollama). Passionate about health and wellness technology. When I'm not shipping, I'm doing yoga, climbing, or kitesurfing.";
 "about_availability" = "Currently available for hire as a remote iOS developer, freelance or full-time, anywhere in the EU or the Americas.";
 
 // Experience
@@ -57,10 +57,10 @@
 "exp4_meta" = "Remote · Feb 2022 – Apr 2024";
 "exp4_desc" = "Modernized a decade-old marketplace app: SwiftUI migration with 10,000+ item lists kept performant; automated testing culture built from zero (Robot Pattern + XCUITest); release cycles cut 30% with GitHub Actions CI/CD; integrated WiFi-connected terminal hardware via custom connection managers; mentored engineers.";
 
-"exp5_role" = "Lead Software Engineer";
+"exp5_role" = "Co-founder & Lead Software Engineer";
 "exp5_company" = "Xplain";
-"exp5_meta" = "Remote (US) · Aug 2020 – Feb 2022";
-"exp5_desc" = "Two production iOS apps; secure Stripe payment flows.";
+"exp5_meta" = "Remote · Aug 2020 – Feb 2022";
+"exp5_desc" = "Built and shipped two production iOS apps with secure Stripe payment flows. Co-founded with friends.";
 
 "exp6_role" = "Full Stack Engineer (iOS Focus)";
 "exp6_company" = "Sunwise";
@@ -95,10 +95,11 @@
 
 // Education & Languages
 "edu_heading" = "Education & Languages";
-"edu1" = "Software Engineering — Anáhuac University Mérida (2014–2018). Student Council member; entrepreneurship program.";
-"edu2" = "Entrepreneurship diploma — Management Center Innsbruck (2019–2020).";
-"edu3" = "M.S. in Cybersecurity — weekend program, starting October 2026.";
-"edu4" = "Certification: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
+"edu1" = "Software Engineering (Ingeniería en Informática y Negocios Digitales) — Universidad Anáhuac Mérida, 2016/2017 – July 2021 (9 semesters). Student Council member; entrepreneurship program.";
+"edu2" = "High school graduated 2016 (age 19).";
+"edu3" = "Entrepreneurship diploma — Management Center Innsbruck (2019–2020).";
+"edu4" = "M.S. in Cybersecurity — weekend program, starting October 2026.";
+"edu5" = "Certification: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
 "langs_line" = "Languages: English C2 · Spanish native · French B2";
 
 // Skills
