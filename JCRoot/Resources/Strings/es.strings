@@ -76,6 +76,10 @@
 "link_appstore_suffix" = "en el App Store →";
 "link_github_suffix" = "en GitHub →";
 
+"p5_tags" = "iOS · Vapor · ESP32";
+"p5_name" = "Living Root";
+"p5_desc" = "Sistema hidropónico en tiempo real que monitorea las condiciones de la zona radicular mediante retroalimentación biológica de sensores. Tres bases de código: una app SwiftUI que grafica pH, EC, temperatura y nivel del agua, con instantáneas en SwiftData para que el panel siga leyéndose sin conexión; un backend en Vapor y PostgreSQL con consola de administración autenticada por sesión y una API de telemetría para dispositivos; y firmware MicroPython para un nodo sensor ESP32. Swift tanto en la app como en el servidor.";
+
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
 "p1_desc" = "App elegante y personalizable para contar con un toque: entrenamientos, hábitos, marcadores y conteos. Colores por contador, incrementos personalizados, ordenamiento y una vista de conteo a pantalla completa. SwiftUI, SwiftData y App Intents, iOS 17+.";

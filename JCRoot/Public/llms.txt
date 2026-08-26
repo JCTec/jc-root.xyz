@@ -17,6 +17,9 @@ with AI-assisted and agentic development (Claude, OpenAI, xAI, Ollama).
 
 ## Selected work
 
+- Living Root — real-time hydroponic monitoring; SwiftUI app, Vapor/PostgreSQL
+  backend, MicroPython ESP32 sensor node:
+  https://github.com/Living-Root
 - Tapper Counters — SwiftUI tap-to-count app (iOS, iPadOS):
   https://apps.apple.com/mx/app/tapper-counters/id6475695007
 - MythLog — consent-first macOS system event ledger (HMAC hash chain):

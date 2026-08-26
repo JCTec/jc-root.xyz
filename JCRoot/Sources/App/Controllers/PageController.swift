@@ -63,8 +63,14 @@ struct PageController: Sendable {
         let s: (String) -> String = { t[$0] ?? $0 }
 
         // Project cards are composed from string codes; the card *list* and
-        // its links are structure, not copy.
+        // its links are structure, not copy. Display order is this array —
+        // the p<n> codes are identifiers, not positions, so a card can move
+        // without renumbering every other card in two catalogs.
         let projects: [ProjectCard] = [
+            ProjectCard(
+                tags: s("p5_tags"), name: s("p5_name"), description: s("p5_desc"),
+                appStoreURL: nil, repoURL: "https://github.com/Living-Root"
+            ),
             ProjectCard(
                 tags: s("p1_tags"), name: s("p1_name"), description: s("p1_desc"),
                 appStoreURL: "https://apps.apple.com/mx/app/tapper-counters/id6475695007",
