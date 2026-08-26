@@ -7,18 +7,20 @@ Spanish (native), French (B2).
 
 ## Summary
 
-6 years of professional iOS experience plus 2 earlier years shipping
-production code. Specialties: Swift, SwiftUI (incl. 6), UIKit, Combine,
-Swift Concurrency, MVVM, XCTest + XCUITest (Robot Pattern), Swift Package
-Manager, GitHub Actions CI/CD. Modernizes legacy codebases, builds atomic
-design systems, treats testing as part of the craft. On the App Store since
-2018 with apps for iOS, iPadOS and macOS in ten languages. Deep current work
-with AI-assisted and agentic development (Claude, OpenAI, xAI, Ollama).
+6+ years of professional iOS experience plus 2 earlier years shipping
+production code. Takes full ownership of features and architecture, from
+the first call through release. Specialties: Swift, SwiftUI (incl. 6),
+UIKit, Combine, Swift Concurrency, MVVM, XCTest + XCUITest (Robot
+Pattern), Swift Package Manager, GitHub Actions CI/CD. Modernizes legacy
+codebases, builds atomic design systems, treats testing as part of the
+craft. On the App Store since 2018 with apps for iOS, iPadOS and macOS
+in ten languages. Recently expanded into AI agentic workflows (Claude,
+OpenAI, xAI, Ollama), full-stack IoT, and hardware-software integration.
 
 ## Selected work
 
-- Living Root — real-time hydroponic monitoring; SwiftUI app, Vapor/PostgreSQL
-  backend, MicroPython ESP32 sensor node:
+- Living Root — full-stack hydroponic monitoring, owned end-to-end: SwiftUI
+  client, Vapor/PostgreSQL backend, MicroPython ESP32 sensor node:
   https://github.com/Living-Root
 - Tapper Counters — SwiftUI tap-to-count app (iOS, iPadOS):
   https://apps.apple.com/mx/app/tapper-counters/id6475695007

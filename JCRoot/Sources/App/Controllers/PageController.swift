@@ -92,7 +92,7 @@ struct PageController: Sendable {
         ]
 
         // Work history, newest first — copy comes from the strings catalog.
-        let experience: [ExperienceCard] = (1...7).map { index in
+        let experience: [ExperienceCard] = (1...8).map { index in
             ExperienceCard(
                 role: s("exp\(index)_role"),
                 company: s("exp\(index)_company"),

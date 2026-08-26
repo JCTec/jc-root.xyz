@@ -3,7 +3,7 @@
 
 // Meta
 "meta_title" = "Juan Carlos Estévez · Ingeniero iOS Senior disponible | Desarrollador iOS remoto y freelance (Swift, SwiftUI)";
-"meta_description" = "Ingeniero iOS senior disponible para contratación: remoto o freelance. 6 años de experiencia profesional con Swift y SwiftUI, 8 años publicando en el App Store, apps para iOS, iPadOS y macOS. Con base en Barcelona, autorización de trabajo en la UE. Disponible ahora.";
+"meta_description" = "Ingeniero iOS senior disponible para contratación: remoto o freelance. Más de 6 años de experiencia profesional con Swift y SwiftUI, 8 años publicando en el App Store, apps para iOS, iPadOS y macOS. Con base en Barcelona, autorización de trabajo en la UE. Disponible ahora.";
 "og_image_alt" = "Juan Carlos Estévez Rodríguez — Ingeniero iOS Senior, disponible para contratación";
 
 // Accesibilidad
@@ -30,8 +30,8 @@
 
 // Acerca de
 "about_heading" = "Acerca de";
-"about_body" = "Ingeniero iOS Senior con 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, concluida en julio de 2021. Modernizo bases de código legadas, construyo sistemas de diseño y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Actualmente independiente: apps para clientes y trabajo a fondo con desarrollo asistido por IA y agentes (Claude, OpenAI, xAI, modelos locales con Ollama). Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
-"about_availability" = "Actualmente disponible para contratación como desarrollador iOS remoto, freelance o de tiempo completo, en la UE o en América.";
+"about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, concluida en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera decisión al release: modernizo bases de código legadas, construyo sistemas de diseño atómico y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA, IoT full-stack e integración hardware-software. Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
+"about_availability" = "Disponible ahora, freelance o de tiempo completo: en remoto desde la UE o América, o con reubicación. Pasaporte español, autorizado para trabajar en la UE.";
 
 // Experiencia
 "exp_heading" = "Experiencia";
@@ -39,37 +39,42 @@
 "exp1_role" = "Desarrollador iOS independiente y consultor";
 "exp1_company" = "Independiente";
 "exp1_meta" = "Remoto · Ene 2026 – Presente";
-"exp1_desc" = "Apps iOS para clientes de principio a fin; mis propios productos en el App Store; integraciones de IA y desarrollo con agentes.";
+"exp1_desc" = "Llevo apps iOS de clientes de principio a fin, de la arquitectura al release. Diseñé Living Root y soy su dueño de extremo a extremo — cliente SwiftUI, backend en Vapor y firmware MicroPython sobre ESP32 — y llevé esa responsabilidad hasta el hardware con un Diplomado en Hidroponía (Universidad Anáhuac, feb–jun 2026) y carcasas de sensores impresas en 3D. Integro IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama).";
 
 "exp2_role" = "Ingeniero iOS Senior";
 "exp2_company" = "The Home Depot";
 "exp2_meta" = "Remoto (EE. UU.) · Ago 2025 – Dic 2025";
-"exp2_desc" = "Funciones en tiempo real para la app interna de operaciones de tienda usada por asociados en tiendas de EE. UU.";
+"exp2_desc" = "Fui dueño de la entrega completa de funcionalidades clave en la app interna de operaciones de tienda que usan los asociados en tiendas de EE. UU. Impulsé el rendimiento y la fiabilidad a escala en interfaces de datos en tiempo real y alto volumen, y elevé la estabilidad de los releases con pruebas unitarias y de UI automatizadas.";
 
-"exp3_role" = "Ingeniero de software Senior";
-"exp3_company" = "Alaska Airlines";
-"exp3_meta" = "Remoto (EE. UU.) · Jul 2024 – Mar 2025";
-"exp3_desc" = "Lideré un sistema de diseño atómico que estandarizó componentes de UI reutilizables en toda la app.";
+"exp3_role" = "Estudio independiente y desarrollo de sistemas";
+"exp3_company" = "Por cuenta propia";
+"exp3_meta" = "Abr 2025 – Jul 2025";
+"exp3_desc" = "Inmersión deliberada en flujos de trabajo con agentes de IA, análisis de datos y herramientas modernas (Claude, OpenAI, xAI, Ollama), para construir la capacidad de producto nativo de IA con la que trabajo hoy.";
 
-"exp4_role" = "Ingeniero de software Senior, Líder técnico";
-"exp4_company" = "Peek.com";
-"exp4_meta" = "Remoto · Feb 2022 – Abr 2024";
-"exp4_desc" = "Modernicé una app de marketplace con una década de antigüedad: migración a SwiftUI con listas de más de 10,000 elementos manteniendo el rendimiento; cultura de pruebas automatizadas construida desde cero (Robot Pattern + XCUITest); ciclos de release reducidos 30% con CI/CD en GitHub Actions; integración de terminales conectadas por WiFi mediante gestores de conexión propios; mentoría a ingenieros.";
+"exp4_role" = "Ingeniero de software Senior";
+"exp4_company" = "Alaska Airlines";
+"exp4_meta" = "Remoto (EE. UU.) · Jul 2024 – Mar 2025";
+"exp4_desc" = "Impulsé un sistema de diseño atómico completo que elevó el estándar de consistencia y reutilización de la UI en toda la app. Asumí la dirección técnica del equipo — MVVM, Clean Architecture, Coordinators —, publiqué funcionalidades en UIKit y SwiftUI, ejecuté pruebas A/B para orientar decisiones de producto y mentoricé a otros ingenieros.";
 
-"exp5_role" = "Cofundador e Ingeniero de Software Líder";
-"exp5_company" = "Xplain";
-"exp5_meta" = "Remoto · Ago 2020 – Feb 2022";
-"exp5_desc" = "Construí y publiqué dos apps iOS en producción con flujos de pago seguros con Stripe. Cofundada con amigos.";
+"exp5_role" = "Ingeniero de software Senior, Líder técnico";
+"exp5_company" = "Peek.com";
+"exp5_meta" = "Remoto · Feb 2022 – Abr 2024";
+"exp5_desc" = "Lideré la modernización de una app de marketplace con una década de antigüedad y fui dueño de la migración a SwiftUI de principio a fin, sobre un producto vivo en producción. Tomé la decisión de reconstruir sus cimientos sobre MVVM, Clean Architecture y el patrón Coordinator. Elevé el estándar de rendimiento con listas dinámicas de más de 10,000 elementos, construí una cultura de pruebas automatizadas desde cero (Robot Pattern + XCUITest) y reduje los ciclos de release un 30% con CI/CD en GitHub Actions. Integré GraphQL y terminales conectadas por WiFi mediante gestores de conexión propios; mentoricé a ingenieros.";
 
-"exp6_role" = "Ingeniero Full Stack (enfoque iOS)";
-"exp6_company" = "Sunwise";
-"exp6_meta" = "Mérida, MX · Jun 2019 – Ago 2020";
-"exp6_desc" = "iOS en producción con Swift y Objective-C, en paralelo con los últimos cursos de la universidad.";
+"exp6_role" = "Cofundador e Ingeniero de Software Líder";
+"exp6_company" = "Xplain";
+"exp6_meta" = "Remoto · Ago 2020 – Feb 2022";
+"exp6_desc" = "Cofundé la empresa con amigos y lideré su ingeniería: construí y publiqué dos apps iOS en producción con SwiftUI y UIKit, con flujos de pago seguros con Stripe.";
 
-"exp7_role" = "Ingeniero Full Stack";
-"exp7_company" = "DaCodes";
-"exp7_meta" = "Mérida, MX · Ago 2018 – Jun 2019";
-"exp7_desc" = "Primer puesto de ingeniería; trabajo full-stack de agencia sobre stacks respaldados por AWS.";
+"exp7_role" = "Ingeniero Full Stack (enfoque iOS)";
+"exp7_company" = "Sunwise";
+"exp7_meta" = "Mérida, MX · Jun 2019 – Ago 2020";
+"exp7_desc" = "Entregué funcionalidades iOS en producción de principio a fin con Swift y Objective-C contra APIs REST — responsabilidad plena de producción, en paralelo con los últimos cursos de la universidad.";
+
+"exp8_role" = "Ingeniero Full Stack";
+"exp8_company" = "DaCodes";
+"exp8_meta" = "Mérida, MX · Ago 2018 – Jun 2019";
+"exp8_desc" = "Primer puesto de ingeniería: construí aplicaciones full-stack para clientes de agencia sobre stacks respaldados por AWS, en paralelo con la universidad.";
 
 // Trabajo seleccionado
 "work_heading" = "Trabajo seleccionado";
@@ -78,7 +83,7 @@
 
 "p5_tags" = "iOS · Vapor · ESP32";
 "p5_name" = "Living Root";
-"p5_desc" = "Sistema hidropónico en tiempo real que monitorea las condiciones de la zona radicular mediante retroalimentación biológica de sensores. Tres bases de código: una app SwiftUI que grafica pH, EC, temperatura y nivel del agua, con instantáneas en SwiftData para que el panel siga leyéndose sin conexión; un backend en Vapor y PostgreSQL con consola de administración autenticada por sesión y una API de telemetría para dispositivos; y firmware MicroPython para un nodo sensor ESP32. Swift tanto en la app como en el servidor.";
+"p5_desc" = "Sistema hidropónico full-stack, diseñado y mantenido de extremo a extremo en tres bases de código: un cliente SwiftUI que grafica pH, EC, temperatura y nivel del agua, con instantáneas en SwiftData para que el panel siga leyéndose sin conexión; un backend en Vapor y PostgreSQL con consola de administración autenticada por sesión y una API de telemetría para dispositivos; y firmware MicroPython en un nodo sensor ESP32 que lee la zona radicular en tiempo real. Swift tanto en la app como en el servidor, y carcasas impresas en 3D en el hardware.";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
@@ -100,8 +105,9 @@
 "edu_heading" = "Educación e idiomas";
 "edu1" = "Ingeniería en Informática y Negocios Digitales — Universidad Anáhuac Mérida, 2016/2017 – julio de 2021 (9 semestres). Miembro del Consejo Estudiantil; programa de emprendimiento.";
 "edu2" = "Diplomado en emprendimiento — Management Center Innsbruck (2019–2020).";
-"edu3" = "Maestría en Ciberseguridad — programa de fin de semana, inicia en octubre de 2026.";
-"edu4" = "Certificación: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
+"edu3" = "Diplomado en hidroponía — Universidad Anáhuac (febrero – junio de 2026).";
+"edu4" = "Maestría en Ciberseguridad — programa de fin de semana, inicia en octubre de 2026.";
+"edu5" = "Certificación: Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
 "langs_line" = "Idiomas: Inglés C2 · Español nativo · Francés B2";
 
 // Habilidades
