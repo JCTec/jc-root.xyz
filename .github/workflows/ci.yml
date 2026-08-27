@@ -81,6 +81,19 @@ jobs:
           BASE_PATH: ${{ vars.BASE_PATH }}
         run: node build.mjs
 
+      # The unit tests assert this for a build with no environment. This
+      # asserts it for the bytes actually about to be published, which is the
+      # only place a missing repository variable can show up.
+      - name: Nothing personal, and nothing broken, in the published bytes
+        run: |
+          if grep -rIEq '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' dist/; then
+            grep -rIEo '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' dist/ | sort -u
+            echo "::error::an email address reached the published site"; exit 1
+          fi
+          if grep -rIq 'FORMSUBMIT_ENDPOINT-is-unset' dist/; then
+            echo "::error::FORMSUBMIT_ENDPOINT is unset — the contact form would be dead on arrival"; exit 1
+          fi
+
       - name: Test
         run: node --test test/*.test.mjs
 

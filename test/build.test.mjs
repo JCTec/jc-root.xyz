@@ -20,6 +20,7 @@ import { after, before, test } from "node:test";
 
 import { build } from "../build.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
+import { UNSET_ENDPOINT } from "../lib/content.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
 import { loadCatalog } from "../lib/strings.mjs";
 import { STRINGS_DIR } from "../build.mjs";
@@ -188,6 +189,21 @@ test("Discovery surfaces agree with the pages that were emitted", () => {
     }
 
     assert.ok(existsSync(join(outDir, "llms.txt")));
+});
+
+test("The published site discloses no email address", () => {
+    // The contact form posts to a FormSubmit alias precisely so the address
+    // never appears in public HTML. This is the regression that would put it
+    // back: an unset FORMSUBMIT_ENDPOINT falling through to an address-derived
+    // endpoint on every page the build emits.
+    const address = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
+    for (const [name, html] of [["/", en], ["/es/", es]]) {
+        const found = html.match(address);
+        assert.equal(found, null, `${name} discloses ${found?.[0]}`);
+    }
+    // Built with no environment, the form names the missing variable rather
+    // than inventing a destination.
+    assert.ok(en.includes(UNSET_ENDPOINT), "expected the placeholder endpoint");
 });
 
 test("The output carries what GitHub Pages needs to serve it", () => {

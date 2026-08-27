@@ -90,7 +90,7 @@ node scripts/browser-check.mjs
 | `CANONICAL_HOST` | `jc-root.xyz` | The custom domain. Written to `dist/CNAME` and used to derive the base URL. |
 | `SITE_BASE_URL` | `https://$CANONICAL_HOST` | Base for canonical/hreflang/sitemap/og URLs. Override to build a preview. |
 | `ASSET_VERSION` | derived from `site/public/` | Stamp for `?v=` cache busting. Normally leave unset: the build hashes the bytes of `site/public/`, so the stamp cannot disagree with the assets it names. Setting it **overrides** that — a stale value pins every asset URL. |
-| `CONTACT_EMAIL` | `juancarlos_tec@proton.me` | Only feeds the default FormSubmit endpoint; never rendered on the page. |
+| `CONTACT_EMAIL` | unset | Only needed for the one-time FormSubmit activation build, which has to email the real address before FormSubmit will issue an alias. Leave it unset afterwards — no address belongs in this repository or in the published HTML. |
 | `FORMSUBMIT_ENDPOINT` | `https://formsubmit.co/<CONTACT_EMAIL>` | Contact-form POST target. **After FormSubmit activation, set this** so the address leaves the HTML entirely. In CI it is the repository variable of the same name. |
 | `BUILD_YEAR` | the current year | Footer copyright. Baked in at build time; see the scheduled rebuild below. |
 | `PAGES_PREVIEW` | unset | When set, `dist/CNAME` is **not** written. Only for publishing before DNS points at the repository — a CNAME file claims the domain on deploy, and Pages then redirects its own `*.github.io` URL to a host that still resolves elsewhere, making the preview unreachable. |
@@ -274,11 +274,10 @@ Verified against production after the move to GitHub Pages:
 
 ## Known follow-ups
 
-- **FormSubmit activation + set the `FORMSUBMIT_ENDPOINT` repository variable to
-  the alias** (see above). Until then the raw address `juancarlos_tec@proton.me`
-  is in the form's `action` attribute on every published page, where an address
-  harvester will find it. This is the only personal data the site discloses that
-  it does not mean to.
+- The address is out of the source and out of the published HTML, but it is
+  still reachable in this repository's **history**, from the Vapor commits and
+  the ones that removed it. The repository is private, so nothing is exposed;
+  clearing it would mean rewriting every commit.
 - **Publish the DNSSEC DS record at the registrar.** Cloudflare has the zone
   signed and waiting; without the DS the delegation is unsigned and a resolver
   has no way to detect a forged answer for this domain.
