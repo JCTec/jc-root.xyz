@@ -182,8 +182,13 @@ X-Content-Type-Options:    nosniff
 X-Frame-Options:           DENY
 Referrer-Policy:           strict-origin-when-cross-origin
 Permissions-Policy:        camera=(), microphone=(), geolocation=()
-Strict-Transport-Security: max-age=300
 ```
+
+**No HSTS in that list, on purpose.** GitHub Pages sends
+`Strict-Transport-Security: max-age=31556952` itself on a custom domain with
+Enforce HTTPS, and will not let you configure it. It carries no
+`includeSubDomains`, so the Mailtrap subdomains are still safe. Setting the
+header at the edge could only shorten it.
 
 The pages also carry the CSP and `Referrer-Policy` in `<meta>` tags, so those
 two hold even on a request that reaches the origin directly. That is belt and
@@ -249,8 +254,6 @@ listed in `THIRD-PARTY.md`.
   the alias (see above). Until then the raw address is in the form's `action`.
 - Real project screenshots for the Tapper Counters and MythLog cards.
 - GitHub repo link for MythLog when/if public (`projectCards` in `lib/content.mjs`).
-- Raise the HSTS `max-age` in steps once the current value has been served
-  without incident: 300 → 86400 → 31536000. It lives in `lib/headers.mjs`, but
-  it is Cloudflare that sends it — change both.
 - The two proxied Mailtrap CNAMEs should probably be DNS-only; see above. Doing
-  so would also unblock `includeSubDomains` on HSTS.
+  so would also unblock `includeSubDomains` on HSTS — though that would then
+  have to come from the edge, since the origin's header cannot be configured.
