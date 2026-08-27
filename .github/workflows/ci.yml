@@ -68,6 +68,11 @@ jobs:
           # the deploy does not claim jc-root.xyz and redirect the preview URL
           # to a host that is not this one. Delete the variable to cut over.
           PAGES_PREVIEW: ${{ vars.PAGES_PREVIEW }}
+          # Prefix for root-absolute URLs. Empty for the real site, which is
+          # served from the root of its own domain; set to /<repo> to preview
+          # on a GitHub Pages project URL, where a bare /css/site.css would
+          # resolve against the owner's domain and 404.
+          BASE_PATH: ${{ vars.BASE_PATH }}
         run: node build.mjs
 
       - name: Test
