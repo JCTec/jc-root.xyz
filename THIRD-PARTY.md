@@ -7,25 +7,19 @@ complete list.
 
 ## Bootstrap 5.3.8
 
-- **Files:** `JCRoot/Public/vendor/bootstrap/css/bootstrap.min.css`,
-  `JCRoot/Public/vendor/bootstrap/js/bootstrap.bundle.min.js`
+- **Files:** `site/public/vendor/bootstrap/css/bootstrap.min.css`,
+  `site/public/vendor/bootstrap/js/bootstrap.bundle.min.js`
 - **License:** MIT — © 2011–2025 The Bootstrap Authors
 - **Source:** https://github.com/twbs/bootstrap/releases
 
 Both files carry their license banner inline; this entry exists so the
 dependency is findable without opening a minified file. Only the minified CSS
 and the bundled JS are vendored — no source maps, RTL builds, or examples. See
-"Upgrading Bootstrap" in `JCRoot/README.md` for the update procedure.
+"Upgrading Bootstrap" in `README.md` for the update procedure.
 
-## Swift packages
+## Everything else
 
-Resolved by SwiftPM at build time and pinned in `JCRoot/Package.resolved`; not
-vendored into this repository.
-
-| Package | License |
-|---|---|
-| [vapor/vapor](https://github.com/vapor/vapor) | MIT |
-| [vapor/leaf](https://github.com/vapor/leaf) | MIT |
-
-Their own transitive dependencies (SwiftNIO, swift-crypto, and others) are
-listed in `Package.resolved` and are MIT or Apache-2.0.
+There is nothing else. The build has no dependencies: no `node_modules`, no
+lockfile, no toolchain beyond the Node standard library. The Vapor original
+resolved Swift packages at build time and pinned them in `Package.resolved`;
+none of that survived the move to a static build, which is most of the point.

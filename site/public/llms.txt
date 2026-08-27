@@ -33,7 +33,7 @@ OpenAI, xAI, Ollama), full-stack IoT, and hardware-software integration.
 
 ## Links
 
-- Site: https://jc-root.xyz/ (English) · https://jc-root.xyz/es (Spanish)
+- Site: https://jc-root.xyz/ (English) · https://jc-root.xyz/es/ (Spanish)
 - GitHub: https://github.com/JCTec
 - LinkedIn: https://www.linkedin.com/in/jctec
 - App Store developer page:

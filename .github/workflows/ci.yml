@@ -1,13 +1,21 @@
 # One gate, one deploy. The full gate runs on every PR and every push to
 # main; only a green push to main deploys. Merging is the decision —
-# deploying is a consequence. CI runs in the same image the Dockerfile
-# builds from, so a green run is evidence about the deployed artifact.
+# deploying is a consequence.
+#
+# The scheduled run is not a health check. The footer year used to be computed
+# per request and is now baked in at build time, so the site has to be rebuilt
+# to stay correct. A monthly rebuild is the whole fix, and it costs a minute.
 name: CI
 
 on:
   pull_request:
   push:
     branches: [main]
+  schedule:
+    # 04:17 UTC on the 1st of every month — off the hour, so it is not queued
+    # behind everyone else's midnight cron.
+    - cron: "17 4 1 * *"
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -19,18 +27,22 @@ permissions:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    container: swift:6.1-noble
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
 
       # Cheapest checks first.
       - name: JS syntax check
         run: |
-          apt-get update -qq >/dev/null
-          apt-get install -y -qq nodejs >/dev/null
-          # Every shipped script, found rather than listed: naming one file
-          # here meant roots.js went unchecked from the day it was added.
-          find JCRoot/Public/js -name '*.js' -print0 | xargs -0 -r -n1 node --check
+          # Every shipped script and every module of the build, found rather
+          # than listed: naming files here is how one of them goes unchecked
+          # from the day it is added.
+          find site/public/js lib scripts -name '*.js' -o -name '*.mjs' \
+            | xargs -r -n1 node --check
+          node --check build.mjs
 
       # `git diff --check` with no revision compares the working tree to the
       # index, which on a fresh checkout is empty — the step could not fail.
@@ -45,38 +57,55 @@ jobs:
             echo "::error::conflict marker"; exit 1
           fi
 
-      - name: Resolve dependencies
-        working-directory: JCRoot
-        run: swift package resolve
-
       - name: Build
-        working-directory: JCRoot
-        run: swift build
+        env:
+          # Not a secret — it is a public form endpoint and it ends up in the
+          # published HTML either way. Setting it here is what keeps the raw
+          # address out of the markup and out of the repository. Unset, the
+          # build falls back to the email-based endpoint.
+          FORMSUBMIT_ENDPOINT: ${{ vars.FORMSUBMIT_ENDPOINT }}
+          # Set while DNS still points somewhere else: withholds dist/CNAME so
+          # the deploy does not claim jc-root.xyz and redirect the preview URL
+          # to a host that is not this one. Delete the variable to cut over.
+          PAGES_PREVIEW: ${{ vars.PAGES_PREVIEW }}
+        run: node build.mjs
 
       - name: Test
-        working-directory: JCRoot
-        run: swift test
+        run: node --test test/*.test.mjs
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist/
+          retention-days: 1
+          include-hidden-files: true
+
+  # A green build of main is what gets published — the same bytes the tests
+  # ran against, not a second build that could differ.
   deploy:
     needs: tests
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    # Never cancel a deploy in flight; a half-published site is worse than a
+    # slightly late one.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
         with:
-          fetch-depth: 0
+          name: site
+          path: dist
 
-      # The Heroku app is the JCRoot/ subdirectory of the monorepo: split
-      # that subtree into a synthesized branch and force-push it to Heroku's
-      # git remote. Heroku then builds the Dockerfile (heroku.yml) and
-      # restarts the web dyno. Heroku's git history is not a record — the
-      # GitHub repository is the only source of truth.
-      - name: Deploy to Heroku (subtree split)
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@users.noreply.github.com"
-          git subtree split --prefix JCRoot -b heroku-main
-          git push "https://heroku:${HEROKU_API_KEY}@git.heroku.com/${HEROKU_APP_NAME}.git" heroku-main:main --force
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4

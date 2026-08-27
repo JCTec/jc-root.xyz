@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /* jc-root.xyz — the checks that need a real browser.
  *
- * `swift test` can assert what the server emits. It cannot compute layout,
+ * `node --test` can assert what the build emits. It cannot compute layout,
  * run requestAnimationFrame, resolve a focus ring, or model a visitor whose
  * browser still holds yesterday's stylesheet. Everything here needs an engine.
  *
- * Usage:  swift run App serve --port 8080      (in another shell)
- *         node Scripts/browser-check.mjs
+ * Usage:  node build.mjs
+ *         node scripts/serve.mjs dist 8080     (in another shell)
+ *         node scripts/browser-check.mjs
  *
  * Env:    BASE_URL   default http://127.0.0.1:8080
  *         CHROME     path to a Chrome/Chromium binary
@@ -194,7 +195,7 @@ if (!chrome) {
 try {
     await fetch(BASE_URL, { signal: AbortSignal.timeout(3000) });
 } catch {
-    console.error(`No server at ${BASE_URL}. Start it with: swift run App serve --port 8080`);
+    console.error(`No server at ${BASE_URL}. Start it with: node scripts/serve.mjs dist 8080`);
     process.exit(2);
 }
 
@@ -240,9 +241,10 @@ try {
      * markup and require the page to still be structurally sound.
      */
     const previous = {};
-    for (const path of ["JCRoot/Public/css/site.css", "JCRoot/Public/js/app.js"]) {
+    for (const path of ["site/public/css/site.css", "site/public/js/app.js"]) {
         try {
-            previous[path.split("/").pop()] = execFileSync("git", ["show", `HEAD:${path}`]);
+            previous[path.split("/").pop()] = execFileSync("git", ["show", `HEAD:${path}`],
+                { stdio: ["ignore", "pipe", "ignore"] });
         } catch { /* new file, nothing cached to go stale */ }
     }
     page.onPaused = async ({ requestId, request }) => {
@@ -355,6 +357,31 @@ try {
         await sleep(200);
         assert((await page.eval(`document.querySelector(".contact-form button[type=submit]").disabled`)) === false,
             "button is still disabled after a restored pageshow — the form is dead on back-navigation");
+    });
+
+    /* The one behaviour that moved from the server into JavaScript when the
+       site went static. The server rendered the confirmation only for a
+       request carrying ?sent=1; now every copy of the page carries it hidden
+       and app.js reveals it. Both halves of that are worth checking, because
+       a page that shows the confirmation to everyone is worse than one that
+       never shows it at all. */
+    await check("the sent confirmation is hidden by default and revealed by ?sent=1", async () => {
+        await page.load("/");
+        const fresh = await page.eval(`(function () {
+            var n = document.querySelector(".form-sent");
+            return { present: !!n, visible: !!n && n.offsetParent !== null };
+        })()`);
+        assert(fresh.present, "the confirmation is not in the markup at all");
+        assert(!fresh.visible, "the confirmation is visible on a page nobody submitted");
+
+        await page.load("/?sent=1");
+        const sent = await page.eval(`(function () {
+            var n = document.querySelector(".form-sent");
+            return { visible: !!n && n.offsetParent !== null, text: n ? n.textContent.trim() : "" };
+        })()`);
+        assert(sent.visible, "?sent=1 did not reveal the confirmation");
+        assert(sent.text.length > 0, "the confirmation is visible but empty");
+        return `"${sent.text.slice(0, 40)}…"`;
     });
 
 } finally {
