@@ -206,6 +206,14 @@ equivalent at all. The rule above is the only thing delivering them.
 | `/robots.txt`, `/sitemap.xml`, `/llms.txt` | `public, max-age=3600` |
 | everything else (HTML) | `no-cache, must-revalidate` |
 
+**DNSSEC is enabled at Cloudflare and `pending`.** It stays inert — and the
+zone stays exactly as secure as it was — until the DS record below is published
+at the registrar, which is the step that actually signs the delegation. Get the
+current value with `curl -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+https://api.cloudflare.com/client/v4/zones/<zone>/dnssec`. Publish it carefully:
+a DS record that does not match the zone's key makes the domain fail to resolve
+everywhere, which is a harder outage than a bad origin.
+
 Two pieces of edge config predate the move and are unchanged by it:
 
 - **HTTPS is forced by a Redirect Rule scoped to `jc-root.xyz` and
@@ -248,10 +256,38 @@ and design are reserved: `site/strings/`, `site/public/icons/`,
 `site/public/llms.txt` and `docs/Design.pdf` are a CV, not a template. Vendored third-party code is
 listed in `THIRD-PARTY.md`.
 
+## Security posture
+
+Verified against production after the move to GitHub Pages:
+
+| Check | State |
+|---|---|
+| TLS | 1.3 negotiated, `TLS_AES_256_GCM_SHA384`; zone minimum 1.2 |
+| Origin validation | Cloudflare SSL Full (strict) |
+| Response headers | CSP, `nosniff`, `DENY`, Referrer-Policy, Permissions-Policy at the edge; HSTS `max-age=31556952` from the origin |
+| CSP in a real browser | no violations — `scripts/browser-check.mjs` against `https://jc-root.xyz` |
+| Source exposure | only `dist/` is published; `/.git/*`, `/lib/*`, `/site/*`, `/build.mjs` all 404, no directory listings |
+| Secrets | none in the working tree or in the full history |
+| Supply chain | no runtime or build dependencies; workflow actions pinned to commit SHAs |
+| DNSSEC | enabled at Cloudflare, **pending** the registrar DS record |
+| SPF / DMARC | SPF `~all`; DMARC `p=none` — reporting only, no enforcement |
+
 ## Known follow-ups
 
-- FormSubmit activation + set the `FORMSUBMIT_ENDPOINT` repository variable to
-  the alias (see above). Until then the raw address is in the form's `action`.
+- **FormSubmit activation + set the `FORMSUBMIT_ENDPOINT` repository variable to
+  the alias** (see above). Until then the raw address `juancarlos_tec@proton.me`
+  is in the form's `action` attribute on every published page, where an address
+  harvester will find it. This is the only personal data the site discloses that
+  it does not mean to.
+- **Publish the DNSSEC DS record at the registrar.** Cloudflare has the zone
+  signed and waiting; without the DS the delegation is unsigned and a resolver
+  has no way to detect a forged answer for this domain.
+- **Tighten DMARC.** The policy is `p=none`, which asks for reports and enforces
+  nothing: anyone can send mail as `@jc-root.xyz` and no receiver will reject
+  it. Move to `p=quarantine` and then `p=reject` once the `rua` reports show
+  only legitimate senders passing. Note the current `rua`/`ruf` both point at
+  `dmarc@smtp-staging.mailtrap.net` — a staging address, which looks like a
+  leftover rather than somewhere anyone reads.
 - Real project screenshots for the Tapper Counters and MythLog cards.
 - GitHub repo link for MythLog when/if public (`projectCards` in `lib/content.mjs`).
 - The two proxied Mailtrap CNAMEs should probably be DNS-only; see above. Doing
