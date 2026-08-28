@@ -223,24 +223,21 @@ everywhere, which is a harder outage than a bad origin.
 Two pieces of edge config predate the move and are unchanged by it:
 
 - **HTTPS is forced by a Redirect Rule scoped to `jc-root.xyz` and
-  `www.jc-root.xyz`**, not by the zone-wide "Always Use HTTPS" setting. The
-  zone-wide switch would also capture `mt-link.jc-root.xyz` and
-  `mt06.jc-root.xyz` — proxied Mailtrap CNAMEs that answer over HTTP and fail
-  over HTTPS with a 525, because zone SSL is Full (strict) and Mailtrap has no
-  certificate for those names. Turning it on would break email link tracking.
-  This rule is now the *only* thing forcing HTTPS and correcting `www` —
-  `CanonicalURLMiddleware` used to back it up at the origin and no longer can.
+  `www.jc-root.xyz`**, not by the zone-wide "Always Use HTTPS" setting. Keeping
+  it scoped means it cannot reach `mt-link` or `mt06`, and it is now the *only*
+  thing forcing HTTPS and correcting `www` — `CanonicalURLMiddleware` used to
+  back it up at the origin and no longer can.
 - **Zone SSL is Full (strict)** and the minimum TLS version is 1.2.
 
-HSTS deliberately carries neither `includeSubDomains` nor `preload`. A max-age
-is a promise browsers keep after we stop making it; `includeSubDomains` would
-force those two Mailtrap hosts to HTTPS in every browser that has seen this
-page, for the full max-age, no matter what we served afterwards.
+HSTS carries neither `includeSubDomains` nor `preload`, which is the origin's
+choice rather than ours — GitHub Pages sets the header and does not make it
+configurable. It happens to be the right choice: `includeSubDomains` would force
+`mt-link` and `mt06` to HTTPS in every browser that has seen this page, for the
+full max-age, no matter what we served afterwards.
 
-Known issue, deliberately unaddressed: those two Mailtrap records are proxied
-when they should almost certainly be DNS-only. `mt06` is a mail host, and
-Cloudflare's proxy does not carry SMTP. Fixing that is an email-infrastructure
-change, not a site change.
+The four Mailtrap records are DNS-only, which is correct — Cloudflare's proxy
+does not carry SMTP, and `mt06` is a mail host. An earlier version of this file
+described them as proxied; that is no longer true.
 
 ## Upgrading Bootstrap
 
@@ -276,19 +273,22 @@ Verified against production after the move to GitHub Pages:
 | Secrets | none in the working tree or in the full history |
 | Supply chain | no runtime or build dependencies; workflow actions pinned to commit SHAs |
 | DNSSEC | enabled at Cloudflare, **pending** the registrar DS record |
-| SPF / DMARC | SPF `~all`; DMARC `p=none` — reporting only, no enforcement |
+| SPF / DMARC | Exactly one record each. SPF `-all` authorising only the inbound forwarder; DMARC `p=reject; sp=reject` with strict alignment |
+| DKIM | `*._domainkey` publishes an empty key, revoking every selector not explicitly defined |
 
 ## Known follow-ups
 
 - **Publish the DNSSEC DS record at the registrar.** Cloudflare has the zone
   signed and waiting; without the DS the delegation is unsigned and a resolver
   has no way to detect a forged answer for this domain.
-- **Tighten DMARC.** The policy is `p=none`, which asks for reports and enforces
-  nothing: anyone can send mail as `@jc-root.xyz` and no receiver will reject
-  it. Move to `p=quarantine` and then `p=reject` once the `rua` reports show
-  only legitimate senders passing. Note the current `rua`/`ruf` both point at
-  `dmarc@smtp-staging.mailtrap.net` — a staging address, which looks like a
-  leftover rather than somewhere anyone reads.
+- **Remove the four Mailtrap records** (`mt06`, `mt-link`, `rwmt1._domainkey`,
+  `rwmt2._domainkey`). This domain does not send mail, and the two `_domainkey`
+  CNAMEs are the hole in that: they publish live, valid DKIM keys for
+  `jc-root.xyz` that are served from a third-party account. Anything able to
+  sign with those keys produces mail that passes DKIM, aligns strictly, and
+  therefore passes DMARC — which is the whole policy defeated by a leftover.
+  The null-DKIM wildcard cannot help, because an explicit record always wins
+  over a wildcard.
 - Real project screenshots for the Tapper Counters and MythLog cards.
 - GitHub repo link for MythLog when/if public (`projectCards` in `lib/content.mjs`).
 - The two proxied Mailtrap CNAMEs should probably be DNS-only; see above. Doing
