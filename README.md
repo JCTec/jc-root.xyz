@@ -193,8 +193,7 @@ Permissions-Policy:        camera=(), microphone=(), geolocation=()
 **No HSTS in that list, on purpose.** GitHub Pages sends
 `Strict-Transport-Security: max-age=31556952` itself on a custom domain with
 Enforce HTTPS, and will not let you configure it. It carries no
-`includeSubDomains`, so the Mailtrap subdomains are still safe. Setting the
-header at the edge could only shorten it.
+`includeSubDomains`. Setting the header at the edge could only shorten it.
 
 The pages also carry the CSP and `Referrer-Policy` in `<meta>` tags, so those
 two hold even on a request that reaches the origin directly. That is belt and
@@ -224,20 +223,21 @@ Two pieces of edge config predate the move and are unchanged by it:
 
 - **HTTPS is forced by a Redirect Rule scoped to `jc-root.xyz` and
   `www.jc-root.xyz`**, not by the zone-wide "Always Use HTTPS" setting. Keeping
-  it scoped means it cannot reach `mt-link` or `mt06`, and it is now the *only*
-  thing forcing HTTPS and correcting `www` — `CanonicalURLMiddleware` used to
-  back it up at the origin and no longer can.
+  it is now the *only* thing forcing HTTPS and correcting `www` —
+  `CanonicalURLMiddleware` used to back it up at the origin and no longer can.
+  It was originally scoped to avoid capturing two Mailtrap subdomains that
+  answered over HTTP; those records are gone, so the zone-wide "Always Use
+  HTTPS" switch would now be safe. The scoped rule is kept because it also
+  folds `www` into the apex in the same hop, which the zone-wide switch does
+  not do.
 - **Zone SSL is Full (strict)** and the minimum TLS version is 1.2.
 
 HSTS carries neither `includeSubDomains` nor `preload`, which is the origin's
 choice rather than ours — GitHub Pages sets the header and does not make it
-configurable. It happens to be the right choice: `includeSubDomains` would force
-`mt-link` and `mt06` to HTTPS in every browser that has seen this page, for the
-full max-age, no matter what we served afterwards.
-
-The four Mailtrap records are DNS-only, which is correct — Cloudflare's proxy
-does not carry SMTP, and `mt06` is a mail host. An earlier version of this file
-described them as proxied; that is no longer true.
+configurable. The constraint that used to make `includeSubDomains` dangerous
+here — two Mailtrap subdomains that answered over HTTP and failed over HTTPS —
+no longer exists, since those records were removed with the rest of the mail
+configuration.
 
 ## Upgrading Bootstrap
 
@@ -259,6 +259,28 @@ and design are reserved: `site/strings/`, `site/public/icons/`,
 `site/public/llms.txt` and `docs/Design.pdf` are a CV, not a template. Vendored third-party code is
 listed in `THIRD-PARTY.md`.
 
+## Mail
+
+**This domain sends and receives no email, and says so explicitly.** There is no
+mailbox at `@jc-root.xyz` and nothing is authorised to send as it:
+
+```
+MX      0 .                       null MX, RFC 7505 — accepts no mail
+TXT     v=spf1 -all               authorises no sender, anywhere
+_dmarc  v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; rua=…
+*._domainkey  v=DKIM1; p=         empty key: every selector is revoked
+```
+
+Exactly one SPF record and one DMARC record, which is the part that is easy to
+get wrong: RFC 7208 makes a second SPF record a `permerror`, and RFC 7489 treats
+anything other than exactly one DMARC record as *no policy at all*. Two of each
+is strictly worse than one, and worse than none.
+
+Contact goes through the form, which posts to FormSubmit and never touches this
+domain's mail. If a mailbox is ever needed here, the null MX and the SPF both
+have to change together — a live MX under `v=spf1 -all` would have any forwarded
+mail hard-fail.
+
 ## Security posture
 
 Verified against production after the move to GitHub Pages:
@@ -273,24 +295,12 @@ Verified against production after the move to GitHub Pages:
 | Secrets | none in the working tree or in the full history |
 | Supply chain | no runtime or build dependencies; workflow actions pinned to commit SHAs |
 | DNSSEC | enabled at Cloudflare, **pending** the registrar DS record |
-| SPF / DMARC | Exactly one record each. SPF `-all` authorising only the inbound forwarder; DMARC `p=reject; sp=reject` with strict alignment |
-| DKIM | `*._domainkey` publishes an empty key, revoking every selector not explicitly defined |
+| Mail | The domain neither sends nor receives: null MX (RFC 7505), `v=spf1 -all`, DMARC `p=reject; sp=reject` with strict alignment, and a `*._domainkey` empty key revoking every selector. Exactly one SPF and one DMARC record, which is what makes them evaluate at all |
 
 ## Known follow-ups
 
 - **Publish the DNSSEC DS record at the registrar.** Cloudflare has the zone
   signed and waiting; without the DS the delegation is unsigned and a resolver
   has no way to detect a forged answer for this domain.
-- **Remove the four Mailtrap records** (`mt06`, `mt-link`, `rwmt1._domainkey`,
-  `rwmt2._domainkey`). This domain does not send mail, and the two `_domainkey`
-  CNAMEs are the hole in that: they publish live, valid DKIM keys for
-  `jc-root.xyz` that are served from a third-party account. Anything able to
-  sign with those keys produces mail that passes DKIM, aligns strictly, and
-  therefore passes DMARC — which is the whole policy defeated by a leftover.
-  The null-DKIM wildcard cannot help, because an explicit record always wins
-  over a wildcard.
 - Real project screenshots for the Tapper Counters and MythLog cards.
 - GitHub repo link for MythLog when/if public (`projectCards` in `lib/content.mjs`).
-- The two proxied Mailtrap CNAMEs should probably be DNS-only; see above. Doing
-  so would also unblock `includeSubDomains` on HSTS — though that would then
-  have to come from the edge, since the origin's header cannot be configured.
