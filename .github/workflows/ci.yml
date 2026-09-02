@@ -106,9 +106,11 @@ jobs:
       # WeasyPrint release cannot silently repaginate the document.
       - name: Render the CV
         env:
-          # The address lives in no file in this repository. It is a
-          # repository variable, the same arrangement the contact form uses,
-          # and it reaches only the PDF — never dist/, never the markup.
+          # Optional, and normally unset. The published CV reaches people
+          # through jc-root.xyz, LinkedIn and GitHub — the same posture the
+          # site takes, where the contact form is a FormSubmit alias and the
+          # raw address appears nowhere. Setting this repository variable adds
+          # an address to the PDF; leaving it unset is the supported default.
           CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
         run: |
           sudo apt-get update
@@ -122,18 +124,20 @@ jobs:
       # A CV is a two-page document. Content grows, and the page it grows onto
       # is invisible until someone opens the file — so the length is asserted
       # rather than trusted.
-      - name: The CV is two pages, and carries an address
+      - name: The CV is two pages
         run: |
           pages=$(pdfinfo dist-cv/cv.pdf | awk '/^Pages:/ { print $2 }')
           echo "rendered $pages page(s)"
           if [ "$pages" -gt 2 ]; then
             echo "::error::the CV runs to $pages pages — trim it or it ships that way"; exit 1
           fi
-          # Unset CONTACT_EMAIL renders a CV with no way to reply to it. The
-          # build stays quiet about that on purpose; this is where it fails.
-          if ! pdftotext dist-cv/cv.pdf - \
+          # Not a gate, just the record: which contact route the published PDF
+          # actually carries, visible in the log without opening the file.
+          if pdftotext dist-cv/cv.pdf - \
               | grep -qE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'; then
-            echo "::error::CONTACT_EMAIL is unset — the CV would publish with no address"; exit 1
+            echo "contact: CONTACT_EMAIL is set — this CV carries an email address"
+          else
+            echo "contact: no address, by design — jc-root.xyz, LinkedIn and GitHub"
           fi
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
