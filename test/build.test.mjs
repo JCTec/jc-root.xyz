@@ -20,7 +20,7 @@ import { after, before, test } from "node:test";
 
 import { build } from "../build.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
-import { UNSET_ENDPOINT } from "../lib/content.mjs";
+import { loadConfig, UNSET_ENDPOINT } from "../lib/content.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
 import { loadCatalog } from "../lib/strings.mjs";
 import { STRINGS_DIR } from "../build.mjs";
@@ -69,6 +69,14 @@ test("Both locales are published, each with its own lang and copy", () => {
     assert.ok(!es.includes(catalog.en.work_heading));
 });
 
+/* The one asset `build.mjs` cannot produce. Rendering the CV needs WeasyPrint,
+   which is Python and lives only in CI, so the PDF is copied into dist/ there
+   rather than written here. The invariant is not weakened, only split in two:
+   `The file CI publishes is the file the site links to` in cv.test.mjs reads
+   the workflow and asserts that copy exists and lands under exactly this name.
+   Anything else the page references must still be in the output. */
+const SUPPLIED_BY_CI = new Set([loadConfig({ publicDirectory: null, env: {} }).cvPath]);
+
 test("Every asset the page references is actually in the output", () => {
     const refs = assetReferences(en);
     // Guard the regex itself: a page that suddenly references nothing would
@@ -77,6 +85,7 @@ test("Every asset the page references is actually in the output", () => {
 
     for (const ref of refs) {
         const path = ref.split("?")[0];
+        if (SUPPLIED_BY_CI.has(path)) continue;
         assert.ok(
             existsSync(join(outDir, path)),
             `page references ${ref} but ${path} is not in the output`,

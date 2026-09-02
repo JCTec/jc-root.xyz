@@ -98,7 +98,7 @@ node scripts/browser-check.mjs
 | `GITHUB_URL` | `https://github.com/JCTec` | Hero + footer link. |
 | `LINKEDIN_URL` | `https://www.linkedin.com/in/jctec` | Footer link. |
 | `APPSTORE_URL` | developer page `id1346871945` | Footer link. |
-| `CV_URL` | `.../releases/download/cv/cv.pdf` | Where the hero's "Download CV" button points. A release asset on the fixed `cv` tag; see below. |
+| `CV_PATH` | `/juan-carlos-estevez-cv.pdf` | Where the hero's "Download CV" button points. Served from this site; CI copies the rendered PDF into `dist/` under this name. See below. |
 
 Unlike the Vapor original, `CANONICAL_HOST` has a default. There, an unset value
 meant "you are on localhost". Here it would mean publishing
@@ -141,19 +141,34 @@ is otherwise invisible until someone opens the file.
 
 **The PDF is never committed.** It is a build output like `dist/index.html`; a
 binary in the tree would start drifting from the catalog that generates it the
-first time someone edited the strings and forgot to re-render. Every push to
-main re-uploads it to the fixed `cv` release tag, which is what `CV_URL` points
-at. The tag is fixed rather than `/releases/latest/` because the latter resolves
-to whatever release is newest — one unrelated tag would take the link over.
+first time someone edited the strings and forgot to re-render. CI copies it
+into `dist/` after the render, so Pages publishes it at `CV_PATH` alongside
+the site, and every push to main replaces it.
 
-A release asset is served raw, so that URL is a PDF. The workflow artifact of
-the same file is **not** — GitHub zips every artifact server-side, single file
-or not, and there is no setting for it. The artifact is for checking a PR; the
-release asset is what anyone actually downloads, which is why it is uploaded
-under a name that means something in a stranger's Downloads folder rather than
-as `cv.pdf`. `test/cv.test.mjs` holds that filename against `CV_URL`: they are
-set in two different files, and a rename on one side alone would publish a
-button that 404s while both files stayed valid on their own.
+It was a GitHub release asset first, and that was the wrong home. Release
+assets on a **private** repository are served only to an authenticated browser
+session, so the download button 404'd for exactly the people it exists for.
+Serving it from the site needs no GitHub account, no release tag to survive,
+and goes public at the same moment the site does. The `cv` release still gets
+the same bytes as an archive, but nothing links to it.
+
+Two consequences worth knowing:
+
+- The workflow artifact of the same file **is** a zip. GitHub zips every
+  artifact server-side, single file or not, with no setting to opt out. The
+  artifact is for checking a PR; `dist/` is what people download.
+- `build.mjs` cannot produce this asset — rendering it needs WeasyPrint, which
+  is Python. So it is the one thing the page references that a bare
+  `node build.mjs` does not emit, and `test/build.test.mjs` exempts it by name.
+  The invariant is not weakened, only split: `test/cv.test.mjs` reads the
+  workflow and asserts the copy exists and lands under exactly the name
+  `CV_PATH` claims. A rename on either side alone fails the suite rather than
+  publishing a button that 404s.
+
+Because `dist/` now contains a PDF, the "nothing personal in the published
+bytes" gate runs *after* the CV lands there and reads every PDF back through
+`pdftotext`. `grep -rI` skips binary files, and PDF text is compressed besides
+— an address inside the CV would otherwise have walked straight past it.
 
 **The published CV carries no email address.** That is the same posture the
 site takes — the contact form posts to a FormSubmit alias and the raw address

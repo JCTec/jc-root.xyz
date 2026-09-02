@@ -25,6 +25,7 @@ import {
     experienceCount,
     loadCVCatalog,
 } from "../lib/cv-content.mjs";
+import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { cv } from "../lib/cv-template.mjs";
 import { esc } from "../lib/html.mjs";
 import { loadCatalog } from "../lib/strings.mjs";
@@ -230,26 +231,32 @@ test("The CV renders one self-contained file per locale", () => {
     assert.ok(html.includes("<style>"), "the CV has no inline stylesheet");
 });
 
-/* The site links to the release asset by URL, and CI decides what that asset
-   is called. Those live in two different files and two different languages,
-   and nothing but this test connects them — a rename on one side alone
-   publishes a button that 404s, which no other check here would notice
-   because both files remain perfectly valid on their own. */
-test("The asset CI uploads is the asset the site links to", () => {
+/* The site links to the CV by path, and CI decides what the published file is
+   called. Those live in two different files and two different languages, and
+   nothing but this test connects them — a rename on one side alone publishes a
+   button that 404s, which no other check here would notice because both files
+   remain perfectly valid on their own. */
+test("The file CI publishes is the file the site links to", () => {
     const workflow = readFileSync(join(root, ".github/workflows/ci.yml"), "utf8");
+    const { cvPath } = loadConfig({ publicDirectory: null, env: {} });
+    const filename = cvPath.replace(/^\//, "");
+
+    // What Pages serves: copied into dist/ from the render step's output.
+    assert.ok(
+        workflow.includes(`cp dist-cv/${cvOutputName("en", "pdf")} dist/${filename}`),
+        `ci.yml never copies dist-cv/cv.pdf to dist/${filename}, which ${cvPath} needs`,
+    );
+
+    // And the release asset, which is the same bytes under the same name.
     const uploaded = workflow.match(/gh release upload cv (\S+) --clobber/);
     assert.ok(uploaded, "no `gh release upload` line found in ci.yml");
+    assert.equal(uploaded[1], filename, `the site serves ${filename}, the release has ${uploaded[1]}`);
+});
 
-    const { cvURL } = loadConfig({ publicDirectory: null, env: {} });
-    assert.equal(
-        cvURL.split("/").pop(),
-        uploaded[1],
-        `the site links to ${cvURL} but CI uploads ${uploaded[1]}`,
-    );
-
-    // And the rename must actually happen — the build emits cv.pdf.
-    assert.ok(
-        workflow.includes(`mv ${cvOutputName("en", "pdf")} ${uploaded[1]}`),
-        "ci.yml uploads a name the render step never produces",
-    );
+/* The CV is linked without a ?v= buster, so it must not be long-cached: an
+   edited catalog has to reach a returning visitor, not sit behind a year of
+   immutability. */
+test("The published CV revalidates rather than caching", () => {
+    const { cvPath } = loadConfig({ publicDirectory: null, env: {} });
+    assert.equal(cachePolicyForPath(cvPath), "no-cache, must-revalidate");
 });
