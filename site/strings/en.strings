@@ -46,7 +46,7 @@
 "exp2_role" = "Senior iOS Engineer";
 "exp2_company" = "The Home Depot";
 "exp2_meta" = "Remote (US) · Aug 2025 – Dec 2025";
-"exp2_desc" = "Owned end-to-end delivery of key features in the internal store-operations app used by associates across US stores. Drove performance and reliability at scale in real-time, high-volume data interfaces, and raised release stability with unit and UI automation testing.";
+"exp2_desc" = "Owned end-to-end delivery of key features in The Home Depot's consumer iOS app, where shoppers pinpoint any item's exact aisle and bay location in stores across the US and Canada. Drove performance and reliability at scale in real-time, high-volume data interfaces, and raised release stability with unit and UI automation testing.";
 
 "exp3_role" = "Independent Study & Systems Development";
 "exp3_company" = "Self-directed";
@@ -101,7 +101,7 @@
 
 "p4_tags" = "iOS · iPadOS";
 "p4_name" = "iBase";
-"p4_desc" = "Fast, simple converter between binary, octal, decimal and hexadecimal. On the App Store since 2018, in English, French and Spanish.";
+"p4_desc" = "Fast, simple converter between binary, octal, decimal and hexadecimal. On the App Store since 2018, in English and Spanish.";
 
 // Education & Languages
 "edu_heading" = "Education & Languages";
