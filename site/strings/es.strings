@@ -19,6 +19,7 @@
 "hero_status" = "Disponible en horario Central y Este de EE. UU. · Ciudadano español, autorizado para trabajar en la UE · Remoto o reubicación";
 "hero_cta_projects" = "Ver mis proyectos →";
 "hero_cta_github" = "GitHub";
+"hero_cta_cv" = "Descargar CV";
 
 // Navegación
 "nav_about" = "Acerca de";

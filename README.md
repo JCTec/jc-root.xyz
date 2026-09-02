@@ -52,6 +52,7 @@ that removed it.
 
 ```sh
 node build.mjs                    # → dist/
+node build-cv.mjs                 # → dist-cv/cv.html  (see "The CV" below)
 node --test test/*.test.mjs
 node scripts/serve.mjs dist 8080  # http://127.0.0.1:8080  ·  .../es/
 ```
@@ -90,19 +91,69 @@ node scripts/browser-check.mjs
 | `CANONICAL_HOST` | `jc-root.xyz` | The custom domain. Written to `dist/CNAME` and used to derive the base URL. |
 | `SITE_BASE_URL` | `https://$CANONICAL_HOST` | Base for canonical/hreflang/sitemap/og URLs. Override to build a preview. |
 | `ASSET_VERSION` | derived from `site/public/` | Stamp for `?v=` cache busting. Normally leave unset: the build hashes the bytes of `site/public/`, so the stamp cannot disagree with the assets it names. Setting it **overrides** that — a stale value pins every asset URL. |
-| `CONTACT_EMAIL` | unset | Only needed for the one-time FormSubmit activation build, which has to email the real address before FormSubmit will issue an alias. Leave it unset afterwards. |
+| `CONTACT_EMAIL` | unset | Two uses, both build-time: the one-time FormSubmit activation build (which has to email the real address before FormSubmit will issue an alias), and the CV's contact line. It never reaches `dist/` — CI fails the build if an address does. In CI it is the repository variable of the same name, and the CV job **fails without it**. |
 | `FORMSUBMIT_ENDPOINT` | `https://formsubmit.co/<CONTACT_EMAIL>` | Contact-form POST target. **After FormSubmit activation, set this** so the address leaves the HTML entirely. In CI it is the repository variable of the same name. |
 | `BUILD_YEAR` | the current year | Footer copyright. Baked in at build time; see the scheduled rebuild below. |
 | `PAGES_PREVIEW` | unset | When set, `dist/CNAME` is **not** written. Only for publishing before DNS points at the repository — a CNAME file claims the domain on deploy, and Pages then redirects its own `*.github.io` URL to a host that still resolves elsewhere, making the preview unreachable. |
 | `GITHUB_URL` | `https://github.com/JCTec` | Hero + footer link. |
 | `LINKEDIN_URL` | `https://www.linkedin.com/in/jctec` | Footer link. |
 | `APPSTORE_URL` | developer page `id1346871945` | Footer link. |
+| `CV_URL` | `.../releases/download/cv/cv.pdf` | Where the hero's "Download CV" button points. A release asset on the fixed `cv` tag; see below. |
 
 Unlike the Vapor original, `CANONICAL_HOST` has a default. There, an unset value
 meant "you are on localhost". Here it would mean publishing
 `http://localhost:8080` into every canonical URL, hreflang and sitemap entry
 with nothing failing, so the one host this repository builds for is the default
 and `SITE_BASE_URL` is how you point a build somewhere else.
+
+## The CV
+
+`jc-root.xyz/` and the CV PDF are two views of one set of facts, and the facts
+are written once.
+
+```
+site/strings/en.strings      facts: name, role, companies, job titles, dates,
+                             education, languages, project names   → both
+site/strings/cv.en.strings   CV prose: summary, skill groups, the bullets
+                             under each role, interests            → CV only
+```
+
+`test/cv.test.mjs` is what keeps that split honest. A key defined in both files
+fails the suite, because a fact maintained in two places is a fact that will
+eventually disagree with itself. Adding a ninth role to `en.strings` fails too,
+until `cv.en.strings` gives it bullets — so the CV cannot quietly fall a job
+behind the site. The same goes for projects: a new one must either appear in
+the CV or be named in `PROJECTS_COVERED_ELSEWHERE` with a reason.
+
+Rendering is two steps, and only the second one is not Node:
+
+```sh
+CONTACT_EMAIL=you@example.com node build-cv.mjs   # → dist-cv/cv.html
+weasyprint dist-cv/cv.html dist-cv/cv.pdf         # pip install weasyprint==69.0
+```
+
+Splitting it that way is what keeps this repository dependency-free. Node emits
+a single self-contained HTML file — no stylesheet link, no assets, nothing to
+cache — and the test suite asserts against *that*. WeasyPrint only rasterizes,
+it runs in CI, and it is pinned so a release of it cannot silently repaginate
+the document. CI additionally refuses a CV that has grown past two pages, which
+is otherwise invisible until someone opens the file.
+
+**The PDF is never committed.** It is a build output like `dist/index.html`; a
+binary in the tree would start drifting from the catalog that generates it the
+first time someone edited the strings and forgot to re-render. Every push to
+main re-uploads it to the fixed `cv` release tag, which is what `CV_URL` points
+at. The tag is fixed rather than `/releases/latest/` because the latter resolves
+to whatever release is newest — one unrelated tag would take the link over.
+
+The address on the contact line is in neither catalog. It arrives as
+`CONTACT_EMAIL` at build time, the same arrangement the contact form uses, and
+it reaches only the PDF. A build without it renders a CV with no address rather
+than a placeholder; CI is where that fails, by reading the text back out of the
+rendered PDF.
+
+The CV is English-only for now. `CV_LOCALES` in `lib/cv-content.mjs` and a
+`site/strings/cv.es.strings` are the whole change.
 
 ## Contact form (FormSubmit)
 
