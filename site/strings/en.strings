@@ -20,6 +20,7 @@
 "hero_status" = "Available in US Central & Eastern time · Spanish citizen, authorized to work in the EU · Remote or relocation";
 "hero_cta_projects" = "View my projects →";
 "hero_cta_github" = "GitHub";
+"hero_cta_cv" = "Download CV";
 
 // Navigation
 "nav_about" = "About";

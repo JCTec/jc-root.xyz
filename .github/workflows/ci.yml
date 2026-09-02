@@ -48,7 +48,9 @@ jobs:
           # from the day it is added.
           find site/public/js lib scripts -name '*.js' -o -name '*.mjs' \
             | xargs -r -n1 node --check
-          node --check build.mjs
+          # The build entry points sit at the root, where the find above does
+          # not reach. Found rather than listed, for the same reason.
+          find . -maxdepth 1 -name '*.mjs' | xargs -r -n1 node --check
 
       # `git diff --check` with no revision compares the working tree to the
       # index, which on a fresh checkout is empty — the step could not fail.
@@ -97,6 +99,49 @@ jobs:
       - name: Test
         run: node --test test/*.test.mjs
 
+      # WeasyPrint is the only part of this pipeline that is not Node, and it
+      # is confined to this one step: build-cv.mjs emits the HTML that the
+      # tests above already asserted against, and this turns it into a PDF.
+      # Pinned to the version that rendered the CV this replaces, so a
+      # WeasyPrint release cannot silently repaginate the document.
+      - name: Render the CV
+        env:
+          # The address lives in no file in this repository. It is a
+          # repository variable, the same arrangement the contact form uses,
+          # and it reaches only the PDF — never dist/, never the markup.
+          CONTACT_EMAIL: ${{ vars.CONTACT_EMAIL }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libpango-1.0-0 libpangoft2-1.0-0 fonts-liberation poppler-utils
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet weasyprint==69.0
+          node build-cv.mjs
+          .venv/bin/weasyprint dist-cv/cv.html dist-cv/cv.pdf
+
+      # A CV is a two-page document. Content grows, and the page it grows onto
+      # is invisible until someone opens the file — so the length is asserted
+      # rather than trusted.
+      - name: The CV is two pages, and carries an address
+        run: |
+          pages=$(pdfinfo dist-cv/cv.pdf | awk '/^Pages:/ { print $2 }')
+          echo "rendered $pages page(s)"
+          if [ "$pages" -gt 2 ]; then
+            echo "::error::the CV runs to $pages pages — trim it or it ships that way"; exit 1
+          fi
+          # Unset CONTACT_EMAIL renders a CV with no way to reply to it. The
+          # build stays quiet about that on purpose; this is where it fails.
+          if ! pdftotext dist-cv/cv.pdf - \
+              | grep -qE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'; then
+            echo "::error::CONTACT_EMAIL is unset — the CV would publish with no address"; exit 1
+          fi
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: cv
+          path: dist-cv/cv.pdf
+          retention-days: 30
+
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: site
@@ -133,3 +178,38 @@ jobs:
           path: dist
       - id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+
+  # The CV follows the same rule as the site: a green build of main publishes,
+  # and it publishes the bytes the tests ran against rather than a second
+  # render that could differ.
+  #
+  # The asset hangs off a fixed `cv` tag rather than a dated release, because
+  # the site links to it by URL. /releases/latest/ would resolve to whatever
+  # release is newest and an unrelated tag would quietly take the link over;
+  # a fixed tag re-uploaded in place keeps one stable URL that is never stale.
+  cv-release:
+    needs: tests
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    # Never race two uploads at the same asset name.
+    concurrency:
+      group: cv-release
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: cv
+
+      - name: Attach the CV to the cv release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if ! gh release view cv >/dev/null 2>&1; then
+            gh release create cv \
+              --title "Curriculum Vitae" \
+              --notes "Rendered from site/strings/ on every push to main. Not edited by hand, and not committed to the repository — see README.md."
+          fi
+          gh release upload cv cv.pdf --clobber

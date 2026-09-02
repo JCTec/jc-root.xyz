@@ -1,0 +1,75 @@
+// CV-only copy: the bullet-level detail the PDF carries and the site does not.
+//
+// Everything that is a *fact* — name, role, company names, job titles, dates,
+// education, languages — lives in en.strings and is shared with the site, so a
+// title or a date cannot say one thing on jc-root.xyz and another in the PDF.
+// test/cv.test.mjs enforces that split: a key that belongs in en.strings is
+// refused here.
+//
+// Bullets are pipe-separated, the same convention stack_core_items already
+// uses. Order is the order they render in.
+
+// Section headings
+"cv_heading_summary" = "SUMMARY";
+"cv_heading_skills" = "SKILLS";
+"cv_heading_experience" = "EXPERIENCE";
+"cv_heading_projects" = "PROJECTS";
+"cv_heading_education" = "EDUCATION";
+"cv_heading_certs" = "CERTIFICATIONS & LANGUAGES";
+"cv_heading_interests" = "INTERESTS";
+
+// Header. The email is never in this repository — it arrives as CONTACT_EMAIL
+// at build time and is the one value in the CV that the catalog does not hold.
+"cv_passport" = "Spanish passport";
+
+// Summary. Longer and more formal than the site's about_body on purpose: a CV
+// is read cold by someone who has not seen the site.
+"cv_summary" = "Senior iOS Engineer with 6+ years of professional experience designing, building, and modernizing high-performance iOS and macOS applications using Swift, SwiftUI, and UIKit. Strong expertise in atomic design systems, performance optimization, GraphQL, automated testing, and CI/CD. I take full ownership of features from concept to release and mentor engineers on modern architecture. Recently expanded into AI agentic workflows, full-stack IoT systems, and hardware-software integration.";
+
+// Skills. Four labelled groups; the site shows the same ground as two flat
+// chip rows, which is why these are CV-only rather than shared.
+"cv_skills1_label" = "iOS & Apple platforms";
+"cv_skills1_items" = "Swift|SwiftUI (incl. SwiftUI 6)|UIKit|SwiftData|Combine|Modern Concurrency|StoreKit 2|CryptoKit|Apple HIG|Pixel-Perfect UI|macOS";
+"cv_skills2_label" = "Architecture & quality";
+"cv_skills2_items" = "MVVM|Clean Architecture|Coordinators|Atomic Design Systems|Performance Optimization|XCUITest + Robot Pattern|A/B Testing & Experimentation|Unit Testing|Git & Code Reviews";
+"cv_skills3_label" = "Data & delivery";
+"cv_skills3_items" = "GraphQL|REST APIs|Stripe|Firebase|Realm|GitHub Actions (CI/CD)|Swift Package Manager|CocoaPods";
+"cv_skills4_label" = "AI & emerging";
+"cv_skills4_items" = "Agentic Workflows (Claude, OpenAI, xAI)|Ollama|IoT / Home Automation";
+
+// Experience. Roles, companies, dates and order all come from en.strings —
+// only the bullets are here. `_note` is an optional unbulleted line that sits
+// under the role heading, used where the role needs framing more than a list.
+"cv_exp1_bullets" = "Design, build, and ship custom iOS applications end-to-end for private clients, owning the full lifecycle from architecture through release.|Publish and maintain two App Store products: Tapper Counters (SwiftUI 6, multilanguage) and MythLog (macOS, security-focused).|Integrate AI and agentic workflows into production apps and tooling (Claude, OpenAI, xAI APIs; local models via Ollama).|Architect and own Living Root (github.com/Living-Root): SwiftUI client with SwiftData snapshots for offline dashboard reads, Vapor + PostgreSQL backend serving a session-authenticated admin console, MicroPython/ESP32 firmware.|Extend that ownership into hardware, completing a formal Hydroponics Diploma at Anáhuac University (Feb–Jun 2026) and applying 3D printing to design custom sensor enclosures.";
+
+"cv_exp2_bullets" = "Owned end-to-end delivery of features in the internal store-operations app used by associates across US stores.|Drove performance and reliability at scale, building and optimizing real-time, high-volume data interfaces.|Raised code quality and release stability by implementing comprehensive unit and UI automation testing strategies.";
+
+"cv_exp3_bullets" = "Focused immersion in AI agentic workflows, data analysis, and modern tooling (Claude, OpenAI, xAI, Ollama) to strengthen AI-native product development capabilities ahead of subsequent roles.";
+
+"cv_exp4_bullets" = "Drove the creation of a comprehensive atomic design system, raising the bar for UI consistency and reusability across the app.|Developed and shipped new features in UIKit and SwiftUI with seamless backend integration.|Partnered with PMs, designers, and cross-functional teams to improve user experience and app performance.|Ran A/B tests on feature changes to inform product and UX decisions.|Owned technical direction for the team, making key architecture calls (MVVM, Clean Architecture, Coordinators) and mentoring engineers to elevate overall code quality.";
+
+"cv_exp5_bullets" = "Led the modernization of a decade-old iOS application, owning the SwiftUI migration end-to-end while preserving performance for a live, in-production app.|Made the call to rebuild the app's foundation on MVVM, Clean Architecture, and the Coordinator pattern, setting technical direction for the refactor.|Raised UI performance standards, building complex dynamic lists that handle 10,000+ items smoothly while delivering pixel-perfect, HIG-compliant SwiftUI interfaces.|Integrated GraphQL for data delivery, and WiFi-connected terminal hardware via custom connection managers.|Set a new bar for release quality, establishing automated UI testing (Robot Pattern + XCUITest) and cutting release cycles by 30% with GitHub Actions CI/CD.|Ran A/B tests and experiments to validate product decisions with real usage data.|Mentored and elevated junior engineers within an Agile environment, working alongside designers and stakeholders.";
+
+"cv_exp6_bullets" = "Co-founded the company and led its engineering.|Developed and maintained two production iOS applications (SwiftUI + UIKit) within a multi-platform product.|Implemented secure payment flows with Stripe integration.|Collaborated cross-functionally to scale features and enhance user experience.";
+
+"cv_exp7_note" = "Early-career role with full production responsibilities, held while completing final university coursework.";
+"cv_exp7_bullets" = "Developed and maintained production iOS apps in Swift and Objective-C with REST API integration; delivered features end-to-end in Agile sprints.";
+
+"cv_exp8_note" = "First engineering role, concurrent with university coursework.";
+"cv_exp8_bullets" = "Built full-stack applications for agency clients on AWS-backed stacks.";
+
+// Projects. Names, platform tags and descriptions all come from en.strings —
+// the site's copy is the better copy, and duplicating it here is exactly the
+// drift this split exists to prevent. What is CV-only is the trailing half of
+// the meta line: the stack and the URL, which the site carries as links
+// instead. Rendered as "<site tags> · <this>".
+//
+// Living Root is p5 on the site and appears here under Experience instead,
+// which is why the CV stops at four.
+"cv_p1_links" = "SwiftUI 6 + Modern Concurrency · App Store · github.com/JCTec/Tapper";
+"cv_p2_links" = "Swift 6 + SwiftUI · App Store · apps.apple.com/mx/app/mythlog";
+"cv_p3_links" = "github.com/swift-calendar/icalendarkit";
+"cv_p4_links" = "App Store · apps.apple.com/mx/app/ibase";
+
+// Interests. The one section with no counterpart on the site.
+"cv_interests" = "3D printing · hydroponics · IoT & home automation · jewelry making";
