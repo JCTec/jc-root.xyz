@@ -146,6 +146,15 @@ main re-uploads it to the fixed `cv` release tag, which is what `CV_URL` points
 at. The tag is fixed rather than `/releases/latest/` because the latter resolves
 to whatever release is newest — one unrelated tag would take the link over.
 
+A release asset is served raw, so that URL is a PDF. The workflow artifact of
+the same file is **not** — GitHub zips every artifact server-side, single file
+or not, and there is no setting for it. The artifact is for checking a PR; the
+release asset is what anyone actually downloads, which is why it is uploaded
+under a name that means something in a stranger's Downloads folder rather than
+as `cv.pdf`. `test/cv.test.mjs` holds that filename against `CV_URL`: they are
+set in two different files, and a rename on one side alone would publish a
+button that 404s while both files stayed valid on their own.
+
 **The published CV carries no email address.** That is the same posture the
 site takes — the contact form posts to a FormSubmit alias and the raw address
 appears nowhere — and it is why the contact line is `jc-root.xyz`, LinkedIn and

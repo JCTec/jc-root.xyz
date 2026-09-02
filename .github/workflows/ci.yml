@@ -216,4 +216,9 @@ jobs:
               --title "Curriculum Vitae" \
               --notes "Rendered from site/strings/ on every push to main. Not edited by hand, and not committed to the repository — see README.md."
           fi
-          gh release upload cv cv.pdf --clobber
+          # A release asset is served raw, unlike a workflow artifact, which
+          # GitHub always zips. So this name is the filename that lands in
+          # someone's Downloads folder — worth more than "cv.pdf" there.
+          # test/cv.test.mjs holds it against the URL the site links to.
+          mv cv.pdf juan-carlos-estevez-cv.pdf
+          gh release upload cv juan-carlos-estevez-cv.pdf --clobber

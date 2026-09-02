@@ -229,3 +229,27 @@ test("The CV renders one self-contained file per locale", () => {
     assert.ok(!html.includes("<script"), "the CV carries script");
     assert.ok(html.includes("<style>"), "the CV has no inline stylesheet");
 });
+
+/* The site links to the release asset by URL, and CI decides what that asset
+   is called. Those live in two different files and two different languages,
+   and nothing but this test connects them — a rename on one side alone
+   publishes a button that 404s, which no other check here would notice
+   because both files remain perfectly valid on their own. */
+test("The asset CI uploads is the asset the site links to", () => {
+    const workflow = readFileSync(join(root, ".github/workflows/ci.yml"), "utf8");
+    const uploaded = workflow.match(/gh release upload cv (\S+) --clobber/);
+    assert.ok(uploaded, "no `gh release upload` line found in ci.yml");
+
+    const { cvURL } = loadConfig({ publicDirectory: null, env: {} });
+    assert.equal(
+        cvURL.split("/").pop(),
+        uploaded[1],
+        `the site links to ${cvURL} but CI uploads ${uploaded[1]}`,
+    );
+
+    // And the rename must actually happen — the build emits cv.pdf.
+    assert.ok(
+        workflow.includes(`mv ${cvOutputName("en", "pdf")} ${uploaded[1]}`),
+        "ci.yml uploads a name the render step never produces",
+    );
+});
