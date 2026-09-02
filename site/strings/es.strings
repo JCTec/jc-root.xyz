@@ -45,7 +45,7 @@
 "exp2_role" = "Ingeniero iOS Senior";
 "exp2_company" = "The Home Depot";
 "exp2_meta" = "Remoto (EE. UU.) · Ago 2025 – Dic 2025";
-"exp2_desc" = "Fui dueño de la entrega completa de funcionalidades clave en la app interna de operaciones de tienda que usan los asociados en tiendas de EE. UU. Impulsé el rendimiento y la fiabilidad a escala en interfaces de datos en tiempo real y alto volumen, y elevé la estabilidad de los releases con pruebas unitarias y de UI automatizadas.";
+"exp2_desc" = "Fui dueño de la entrega completa de funcionalidades clave en la app iOS de The Home Depot, donde los clientes ubican el pasillo y la bahía exactos de cualquier artículo en tiendas de EE. UU. y Canadá. Impulsé el rendimiento y la fiabilidad a escala en interfaces de datos en tiempo real y alto volumen, y elevé la estabilidad de los releases con pruebas unitarias y de UI automatizadas.";
 
 "exp3_role" = "Estudio independiente y desarrollo de sistemas";
 "exp3_company" = "Por cuenta propia";
@@ -100,7 +100,7 @@
 
 "p4_tags" = "iOS · iPadOS";
 "p4_name" = "iBase";
-"p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018, en inglés, francés y español.";
+"p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018, en inglés y español.";
 
 // Educación e idiomas
 "edu_heading" = "Educación e idiomas";
