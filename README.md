@@ -91,7 +91,7 @@ node scripts/browser-check.mjs
 | `CANONICAL_HOST` | `jc-root.xyz` | The custom domain. Written to `dist/CNAME` and used to derive the base URL. |
 | `SITE_BASE_URL` | `https://$CANONICAL_HOST` | Base for canonical/hreflang/sitemap/og URLs. Override to build a preview. |
 | `ASSET_VERSION` | derived from `site/public/` | Stamp for `?v=` cache busting. Normally leave unset: the build hashes the bytes of `site/public/`, so the stamp cannot disagree with the assets it names. Setting it **overrides** that — a stale value pins every asset URL. |
-| `CONTACT_EMAIL` | unset | Two uses, both build-time: the one-time FormSubmit activation build (which has to email the real address before FormSubmit will issue an alias), and the CV's contact line. It never reaches `dist/` — CI fails the build if an address does. In CI it is the repository variable of the same name, and the CV job **fails without it**. |
+| `CONTACT_EMAIL` | unset | Two uses, both build-time: the one-time FormSubmit activation build (which has to email the real address before FormSubmit will issue an alias), and — optionally — the CV's contact line. **Normally leave it unset**; the published CV carries no address by design. It never reaches `dist/` either way: CI fails the build if an address does. |
 | `FORMSUBMIT_ENDPOINT` | `https://formsubmit.co/<CONTACT_EMAIL>` | Contact-form POST target. **After FormSubmit activation, set this** so the address leaves the HTML entirely. In CI it is the repository variable of the same name. |
 | `BUILD_YEAR` | the current year | Footer copyright. Baked in at build time; see the scheduled rebuild below. |
 | `PAGES_PREVIEW` | unset | When set, `dist/CNAME` is **not** written. Only for publishing before DNS points at the repository — a CNAME file claims the domain on deploy, and Pages then redirects its own `*.github.io` URL to a host that still resolves elsewhere, making the preview unreachable. |
@@ -146,11 +146,16 @@ main re-uploads it to the fixed `cv` release tag, which is what `CV_URL` points
 at. The tag is fixed rather than `/releases/latest/` because the latter resolves
 to whatever release is newest — one unrelated tag would take the link over.
 
-The address on the contact line is in neither catalog. It arrives as
-`CONTACT_EMAIL` at build time, the same arrangement the contact form uses, and
-it reaches only the PDF. A build without it renders a CV with no address rather
-than a placeholder; CI is where that fails, by reading the text back out of the
-rendered PDF.
+**The published CV carries no email address.** That is the same posture the
+site takes — the contact form posts to a FormSubmit alias and the raw address
+appears nowhere — and it is why the contact line is `jc-root.xyz`, LinkedIn and
+GitHub. All three reach a person; none of them can be scraped off a PDF that
+gets forwarded around.
+
+The address is in neither catalog, so there is nothing to leak. Setting
+`CONTACT_EMAIL` adds one to the PDF for a build you want it in — a copy sent
+directly to someone, say — and the CI log records which of the two it produced
+without anyone having to open the file.
 
 The CV is English-only for now. `CV_LOCALES` in `lib/cv-content.mjs` and a
 `site/strings/cv.es.strings` are the whole change.
