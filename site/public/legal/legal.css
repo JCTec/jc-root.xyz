@@ -152,6 +152,14 @@ a {
     word-break: break-all;
 }
 
+/* An aside the document carries but does not argue — set quieter than body
+   copy so it does not read as another clause. */
+.note {
+    font-size: 0.875rem;
+    color: var(--faint);
+    margin-top: 2.5rem;
+}
+
 .foot {
     margin-top: 4rem;
     padding-top: 1.75rem;
