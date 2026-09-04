@@ -165,21 +165,14 @@ Two consequences worth knowing:
   `CV_PATH` claims. A rename on either side alone fails the suite rather than
   publishing a button that 404s.
 
-Because `dist/` now contains a PDF, the "nothing personal in the published
-bytes" gate runs *after* the CV lands there and reads every PDF back through
-`pdftotext`. `grep -rI` skips binary files, and PDF text is compressed besides
-— an address inside the CV would otherwise have walked straight past it.
-
 **The published CV carries no email address.** That is the same posture the
 site takes — the contact form posts to a FormSubmit alias and the raw address
 appears nowhere — and it is why the contact line is `jc-root.xyz`, LinkedIn and
 GitHub. All three reach a person; none of them can be scraped off a PDF that
 gets forwarded around.
 
-The address is in neither catalog, so there is nothing to leak. Setting
-`CONTACT_EMAIL` adds one to the PDF for a build you want it in — a copy sent
-directly to someone, say — and the CI log records which of the two it produced
-without anyone having to open the file.
+The address is in neither catalog. Setting `CONTACT_EMAIL` adds one to the PDF
+for a build you want it in — a copy sent directly to someone, say.
 
 The CV is English-only for now. `CV_LOCALES` in `lib/cv-content.mjs` and a
 `site/strings/cv.es.strings` are the whole change.
@@ -197,8 +190,7 @@ attribute. The CSP allows exactly one external `form-action`:
 The alias is defending against address-harvesting crawlers, not against people
 — the address is public on the GitHub profile this site links to. That is why
 the fix is "no `mailto:` and no address in the markup" rather than anything
-about secrecy, and why the CI gate greps the published bytes rather than the
-repository.
+about secrecy.
 
 FormSubmit returns the visitor to `?sent=1`. The confirmation ships hidden in
 every copy of the page and `js/app.js` reveals it — the one piece of this site

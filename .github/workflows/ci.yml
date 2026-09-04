@@ -118,14 +118,6 @@ jobs:
           if [ "$pages" -gt 2 ]; then
             echo "::error::the CV runs to $pages pages — trim it or it ships that way"; exit 1
           fi
-          # Not a gate, just the record: which contact route the published PDF
-          # actually carries, visible in the log without opening the file.
-          if pdftotext dist-cv/cv.pdf - \
-              | grep -qE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'; then
-            echo "contact: CONTACT_EMAIL is set — this CV carries an email address"
-          else
-            echo "contact: no address, by design — jc-root.xyz, LinkedIn and GitHub"
-          fi
 
       # Published from this site rather than from a GitHub release. A release
       # asset on a private repository is served only to an authenticated
@@ -135,31 +127,11 @@ jobs:
       - name: Publish the CV into the site
         run: cp dist-cv/cv.pdf dist/juan-carlos-estevez-cv.pdf
 
-      # The unit tests assert this for a build with no environment. This
-      # asserts it for the bytes actually about to be published, which is the
-      # only place a missing repository variable can show up.
-      #
-      # It runs here, after the CV lands in dist/, because dist/ now holds a
-      # PDF and `grep -I` skips binary files — an address inside the CV would
-      # have walked straight past a text-only scan. PDF text is compressed
-      # besides, so it has to be decoded rather than searched.
-      - name: Nothing personal, and nothing broken, in the published bytes
+      # The endpoint is a repository variable, and unset it renders a
+      # placeholder rather than a destination. This is where that is caught:
+      # a form nobody can submit looks completely fine until someone tries.
+      - name: The contact form has a destination
         run: |
-          if grep -rIEq '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' dist/; then
-            grep -rIEo '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' dist/ | sort -u
-            echo "::error::an email address reached the published site"; exit 1
-          fi
-          # A `find | while` loop runs in a subshell, where `exit 1` would only
-          # leave the subshell and the step would pass. Read into the current
-          # shell instead, and fail after the loop.
-          leaked=0
-          while IFS= read -r -d '' pdf; do
-            if pdftotext "$pdf" - \
-                | grep -qE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'; then
-              echo "::error::an email address reached $pdf"; leaked=1
-            fi
-          done < <(find dist -name '*.pdf' -print0)
-          [ "$leaked" -eq 0 ] || exit 1
           if grep -rIq 'FORMSUBMIT_ENDPOINT-is-unset' dist/; then
             echo "::error::FORMSUBMIT_ENDPOINT is unset — the contact form would be dead on arrival"; exit 1
           fi

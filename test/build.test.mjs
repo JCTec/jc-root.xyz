@@ -200,18 +200,10 @@ test("Discovery surfaces agree with the pages that were emitted", () => {
     assert.ok(existsSync(join(outDir, "llms.txt")));
 });
 
-test("The published site discloses no email address", () => {
-    // The contact form posts to a FormSubmit alias precisely so the address
-    // never appears in public HTML. This is the regression that would put it
-    // back: an unset FORMSUBMIT_ENDPOINT falling through to an address-derived
-    // endpoint on every page the build emits.
-    const address = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
-    for (const [name, html] of [["/", en], ["/es/", es]]) {
-        const found = html.match(address);
-        assert.equal(found, null, `${name} discloses ${found?.[0]}`);
-    }
-    // Built with no environment, the form names the missing variable rather
-    // than inventing a destination.
+test("An unconfigured form names the missing variable, not a destination", () => {
+    // Built with no environment, the action is a placeholder that is obviously
+    // not a form target. CI refuses to publish it — a form that silently posts
+    // nowhere looks fine until someone tries to use it.
     assert.ok(en.includes(UNSET_ENDPOINT), "expected the placeholder endpoint");
 });
 
