@@ -14,7 +14,7 @@ that removed it.
 |---|---|
 | `build.mjs` | The whole build. Reads `site/`, writes `dist/`. |
 | `lib/` | One module per thing the server used to do at request time. |
-| `site/strings/` | All UI copy, EN and ES, as Apple `.strings` files. |
+| `site/strings/` | All UI copy, one Apple `.strings` file per locale (EN, ES, FR). |
 | `site/public/` | Everything served as-is: CSS, JS, icons, vendored Bootstrap, `llms.txt`. |
 | `scripts/` | A static server that matches production, and the browser checks. |
 | `test/` | `node --test`. Invariants, not line coverage. |
@@ -27,13 +27,17 @@ that removed it.
   `site/public/vendor/bootstrap/` (minified files only — never a CDN). The CSP
   is `default-src 'self'` and would block anything else.
 - **No literal UI copy in code or templates.** All copy lives in
-  `site/strings/en.strings` and `es.strings` as `"code" = "value";` pairs; code
-  and templates reference codes only. Full EN/ES key parity is enforced by the
-  test suite, in both directions — a code nothing references fails the build
-  just as loudly as a reference to a code nothing defines.
-- **Locale is the route.** `/` is English, `/es/` is Spanish. No cookies, no
-  `Accept-Language` sniffing — both pages stay crawlable and cacheable, with
-  canonical + hreflang metadata and both URLs in the sitemap.
+  `site/strings/<locale>.strings` as `"code" = "value";` pairs; code and
+  templates reference codes only. `en.strings` is the source of truth for the
+  key set and every other locale must match it exactly — enforced by the test
+  suite, in both directions — a code nothing references fails the build just
+  as loudly as a reference to a code nothing defines.
+- **Locale is the route.** `/` is English, `/es/` is Spanish, `/fr/` is
+  French. No cookies, no `Accept-Language` sniffing — every page stays
+  crawlable and cacheable, with canonical + hreflang metadata and every URL in
+  the sitemap. Adding a locale is one entry in `LOCALES` (`lib/strings.mjs`)
+  plus its `.strings` file; the hreflang links, language toggle and sitemap
+  are all generated from that list.
 - **Everything is escaped at the point of interpolation.** Leaf escaped `#()`
   automatically; a JavaScript template literal escapes nothing, so `lib/html.mjs`
   carries that obligation and `test/escaping.test.mjs` refuses a bare `${}` in
@@ -54,7 +58,7 @@ that removed it.
 node build.mjs                    # → dist/
 node build-cv.mjs                 # → dist-cv/cv.html  (see "The CV" below)
 node --test test/*.test.mjs
-node scripts/serve.mjs dist 8080  # http://127.0.0.1:8080  ·  .../es/
+node scripts/serve.mjs dist 8080  # http://127.0.0.1:8080  ·  .../es/  ·  .../fr/
 ```
 
 `scripts/serve.mjs` is not just a convenience: it applies the same cache policy

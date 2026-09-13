@@ -22,20 +22,25 @@ import { build } from "../build.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { loadConfig, UNSET_ENDPOINT } from "../lib/content.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
-import { loadCatalog } from "../lib/strings.mjs";
+import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
 import { STRINGS_DIR } from "../build.mjs";
 
 let outDir;
+/** Rendered markup by locale, in LOCALES order. */
+let pages;
+/** The default locale's page: the one the locale-agnostic checks read. */
 let en;
-let es;
 
 before(() => {
     outDir = mkdtempSync(join(tmpdir(), "jc-root-build-"));
     // An explicit environment, so the suite asserts the defaults rather than
     // whatever the shell that ran it happened to export.
     build(outDir, { env: {} });
-    en = readFileSync(join(outDir, "index.html"), "utf8");
-    es = readFileSync(join(outDir, "es", "index.html"), "utf8");
+    pages = Object.fromEntries(LOCALES.map((locale) => [
+        locale,
+        readFileSync(join(outDir, homePath(locale), "index.html"), "utf8"),
+    ]));
+    en = pages.en;
 });
 
 after(() => rmSync(outDir, { recursive: true, force: true }));
@@ -58,15 +63,30 @@ function assetReferences(rawHTML) {
         .filter((ref) => /\.[a-z0-9]+$/i.test(ref.split("?")[0]));
 }
 
-test("Both locales are published, each with its own lang and copy", () => {
-    assert.ok(en.includes('lang="en"'));
-    assert.ok(en.includes('hreflang="es"'));
-    assert.ok(es.includes('lang="es"'));
-
-    // No English leaking into /es/.
+test("Every locale is published, each with its own lang and copy", () => {
+    assert.ok(LOCALES.length > 2, "expected at least three locales");
     const catalog = loadCatalog(STRINGS_DIR);
-    assert.ok(es.includes(catalog.es.work_heading));
-    assert.ok(!es.includes(catalog.en.work_heading));
+    for (const [locale, html] of Object.entries(pages)) {
+        assert.ok(html.includes(`<html lang="${locale}">`), `${locale} page lang`);
+        // Every page points at every locale, itself included, plus x-default.
+        for (const other of LOCALES) {
+            assert.ok(html.includes(`hreflang="${other}"`), `${locale} page lacks hreflang=${other}`);
+        }
+        assert.ok(html.includes('hreflang="x-default" href="https://jc-root.xyz/"'));
+        // The toggle names the current locale as text and the others as links.
+        assert.ok(html.includes(`<span class="lang-current">${catalog[locale][`lang_${locale}`]}</span>`));
+        for (const other of LOCALES.filter((code) => code !== locale)) {
+            assert.ok(
+                html.includes(`href="${homePath(other)}" hreflang="${other}" lang="${other}"`),
+                `${locale} page has no toggle link to ${other}`,
+            );
+        }
+        // No other locale's copy leaking into this page.
+        assert.ok(html.includes(catalog[locale].work_heading));
+        for (const other of LOCALES.filter((code) => code !== locale)) {
+            assert.ok(!html.includes(catalog[other].work_heading), `${other} copy on the ${locale} page`);
+        }
+    }
 });
 
 /* The one asset `build.mjs` cannot produce. Rendering the CV needs WeasyPrint,
@@ -142,7 +162,7 @@ test("Decorative canvases carry their layout inline, not in a cached stylesheet"
 });
 
 test("The policy the origin cannot send travels in the markup instead", () => {
-    for (const html of [en, es]) {
+    for (const html of Object.values(pages)) {
         const csp = html.match(
             /<meta http-equiv="Content-Security-Policy" content="([^"]*)">/,
         );
@@ -155,7 +175,7 @@ test("The policy the origin cannot send travels in the markup instead", () => {
 
 test("The confirmation ships hidden, so the no-JS page is correct", () => {
     const catalog = loadCatalog(STRINGS_DIR);
-    for (const [locale, html] of [["en", en], ["es", es]]) {
+    for (const [locale, html] of Object.entries(pages)) {
         const note = html.match(/<p class="form-sent"([^>]*)>([^<]*)<\/p>/);
         assert.ok(note, `no .form-sent paragraph on ${locale}`);
         assert.ok(note[1].includes("hidden"), ".form-sent must ship hidden");
@@ -164,12 +184,13 @@ test("The confirmation ships hidden, so the no-JS page is correct", () => {
         assert.ok(catalog[locale].form_sent.length > 0);
     }
     // ...and the form sends the visitor back to the page that carries it.
-    assert.ok(en.includes('name="_next" value="https://jc-root.xyz/?sent=1"'));
-    assert.ok(es.includes('name="_next" value="https://jc-root.xyz/es/?sent=1"'));
+    for (const [locale, html] of Object.entries(pages)) {
+        assert.ok(html.includes(`name="_next" value="https://jc-root.xyz${homePath(locale)}?sent=1"`));
+    }
 });
 
-test("JSON-LD parses, in both locales, with nothing HTML-escaped into it", () => {
-    for (const [locale, html] of [["en", en], ["es", es]]) {
+test("JSON-LD parses, in every locale, with nothing HTML-escaped into it", () => {
+    for (const [locale, html] of Object.entries(pages)) {
         const block = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s);
         assert.ok(block, `no JSON-LD block on ${locale}`);
         const body = block[1];
@@ -189,9 +210,12 @@ test("Discovery surfaces agree with the pages that were emitted", () => {
     assert.ok(robots.includes("Sitemap: https://jc-root.xyz/sitemap.xml"));
 
     const sitemap = readFileSync(join(outDir, "sitemap.xml"), "utf8");
-    assert.ok(sitemap.includes('hreflang="es"'));
-    assert.ok(sitemap.includes("<loc>https://jc-root.xyz/</loc>"));
-    assert.ok(sitemap.includes("<loc>https://jc-root.xyz/es/</loc>"));
+    for (const locale of LOCALES) {
+        assert.ok(sitemap.includes(`<loc>https://jc-root.xyz${homePath(locale)}</loc>`));
+        // Each <url> lists every locale as an alternate, so N urls × N links.
+        assert.equal(sitemap.split(`hreflang="${locale}"`).length - 1, LOCALES.length);
+    }
+    assert.equal(sitemap.split('hreflang="x-default"').length - 1, LOCALES.length);
     // Every URL the sitemap lists is a page the build actually wrote.
     for (const [, loc] of sitemap.matchAll(/<loc>https:\/\/jc-root\.xyz(\/[^<]*)<\/loc>/g)) {
         assert.ok(existsSync(join(outDir, loc, "index.html")), `sitemap lists ${loc}, not built`);

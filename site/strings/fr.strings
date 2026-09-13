@@ -1,0 +1,137 @@
+// Textes d'interface en français — doit conserver la parité totale des clés
+// avec en.strings (vérifiée par la suite de tests). Le code et les gabarits
+// n'utilisent que des codes.
+
+// Méta
+"meta_title" = "Juan Carlos Estévez · Ingénieur iOS Senior disponible | Développeur iOS à distance et freelance (Swift, SwiftUI)";
+"meta_description" = "Ingénieur iOS senior disponible : à distance ou en freelance. Plus de 6 ans d'expérience professionnelle en Swift et SwiftUI, 8 ans de publication sur l'App Store, apps pour iOS, iPadOS et macOS. Basé à Barcelone, autorisé à travailler dans l'UE. Disponible dès maintenant.";
+"og_image_alt" = "Juan Carlos Estévez Rodríguez — Ingénieur iOS Senior, disponible";
+
+// Accessibilité
+"skip_to_content" = "Aller au contenu";
+"nav_label" = "Navigation du site";
+
+// Accueil
+"site_label" = "JC-ROOT.XYZ";
+"brand_short" = "JC";
+"hero_name" = "Juan Carlos Estévez Rodríguez";
+"hero_role" = "Ingénieur iOS Senior";
+"hero_platforms" = "iOS · iPadOS · macOS";
+"hero_status" = "Disponible sur les fuseaux Central et Est des États-Unis · Citoyen espagnol, autorisé à travailler dans l'UE · À distance ou relocalisation";
+"hero_cta_projects" = "Voir mes projets →";
+"hero_cta_github" = "GitHub";
+"hero_cta_cv" = "Télécharger le CV";
+
+// Navigation
+"nav_about" = "À propos";
+"nav_experience" = "Expérience";
+"nav_projects" = "Projets";
+"nav_contact" = "Contact";
+"lang_en" = "EN";
+"lang_es" = "ES";
+"lang_fr" = "FR";
+
+// À propos
+"about_heading" = "À propos";
+"about_body" = "Ingénieur iOS Senior avec plus de 6 ans d'expérience professionnelle, plus 2 années antérieures à livrer du code en production pendant mes études d'ingénieur, achevées en juillet 2021. J'assume l'entière responsabilité des fonctionnalités et de l'architecture, du premier échange jusqu'à la mise en production : je modernise des bases de code héritées, je construis des systèmes de design atomique et je considère les tests comme une part du métier, pas comme une réflexion après coup. Sur l'App Store depuis 2018 avec trois apps publiées sur iPhone, iPad et Mac. Dernièrement, j'ai étendu cette responsabilité au-delà de l'app : workflows d'agents IA, IoT full-stack et intégration matériel-logiciel. Passionné par les technologies de la santé et du bien-être. Quand je ne livre pas, je fais du yoga, de l'escalade ou du kitesurf.";
+"about_availability" = "Disponible dès maintenant, en freelance ou à temps plein : à distance depuis l'UE ou les Amériques, ou avec relocalisation. Passeport espagnol, autorisé à travailler dans l'UE.";
+
+// Expérience
+"exp_heading" = "Expérience";
+
+"exp1_role" = "Développeur iOS indépendant et consultant";
+"exp1_company" = "Indépendant";
+"exp1_meta" = "À distance · Janv. 2026 – Aujourd'hui";
+"exp1_desc" = "Je prends en charge les apps iOS de mes clients de bout en bout, de l'architecture à la mise en production. J'ai conçu Living Root et j'en suis responsable de bout en bout — client SwiftUI, backend Vapor et firmware MicroPython sur ESP32 — et j'ai poussé cette responsabilité jusqu'au matériel avec un diplôme en hydroponie (Université Anáhuac, fév.–juin 2026) et des boîtiers de capteurs imprimés en 3D. J'intègre l'IA et des workflows d'agents dans des apps et des outils en production (Claude, OpenAI, xAI, Ollama).";
+
+"exp2_role" = "Ingénieur iOS Senior";
+"exp2_company" = "The Home Depot";
+"exp2_meta" = "À distance (É.-U.) · Août 2025 – Déc. 2025";
+"exp2_desc" = "Responsable de la livraison de bout en bout de fonctionnalités clés de l'app iOS grand public de The Home Depot, où les clients localisent l'allée et le rayon exacts de n'importe quel article dans les magasins des États-Unis et du Canada. J'ai amélioré les performances et la fiabilité à grande échelle sur des interfaces de données temps réel à fort volume, et renforcé la stabilité des releases avec des tests unitaires et d'interface automatisés.";
+
+"exp3_role" = "Étude indépendante et développement de systèmes";
+"exp3_company" = "En autonomie";
+"exp3_meta" = "Avr. 2025 – Juil. 2025";
+"exp3_desc" = "Une immersion délibérée dans les workflows d'agents IA, l'analyse de données et l'outillage moderne (Claude, OpenAI, xAI, Ollama), pour construire la capacité produit native IA avec laquelle je travaille aujourd'hui.";
+
+"exp4_role" = "Ingénieur logiciel Senior";
+"exp4_company" = "Alaska Airlines";
+"exp4_meta" = "À distance (É.-U.) · Juil. 2024 – Mars 2025";
+"exp4_desc" = "J'ai piloté un système de design atomique complet, relevant le niveau de cohérence et de réutilisation de l'interface dans toute l'app. J'ai assumé la direction technique — MVVM, Clean Architecture, Coordinators —, livré des fonctionnalités en UIKit et SwiftUI, mené des tests A/B pour orienter les décisions produit et encadré des ingénieurs.";
+
+"exp5_role" = "Ingénieur logiciel Senior, Lead technique";
+"exp5_company" = "Peek.com";
+"exp5_meta" = "À distance · Fév. 2022 – Avr. 2024";
+"exp5_desc" = "J'ai mené la modernisation d'une app de marketplace vieille de dix ans, en assumant la migration vers SwiftUI de bout en bout sur un produit en production. J'ai pris la décision de reconstruire ses fondations sur MVVM, Clean Architecture et Coordinators. J'ai relevé le niveau de performance avec des listes dynamiques de plus de 10 000 éléments, bâti une culture de tests automatisés à partir de zéro (Robot Pattern + XCUITest) et réduit les cycles de release de 30 % avec la CI/CD GitHub Actions. J'ai intégré GraphQL et des terminaux connectés en WiFi via des gestionnaires de connexion sur mesure ; j'ai encadré des ingénieurs.";
+
+"exp6_role" = "Cofondateur et Ingénieur logiciel principal";
+"exp6_company" = "Xplain";
+"exp6_meta" = "À distance · Août 2020 – Fév. 2022";
+"exp6_desc" = "J'ai cofondé l'entreprise avec des amis et dirigé son ingénierie : conception et publication de deux apps iOS en production avec SwiftUI et UIKit, avec des flux de paiement sécurisés via Stripe.";
+
+"exp7_role" = "Ingénieur Full Stack (orienté iOS)";
+"exp7_company" = "Sunwise";
+"exp7_meta" = "Mérida, MX · Juin 2019 – Août 2020";
+"exp7_desc" = "J'ai livré des fonctionnalités iOS en production de bout en bout, en Swift et Objective-C sur des API REST — pleine responsabilité de production, en parallèle de mes derniers cours à l'université.";
+
+"exp8_role" = "Ingénieur Full Stack";
+"exp8_company" = "DaCodes";
+"exp8_meta" = "Mérida, MX · Août 2018 – Juin 2019";
+"exp8_desc" = "Premier poste d'ingénieur : conception d'applications full-stack pour des clients d'agence sur des stacks adossées à AWS, en parallèle de mes études.";
+
+// Travaux sélectionnés
+"work_heading" = "Travaux sélectionnés";
+"link_appstore_suffix" = "sur l'App Store →";
+"link_github_suffix" = "sur GitHub →";
+
+"p5_tags" = "iOS · Vapor · ESP32";
+"p5_name" = "Living Root";
+"p5_desc" = "Système de suivi hydroponique full-stack, conçu et maintenu de bout en bout sur trois bases de code : un client SwiftUI qui trace le pH, l'EC, la température et le niveau de l'eau, avec des instantanés SwiftData pour que le tableau de bord reste lisible hors ligne ; un backend Vapor et PostgreSQL avec une console d'administration authentifiée par session et une API de télémétrie pour les appareils ; et un firmware MicroPython sur un nœud capteur ESP32 qui lit la zone racinaire en temps réel. Swift côté app comme côté serveur, et des boîtiers imprimés en 3D sur le matériel.";
+
+"p1_tags" = "iOS · iPadOS";
+"p1_name" = "Tapper Counters";
+"p1_desc" = "App élégante et personnalisable pour compter d'un tapotement : entraînements, habitudes, scores et décomptes. Couleurs par compteur, incréments personnalisés, tri et vue de comptage en plein écran. SwiftUI, SwiftData et App Intents, iOS 17+.";
+
+"p2_tags" = "macOS";
+"p2_name" = "MythLog";
+"p2_desc" = "App macOS fondée sur le consentement qui enregistre les événements système — veille/réveil, verrouillage de l'écran, lancement d'apps, modifications de fichiers surveillés, événements personnalisés en CLI — dans un journal en ajout seul chaîné par hachage HMAC-SHA256, avec une chronologie SwiftUI en direct. Entièrement local, sans compte ni analytique. macOS 14+.";
+
+"p3_tags" = "Paquet Swift · Open Source";
+"p3_name" = "iCalendarKit";
+"p3_desc" = "Encodeur Swift pour les données iCalendar (RFC 5545) : événements, alarmes, fuseaux horaires et règles de récurrence. SPM, CI sur Linux et macOS, documentation DocC publiée. Créateur et cofondateur de l'organisation swift-calendar.";
+
+"p4_tags" = "iOS · iPadOS";
+"p4_name" = "iBase";
+"p4_desc" = "Convertisseur rapide et simple entre binaire, octal, décimal et hexadécimal. Sur l'App Store depuis 2018, en anglais et en espagnol.";
+
+// Formation et langues
+"edu_heading" = "Formation et langues";
+"edu1" = "Ingénierie logicielle (Ingeniería en Informática y Negocios Digitales) — Universidad Anáhuac Mérida, 2017 – juillet 2021 (9 semestres). Membre du conseil étudiant ; programme d'entrepreneuriat.";
+"edu2" = "Diplôme en entrepreneuriat — Management Center Innsbruck (2019–2020).";
+"edu3" = "Diplôme en hydroponie — Universidad Anáhuac (février – juin 2026).";
+"edu4" = "Master en cybersécurité — programme du week-end, à partir d'octobre 2026.";
+"edu5" = "Certification : Advanced SwiftUI & Declarative UI Patterns (tryswift.co).";
+"langs_line" = "Langues : Anglais C2 · Espagnol natif · Français B2";
+
+// Compétences
+"stack_heading" = "Compétences";
+"stack_core_label" = "Principales";
+"stack_also_label" = "Aussi";
+"stack_core_items" = "Swift|SwiftUI (dont 6)|UIKit|Combine|Swift Concurrency|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Systèmes de design atomique|Optimisation des performances|Développement IA / agents (Claude, OpenAI, xAI, Ollama)|IoT / domotique|SwiftData|CryptoKit|StoreKit 2";
+
+// Contact
+"cta_heading" = "Vous construisez quelque chose pour les plateformes Apple ?";
+"cta_all_links" = "Tous mes contacts";
+"form_name" = "Nom";
+"form_email" = "E-mail";
+"form_message" = "Message";
+"form_send" = "Envoyer le message";
+"form_subject" = "Nouveau message depuis jc-root.xyz";
+"form_sent" = "Merci — votre message est en route. Je vous répondrai bientôt.";
+
+// Pied de page
+"footer_name" = "Juan Carlos Estévez Rodríguez";
+"footer_github" = "GitHub";
+"footer_linkedin" = "LinkedIn";
+"footer_appstore" = "App Store";

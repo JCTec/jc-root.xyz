@@ -25,7 +25,8 @@ export const PUBLIC_DIR = join(SITE_DIR, "public");
 export const STRINGS_DIR = join(SITE_DIR, "strings");
 
 /** Where a locale's page is written, relative to the output directory.
-    `/es/` is a directory with an index, which is what a static host serves. */
+    `/es/` and `/fr/` are directories with an index, which is what a static
+    host serves. */
 function outputPath(locale) {
     const path = homePath(locale);
     return path === "/" ? "index.html" : join(path.replace(/^\/|\/$/g, ""), "index.html");

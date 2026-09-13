@@ -6,7 +6,7 @@
  * edge headers from lib/headers.mjs, so what a browser sees here is what it
  * would see through Cloudflare in front of GitHub Pages. It also mirrors the
  * two behaviours a static host adds on its own — a directory serves its
- * index.html, and a bare `/es` redirects to `/es/`.
+ * index.html, and a bare `/es` or `/fr` redirects to `/es/` or `/fr/`.
  *
  * Usage:  node scripts/serve.mjs [dir] [port]      (defaults: dist 8080)
  */
@@ -70,4 +70,5 @@ const server = createServer((req, res) => {
 server.listen(port, "127.0.0.1", () => {
     console.log(`serving ${dir} → http://127.0.0.1:${port}  (EN)`);
     console.log(`                 http://127.0.0.1:${port}/es/  (ES)`);
+    console.log(`                 http://127.0.0.1:${port}/fr/  (FR)`);
 });

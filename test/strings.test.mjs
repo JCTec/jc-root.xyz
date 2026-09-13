@@ -14,12 +14,12 @@ import { loadCatalog, LOCALES, parseStrings } from "../lib/strings.mjs";
 const catalog = loadCatalog(STRINGS_DIR);
 const root = join(import.meta.dirname, "..");
 
-test("EN and ES string tables keep full key parity with non-empty values", () => {
-    const en = catalog.en;
-    const es = catalog.es;
-    assert.ok(Object.keys(en).length > 0);
-    assert.deepEqual(Object.keys(en).sort(), Object.keys(es).sort());
+test("Every locale keeps full key parity with EN, with non-empty values", () => {
+    const expected = Object.keys(catalog.en).sort();
+    assert.ok(expected.length > 0);
+    assert.ok(LOCALES.length > 1, "expected more than one locale");
     for (const locale of LOCALES) {
+        assert.deepEqual(Object.keys(catalog[locale]).sort(), expected, `${locale}.strings key set`);
         for (const [key, value] of Object.entries(catalog[locale])) {
             assert.notEqual(value, "", `empty ${locale.toUpperCase()} value for ${key}`);
         }
@@ -33,7 +33,15 @@ test("EN and ES string tables keep full key parity with non-empty values", () =>
 const DYNAMIC_KEY_PATTERNS = [
     // content.mjs builds these for each row of the work history.
     /^exp[0-9]+_(role|company|meta|desc)$/,
+    // templates.mjs builds `lang_<locale>` for each entry in LOCALES.
+    /^lang_[a-z]+$/,
 ];
+
+test("Every locale has a label for the language toggle", () => {
+    for (const locale of LOCALES) {
+        assert.ok(catalog.en[`lang_${locale}`], `en.strings has no lang_${locale}`);
+    }
+});
 
 test("Every string code is referenced, and every reference resolves", () => {
     const templates = readFileSync(join(root, "lib/templates.mjs"), "utf8");

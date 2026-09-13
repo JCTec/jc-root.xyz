@@ -1,5 +1,5 @@
 // English UI copy — source of truth for the key set.
-// Rules: every key here must exist in es.strings with a non-empty value
+// Rules: every key here must exist in every other locale with a non-empty value
 // (enforced by AppTests). Code and templates reference codes only.
 
 // Meta
@@ -29,6 +29,7 @@
 "nav_contact" = "Contact";
 "lang_en" = "EN";
 "lang_es" = "ES";
+"lang_fr" = "FR";
 
 // About
 "about_heading" = "About";

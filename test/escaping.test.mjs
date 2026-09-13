@@ -24,7 +24,9 @@ import { home } from "../lib/templates.mjs";
 const PRE_ESCAPED = new Set([
     "v",                    // esc(ctx.assetVersion), hoisted once
     "body",                 // the rendered <body> contents
+    "alternateLinks(ctx)",  // hreflang <link>s, escaped as they are built
     "langToggle",
+    "label",                // esc(t["lang_" + locale]) inside langToggle
     "experience",
     "projects",
     "appStore",
