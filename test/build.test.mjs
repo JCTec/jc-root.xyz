@@ -21,6 +21,7 @@ import { after, before, test } from "node:test";
 import { build } from "../build.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { loadConfig, UNSET_ENDPOINT } from "../lib/content.mjs";
+import { cvPathFor } from "../lib/cv-content.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
 import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
 import { STRINGS_DIR } from "../build.mjs";
@@ -89,27 +90,41 @@ test("Every locale is published, each with its own lang and copy", () => {
     }
 });
 
-/* The one asset `build.mjs` cannot produce. Rendering the CV needs WeasyPrint,
-   which is Python and lives only in CI, so the PDF is copied into dist/ there
-   rather than written here. The invariant is not weakened, only split in two:
-   `The file CI publishes is the file the site links to` in cv.test.mjs reads
-   the workflow and asserts that copy exists and lands under exactly this name.
-   Anything else the page references must still be in the output. */
-const SUPPLIED_BY_CI = new Set([loadConfig({ publicDirectory: null, env: {} }).cvPath]);
+/* The assets `build.mjs` cannot produce. Rendering the CVs needs WeasyPrint,
+   which is Python and lives only in CI, so the PDFs are copied into dist/
+   there rather than written here. The invariant is not weakened, only split in
+   two: `The files CI publishes are the files the site links to` in cv.test.mjs
+   reads the workflow and asserts that copy exists and lands under exactly
+   these names. Anything else a page references must still be in the output. */
+const { cvPath } = loadConfig({ publicDirectory: null, env: {} });
+const SUPPLIED_BY_CI = new Set(LOCALES.map((locale) => cvPathFor(locale, cvPath)));
 
-test("Every asset the page references is actually in the output", () => {
-    const refs = assetReferences(en);
-    // Guard the regex itself: a page that suddenly references nothing would
-    // make every assertion below vacuous.
-    assert.ok(refs.length >= 5, `expected several asset references, found ${refs.length}`);
+test("Every asset each page references is actually in the output", () => {
+    for (const [locale, html] of Object.entries(pages)) {
+        const refs = assetReferences(html);
+        // Guard the regex itself: a page that suddenly references nothing would
+        // make every assertion below vacuous.
+        assert.ok(refs.length >= 5, `expected several asset references, found ${refs.length}`);
 
-    for (const ref of refs) {
-        const path = ref.split("?")[0];
-        if (SUPPLIED_BY_CI.has(path)) continue;
-        assert.ok(
-            existsSync(join(outDir, path)),
-            `page references ${ref} but ${path} is not in the output`,
-        );
+        for (const ref of refs) {
+            const path = ref.split("?")[0];
+            if (SUPPLIED_BY_CI.has(path)) continue;
+            assert.ok(
+                existsSync(join(outDir, path)),
+                `${locale} page references ${ref} but ${path} is not in the output`,
+            );
+        }
+    }
+});
+
+test("Each page's download button points at its own locale's CV", () => {
+    for (const [locale, html] of Object.entries(pages)) {
+        const own = cvPathFor(locale, cvPath);
+        assert.ok(html.includes(`href="${own}"`), `${locale} page does not link ${own}`);
+        for (const other of LOCALES.filter((code) => code !== locale)) {
+            const theirs = cvPathFor(other, cvPath);
+            assert.ok(!html.includes(`href="${theirs}"`), `${locale} page links the ${other} CV`);
+        }
     }
 });
 

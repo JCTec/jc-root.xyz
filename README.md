@@ -56,7 +56,7 @@ that removed it.
 
 ```sh
 node build.mjs                    # → dist/
-node build-cv.mjs                 # → dist-cv/cv.html  (see "The CV" below)
+node build-cv.mjs                 # → dist-cv/*.html, one per locale  (see "The CV" below)
 node --test test/*.test.mjs
 node scripts/serve.mjs dist 8080  # http://127.0.0.1:8080  ·  .../es/  ·  .../fr/
 ```
@@ -102,7 +102,7 @@ node scripts/browser-check.mjs
 | `GITHUB_URL` | `https://github.com/JCTec` | Hero + footer link. |
 | `LINKEDIN_URL` | `https://www.linkedin.com/in/jctec` | Footer link. |
 | `APPSTORE_URL` | developer page `id1346871945` | Footer link. |
-| `CV_PATH` | `/juan-carlos-estevez-cv.pdf` | Where the hero's "Download CV" button points. Served from this site; CI copies the rendered PDF into `dist/` under this name. See below. |
+| `CV_PATH` | `/juan-carlos-estevez-cv.pdf` | Where the English page's "Download CV" button points. The other locales insert theirs before the extension (`…-cv.es.pdf`, `…-cv.fr.pdf`) and each page links its own. Served from this site; CI copies the rendered PDFs into `dist/` under these names. See below. |
 
 Unlike the Vapor original, `CANONICAL_HOST` has a default. There, an unset value
 meant "you are on localhost". Here it would mean publishing
@@ -112,14 +112,18 @@ and `SITE_BASE_URL` is how you point a build somewhere else.
 
 ## The CV
 
-`jc-root.xyz/` and the CV PDF are two views of one set of facts, and the facts
-are written once.
+`jc-root.xyz/` and the CV PDFs are two views of one set of facts, and the
+facts are written once. There is one CV per site locale, and each page's
+download button links to its own — the language a visitor reads the site in
+is the language of the PDF.
 
 ```
-site/strings/en.strings      facts: name, role, companies, job titles, dates,
-                             education, languages, project names   → both
-site/strings/cv.en.strings   CV prose: summary, skill groups, the bullets
-                             under each role, interests            → CV only
+site/strings/<locale>.strings     facts: name, role, companies, job titles,
+                                  dates, education, languages, project names
+                                                                  → both
+site/strings/cv.<locale>.strings  CV prose: summary, skill groups, the
+                                  bullets under each role, interests
+                                                                  → CV only
 ```
 
 `test/cv.test.mjs` is what keeps that split honest. A key defined in both files
@@ -127,27 +131,32 @@ fails the suite, because a fact maintained in two places is a fact that will
 eventually disagree with itself. Adding a ninth role to `en.strings` fails too,
 until `cv.en.strings` gives it bullets — so the CV cannot quietly fall a job
 behind the site. The same goes for projects: a new one must either appear in
-the CV or be named in `PROJECTS_COVERED_ELSEWHERE` with a reason.
+the CV or be named in `PROJECTS_COVERED_ELSEWHERE` with a reason. And the
+three `cv.*.strings` files are held to one key set, as the site's are.
 
 Rendering is two steps, and only the second one is not Node:
 
 ```sh
-CONTACT_EMAIL=you@example.com node build-cv.mjs   # → dist-cv/cv.html
-weasyprint dist-cv/cv.html dist-cv/cv.pdf         # pip install weasyprint==69.0
+CONTACT_EMAIL=you@example.com node build-cv.mjs   # → dist-cv/juan-carlos-estevez-cv{,.es,.fr}.html
+for f in dist-cv/*.html; do weasyprint "$f" "${f%.html}.pdf"; done   # pip install weasyprint==69.0
 ```
 
 Splitting it that way is what keeps this repository dependency-free. Node emits
-a single self-contained HTML file — no stylesheet link, no assets, nothing to
-cache — and the test suite asserts against *that*. WeasyPrint only rasterizes,
-it runs in CI, and it is pinned so a release of it cannot silently repaginate
-the document. CI additionally refuses a CV that has grown past two pages, which
-is otherwise invisible until someone opens the file.
+one self-contained HTML file per locale — no stylesheet link, no assets,
+nothing to cache — and the test suite asserts against *those*. WeasyPrint only
+rasterizes, it runs in CI, and it is pinned so a release of it cannot silently
+repaginate the document. CI additionally refuses any CV that has grown past
+two pages, which is otherwise invisible until someone opens the file — and
+translations run longer than English, so the Spanish and French copies are
+the ones to watch when the catalogs grow.
 
-**The PDF is never committed.** It is a build output like `dist/index.html`; a
-binary in the tree would start drifting from the catalog that generates it the
-first time someone edited the strings and forgot to re-render. CI copies it
-into `dist/` after the render, so Pages publishes it at `CV_PATH` alongside
-the site, and every push to main replaces it.
+**The PDFs are never committed.** They are build outputs like
+`dist/index.html`; a binary in the tree would start drifting from the catalog
+that generates it the first time someone edited the strings and forgot to
+re-render. The render writes each file under its *published* basename, so
+WeasyPrint's output is already the file the site links to; CI copies them
+into `dist/` after the render, so Pages publishes them at `CV_PATH` and its
+locale variants alongside the site, and every push to main replaces them.
 
 It was a GitHub release asset first, and that was the wrong home. Release
 assets on a **private** repository are served only to an authenticated browser
@@ -163,11 +172,11 @@ Two consequences worth knowing:
   artifact is for checking a PR; `dist/` is what people download.
 - `build.mjs` cannot produce this asset — rendering it needs WeasyPrint, which
   is Python. So it is the one thing the page references that a bare
-  `node build.mjs` does not emit, and `test/build.test.mjs` exempts it by name.
-  The invariant is not weakened, only split: `test/cv.test.mjs` reads the
-  workflow and asserts the copy exists and lands under exactly the name
-  `CV_PATH` claims. A rename on either side alone fails the suite rather than
-  publishing a button that 404s.
+  `node build.mjs` does not emit, and `test/build.test.mjs` exempts them by
+  name. The invariant is not weakened, only split: `test/cv.test.mjs` asserts
+  that each page links the basename the render produced, and reads the
+  workflow to check CI copies and uploads every PDF unrenamed. A rename on
+  either side alone fails the suite rather than publishing a button that 404s.
 
 **The published CV carries no email address.** That is the same posture the
 site takes — the contact form posts to a FormSubmit alias and the raw address
@@ -178,8 +187,9 @@ gets forwarded around.
 The address is in neither catalog. Setting `CONTACT_EMAIL` adds one to the PDF
 for a build you want it in — a copy sent directly to someone, say.
 
-The CV is English-only for now. `CV_LOCALES` in `lib/cv-content.mjs` and a
-`site/strings/cv.es.strings` are the whole change.
+A new site locale needs its `cv.<locale>.strings` too: `build-cv.mjs` loops
+the same `LOCALES` the site does, and the suite fails until the CV catalog
+exists with the full key set.
 
 ## Contact form (FormSubmit)
 

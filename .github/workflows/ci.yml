@@ -87,11 +87,13 @@ jobs:
         run: node --test test/*.test.mjs
 
       # WeasyPrint is the only part of this pipeline that is not Node, and it
-      # is confined to this one step: build-cv.mjs emits the HTML that the
-      # tests above already asserted against, and this turns it into a PDF.
-      # Pinned to the version that rendered the CV this replaces, so a
-      # WeasyPrint release cannot silently repaginate the document.
-      - name: Render the CV
+      # is confined to this one step: build-cv.mjs emits one HTML file per
+      # locale, which the tests above already asserted against, and this turns
+      # each into a PDF beside it under the same basename — the name the site
+      # links to, so nothing is renamed afterwards. Pinned to the version that
+      # rendered the CV this replaces, so a WeasyPrint release cannot silently
+      # repaginate the document.
+      - name: Render the CVs
         env:
           # Optional, and normally unset. The published CV reaches people
           # through jc-root.xyz, LinkedIn and GitHub — the same posture the
@@ -106,26 +108,31 @@ jobs:
           python3 -m venv .venv
           .venv/bin/pip install --quiet weasyprint==69.0
           node build-cv.mjs
-          .venv/bin/weasyprint dist-cv/cv.html dist-cv/cv.pdf
+          for html in dist-cv/*.html; do
+            .venv/bin/weasyprint "$html" "${html%.html}.pdf"
+          done
 
-      # A CV is a two-page document. Content grows, and the page it grows onto
-      # is invisible until someone opens the file — so the length is asserted
-      # rather than trusted.
-      - name: The CV is two pages
+      # A CV is a two-page document. Content grows — and translations grow
+      # faster — but the page it grows onto is invisible until someone opens
+      # the file, so the length of every locale is asserted rather than trusted.
+      - name: Every CV is two pages
         run: |
-          pages=$(pdfinfo dist-cv/cv.pdf | awk '/^Pages:/ { print $2 }')
-          echo "rendered $pages page(s)"
-          if [ "$pages" -gt 2 ]; then
-            echo "::error::the CV runs to $pages pages — trim it or it ships that way"; exit 1
-          fi
+          for pdf in dist-cv/*.pdf; do
+            pages=$(pdfinfo "$pdf" | awk '/^Pages:/ { print $2 }')
+            echo "$pdf: $pages page(s)"
+            if [ "$pages" -gt 2 ]; then
+              echo "::error::$pdf runs to $pages pages — trim it or it ships that way"; exit 1
+            fi
+          done
 
       # Published from this site rather than from a GitHub release. A release
       # asset on a private repository is served only to an authenticated
       # browser session, so the download button 404'd for exactly the people it
       # exists for. Copied in after the build: never committed, never in
-      # site/public/, a build output like index.html.
-      - name: Publish the CV into the site
-        run: cp dist-cv/cv.pdf dist/juan-carlos-estevez-cv.pdf
+      # site/public/, a build output like index.html. Each locale's page links
+      # to its own file; test/cv.test.mjs holds those links to these names.
+      - name: Publish the CVs into the site
+        run: cp dist-cv/*.pdf dist/
 
       # The endpoint is a repository variable, and unset it renders a
       # placeholder rather than a destination. This is where that is caught:
@@ -139,7 +146,7 @@ jobs:
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: cv
-          path: dist-cv/cv.pdf
+          path: dist-cv/*.pdf
           retention-days: 30
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -218,8 +225,7 @@ jobs:
               --notes "Rendered from site/strings/ on every push to main. Not edited by hand, and not committed to the repository — see README.md."
           fi
           # A release asset is served raw, unlike a workflow artifact, which
-          # GitHub always zips. So this name is the filename that lands in
-          # someone's Downloads folder — worth more than "cv.pdf" there.
-          # test/cv.test.mjs holds it against the URL the site links to.
-          mv cv.pdf juan-carlos-estevez-cv.pdf
-          gh release upload cv juan-carlos-estevez-cv.pdf --clobber
+          # GitHub always zips. So these names are the filenames that land in
+          # someone's Downloads folder — worth more than "cv.pdf" there — and
+          # they are the same names the site serves, one per locale.
+          gh release upload cv *.pdf --clobber

@@ -18,9 +18,9 @@ import { loadConfig } from "../lib/content.mjs";
 import {
     buildCVContext,
     contactEntries,
-    CV_LOCALES,
     CV_PROJECTS,
     cvOutputName,
+    cvPathFor,
     displayURL,
     experienceCount,
     loadCVCatalog,
@@ -28,31 +28,43 @@ import {
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { cv } from "../lib/cv-template.mjs";
 import { esc } from "../lib/html.mjs";
-import { loadCatalog } from "../lib/strings.mjs";
+import { loadCatalog, LOCALES } from "../lib/strings.mjs";
 
 const catalog = loadCatalog(STRINGS_DIR);
 const cvCatalog = loadCVCatalog(STRINGS_DIR, "en");
 const root = join(import.meta.dirname, "..");
+const { cvPath } = loadConfig({ publicDirectory: null, env: {} });
 
 let outDir;
+/** Rendered CV markup by locale. */
+let renders;
+/** The default locale's render: the one the locale-agnostic checks read. */
 let html;
 
 before(() => {
     outDir = mkdtempSync(join(tmpdir(), "jc-root-cv-"));
-    buildCV(outDir, { env: {} });
-    html = readFileSync(join(outDir, "cv.html"), "utf8");
+    const { written } = buildCV(outDir, { env: {} });
+    renders = Object.fromEntries(LOCALES.map((locale) => [
+        locale,
+        readFileSync(join(outDir, cvOutputName(locale, "html", cvPath)), "utf8"),
+    ]));
+    html = renders.en;
+    // Nothing is written beyond one file per locale.
+    assert.deepEqual(written.sort(), LOCALES.map((l) => cvOutputName(l, "html", cvPath)).sort());
 });
 
 after(() => {
     rmSync(outDir, { recursive: true, force: true });
 });
 
-test("Every CV locale has a catalog, with no empty values", () => {
-    for (const locale of CV_LOCALES) {
+test("Every site locale has a CV catalog with full key parity and no empty values", () => {
+    const expected = Object.keys(cvCatalog).sort();
+    assert.ok(expected.length > 0, "empty cv.en.strings");
+    for (const locale of LOCALES) {
         const table = loadCVCatalog(STRINGS_DIR, locale);
-        assert.ok(Object.keys(table).length > 0, `empty CV catalog for ${locale}`);
+        assert.deepEqual(Object.keys(table).sort(), expected, `cv.${locale}.strings key set`);
         for (const [key, value] of Object.entries(table)) {
-            assert.notEqual(value, "", `empty CV value for ${key}`);
+            assert.notEqual(value, "", `empty CV value for ${key} in cv.${locale}.strings`);
         }
     }
 });
@@ -197,66 +209,99 @@ test("Contact links are shown bare and linked in full", () => {
     }
 });
 
-test("The built CV states the facts the site states", () => {
-    const en = catalog.en;
-    assert.ok(html.includes(esc(en.hero_name)));
-    assert.ok(html.includes(esc(en.hero_role)));
+test("Each locale's CV states the facts that locale's page states", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        const t = catalog[locale];
+        assert.ok(out.includes(`<html lang="${locale}">`));
+        assert.ok(out.includes(esc(t.hero_name)));
+        assert.ok(out.includes(esc(t.hero_role)));
 
-    // Every role, company and date range, straight from the shared catalog.
-    for (let n = 1; n <= experienceCount(en); n += 1) {
-        for (const field of ["role", "company", "meta"]) {
-            const value = en[`exp${n}_${field}`];
-            assert.ok(html.includes(esc(value)), `CV omits exp${n}_${field}: ${value}`);
+        // Every role, company and date range, straight from the shared catalog.
+        for (let n = 1; n <= experienceCount(t); n += 1) {
+            for (const field of ["role", "company", "meta"]) {
+                const value = t[`exp${n}_${field}`];
+                assert.ok(out.includes(esc(value)), `${locale} CV omits exp${n}_${field}: ${value}`);
+            }
         }
-    }
-    for (const key of CV_PROJECTS) {
-        for (const field of ["name", "tags", "desc"]) {
-            const value = en[`${key}_${field}`];
-            assert.ok(html.includes(esc(value)), `CV omits ${key}_${field}: ${value}`);
+        for (const key of CV_PROJECTS) {
+            for (const field of ["name", "tags", "desc"]) {
+                const value = t[`${key}_${field}`];
+                assert.ok(out.includes(esc(value)), `${locale} CV omits ${key}_${field}: ${value}`);
+            }
         }
-    }
-    for (const key of ["edu1", "edu2", "edu3", "edu4", "edu5", "langs_line"]) {
-        assert.ok(html.includes(esc(en[key])), `CV omits ${key}`);
+        for (const key of ["edu1", "edu2", "edu3", "edu4", "edu5", "langs_line"]) {
+            assert.ok(out.includes(esc(t[key])), `${locale} CV omits ${key}`);
+        }
+        // And the prose is that locale's, not English's.
+        const summary = loadCVCatalog(STRINGS_DIR, locale).cv_summary;
+        assert.ok(out.includes(esc(summary)), `${locale} CV lacks its own summary`);
+        if (locale !== "en") {
+            assert.ok(!out.includes(esc(cvCatalog.cv_summary)), `English summary on the ${locale} CV`);
+        }
     }
 });
 
-test("The CV renders one self-contained file per locale", () => {
-    assert.equal(cvOutputName("en", "html"), "cv.html");
-    assert.equal(cvOutputName("en", "pdf"), "cv.pdf");
-    assert.equal(cvOutputName("es", "pdf"), "cv.es.pdf");
+test("The CV renders one self-contained file per locale, named as it is published", () => {
+    // The render's basename is the published basename, so WeasyPrint's output
+    // needs no rename: cv.html → cv.pdf under whatever CV_PATH says.
+    const path = "/juan-carlos-estevez-cv.pdf";
+    assert.equal(cvPathFor("en", path), path);
+    assert.equal(cvPathFor("es", path), "/juan-carlos-estevez-cv.es.pdf");
+    assert.equal(cvPathFor("fr", path), "/juan-carlos-estevez-cv.fr.pdf");
+    assert.equal(cvOutputName("en", "html", path), "juan-carlos-estevez-cv.html");
+    assert.equal(cvOutputName("es", "pdf", path), "juan-carlos-estevez-cv.es.pdf");
+    // A CV_PATH with a directory keeps it on the served path, not the file.
+    assert.equal(cvPathFor("fr", "/files/cv.pdf"), "/files/cv.fr.pdf");
+    assert.equal(cvOutputName("fr", "pdf", "/files/cv.pdf"), "cv.fr.pdf");
 
-    // Self-contained: nothing to fetch, so nothing to go stale or 404.
-    assert.ok(!html.includes("<link"), "the CV links an external stylesheet");
-    assert.ok(!html.includes("<script"), "the CV carries script");
-    assert.ok(html.includes("<style>"), "the CV has no inline stylesheet");
+    for (const [locale, out] of Object.entries(renders)) {
+        // Self-contained: nothing to fetch, so nothing to go stale or 404.
+        assert.ok(!out.includes("<link"), `the ${locale} CV links an external stylesheet`);
+        assert.ok(!out.includes("<script"), `the ${locale} CV carries script`);
+        assert.ok(out.includes("<style>"), `the ${locale} CV has no inline stylesheet`);
+    }
 });
 
-/* The site links to the CV by path, and CI decides what the published file is
-   called. Those live in two different files and two different languages, and
-   nothing but this test connects them — a rename on one side alone publishes a
-   button that 404s, which no other check here would notice because both files
-   remain perfectly valid on their own. */
-test("The file CI publishes is the file the site links to", () => {
+/* The site links to each CV by path, and CI decides what the published files
+   are called. Those live in two different files and two different languages,
+   and nothing but this test connects them — a rename on one side alone
+   publishes a button that 404s, which no other check here would notice
+   because both files remain perfectly valid on their own.
+
+   The render already writes each locale under its published basename, so CI
+   only has to keep the basenames: render every HTML beside itself, copy every
+   PDF into dist/ unrenamed, and upload every PDF unrenamed. */
+test("The files CI publishes are the files the site links to", () => {
     const workflow = readFileSync(join(root, ".github/workflows/ci.yml"), "utf8");
-    const { cvPath } = loadConfig({ publicDirectory: null, env: {} });
-    const filename = cvPath.replace(/^\//, "");
 
-    // What Pages serves: copied into dist/ from the render step's output.
-    assert.ok(
-        workflow.includes(`cp dist-cv/${cvOutputName("en", "pdf")} dist/${filename}`),
-        `ci.yml never copies dist-cv/cv.pdf to dist/${filename}, which ${cvPath} needs`,
-    );
+    // Each locale's page links a path whose basename the render produced.
+    for (const locale of LOCALES) {
+        const served = cvPathFor(locale, cvPath);
+        assert.ok(served.startsWith("/"), `${served} is not root-absolute`);
+        assert.equal(served.slice(served.lastIndexOf("/") + 1), cvOutputName(locale, "pdf", cvPath));
+        // And it is served from the site root, where `cp dist-cv/*.pdf dist/` puts it.
+        assert.equal(served.lastIndexOf("/"), 0, `${served} is not at the site root`);
+    }
 
-    // And the release asset, which is the same bytes under the same name.
+    // What Pages serves: every render, copied into dist/ under its own name.
+    assert.ok(workflow.includes('.venv/bin/weasyprint "$html" "${html%.html}.pdf"'),
+        "ci.yml does not render each HTML to a PDF of the same basename");
+    assert.ok(workflow.includes("run: cp dist-cv/*.pdf dist/"),
+        "ci.yml never copies the rendered PDFs into dist/ unrenamed");
+
+    // And the release assets, which are the same bytes under the same names.
+    assert.ok(workflow.includes("path: dist-cv/*.pdf"), "the cv artifact is not every PDF");
     const uploaded = workflow.match(/gh release upload cv (\S+) --clobber/);
     assert.ok(uploaded, "no `gh release upload` line found in ci.yml");
-    assert.equal(uploaded[1], filename, `the site serves ${filename}, the release has ${uploaded[1]}`);
+    assert.equal(uploaded[1], "*.pdf", `the release uploads ${uploaded[1]}, not every PDF`);
+    assert.ok(!/\bmv\b.*\.pdf/.test(workflow), "ci.yml renames a PDF; the render already named it");
 });
 
-/* The CV is linked without a ?v= buster, so it must not be long-cached: an
-   edited catalog has to reach a returning visitor, not sit behind a year of
-   immutability. */
-test("The published CV revalidates rather than caching", () => {
-    const { cvPath } = loadConfig({ publicDirectory: null, env: {} });
-    assert.equal(cachePolicyForPath(cvPath), "no-cache, must-revalidate");
+/* The CVs are linked without a ?v= buster, so they must not be long-cached:
+   an edited catalog has to reach a returning visitor, not sit behind a year
+   of immutability. */
+test("The published CVs revalidate rather than caching", () => {
+    for (const locale of LOCALES) {
+        assert.equal(cachePolicyForPath(cvPathFor(locale, cvPath)), "no-cache, must-revalidate");
+    }
 });

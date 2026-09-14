@@ -1,0 +1,60 @@
+// Textes propres au CV en français — doit conserver la parité totale des clés
+// avec cv.en.strings (vérifiée par test/cv.test.mjs). Les faits — nom, poste,
+// entreprises, intitulés, dates, formation, langues — vivent dans fr.strings
+// et sont partagés avec le site.
+//
+// Les puces sont séparées par `|`, la même convention que stack_core_items.
+
+// Titres de section
+"cv_heading_summary" = "PROFIL";
+"cv_heading_skills" = "COMPÉTENCES";
+"cv_heading_experience" = "EXPÉRIENCE";
+"cv_heading_projects" = "PROJETS";
+"cv_heading_education" = "FORMATION";
+"cv_heading_certs" = "CERTIFICATIONS ET LANGUES";
+"cv_heading_interests" = "CENTRES D'INTÉRÊT";
+
+// En-tête
+"cv_passport" = "Passeport espagnol";
+
+// Profil
+"cv_summary" = "Ingénieur iOS Senior avec plus de 6 ans d'expérience professionnelle dans la conception, le développement et la modernisation d'applications iOS et macOS performantes avec Swift, SwiftUI et UIKit. Solide expertise en systèmes de design atomique, optimisation des performances, GraphQL, tests automatisés et CI/CD. J'assume l'entière responsabilité des fonctionnalités, du concept à la mise en production, et j'encadre des ingénieurs sur l'architecture moderne. Récemment élargi aux workflows d'agents IA, aux systèmes IoT full-stack et à l'intégration matériel-logiciel.";
+
+// Compétences
+"cv_skills1_label" = "iOS et plateformes Apple";
+"cv_skills1_items" = "Swift|SwiftUI (dont SwiftUI 6)|UIKit|SwiftData|Combine|Concurrence moderne|StoreKit 2|CryptoKit|Apple HIG|UI pixel-perfect|macOS";
+"cv_skills2_label" = "Architecture et qualité";
+"cv_skills2_items" = "MVVM|Clean Architecture|Coordinators|Systèmes de design atomique|Optimisation des performances|XCUITest + Robot Pattern|Tests A/B et expérimentation|Tests unitaires|Git et revues de code";
+"cv_skills3_label" = "Données et livraison";
+"cv_skills3_items" = "GraphQL|API REST|Stripe|Firebase|Realm|GitHub Actions (CI/CD)|Swift Package Manager|CocoaPods";
+"cv_skills4_label" = "IA et technologies émergentes";
+"cv_skills4_items" = "Workflows d'agents (Claude, OpenAI, xAI)|Ollama|IoT / domotique";
+
+// Expérience
+"cv_exp1_bullets" = "Conception, développement et publication d'applications iOS sur mesure de bout en bout pour des clients privés, avec la responsabilité du cycle complet, de l'architecture à la mise en production.|Publication et maintenance de deux produits sur l'App Store : Tapper Counters (SwiftUI 6, multilingue) et MythLog (macOS, axée sur la sécurité).|Intégration de l'IA et de workflows d'agents dans des apps et des outils en production (API Claude, OpenAI et xAI ; modèles locaux via Ollama).|Conception et responsabilité de Living Root (github.com/Living-Root) : client SwiftUI avec instantanés SwiftData pour lire le tableau de bord hors ligne, backend Vapor + PostgreSQL avec console d'administration authentifiée par session, firmware MicroPython/ESP32.|Extension de cette responsabilité au matériel, avec un diplôme en hydroponie à l'Université Anáhuac (fév.–juin 2026) et l'impression 3D pour concevoir des boîtiers de capteurs sur mesure.";
+
+"cv_exp2_bullets" = "Responsable de la livraison de bout en bout de fonctionnalités de l'app iOS grand public de The Home Depot, où les clients localisent l'allée et le rayon exacts de n'importe quel article dans les magasins des États-Unis et du Canada.|Amélioration des performances et de la fiabilité à grande échelle, en construisant et en optimisant des interfaces de données temps réel à fort volume.|Renforcement de la qualité du code et de la stabilité des releases grâce à des stratégies complètes de tests unitaires et d'interface automatisés.";
+
+"cv_exp3_bullets" = "Immersion ciblée dans les workflows d'agents IA, l'analyse de données et l'outillage moderne (Claude, OpenAI, xAI, Ollama) afin de renforcer mes capacités de développement de produits natifs IA en vue des postes suivants.";
+
+"cv_exp4_bullets" = "Pilotage de la création d'un système de design atomique complet, relevant le niveau de cohérence et de réutilisation de l'interface dans toute l'app.|Développement et livraison de nouvelles fonctionnalités en UIKit et SwiftUI avec une intégration backend fluide.|Collaboration avec les PM, les designers et les équipes transverses pour améliorer l'expérience utilisateur et les performances de l'app.|Tests A/B sur les évolutions de fonctionnalités pour orienter les décisions produit et UX.|Direction technique de l'équipe, avec les choix d'architecture clés (MVVM, Clean Architecture, Coordinators) et l'encadrement d'ingénieurs pour élever la qualité du code.";
+
+"cv_exp5_bullets" = "Direction de la modernisation d'une application iOS vieille de dix ans, en assumant la migration vers SwiftUI de bout en bout tout en préservant les performances d'une app en production.|Décision de reconstruire les fondations de l'app sur MVVM, Clean Architecture et le pattern Coordinator, en fixant la direction technique de la refonte.|Relèvement des standards de performance de l'interface, avec des listes dynamiques complexes de plus de 10 000 éléments et des interfaces SwiftUI pixel-perfect conformes aux HIG.|Intégration de GraphQL pour la livraison des données et de terminaux connectés en WiFi via des gestionnaires de connexion sur mesure.|Nouveau standard de qualité des releases : tests d'interface automatisés (Robot Pattern + XCUITest) et cycles de release réduits de 30 % avec la CI/CD GitHub Actions.|Tests A/B et expérimentations pour valider les décisions produit avec des données d'usage réelles.|Encadrement et montée en compétence d'ingénieurs juniors dans un environnement Agile, aux côtés des designers et des parties prenantes.";
+
+"cv_exp6_bullets" = "Cofondation de l'entreprise et direction de son ingénierie.|Développement et maintenance de deux applications iOS en production (SwiftUI + UIKit) au sein d'un produit multiplateforme.|Mise en place de flux de paiement sécurisés avec l'intégration de Stripe.|Collaboration transverse pour faire évoluer les fonctionnalités et améliorer l'expérience utilisateur.";
+
+"cv_exp7_note" = "Poste de début de carrière avec pleine responsabilité de production, en parallèle des derniers cours à l'université.";
+"cv_exp7_bullets" = "Développement et maintenance d'apps iOS en production en Swift et Objective-C avec intégration d'API REST ; livraison de fonctionnalités de bout en bout en sprints Agile.";
+
+"cv_exp8_note" = "Premier poste d'ingénieur, en parallèle des études.";
+"cv_exp8_bullets" = "Développement d'applications full-stack pour des clients d'agence sur des stacks adossées à AWS.";
+
+// Projets. Noms, étiquettes et descriptions viennent de fr.strings ; seule la
+// seconde moitié de la ligne méta est ici : la stack et l'URL.
+"cv_p1_links" = "SwiftUI 6 + concurrence moderne · App Store · github.com/JCTec/Tapper";
+"cv_p2_links" = "Swift 6 + SwiftUI · App Store · apps.apple.com/mx/app/mythlog";
+"cv_p3_links" = "github.com/swift-calendar/icalendarkit";
+"cv_p4_links" = "App Store · apps.apple.com/mx/app/ibase";
+
+// Centres d'intérêt
+"cv_interests" = "Impression 3D · hydroponie · IoT et domotique · fabrication de bijoux";
