@@ -26,7 +26,7 @@
 "cv_skills2_label" = "Architecture et qualité";
 "cv_skills2_items" = "MVVM|Clean Architecture|Coordinators|Systèmes de design atomique|Optimisation des performances|XCUITest + Robot Pattern|Tests A/B et expérimentation|Tests unitaires|Git et revues de code";
 "cv_skills3_label" = "Données et livraison";
-"cv_skills3_items" = "GraphQL|API REST|Stripe|Firebase|Realm|GitHub Actions (CI/CD)|Swift Package Manager|CocoaPods";
+"cv_skills3_items" = "Vapor 4 (Swift côté serveur)|GraphQL|API REST|Stripe|Firebase|Realm|GitHub Actions (CI/CD)|Swift Package Manager|CocoaPods";
 "cv_skills4_label" = "IA et technologies émergentes";
 "cv_skills4_items" = "Workflows d'agents (Claude, OpenAI, xAI)|Ollama|IoT / domotique";
 
@@ -41,7 +41,7 @@
 
 "cv_exp5_bullets" = "Direction de la modernisation d'une application iOS vieille de dix ans, en assumant la migration vers SwiftUI de bout en bout tout en préservant les performances d'une app en production.|Décision de reconstruire les fondations de l'app sur MVVM, Clean Architecture et le pattern Coordinator, en fixant la direction technique de la refonte.|Relèvement des standards de performance de l'interface, avec des listes dynamiques complexes de plus de 10 000 éléments et des interfaces SwiftUI pixel-perfect conformes aux HIG.|Intégration de GraphQL pour la livraison des données et de terminaux connectés en WiFi via des gestionnaires de connexion sur mesure.|Nouveau standard de qualité des releases : tests d'interface automatisés (Robot Pattern + XCUITest) et cycles de release réduits de 30 % avec la CI/CD GitHub Actions.|Tests A/B et expérimentations pour valider les décisions produit avec des données d'usage réelles.|Encadrement et montée en compétence d'ingénieurs juniors dans un environnement Agile, aux côtés des designers et des parties prenantes.";
 
-"cv_exp6_bullets" = "Cofondation de l'entreprise et direction de son ingénierie.|Développement et maintenance de deux applications iOS en production (SwiftUI + UIKit) au sein d'un produit multiplateforme.|Mise en place de flux de paiement sécurisés avec l'intégration de Stripe.|Collaboration transverse pour faire évoluer les fonctionnalités et améliorer l'expérience utilisateur.";
+"cv_exp6_bullets" = "Cofondation de l'entreprise et direction de son ingénierie.|Conception d'un produit 100 % Swift : backend Vapor, front end iOS et bibliothèques Swift partagées entre les deux.|Développement et maintenance de deux applications iOS en production (SwiftUI + UIKit) au sein d'un produit multiplateforme.|Mise en place de flux de paiement sécurisés avec l'intégration de Stripe.|Collaboration transverse pour faire évoluer les fonctionnalités et améliorer l'expérience utilisateur.";
 
 "cv_exp7_note" = "Poste de début de carrière avec pleine responsabilité de production, en parallèle des derniers cours à l'université.";
 "cv_exp7_bullets" = "Développement et maintenance d'apps iOS en production en Swift et Objective-C avec intégration d'API REST ; livraison de fonctionnalités de bout en bout en sprints Agile.";

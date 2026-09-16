@@ -454,6 +454,17 @@ a {
     padding: 0.4rem 0.65rem;
 }
 
+/* A chip that links out reads like the rest until touched. */
+a.chip {
+    text-decoration: none;
+}
+
+a.chip:hover,
+a.chip:focus-visible {
+    color: var(--jc-accent);
+    border-color: var(--jc-accent);
+}
+
 .stack-group-label {
     font-family: var(--jc-font-mono);
     font-size: 0.6rem;

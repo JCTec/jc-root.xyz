@@ -99,6 +99,14 @@ test("Every locale is published, each with its own lang and copy", () => {
 const { cvPath } = loadConfig({ publicDirectory: null, env: {} });
 const SUPPLIED_BY_CI = new Set(LOCALES.map((locale) => cvPathFor(locale, cvPath)));
 
+test("A skill that links out does so in every locale, as a chip", () => {
+    for (const [locale, html] of Object.entries(pages)) {
+        const chips = [...html.matchAll(/<a class="chip" href="([^"]+)" rel="noopener">([^<]*)<\/a>/g)];
+        assert.deepEqual(chips.map((m) => m[1]), ["https://vapor.codes"], `${locale}: linked chips`);
+        assert.match(chips[0][2], /^Vapor 4 /, `${locale}: the linked chip is the Vapor one`);
+    }
+});
+
 test("Every asset each page references is actually in the output", () => {
     for (const [locale, html] of Object.entries(pages)) {
         const refs = assetReferences(html);

@@ -241,6 +241,12 @@ test("Each locale's CV states the facts that locale's page states", () => {
     }
 });
 
+test("The skills that link out on the site link out in the CV too", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        assert.match(out, /<a href="https:\/\/vapor\.codes">Vapor 4 [^<]*<\/a>/, `${locale}: Vapor skill unlinked`);
+    }
+});
+
 test("The CV renders one self-contained file per locale, named as it is published", () => {
     // The render's basename is the published basename, so WeasyPrint's output
     // needs no rename: cv.html → cv.pdf under whatever CV_PATH says.

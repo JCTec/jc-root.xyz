@@ -26,7 +26,7 @@
 "cv_skills2_label" = "Arquitectura y calidad";
 "cv_skills2_items" = "MVVM|Clean Architecture|Coordinators|Sistemas de diseño atómico|Optimización de rendimiento|XCUITest + Robot Pattern|Pruebas A/B y experimentación|Pruebas unitarias|Git y revisiones de código";
 "cv_skills3_label" = "Datos y entrega";
-"cv_skills3_items" = "GraphQL|APIs REST|Stripe|Firebase|Realm|GitHub Actions (CI/CD)|Swift Package Manager|CocoaPods";
+"cv_skills3_items" = "Vapor 4 (Swift en el servidor)|GraphQL|APIs REST|Stripe|Firebase|Realm|GitHub Actions (CI/CD)|Swift Package Manager|CocoaPods";
 "cv_skills4_label" = "IA y tecnologías emergentes";
 "cv_skills4_items" = "Flujos con agentes (Claude, OpenAI, xAI)|Ollama|IoT / domótica";
 
@@ -41,7 +41,7 @@
 
 "cv_exp5_bullets" = "Lideré la modernización de una app iOS con una década de antigüedad, asumiendo la migración a SwiftUI de principio a fin sin sacrificar el rendimiento de un producto vivo en producción.|Tomé la decisión de reconstruir los cimientos de la app sobre MVVM, Clean Architecture y el patrón Coordinator, marcando la dirección técnica de la refactorización.|Elevé el estándar de rendimiento de la UI con listas dinámicas complejas de más de 10,000 elementos, entregando interfaces SwiftUI pixel-perfect y conformes a las HIG.|Integré GraphQL para la entrega de datos y terminales conectadas por WiFi mediante gestores de conexión propios.|Marqué un nuevo estándar de calidad de release con pruebas de UI automatizadas (Robot Pattern + XCUITest) y reduje los ciclos de release un 30% con CI/CD en GitHub Actions.|Ejecuté pruebas A/B y experimentos para validar decisiones de producto con datos reales de uso.|Mentoricé e impulsé a ingenieros junior en un entorno Agile, trabajando con diseñadores y stakeholders.";
 
-"cv_exp6_bullets" = "Cofundé la empresa y lideré su ingeniería.|Desarrollé y mantuve dos aplicaciones iOS en producción (SwiftUI + UIKit) dentro de un producto multiplataforma.|Implementé flujos de pago seguros con integración de Stripe.|Colaboré de forma transversal para escalar funcionalidades y mejorar la experiencia de usuario.";
+"cv_exp6_bullets" = "Cofundé la empresa y lideré su ingeniería.|Construí un producto 100% Swift: backend en Vapor, front end iOS y librerías Swift compartidas entre ambos.|Desarrollé y mantuve dos aplicaciones iOS en producción (SwiftUI + UIKit) dentro de un producto multiplataforma.|Implementé flujos de pago seguros con integración de Stripe.|Colaboré de forma transversal para escalar funcionalidades y mejorar la experiencia de usuario.";
 
 "cv_exp7_note" = "Puesto de inicio de carrera con responsabilidad plena de producción, en paralelo con los últimos cursos de la universidad.";
 "cv_exp7_bullets" = "Desarrollé y mantuve apps iOS en producción en Swift y Objective-C con integración de APIs REST; entregué funcionalidades de principio a fin en sprints Agile.";

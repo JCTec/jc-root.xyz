@@ -67,7 +67,7 @@
 "exp6_role" = "Co-founder & Lead Software Engineer";
 "exp6_company" = "Xplain";
 "exp6_meta" = "Remote · Aug 2020 – Feb 2022";
-"exp6_desc" = "Co-founded the company with friends and led its engineering: built and shipped two production iOS apps in SwiftUI and UIKit, with secure Stripe payment flows.";
+"exp6_desc" = "Co-founded the company with friends and led its engineering: a 100% Swift product — Vapor backend, iOS front end, shared Swift libraries between the two — shipping two production iOS apps in SwiftUI and UIKit with secure Stripe payment flows.";
 
 "exp7_role" = "Full Stack Engineer (iOS Focus)";
 "exp7_company" = "Sunwise";
@@ -117,7 +117,7 @@
 "stack_heading" = "Skills";
 "stack_core_label" = "Core";
 "stack_also_label" = "Also";
-"stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
+"stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (server-side Swift)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
 "stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Atomic design systems|Performance optimization|AI / agentic development (Claude, OpenAI, xAI, Ollama)|IoT / home automation|SwiftData|CryptoKit|StoreKit 2";
 
 // Contact
