@@ -56,17 +56,17 @@
 
 "exp4_role" = "Ingénieur logiciel Senior";
 "exp4_company" = "Alaska Airlines";
-"exp4_meta" = "À distance (É.-U.) · Juil. 2024 – Mars 2025";
+"exp4_meta" = "À distance (É.-U.) · Déc. 2023 – Nov. 2024";
 "exp4_desc" = "J'ai piloté un système de design atomique complet, relevant le niveau de cohérence et de réutilisation de l'interface dans toute l'app. J'ai assumé la direction technique — MVVM, Clean Architecture, Coordinators —, livré des fonctionnalités en UIKit et SwiftUI, mené des tests A/B pour orienter les décisions produit et encadré des ingénieurs.";
 
 "exp5_role" = "Ingénieur logiciel Senior, Lead technique";
 "exp5_company" = "Peek.com";
-"exp5_meta" = "À distance · Fév. 2022 – Avr. 2024";
+"exp5_meta" = "À distance · Août 2021 – Août 2023";
 "exp5_desc" = "J'ai mené la modernisation d'une app de marketplace vieille de dix ans, en assumant la migration vers SwiftUI de bout en bout sur un produit en production. J'ai pris la décision de reconstruire ses fondations sur MVVM, Clean Architecture et Coordinators. J'ai relevé le niveau de performance avec des listes dynamiques de plus de 10 000 éléments, bâti une culture de tests automatisés à partir de zéro (Robot Pattern + XCUITest) et réduit les cycles de release de 30 % avec la CI/CD GitHub Actions. J'ai intégré GraphQL et des terminaux connectés en WiFi via des gestionnaires de connexion sur mesure ; j'ai encadré des ingénieurs.";
 
 "exp6_role" = "Cofondateur et Ingénieur logiciel principal";
 "exp6_company" = "Xplain";
-"exp6_meta" = "À distance · Août 2020 – Fév. 2022";
+"exp6_meta" = "À distance · Août 2020 – Août 2021";
 "exp6_desc" = "J'ai cofondé l'entreprise avec des amis et dirigé son ingénierie : un produit 100 % Swift — backend Vapor, front end iOS et bibliothèques Swift partagées entre les deux — avec deux apps iOS en production en SwiftUI et UIKit et des flux de paiement sécurisés via Stripe.";
 
 "exp7_role" = "Ingénieur Full Stack (orienté iOS)";
