@@ -102,6 +102,10 @@ const PROJECTS_COVERED_ELSEWHERE = {
     // Living Root is work, not a side project: it is the fourth bullet under
     // the current role. Repeating it here would cost a third of a page.
     p5: "covered under Experience",
+    // After Dark Stories is web work on an iOS CV: the site and the About
+    // paragraph carry it, and its description alone would cost a third of a
+    // page against the two-page limit.
+    p6: "site only",
 };
 
 test("Every site project is either in the CV or deliberately excluded", () => {

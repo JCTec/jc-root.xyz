@@ -29,6 +29,7 @@ const PRE_ESCAPED = new Set([
     "label",                // esc(t["lang_" + locale]) inside langToggle
     "experience",
     "projects",
+    "site",
     "appStore",
     "repo",
     "chips(ctx.stackCore)",

@@ -23,6 +23,9 @@ OpenAI, xAI, Ollama), full-stack IoT, and hardware-software integration.
 - Living Root — full-stack hydroponic monitoring, owned end-to-end: SwiftUI
   client, Vapor/PostgreSQL backend, MicroPython ESP32 sensor node:
   https://github.com/Living-Root
+- After Dark Stories — AI-assisted fiction studio, built and operated solo on
+  a 100% Swift server: Vapor, Fluent/PostgreSQL, server-rendered Leaf:
+  https://afterdarkstories.mx
 - Tapper Counters — SwiftUI tap-to-count app (iOS, iPadOS):
   https://apps.apple.com/mx/app/tapper-counters/id6475695007
 - MythLog — consent-first macOS system event ledger (HMAC hash chain):

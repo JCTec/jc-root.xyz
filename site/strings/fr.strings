@@ -33,7 +33,7 @@
 
 // À propos
 "about_heading" = "À propos";
-"about_body" = "Ingénieur iOS Senior avec plus de 6 ans d'expérience professionnelle, plus 2 années antérieures à livrer du code en production pendant mes études d'ingénieur, achevées en juillet 2021. J'assume l'entière responsabilité des fonctionnalités et de l'architecture, du premier échange jusqu'à la mise en production : je modernise des bases de code héritées, je construis des systèmes de design atomique et je considère les tests comme une part du métier, pas comme une réflexion après coup. Sur l'App Store depuis 2018 avec trois apps publiées sur iPhone, iPad et Mac. Dernièrement, j'ai étendu cette responsabilité au-delà de l'app : workflows d'agents IA, IoT full-stack et intégration matériel-logiciel. Passionné par les technologies de la santé et du bien-être. Quand je ne livre pas, je fais du yoga, de l'escalade ou du kitesurf.";
+"about_body" = "Ingénieur iOS Senior avec plus de 6 ans d'expérience professionnelle, plus 2 années antérieures à livrer du code en production pendant mes études d'ingénieur, achevées en juillet 2021. J'assume l'entière responsabilité des fonctionnalités et de l'architecture, du premier échange jusqu'à la mise en production : je modernise des bases de code héritées, je construis des systèmes de design atomique et je considère les tests comme une part du métier, pas comme une réflexion après coup. Sur l'App Store depuis 2018 avec trois apps publiées sur iPhone, iPad et Mac. Dernièrement, j'ai étendu cette responsabilité au-delà de l'app : workflows d'agents IA, IoT full-stack et intégration matériel-logiciel. Cette responsabilité s'étend aussi au web : je conçois et j'exploite After Dark Stories, un produit Vapor et Leaf avec ses propres comptes, sa facturation et sa modération, et j'écris le JavaScript et le CSS qui l'habillent. Passionné par les technologies de la santé et du bien-être. Quand je ne livre pas, je fais du yoga, de l'escalade ou du kitesurf.";
 "about_availability" = "Disponible dès maintenant, en freelance ou à temps plein : à distance depuis l'UE ou les Amériques, ou avec relocalisation. Passeport espagnol, autorisé à travailler dans l'UE.";
 
 // Expérience
@@ -83,10 +83,16 @@
 "work_heading" = "Travaux sélectionnés";
 "link_appstore_suffix" = "sur l'App Store →";
 "link_github_suffix" = "sur GitHub →";
+"link_site_prefix" = "Visiter";
+"link_site_suffix" = "→";
 
 "p5_tags" = "iOS · Vapor · ESP32";
 "p5_name" = "Living Root";
 "p5_desc" = "Système de suivi hydroponique full-stack, conçu et maintenu de bout en bout sur trois bases de code : un client SwiftUI qui trace le pH, l'EC, la température et le niveau de l'eau, avec des instantanés SwiftData pour que le tableau de bord reste lisible hors ligne ; un backend Vapor et PostgreSQL avec une console d'administration authentifiée par session et une API de télémétrie pour les appareils ; et un firmware MicroPython sur un nœud capteur ESP32 qui lit la zone racinaire en temps réel. Swift côté app comme côté serveur, et des boîtiers imprimés en 3D sur le matériel.";
+
+"p6_tags" = "Vapor · Leaf · JavaScript";
+"p6_name" = "After Dark Stories";
+"p6_desc" = "Studio de fiction assistée par IA, conçu et exploité en solo sur un serveur 100 % Swift : Vapor, Fluent et PostgreSQL derrière des templates Leaf rendus côté serveur, avec du JavaScript pour les interactions de l'éditeur. Les comptes reposent sur des sessions en base de données et des jetons d'accès et de rafraîchissement hachés, avec vérification par e-mail, réinitialisation du mot de passe, protection CSRF et contre les abus à l'inscription ; la console d'administration ajoute un accès break-glass journalisé et la réception des signalements. Trois langues d'interface — anglais, espagnol et français — sont résolues depuis un catalogue de textes unique. Le moteur d'histoires opère derrière des directives propres à l'application, avec validation des sorties et un classificateur post-génération. Système de marque documenté avec design tokens, et une posture de production de bout en bout : compression des réponses, fichiers statiques avec ETag, données structurées et sitemap.";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
@@ -118,7 +124,7 @@
 "stack_core_label" = "Principales";
 "stack_also_label" = "Aussi";
 "stack_core_items" = "Swift|SwiftUI (dont 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift côté serveur)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Systèmes de design atomique|Optimisation des performances|Développement IA / agents (Claude, OpenAI, xAI, Ollama)|IoT / domotique|SwiftData|CryptoKit|StoreKit 2";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Systèmes de design atomique|Optimisation des performances|Développement IA / agents (Claude, OpenAI, xAI, Ollama)|IoT / domotique|SwiftData|CryptoKit|StoreKit 2|JavaScript|HTML et CSS|Leaf (rendu côté serveur)|Fluent + PostgreSQL|Sécurité web (sessions, CSRF, jetons)|Internationalisation (i18n)|SEO et données structurées";
 
 // Contact
 "cta_heading" = "Vous construisez quelque chose pour les plateformes Apple ?";

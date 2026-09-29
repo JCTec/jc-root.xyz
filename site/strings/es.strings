@@ -32,7 +32,7 @@
 
 // Acerca de
 "about_heading" = "Acerca de";
-"about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, concluida en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera decisión al release: modernizo bases de código legadas, construyo sistemas de diseño atómico y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA, IoT full-stack e integración hardware-software. Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
+"about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, concluida en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera decisión al release: modernizo bases de código legadas, construyo sistemas de diseño atómico y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA, IoT full-stack e integración hardware-software. Esa responsabilidad también llega a la web: construyo y opero After Dark Stories, un producto en Vapor y Leaf con cuentas, cobros y moderación propios, y escribo el JavaScript y el CSS que lo visten. Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
 "about_availability" = "Disponible ahora, freelance o de tiempo completo: en remoto desde la UE o América, o con reubicación. Pasaporte español, autorizado para trabajar en la UE.";
 
 // Experiencia
@@ -82,10 +82,16 @@
 "work_heading" = "Trabajo seleccionado";
 "link_appstore_suffix" = "en el App Store →";
 "link_github_suffix" = "en GitHub →";
+"link_site_prefix" = "Visitar";
+"link_site_suffix" = "→";
 
 "p5_tags" = "iOS · Vapor · ESP32";
 "p5_name" = "Living Root";
 "p5_desc" = "Sistema hidropónico full-stack, diseñado y mantenido de extremo a extremo en tres bases de código: un cliente SwiftUI que grafica pH, EC, temperatura y nivel del agua, con instantáneas en SwiftData para que el panel siga leyéndose sin conexión; un backend en Vapor y PostgreSQL con consola de administración autenticada por sesión y una API de telemetría para dispositivos; y firmware MicroPython en un nodo sensor ESP32 que lee la zona radicular en tiempo real. Swift tanto en la app como en el servidor, y carcasas impresas en 3D en el hardware.";
+
+"p6_tags" = "Vapor · Leaf · JavaScript";
+"p6_name" = "After Dark Stories";
+"p6_desc" = "Estudio de ficción asistida por IA, construido y operado en solitario sobre un servidor 100% Swift: Vapor, Fluent y PostgreSQL detrás de plantillas Leaf renderizadas en el servidor, con JavaScript que impulsa las interacciones del editor. Las cuentas funcionan con sesiones en base de datos y tokens de acceso y refresco hasheados, con verificación por correo, restablecimiento de contraseña, protección CSRF y contra abuso en el registro; la consola de administración añade acceso break-glass registrado y recepción de reportes. Tres idiomas de interfaz —inglés, español y francés— se resuelven desde un único catálogo de textos. El motor de historias opera detrás de directivas propias de la aplicación, con validación de salida y un clasificador posterior a la generación. Sistema de marca documentado con design tokens, y postura de producción en todo: compresión de respuestas, archivos estáticos con ETag, datos estructurados y sitemap.";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
@@ -117,7 +123,7 @@
 "stack_core_label" = "Principal";
 "stack_also_label" = "También";
 "stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift en el servidor)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Sistemas de diseño atómico|Optimización de rendimiento|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|IoT / domótica|SwiftData|CryptoKit|StoreKit 2";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Sistemas de diseño atómico|Optimización de rendimiento|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|IoT / domótica|SwiftData|CryptoKit|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Internacionalización (i18n)|SEO y datos estructurados";
 
 // Contacto
 "cta_heading" = "¿Construyendo algo para plataformas Apple?";
