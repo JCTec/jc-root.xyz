@@ -106,6 +106,9 @@ const PROJECTS_COVERED_ELSEWHERE = {
     // paragraph carry it, and its description alone would cost a third of a
     // page against the two-page limit.
     p6: "site only",
+    // Sideshore is still in development, with no public link yet. It joins
+    // the CV once it ships.
+    p7: "site only until it ships",
 };
 
 test("Every site project is either in the CV or deliberately excluded", () => {

@@ -94,6 +94,10 @@
 "p6_name" = "After Dark Stories";
 "p6_desc" = "AI-assisted fiction studio, built and operated solo on a 100% Swift server: Vapor, Fluent and PostgreSQL behind server-rendered Leaf templates, with JavaScript driving the studio's editor interactions. Accounts run on database-backed sessions plus hashed access and refresh tokens, with email verification, password reset, CSRF and registration abuse protection; the admin console adds logged break-glass access and report intake. Three interface locales — English, Spanish and French — resolve from a single copy catalog. The story engine sits behind app-owned directives with output validation and a post-generation classifier. Documented brand system with design tokens, and a production posture throughout: response compression, ETag-backed static files, structured data and sitemap.";
 
+"p7_tags" = "iOS · iPadOS · macOS";
+"p7_name" = "Sideshore";
+"p7_desc" = "Wind forecast and live-station app for every wind sport, in development for iPhone, iPad and Mac from one native SwiftUI target. It sets several forecast models side by side with live station readings, and gives each saved spot a GO, MARGINAL or NO verdict from fixed, readable rules covering gusts, storms and the wind's angle to that spot's shoreline, with the deciding rule shown next to the verdict. The map animates wind as particles over MapKit, with lightning, radar and storm layers. An in-house Swift package fetches everything on the device from Open-Meteo and public agencies, with request merging, rate limiting, retries and a disk cache so the app still opens offline. Alerts backtest themselves against the last 30 days.";
+
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
 "p1_desc" = "Sleek, customizable tap-to-count app for workouts, habits, scores and tallies. Per-counter colors, custom increments, sorting, and a focused full-screen counting view. SwiftUI, SwiftData and App Intents, iOS 17+.";

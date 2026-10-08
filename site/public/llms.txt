@@ -26,6 +26,9 @@ OpenAI, xAI, Ollama), full-stack IoT, and hardware-software integration.
 - After Dark Stories — AI-assisted fiction studio, built and operated solo on
   a 100% Swift server: Vapor, Fluent/PostgreSQL, server-rendered Leaf:
   https://afterdarkstories.mx
+- Sideshore — wind forecast and live-station app, in development: native
+  SwiftUI for iOS, iPadOS and macOS 26, MapKit, on-device data layer over
+  Open-Meteo and NOAA
 - Tapper Counters — SwiftUI tap-to-count app (iOS, iPadOS):
   https://apps.apple.com/mx/app/tapper-counters/id6475695007
 - MythLog — consent-first macOS system event ledger (HMAC hash chain):
