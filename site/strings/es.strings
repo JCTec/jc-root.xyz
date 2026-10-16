@@ -3,7 +3,7 @@
 
 // Meta
 "meta_title" = "Juan Carlos Estévez · Ingeniero iOS Senior disponible | Desarrollador iOS remoto y freelance (Swift, SwiftUI)";
-"meta_description" = "Ingeniero iOS senior disponible para contratación: remoto o freelance. Más de 6 años de experiencia profesional con Swift y SwiftUI, 8 años publicando en el App Store, apps para iOS, iPadOS y macOS. Con base en Barcelona, autorización de trabajo en la UE. Disponible ahora.";
+"meta_description" = "Ingeniero iOS senior disponible para contratación: remoto o freelance. Más de 6 años de experiencia profesional con Swift y SwiftUI, 8 años publicando en el App Store, apps para iOS, iPadOS y macOS. Con base en Barcelona, doble nacionalidad española y mexicana, autorización de trabajo en la UE. Disponible ahora.";
 "og_image_alt" = "Juan Carlos Estévez Rodríguez — Ingeniero iOS Senior, disponible para contratación";
 
 // Accesibilidad
@@ -16,7 +16,7 @@
 "hero_name" = "Juan Carlos Estévez Rodríguez";
 "hero_role" = "Ingeniero iOS Senior";
 "hero_platforms" = "iOS · iPadOS · macOS";
-"hero_status" = "Ciudadano español, autorizado para trabajar en la UE · Remoto o reubicación";
+"hero_status" = "Doble nacionalidad española y mexicana · Autorización de trabajo en la UE · Remoto o reubicación";
 "hero_cta_projects" = "Ver mis proyectos →";
 "hero_cta_github" = "GitHub";
 "hero_cta_cv" = "Descargar CV";
@@ -33,7 +33,7 @@
 // Acerca de
 "about_heading" = "Acerca de";
 "about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, concluida en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera decisión al release: modernizo bases de código legadas, construyo sistemas de diseño atómico y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA, IoT full-stack e integración hardware-software. Esa responsabilidad también llega a la web: construyo y opero After Dark Stories, un producto en Vapor y Leaf con cuentas, cobros y moderación propios, y escribo el JavaScript y el CSS que lo visten. Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
-"about_availability" = "Disponible ahora, freelance o de tiempo completo: en remoto desde la UE o América, o con reubicación. Pasaporte español, autorizado para trabajar en la UE.";
+"about_availability" = "Disponible ahora, freelance o de tiempo completo: en remoto desde la UE o América, o con reubicación. Doble nacionalidad española y mexicana, autorizado para trabajar en la UE.";
 
 // Experiencia
 "exp_heading" = "Experiencia";
