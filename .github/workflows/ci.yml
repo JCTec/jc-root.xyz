@@ -104,25 +104,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            libpango-1.0-0 libpangoft2-1.0-0 fonts-liberation poppler-utils
+            libpango-1.0-0 libpangoft2-1.0-0 fonts-liberation
           python3 -m venv .venv
           .venv/bin/pip install --quiet weasyprint==69.0
           node build-cv.mjs
           for html in dist-cv/*.html; do
             .venv/bin/weasyprint "$html" "${html%.html}.pdf"
-          done
-
-      # A CV is a two-page document. Content grows — and translations grow
-      # faster — but the page it grows onto is invisible until someone opens
-      # the file, so the length of every locale is asserted rather than trusted.
-      - name: Every CV is two pages
-        run: |
-          for pdf in dist-cv/*.pdf; do
-            pages=$(pdfinfo "$pdf" | awk '/^Pages:/ { print $2 }')
-            echo "$pdf: $pages page(s)"
-            if [ "$pages" -gt 2 ]; then
-              echo "::error::$pdf runs to $pages pages — trim it or it ships that way"; exit 1
-            fi
           done
 
       # Published from this site rather than from a GitHub release. A release

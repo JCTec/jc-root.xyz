@@ -112,27 +112,26 @@ and `SITE_BASE_URL` is how you point a build somewhere else.
 
 ## The CV
 
-`jc-root.xyz/` and the CV PDFs are two views of one set of facts, and the
-facts are written once. There is one CV per site locale, and each page's
-download button links to its own — the language a visitor reads the site in
-is the language of the PDF.
+The CV PDFs are a print layout of `jc-root.xyz/`, not a second document. There
+is one CV per site locale, and each page's download button links to its own —
+the language a visitor reads the site in is the language of the PDF.
+
+Everything in the PDF comes from what the page renders:
 
 ```
-site/strings/<locale>.strings     facts: name, role, companies, job titles,
-                                  dates, education, languages, project names
-                                                                  → both
-site/strings/cv.<locale>.strings  CV prose: summary, skill groups, the
-                                  bullets under each role, interests
-                                                                  → CV only
+site/strings/<locale>.strings   every word: header, About, each role and its
+                                description, Education & Languages, Skills
+lib/projects.mjs                the "Selected work" cards, their order and
+                                their links — the CV prints the same list
 ```
 
-`test/cv.test.mjs` is what keeps that split honest. A key defined in both files
-fails the suite, because a fact maintained in two places is a fact that will
-eventually disagree with itself. Adding a ninth role to `en.strings` fails too,
-until `cv.en.strings` gives it bullets — so the CV cannot quietly fall a job
-behind the site. The same goes for projects: a new one must either appear in
-the CV or be named in `PROJECTS_COVERED_ELSEWHERE` with a reason. And the
-three `cv.*.strings` files are held to one key set, as the site's are.
+There is no CV-only catalog and no list of which projects the CV carries, so
+a string, a date or a card changed on the site is in the PDF on the next push
+with nothing else to edit. Sections run in the site's order; links the site
+shows as buttons are printed as bare, clickable URLs. `test/cv.test.mjs` holds
+the render to that: every catalog value the page shows must appear in each
+locale's CV, every card must appear in site order with every link, and a
+`cv.*.strings` file reappearing in `site/strings/` fails the suite.
 
 Rendering is two steps, and only the second one is not Node:
 
@@ -145,10 +144,8 @@ Splitting it that way is what keeps this repository dependency-free. Node emits
 one self-contained HTML file per locale — no stylesheet link, no assets,
 nothing to cache — and the test suite asserts against *those*. WeasyPrint only
 rasterizes, it runs in CI, and it is pinned so a release of it cannot silently
-repaginate the document. CI additionally refuses any CV that has grown past
-two pages, which is otherwise invisible until someone opens the file — and
-translations run longer than English, so the Spanish and French copies are
-the ones to watch when the catalogs grow.
+repaginate the document. There is no page limit: the CV is as long as the
+site's copy makes it.
 
 **The PDFs are never committed.** They are build outputs like
 `dist/index.html`; a binary in the tree would start drifting from the catalog
@@ -184,12 +181,11 @@ appears nowhere — and it is why the contact line is `jc-root.xyz`, LinkedIn an
 GitHub. All three reach a person; none of them can be scraped off a PDF that
 gets forwarded around.
 
-The address is in neither catalog. Setting `CONTACT_EMAIL` adds one to the PDF
+The address is not in the catalog. Setting `CONTACT_EMAIL` adds one to the PDF
 for a build you want it in — a copy sent directly to someone, say.
 
-A new site locale needs its `cv.<locale>.strings` too: `build-cv.mjs` loops
-the same `LOCALES` the site does, and the suite fails until the CV catalog
-exists with the full key set.
+A new site locale gets its CV with no extra file: `build-cv.mjs` loops the
+same `LOCALES` the site does, over the same catalogs.
 
 ## Contact form (FormSubmit)
 
@@ -389,4 +385,4 @@ Verified against production after the move to GitHub Pages:
   signed and waiting; without the DS the delegation is unsigned and a resolver
   has no way to detect a forged answer for this domain.
 - Real project screenshots for the Tapper Counters and MythLog cards.
-- GitHub repo link for MythLog when/if public (`projectCards` in `lib/content.mjs`).
+- GitHub repo link for MythLog when/if public (`projectCards` in `lib/projects.mjs`).

@@ -26,12 +26,10 @@ const PRE_ESCAPED = new Set([
     "body",                 // the rendered <body> contents
     "alternateLinks(ctx)",  // hreflang <link>s, escaped as they are built
     "langToggle",
-    "label",                // esc(t["lang_" + locale]) inside langToggle
+    "label",                // langToggle's esc(t["lang_" + locale]); cardLink's escaped parts
     "experience",
     "projects",
-    "site",
-    "appStore",
-    "repo",
+    "links",
     "chips(ctx.stackCore)",
     "chips(ctx.stackAlso)",
     "ctx.jsonLD",           // raw on purpose; structured-data.mjs escaped it

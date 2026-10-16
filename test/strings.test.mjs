@@ -45,7 +45,8 @@ test("Every locale has a label for the language toggle", () => {
 
 test("Every string code is referenced, and every reference resolves", () => {
     const templates = readFileSync(join(root, "lib/templates.mjs"), "utf8");
-    const content = readFileSync(join(root, "lib/content.mjs"), "utf8");
+    const content = readFileSync(join(root, "lib/content.mjs"), "utf8")
+        + readFileSync(join(root, "lib/projects.mjs"), "utf8");
 
     const referenced = new Set([
         ...codes(templates, /\bt\.([A-Za-z0-9_]+)/g),

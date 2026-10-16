@@ -20,7 +20,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { loadConfig } from "./lib/content.mjs";
-import { buildCVContext, cvOutputName, loadCVCatalog } from "./lib/cv-content.mjs";
+import { buildCVContext, cvOutputName } from "./lib/cv-content.mjs";
 import { cv } from "./lib/cv-template.mjs";
 import { loadCatalog, LOCALES } from "./lib/strings.mjs";
 
@@ -39,8 +39,7 @@ export function buildCV(outDir, { env = process.env } = {}) {
     const written = [];
 
     for (const locale of LOCALES) {
-        const cvTable = loadCVCatalog(STRINGS_DIR, locale);
-        const ctx = buildCVContext({ locale, config, table: catalog[locale], cvTable });
+        const ctx = buildCVContext({ locale, config, table: catalog[locale] });
         const name = cvOutputName(locale, "html", config.cvPath);
         writeFileSync(join(outDir, name), cv(ctx), "utf8");
         written.push(name);
