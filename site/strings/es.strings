@@ -131,7 +131,7 @@
 "stack_core_label" = "Principal";
 "stack_also_label" = "También";
 "stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift en el servidor)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Sistemas de diseño atómico|Optimización de rendimiento|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|IoT / domótica|SwiftData|CryptoKit|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Internacionalización (i18n)|SEO y datos estructurados";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Sistemas de diseño atómico|Optimización de rendimiento|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|IoT / domótica|SwiftData|Accesibilidad (a11y)|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Internacionalización (i18n)|SEO y datos estructurados";
 
 // Contacto
 "cta_heading" = "¿Construyendo algo para plataformas Apple?";
