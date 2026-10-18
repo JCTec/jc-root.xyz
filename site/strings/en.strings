@@ -131,17 +131,21 @@
 // Diplomas & certifications
 "cred_heading" = "Diplomas & Certifications";
 "cred1_type" = "Diploma";
-"cred1_title" = "Hydroponics";
-"cred1_issuer" = "Universidad Anáhuac";
-"cred1_dates" = "February – June 2026";
+"cred1_title" = "Artificial Intelligence";
+"cred1_issuer" = "Universidad Anáhuac Mayab";
+"cred1_dates" = "September 2026 – present";
 "cred2_type" = "Diploma";
-"cred2_title" = "Entrepreneurship";
-"cred2_issuer" = "Management Center Innsbruck";
-"cred2_dates" = "2019 – 2020";
-"cred3_type" = "Certification";
-"cred3_title" = "Advanced SwiftUI & Declarative UI Patterns";
-"cred3_issuer" = "tryswift.co";
-"cred3_dates" = "September 2020";
+"cred2_title" = "Hydroponics";
+"cred2_issuer" = "Universidad Anáhuac";
+"cred2_dates" = "February – June 2026";
+"cred3_type" = "Diploma";
+"cred3_title" = "Entrepreneurship";
+"cred3_issuer" = "Management Center Innsbruck";
+"cred3_dates" = "2019 – 2020";
+"cred4_type" = "Certification";
+"cred4_title" = "Advanced SwiftUI & Declarative UI Patterns";
+"cred4_issuer" = "tryswift.co";
+"cred4_dates" = "September 2020";
 
 // Languages
 "langs_heading" = "Languages";
