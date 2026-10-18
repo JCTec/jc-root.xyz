@@ -14,6 +14,7 @@ import { join } from "node:path";
 import { after, before, test } from "node:test";
 
 import { buildCV, STRINGS_DIR } from "../build-cv.mjs";
+import { build } from "../build.mjs";
 import { loadConfig } from "../lib/content.mjs";
 import {
     buildCVContext,
@@ -21,13 +22,12 @@ import {
     cvOutputName,
     cvPathFor,
     displayURL,
-    experienceCount,
 } from "../lib/cv-content.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { cv } from "../lib/cv-template.mjs";
 import { esc } from "../lib/html.mjs";
 import { projectCards, projectLinks } from "../lib/projects.mjs";
-import { loadCatalog, LOCALES } from "../lib/strings.mjs";
+import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
 
 const catalog = loadCatalog(STRINGS_DIR);
 const root = join(import.meta.dirname, "..");
@@ -36,6 +36,8 @@ const { cvPath } = loadConfig({ publicDirectory: null, env: {} });
 let outDir;
 /** Rendered CV markup by locale. */
 let renders;
+/** The site's rendered page by locale: what the CV is held to. */
+let pages;
 /** The default locale's render: the one the locale-agnostic checks read. */
 let html;
 
@@ -49,6 +51,13 @@ before(() => {
     html = renders.en;
     // Nothing is written beyond one file per locale.
     assert.deepEqual(written.sort(), LOCALES.map((l) => cvOutputName(l, "html", cvPath)).sort());
+
+    const siteDir = join(outDir, "site");
+    build(siteDir, { env: {} });
+    pages = Object.fromEntries(LOCALES.map((locale) => [
+        locale,
+        readFileSync(join(siteDir, homePath(locale), "index.html"), "utf8"),
+    ]));
 });
 
 after(() => {
@@ -73,34 +82,66 @@ test("The site's catalog is the only catalog", () => {
     assert.deepEqual(stray, [], `CV-only catalogs in site/strings: ${stray}`);
 });
 
-test("Each locale's CV carries every fact that locale's page carries", () => {
+/* The catalog keys that are the page's own furniture rather than facts about
+   the person: what search engines and link previews read, how the page is
+   navigated, how a link is worded where the CV prints the bare URL instead,
+   and the contact form. Everything else in the catalog is content, and
+   content is on both render targets. A key belongs here only if a printed
+   page has no use for it. */
+const PAGE_ONLY = new Set([
+    // Search and link previews
+    "meta_title", "meta_description", "og_image_alt",
+    // Navigation, branding and buttons
+    "skip_to_content", "nav_label", "site_label", "brand_short",
+    "nav_about", "nav_experience", "nav_projects", "nav_contact",
+    "lang_en", "lang_es", "lang_fr",
+    "hero_cta_projects", "hero_cta_github", "hero_cta_cv",
+    // Link wording; the CV prints each URL bare
+    "link_appstore_suffix", "link_github_suffix", "link_site_prefix", "link_site_suffix",
+    // The contact form and footer
+    "cta_heading", "cta_all_links",
+    "form_name", "form_email", "form_message", "form_send", "form_subject", "form_sent",
+    "footer_name", "footer_github", "footer_linkedin", "footer_appstore",
+]);
+
+/** A catalog value as it reaches the page: `|`-lists render one item at a time. */
+const pieces = (key, value) => (key.endsWith("_items") ? value.split("|") : [value]);
+
+function occurrences(haystack, needle) {
+    let count = 0;
+    for (let at = haystack.indexOf(needle); at !== -1; at = haystack.indexOf(needle, at + needle.length)) {
+        count += 1;
+    }
+    return count;
+}
+
+/* The CV mirrors the site: every content string a locale's page shows, its CV
+   shows too. Derived from the catalog, not listed, so a section added to the
+   site without the CV fails here in every locale.
+
+   Presence alone is fooled by coincidence: the hero's "iOS · iPadOS · macOS"
+   once passed only because a project's tags read the same. So each piece must
+   appear at least as often as the catalog's content says it should, counting
+   every content value it occurs inside, on the page and on the CV alike. */
+test("Each locale's CV mirrors every content string that locale's page shows", () => {
     for (const [locale, out] of Object.entries(renders)) {
         const t = catalog[locale];
         assert.ok(out.includes(`<html lang="${locale}">`));
 
-        const keys = [
-            "hero_name", "hero_role", "hero_status",
-            "about_heading", "about_body", "about_availability",
-            "exp_heading", "work_heading", "edu_heading", "stack_heading",
-            "edu1", "edu2", "edu3", "edu4", "edu5", "langs_line",
-            "stack_core_label", "stack_also_label",
-        ];
-        for (let n = 1; n <= experienceCount(t); n += 1) {
-            for (const field of ["role", "company", "meta", "desc"]) keys.push(`exp${n}_${field}`);
-        }
-        for (const code of catalogProjects(t)) {
-            for (const field of ["name", "tags", "desc"]) keys.push(`${code}_${field}`);
-        }
-        for (const key of keys) {
-            assert.ok(t[key], `${key} missing from ${locale}.strings`);
-            assert.ok(out.includes(esc(t[key])), `${locale} CV omits ${key}: ${t[key]}`);
-        }
+        const unknown = [...PAGE_ONLY].filter((key) => !(key in t));
+        assert.deepEqual(unknown, [], `PAGE_ONLY names keys ${locale}.strings lacks`);
 
-        // Every skill chip the site shows.
-        for (const key of ["stack_core_items", "stack_also_items"]) {
-            for (const item of t[key].split("|")) {
-                assert.ok(out.includes(esc(item)), `${locale} CV omits the skill ${item}`);
-            }
+        const content = Object.entries(t)
+            .filter(([key]) => !PAGE_ONLY.has(key))
+            .flatMap(([key, value]) => pieces(key, value).map((piece) => ({ key, piece: esc(piece) })));
+        assert.ok(content.length > 100, `only ${content.length} content strings in ${locale}`);
+
+        for (const { key, piece } of content) {
+            const expected = content.reduce((sum, other) => sum + occurrences(other.piece, piece), 0);
+            assert.ok(occurrences(pages[locale], piece) >= expected,
+                `${locale} page omits ${key}: ${piece}`);
+            assert.ok(occurrences(out, piece) >= expected,
+                `${locale} CV omits ${key}: ${piece}`);
         }
 
         // And the copy is that locale's, not English's.
