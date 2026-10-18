@@ -22,6 +22,8 @@ import { build } from "../build.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { loadConfig, UNSET_ENDPOINT } from "../lib/content.mjs";
 import { cvPathFor } from "../lib/cv-content.mjs";
+import { credentials, degrees, languages } from "../lib/education.mjs";
+import { esc } from "../lib/html.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
 import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
 import { STRINGS_DIR } from "../build.mjs";
@@ -104,6 +106,46 @@ test("A skill that links out does so in every locale, as a chip", () => {
         const chips = [...html.matchAll(/<a class="chip" href="([^"]+)" rel="noopener">([^<]*)<\/a>/g)];
         assert.deepEqual(chips.map((m) => m[1]), ["https://vapor.codes"], `${locale}: linked chips`);
         assert.match(chips[0][2], /^Vapor 4 /, `${locale}: the linked chip is the Vapor one`);
+    }
+});
+
+/* Education, diplomas and languages were one block of sentences. Each is its
+   own section now, its rows counted from the catalog, so a fourth language
+   is a strings edit and nothing else. */
+test("Education, credentials and languages are three sections in every locale", () => {
+    const catalog = loadCatalog(STRINGS_DIR);
+    for (const [locale, html] of Object.entries(pages)) {
+        const t = catalog[locale];
+        const section = (id) => html.match(new RegExp(`<section[^>]* id="${id}">([\\s\\S]*?)</section>`))?.[1] ?? "";
+
+        const education = section("education");
+        const rows = degrees(t);
+        assert.ok(rows.length >= 2, `${locale}: expected at least two degrees`);
+        assert.equal((education.match(/<article class="exp-item">/g) ?? []).length, rows.length);
+        for (const degree of rows) {
+            assert.ok(education.includes(`<h3 class="exp-role">${esc(degree.title)}</h3>`), `${locale}: ${degree.title}`);
+        }
+        // The degree under way says so; the finished ones do not.
+        const underway = rows.filter((degree) => degree.status);
+        assert.ok(underway.length > 0, `${locale}: no degree is marked in progress`);
+        assert.equal((education.match(/class="degree-status"/g) ?? []).length, underway.length);
+
+        const cards = section("credentials");
+        for (const credential of credentials(t)) {
+            assert.ok(cards.includes(`<h3 class="cred-title">${esc(credential.title)}</h3>`), `${locale}: ${credential.title}`);
+        }
+        assert.equal((cards.match(/<article class="cred-card">/g) ?? []).length, credentials(t).length);
+
+        const tiles = section("languages");
+        for (const language of languages(t)) {
+            assert.ok(tiles.includes(`<dt class="language-name">${esc(language.name)}</dt>
+                    <dd class="language-level">${esc(language.level)}</dd>`), `${locale}: ${language.name} tile`);
+        }
+
+        // Nothing left over from the single block, and the order is the CV's.
+        assert.ok(!html.includes("edu-line") && !html.includes("langs-line"), `${locale}: old markup`);
+        const order = ["education", "credentials", "languages", "skills"].map((id) => html.indexOf(`id="${id}"`));
+        assert.deepEqual(order, [...order].sort((a, b) => a - b), `${locale}: sections out of order`);
     }
 });
 

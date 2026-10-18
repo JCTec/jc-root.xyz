@@ -33,6 +33,10 @@ test("Every locale keeps full key parity with EN, with non-empty values", () => 
 const DYNAMIC_KEY_PATTERNS = [
     // content.mjs builds these for each row of the work history.
     /^exp[0-9]+_(role|company|meta|desc)$/,
+    // education.mjs builds these for each degree, credential and language.
+    /^deg[0-9]+_(title|dates|school|note|status)$/,
+    /^cred[0-9]+_(type|title|issuer|dates)$/,
+    /^language[0-9]+_(name|level)$/,
     // templates.mjs builds `lang_<locale>` for each entry in LOCALES.
     /^lang_[a-z]+$/,
 ];

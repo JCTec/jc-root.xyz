@@ -120,9 +120,12 @@ Everything in the PDF comes from what the page renders:
 
 ```
 site/strings/<locale>.strings   every word: header, About, each role and its
-                                description, Education & Languages, Skills
+                                description, Education, Diplomas &
+                                Certifications, Languages, Skills
 lib/projects.mjs                the "Selected work" cards, their order and
                                 their links — the CV prints the same list
+lib/education.mjs               degrees, credentials and languages, counted
+                                from the catalog for the page and the CV alike
 ```
 
 There is no CV-only catalog and no list of which projects the CV carries, so

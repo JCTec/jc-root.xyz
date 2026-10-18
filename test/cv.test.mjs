@@ -193,7 +193,10 @@ const PRE_ESCAPED = new Set([
     "items",
     "meta",
     "paragraphs(ctx.about)",
-    "lines(ctx.education)",
+    "degrees",
+    "details",
+    "credentials",
+    "languageLine(ctx.languages)",
 ]);
 
 test("Every interpolation in the CV template is escaped", () => {

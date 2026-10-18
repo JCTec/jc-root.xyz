@@ -117,14 +117,39 @@
 "p4_name" = "iBase";
 "p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018, en inglés y español.";
 
-// Educación e idiomas
-"edu_heading" = "Educación e idiomas";
-"edu1" = "Ingeniería en Informática y Negocios Digitales — Universidad Anáhuac Mérida, 2017 – julio de 2021 (9 semestres). Miembro del Consejo Estudiantil; programa de emprendimiento.";
-"edu2" = "Diplomado en emprendimiento — Management Center Innsbruck (2019–2020).";
-"edu3" = "Diplomado en hidroponía — Universidad Anáhuac (febrero – junio de 2026).";
-"edu4" = "Maestría en Ciberseguridad — octubre de 2026.";
-"edu5" = "Certificación: Advanced SwiftUI & Declarative UI Patterns (tryswift.co) — septiembre de 2020.";
-"langs_line" = "Idiomas: Inglés C2 · Español nativo · Francés B2";
+// Educación
+"edu_heading" = "Educación";
+"deg1_title" = "Maestría en Ciberseguridad";
+"deg1_dates" = "octubre de 2026 – actualidad";
+"deg1_status" = "En curso";
+"deg2_title" = "Ingeniería en Informática y Negocios Digitales";
+"deg2_school" = "Universidad Anáhuac Mérida";
+"deg2_dates" = "2017 – julio de 2021";
+"deg2_note" = "9 semestres. Miembro del Consejo Estudiantil; programa de emprendimiento.";
+
+// Diplomados y certificaciones
+"cred_heading" = "Diplomados y certificaciones";
+"cred1_type" = "Diplomado";
+"cred1_title" = "Hidroponía";
+"cred1_issuer" = "Universidad Anáhuac";
+"cred1_dates" = "febrero – junio de 2026";
+"cred2_type" = "Diplomado";
+"cred2_title" = "Emprendimiento";
+"cred2_issuer" = "Management Center Innsbruck";
+"cred2_dates" = "2019 – 2020";
+"cred3_type" = "Certificación";
+"cred3_title" = "Advanced SwiftUI & Declarative UI Patterns";
+"cred3_issuer" = "tryswift.co";
+"cred3_dates" = "septiembre de 2020";
+
+// Idiomas
+"langs_heading" = "Idiomas";
+"language1_name" = "Español";
+"language1_level" = "Nativo";
+"language2_name" = "Inglés";
+"language2_level" = "C2";
+"language3_name" = "Francés";
+"language3_level" = "B2";
 
 // Habilidades
 "stack_heading" = "Habilidades";

@@ -28,6 +28,10 @@ const PRE_ESCAPED = new Set([
     "langToggle",
     "label",                // langToggle's esc(t["lang_" + locale]); cardLink's escaped parts
     "experience",
+    "degrees",
+    "details",              // a degree's optional lines, each esc()'d
+    "credentials",
+    "languages",
     "projects",
     "links",
     "chips(ctx.stackCore)",
