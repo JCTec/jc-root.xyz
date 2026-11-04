@@ -40,45 +40,35 @@
 // Experience
 "exp_heading" = "Experience";
 
-"exp1_role" = "Independent iOS Developer & Consultant";
-"exp1_company" = "Self Employed";
-"exp1_meta" = "Remote · Jan 2026 – Present";
-"exp1_desc" = "Own client iOS apps end-to-end, from architecture through release. Architected Living Root end-to-end — SwiftUI client, Vapor backend, MicroPython firmware on ESP32 — and carried that ownership into hardware with a Hydroponics Diploma (Anáhuac University, Feb–Jun 2026) and 3D-printed sensor enclosures. Ship AI and agentic workflows into production apps and tooling (Claude, OpenAI, xAI, Ollama).";
+"exp1_role" = "Independent iOS Development & Consulting";
+"exp1_company" = "Self-directed";
+"exp1_meta" = "Remote · Dec 2024 – Present";
+"exp1_desc" = "Independent work across client iOS apps, my own products and focused study, owned end-to-end from architecture through release. Architected Living Root end-to-end — SwiftUI client, Vapor backend, MicroPython firmware on ESP32 — and carried that ownership into hardware with a Hydroponics Diploma (Anáhuac University, Feb–Jun 2026) and 3D-printed sensor enclosures. A deliberate immersion in AI agentic workflows, data analysis and modern tooling led to shipping AI and agentic workflows into production apps and tooling (Claude, OpenAI, xAI, Ollama).";
 
-"exp2_role" = "Senior iOS Engineer";
-"exp2_company" = "The Home Depot";
-"exp2_meta" = "Remote (US) · Aug 2025 – Dec 2025";
-"exp2_desc" = "Owned end-to-end delivery of key features in The Home Depot's consumer iOS app, where shoppers pinpoint any item's exact aisle and bay location in stores across the US and Canada. Drove performance and reliability at scale in real-time, high-volume data interfaces, and raised release stability with unit and UI automation testing.";
+"exp2_role" = "Senior Software Engineer";
+"exp2_company" = "Alaska Airlines";
+"exp2_meta" = "Remote (US) · Dec 2023 – Nov 2024";
+"exp2_desc" = "Drove a comprehensive atomic design system, raising the bar for UI consistency and reuse across the app. Owned technical direction — MVVM, Clean Architecture, Coordinators — shipped features in UIKit and SwiftUI, ran A/B tests to inform product decisions, and mentored engineers.";
 
-"exp3_role" = "Independent Study & Systems Development";
-"exp3_company" = "Self-directed";
-"exp3_meta" = "Apr 2025 – Jul 2025";
-"exp3_desc" = "A deliberate immersion in AI agentic workflows, data analysis and modern tooling (Claude, OpenAI, xAI, Ollama), building the AI-native product capability I ship with today.";
+"exp3_role" = "Senior Software Engineer, Technical Lead";
+"exp3_company" = "Peek.com";
+"exp3_meta" = "Remote · Aug 2021 – Aug 2023";
+"exp3_desc" = "Led the modernization of a decade-old marketplace app, owning the SwiftUI migration end-to-end on a live product. Made the call to rebuild its foundation on MVVM, Clean Architecture and Coordinators. Raised the performance bar with dynamic lists handling 10,000+ items, built an automated testing culture from zero (Robot Pattern + XCUITest), and cut release cycles 30% with GitHub Actions CI/CD. Integrated GraphQL, and WiFi-connected terminal hardware via custom connection managers; mentored engineers.";
 
-"exp4_role" = "Senior Software Engineer";
-"exp4_company" = "Alaska Airlines";
-"exp4_meta" = "Remote (US) · Dec 2023 – Nov 2024";
-"exp4_desc" = "Drove a comprehensive atomic design system, raising the bar for UI consistency and reuse across the app. Owned technical direction — MVVM, Clean Architecture, Coordinators — shipped features in UIKit and SwiftUI, ran A/B tests to inform product decisions, and mentored engineers.";
+"exp4_role" = "Co-founder & Lead Software Engineer";
+"exp4_company" = "Xplain";
+"exp4_meta" = "Remote · Aug 2020 – Aug 2021";
+"exp4_desc" = "Co-founded the company with friends and led its engineering: a 100% Swift product — Vapor backend, iOS front end, shared Swift libraries between the two — shipping two production iOS apps in SwiftUI and UIKit with secure Stripe payment flows.";
 
-"exp5_role" = "Senior Software Engineer, Technical Lead";
-"exp5_company" = "Peek.com";
-"exp5_meta" = "Remote · Aug 2021 – Aug 2023";
-"exp5_desc" = "Led the modernization of a decade-old marketplace app, owning the SwiftUI migration end-to-end on a live product. Made the call to rebuild its foundation on MVVM, Clean Architecture and Coordinators. Raised the performance bar with dynamic lists handling 10,000+ items, built an automated testing culture from zero (Robot Pattern + XCUITest), and cut release cycles 30% with GitHub Actions CI/CD. Integrated GraphQL, and WiFi-connected terminal hardware via custom connection managers; mentored engineers.";
+"exp5_role" = "Full Stack Engineer (iOS Focus)";
+"exp5_company" = "Sunwise";
+"exp5_meta" = "Mérida, MX · Jun 2019 – Aug 2020";
+"exp5_desc" = "Delivered production iOS features end-to-end in Swift and Objective-C against REST APIs — full production responsibility, held alongside my final university coursework.";
 
-"exp6_role" = "Co-founder & Lead Software Engineer";
-"exp6_company" = "Xplain";
-"exp6_meta" = "Remote · Aug 2020 – Aug 2021";
-"exp6_desc" = "Co-founded the company with friends and led its engineering: a 100% Swift product — Vapor backend, iOS front end, shared Swift libraries between the two — shipping two production iOS apps in SwiftUI and UIKit with secure Stripe payment flows.";
-
-"exp7_role" = "Full Stack Engineer (iOS Focus)";
-"exp7_company" = "Sunwise";
-"exp7_meta" = "Mérida, MX · Jun 2019 – Aug 2020";
-"exp7_desc" = "Delivered production iOS features end-to-end in Swift and Objective-C against REST APIs — full production responsibility, held alongside my final university coursework.";
-
-"exp8_role" = "Full Stack Engineer";
-"exp8_company" = "DaCodes";
-"exp8_meta" = "Mérida, MX · Aug 2018 – Jun 2019";
-"exp8_desc" = "First engineering role: built full-stack applications for agency clients on AWS-backed stacks, concurrent with university coursework.";
+"exp6_role" = "Full Stack Engineer";
+"exp6_company" = "DaCodes";
+"exp6_meta" = "Mérida, MX · Aug 2018 – Jun 2019";
+"exp6_desc" = "First engineering role: built full-stack applications for agency clients on AWS-backed stacks, concurrent with university coursework.";
 
 // Selected work
 "work_heading" = "Selected work";

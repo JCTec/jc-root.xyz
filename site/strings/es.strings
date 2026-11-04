@@ -39,45 +39,35 @@
 // Experiencia
 "exp_heading" = "Experiencia";
 
-"exp1_role" = "Desarrollador iOS independiente y consultor";
-"exp1_company" = "Independiente";
-"exp1_meta" = "Remoto · Ene 2026 – Presente";
-"exp1_desc" = "Llevo apps iOS de clientes de principio a fin, de la arquitectura al release. Diseñé Living Root y soy su dueño de extremo a extremo — cliente SwiftUI, backend en Vapor y firmware MicroPython sobre ESP32 — y llevé esa responsabilidad hasta el hardware con un Diplomado en Hidroponía (Universidad Anáhuac, feb–jun 2026) y carcasas de sensores impresas en 3D. Integro IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama).";
+"exp1_role" = "Desarrollo iOS independiente y consultoría";
+"exp1_company" = "Por cuenta propia";
+"exp1_meta" = "Remoto · Dic 2024 – Presente";
+"exp1_desc" = "Trabajo independiente entre apps iOS de clientes, productos propios y estudio enfocado, de principio a fin, de la arquitectura al release. Diseñé Living Root y soy su dueño de extremo a extremo — cliente SwiftUI, backend en Vapor y firmware MicroPython sobre ESP32 — y llevé esa responsabilidad hasta el hardware con un Diplomado en Hidroponía (Universidad Anáhuac, feb–jun 2026) y carcasas de sensores impresas en 3D. Una inmersión deliberada en flujos con agentes de IA, análisis de datos y herramientas modernas me llevó a integrar IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama).";
 
-"exp2_role" = "Ingeniero iOS Senior";
-"exp2_company" = "The Home Depot";
-"exp2_meta" = "Remoto (EE. UU.) · Ago 2025 – Dic 2025";
-"exp2_desc" = "Fui dueño de la entrega completa de funcionalidades clave en la app iOS de The Home Depot, donde los clientes ubican el pasillo y la bahía exactos de cualquier artículo en tiendas de EE. UU. y Canadá. Impulsé el rendimiento y la fiabilidad a escala en interfaces de datos en tiempo real y alto volumen, y elevé la estabilidad de los releases con pruebas unitarias y de UI automatizadas.";
+"exp2_role" = "Ingeniero de software Senior";
+"exp2_company" = "Alaska Airlines";
+"exp2_meta" = "Remoto (EE. UU.) · Dic 2023 – Nov 2024";
+"exp2_desc" = "Impulsé un sistema de diseño atómico completo que elevó el estándar de consistencia y reutilización de la UI en toda la app. Asumí la dirección técnica del equipo — MVVM, Clean Architecture, Coordinators —, publiqué funcionalidades en UIKit y SwiftUI, ejecuté pruebas A/B para orientar decisiones de producto y mentoricé a otros ingenieros.";
 
-"exp3_role" = "Estudio independiente y desarrollo de sistemas";
-"exp3_company" = "Por cuenta propia";
-"exp3_meta" = "Abr 2025 – Jul 2025";
-"exp3_desc" = "Inmersión deliberada en flujos de trabajo con agentes de IA, análisis de datos y herramientas modernas (Claude, OpenAI, xAI, Ollama), para construir la capacidad de producto nativo de IA con la que trabajo hoy.";
+"exp3_role" = "Ingeniero de software Senior, Líder técnico";
+"exp3_company" = "Peek.com";
+"exp3_meta" = "Remoto · Ago 2021 – Ago 2023";
+"exp3_desc" = "Lideré la modernización de una app de marketplace con una década de antigüedad y fui dueño de la migración a SwiftUI de principio a fin, sobre un producto vivo en producción. Tomé la decisión de reconstruir sus cimientos sobre MVVM, Clean Architecture y el patrón Coordinator. Elevé el estándar de rendimiento con listas dinámicas de más de 10,000 elementos, construí una cultura de pruebas automatizadas desde cero (Robot Pattern + XCUITest) y reduje los ciclos de release un 30% con CI/CD en GitHub Actions. Integré GraphQL y terminales conectadas por WiFi mediante gestores de conexión propios; mentoricé a ingenieros.";
 
-"exp4_role" = "Ingeniero de software Senior";
-"exp4_company" = "Alaska Airlines";
-"exp4_meta" = "Remoto (EE. UU.) · Dic 2023 – Nov 2024";
-"exp4_desc" = "Impulsé un sistema de diseño atómico completo que elevó el estándar de consistencia y reutilización de la UI en toda la app. Asumí la dirección técnica del equipo — MVVM, Clean Architecture, Coordinators —, publiqué funcionalidades en UIKit y SwiftUI, ejecuté pruebas A/B para orientar decisiones de producto y mentoricé a otros ingenieros.";
+"exp4_role" = "Cofundador e Ingeniero de Software Líder";
+"exp4_company" = "Xplain";
+"exp4_meta" = "Remoto · Ago 2020 – Ago 2021";
+"exp4_desc" = "Cofundé la empresa con amigos y lideré su ingeniería: un producto 100% Swift — backend en Vapor, front end iOS y librerías Swift compartidas entre ambos — con dos apps iOS en producción en SwiftUI y UIKit y flujos de pago seguros con Stripe.";
 
-"exp5_role" = "Ingeniero de software Senior, Líder técnico";
-"exp5_company" = "Peek.com";
-"exp5_meta" = "Remoto · Ago 2021 – Ago 2023";
-"exp5_desc" = "Lideré la modernización de una app de marketplace con una década de antigüedad y fui dueño de la migración a SwiftUI de principio a fin, sobre un producto vivo en producción. Tomé la decisión de reconstruir sus cimientos sobre MVVM, Clean Architecture y el patrón Coordinator. Elevé el estándar de rendimiento con listas dinámicas de más de 10,000 elementos, construí una cultura de pruebas automatizadas desde cero (Robot Pattern + XCUITest) y reduje los ciclos de release un 30% con CI/CD en GitHub Actions. Integré GraphQL y terminales conectadas por WiFi mediante gestores de conexión propios; mentoricé a ingenieros.";
+"exp5_role" = "Ingeniero Full Stack (enfoque iOS)";
+"exp5_company" = "Sunwise";
+"exp5_meta" = "Mérida, MX · Jun 2019 – Ago 2020";
+"exp5_desc" = "Entregué funcionalidades iOS en producción de principio a fin con Swift y Objective-C contra APIs REST — responsabilidad plena de producción, en paralelo con los últimos cursos de la universidad.";
 
-"exp6_role" = "Cofundador e Ingeniero de Software Líder";
-"exp6_company" = "Xplain";
-"exp6_meta" = "Remoto · Ago 2020 – Ago 2021";
-"exp6_desc" = "Cofundé la empresa con amigos y lideré su ingeniería: un producto 100% Swift — backend en Vapor, front end iOS y librerías Swift compartidas entre ambos — con dos apps iOS en producción en SwiftUI y UIKit y flujos de pago seguros con Stripe.";
-
-"exp7_role" = "Ingeniero Full Stack (enfoque iOS)";
-"exp7_company" = "Sunwise";
-"exp7_meta" = "Mérida, MX · Jun 2019 – Ago 2020";
-"exp7_desc" = "Entregué funcionalidades iOS en producción de principio a fin con Swift y Objective-C contra APIs REST — responsabilidad plena de producción, en paralelo con los últimos cursos de la universidad.";
-
-"exp8_role" = "Ingeniero Full Stack";
-"exp8_company" = "DaCodes";
-"exp8_meta" = "Mérida, MX · Ago 2018 – Jun 2019";
-"exp8_desc" = "Primer puesto de ingeniería: construí aplicaciones full-stack para clientes de agencia sobre stacks respaldados por AWS, en paralelo con la universidad.";
+"exp6_role" = "Ingeniero Full Stack";
+"exp6_company" = "DaCodes";
+"exp6_meta" = "Mérida, MX · Ago 2018 – Jun 2019";
+"exp6_desc" = "Primer puesto de ingeniería: construí aplicaciones full-stack para clientes de agencia sobre stacks respaldados por AWS, en paralelo con la universidad.";
 
 // Trabajo seleccionado
 "work_heading" = "Trabajo seleccionado";
