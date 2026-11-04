@@ -90,7 +90,7 @@ test("The site's catalog is the only catalog", () => {
    page has no use for it. */
 const PAGE_ONLY = new Set([
     // Search and link previews
-    "meta_title", "meta_description", "og_image_alt",
+    "meta_title", "meta_description", "meta_home_location", "og_image_alt",
     // Navigation, branding and buttons
     "skip_to_content", "nav_label", "site_label", "brand_short",
     "nav_about", "nav_experience", "nav_projects", "nav_contact",
