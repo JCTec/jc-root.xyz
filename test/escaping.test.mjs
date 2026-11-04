@@ -36,6 +36,8 @@ const PRE_ESCAPED = new Set([
     "links",
     "chips(ctx.stackCore)",
     "chips(ctx.stackAlso)",
+    "heroIdentity(ctx)",    // the hero's facts, each esc()'d where they are written
+    "contentSections(ctx)", // the page's sections, each esc()'d where they are written
     "ctx.jsonLD",           // raw on purpose; structured-data.mjs escaped it
 ]);
 

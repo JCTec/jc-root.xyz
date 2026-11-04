@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /* jc-root.xyz — the CV, as HTML for a PDF renderer.
  *
- * The site and the CV are two views of one set of facts. This build emits the
- * second one: a single self-contained HTML file per locale, which WeasyPrint
- * turns into the PDF the site serves and the `cv` release carries.
+ * The CV is the page's own sections under a print stylesheet, rendered from the
+ * page's own context. This build emits a single self-contained HTML file per
+ * locale, which WeasyPrint turns into the PDF the site serves and the `cv`
+ * release carries.
  *
  * Splitting the render from the rasterization is what keeps the repository
  * dependency-free. Node produces the HTML and the test suite asserts against
@@ -12,15 +13,15 @@
  * Usage:  node build-cv.mjs [outDir]     (default: dist-cv)
  *         for f in dist-cv/*.html; do weasyprint "$f" "${f%.html}.pdf"; done
  * Env:    CONTACT_EMAIL — the address on the contact line. Unset, the CV
- *         renders without one rather than with a placeholder; CI supplies it
- *         and then checks the rendered PDF actually contains it.
+ *         renders without one rather than with a placeholder, which is the
+ *         published default.
  */
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { loadConfig } from "./lib/content.mjs";
-import { buildCVContext, cvOutputName } from "./lib/cv-content.mjs";
+import { buildPageContext, loadConfig } from "./lib/content.mjs";
+import { cvOutputName } from "./lib/cv-content.mjs";
 import { cv } from "./lib/cv-template.mjs";
 import { loadCatalog, LOCALES } from "./lib/strings.mjs";
 
@@ -39,9 +40,9 @@ export function buildCV(outDir, { env = process.env } = {}) {
     const written = [];
 
     for (const locale of LOCALES) {
-        const ctx = buildCVContext({ locale, config, table: catalog[locale] });
+        const ctx = buildPageContext({ locale, config, table: catalog[locale] });
         const name = cvOutputName(locale, "html", config.cvPath);
-        writeFileSync(join(outDir, name), cv(ctx), "utf8");
+        writeFileSync(join(outDir, name), cv(ctx, config), "utf8");
         written.push(name);
     }
 

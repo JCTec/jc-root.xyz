@@ -112,29 +112,31 @@ and `SITE_BASE_URL` is how you point a build somewhere else.
 
 ## The CV
 
-The CV PDFs are a print layout of `jc-root.xyz/`, not a second document. There
-is one CV per site locale, and each page's download button links to its own —
-the language a visitor reads the site in is the language of the PDF.
+The CV PDFs are the page, printed: the sections `jc-root.xyz/` renders, under a
+print stylesheet. There is one CV per site locale, and each page's download
+button links to its own — the language a visitor reads the site in is the
+language of the PDF.
 
-Everything in the PDF comes from what the page renders:
+**Develop the site and the PDF follows.** Add a string, a field or a whole
+section to `contentSections` in `lib/templates.mjs` and it is in the PDF on the
+next push. Do not touch the CV to do it. Only three things are CV-specific:
 
 ```
-site/strings/<locale>.strings   every word: header, About, each role and its
-                                description, Education, Diplomas &
-                                Certifications, Languages, Skills
-lib/projects.mjs                the "Selected work" cards, their order and
-                                their links — the CV prints the same list
-lib/education.mjs               degrees, credentials and languages, counted
-                                from the catalog for the page and the CV alike
+lib/cv-template.mjs   the print stylesheet, and the wrapper around the page's
+                      sections. It lays out no content; it styles by element,
+                      so a new section prints properly without a rule of its
+                      own. Add a rule only to refine how something looks.
+lib/cv-content.mjs    how a URL reads on paper, the contact line, file names
+contentSections(ctx, { linkLabel })   the one difference from the page: a card's
+                      "Visit X →" button is printed as its bare, clickable URL
 ```
 
-There is no CV-only catalog and no list of which projects the CV carries, so
-a string, a date or a card changed on the site is in the PDF on the next push
-with nothing else to edit. Sections run in the site's order; links the site
-shows as buttons are printed as bare, clickable URLs. `test/cv.test.mjs` holds
-the render to that: every catalog value the page shows must appear in each
-locale's CV, every card must appear in site order with every link, and a
-`cv.*.strings` file reappearing in `site/strings/` fails the suite.
+`test/cv.test.mjs` holds the render to that. Each locale's CV must carry the
+same sections as its page, in the same order, as the same markup apart from
+that link wording; the contact form is the only section left out. Structural
+markup in `cv-template.mjs`, a section added to the page outside
+`contentSections`, or a `cv.*.strings` file reappearing in `site/strings/` all
+fail the suite.
 
 Rendering is two steps, and only the second one is not Node:
 
