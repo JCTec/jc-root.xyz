@@ -1,10 +1,11 @@
-/* The CV build: a print layout of the site, and nothing but the site.
+/* The CV build: the page's own sections under a print stylesheet.
  *
- * Every word in the PDF comes from the catalog the page renders, and every
- * project from the same card list in the same order. The failure these tests
- * exist to catch is mundane and expensive: a date or a project updated on
- * jc-root.xyz, a PDF still saying the old thing, and nobody noticing until
- * someone reads both.
+ * Two failures these tests exist to catch. One is mundane and expensive: a date
+ * or a project updated on jc-root.xyz, a PDF still saying the old thing, and
+ * nobody noticing until someone reads both. The other is how that starts: a
+ * second, hand-written layout of the CV that every site change has to be
+ * repeated in. So nothing here lists what the page contains; it compares the
+ * two renders.
  */
 
 import assert from "node:assert/strict";
@@ -15,9 +16,8 @@ import { after, before, test } from "node:test";
 
 import { buildCV, STRINGS_DIR } from "../build-cv.mjs";
 import { build } from "../build.mjs";
-import { loadConfig } from "../lib/content.mjs";
+import { buildPageContext, loadConfig } from "../lib/content.mjs";
 import {
-    buildCVContext,
     contactEntries,
     cvOutputName,
     cvPathFor,
@@ -28,6 +28,7 @@ import { cv } from "../lib/cv-template.mjs";
 import { esc } from "../lib/html.mjs";
 import { projectCards, projectLinks } from "../lib/projects.mjs";
 import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
+import { heroIdentity } from "../lib/templates.mjs";
 
 const catalog = loadCatalog(STRINGS_DIR);
 const root = join(import.meta.dirname, "..");
@@ -82,72 +83,68 @@ test("The site's catalog is the only catalog", () => {
     assert.deepEqual(stray, [], `CV-only catalogs in site/strings: ${stray}`);
 });
 
-/* The catalog keys that are the page's own furniture rather than facts about
-   the person: what search engines and link previews read, how the page is
-   navigated, how a link is worded where the CV prints the bare URL instead,
-   and the contact form. Everything else in the catalog is content, and
-   content is on both render targets. A key belongs here only if a printed
-   page has no use for it. */
-const PAGE_ONLY = new Set([
-    // Search and link previews
-    "meta_title", "meta_description", "meta_home_location", "og_image_alt",
-    // Navigation, branding and buttons
-    "skip_to_content", "nav_label", "site_label", "brand_short",
-    "nav_about", "nav_experience", "nav_projects", "nav_contact",
-    "lang_en", "lang_es", "lang_fr",
-    "hero_cta_projects", "hero_cta_github", "hero_cta_cv",
-    // Link wording; the CV prints each URL bare
-    "link_appstore_suffix", "link_github_suffix", "link_site_prefix", "link_site_suffix",
-    // The contact form and footer
-    "cta_heading", "cta_all_links",
-    "form_name", "form_email", "form_message", "form_send", "form_subject", "form_sent",
-    "footer_name", "footer_github", "footer_linkedin", "footer_appstore",
-]);
+/** Each `<section>` a render holds, by id, in order. */
+const sectionsOf = (markup) => [...markup.matchAll(/<section[^>]* id="([^"]+)">[\s\S]*?<\/section>/g)]
+    .map((match) => ({ id: match[1], markup: match[0] }));
 
-/** A catalog value as it reaches the page: `|`-lists render one item at a time. */
-const pieces = (key, value) => (key.endsWith("_items") ? value.split("|") : [value]);
+/** A section with its card links' wording removed: the page's "Visit X →" and
+    the CV's bare URL are the one difference the two renders are allowed. */
+const withoutLinkWording = (markup) =>
+    markup.replace(/(<a class="card-link"[^>]*>)[^<]*<\/a>/g, "$1</a>");
 
-function occurrences(haystack, needle) {
-    let count = 0;
-    for (let at = haystack.indexOf(needle); at !== -1; at = haystack.indexOf(needle, at + needle.length)) {
-        count += 1;
-    }
-    return count;
-}
-
-/* The CV mirrors the site: every content string a locale's page shows, its CV
-   shows too. Derived from the catalog, not listed, so a section added to the
-   site without the CV fails here in every locale.
-
-   Presence alone is fooled by coincidence: the hero's "iOS · iPadOS · macOS"
-   once passed only because a project's tags read the same. So each piece must
-   appear at least as often as the catalog's content says it should, counting
-   every content value it occurs inside, on the page and on the CV alike. */
-test("Each locale's CV mirrors every content string that locale's page shows", () => {
+/* The contact form is the page's one section with nothing to print. Everything
+   else on the page is on the CV, in the same order, as the same markup. This
+   is what makes the PDF automatic: no list of sections or fields exists to
+   update, and a section added to the page outside contentSections fails here. */
+test("The CV is the page's sections, not a second layout of them", () => {
     for (const [locale, out] of Object.entries(renders)) {
-        const t = catalog[locale];
         assert.ok(out.includes(`<html lang="${locale}">`));
 
-        const unknown = [...PAGE_ONLY].filter((key) => !(key in t));
-        assert.deepEqual(unknown, [], `PAGE_ONLY names keys ${locale}.strings lacks`);
-
-        const content = Object.entries(t)
-            .filter(([key]) => !PAGE_ONLY.has(key))
-            .flatMap(([key, value]) => pieces(key, value).map((piece) => ({ key, piece: esc(piece) })));
-        assert.ok(content.length > 100, `only ${content.length} content strings in ${locale}`);
-
-        for (const { key, piece } of content) {
-            const expected = content.reduce((sum, other) => sum + occurrences(other.piece, piece), 0);
-            assert.ok(occurrences(pages[locale], piece) >= expected,
-                `${locale} page omits ${key}: ${piece}`);
-            assert.ok(occurrences(out, piece) >= expected,
-                `${locale} CV omits ${key}: ${piece}`);
+        const onPage = sectionsOf(pages[locale]).filter((section) => section.id !== "contact");
+        const onCV = sectionsOf(out);
+        assert.ok(onPage.length >= 7, `${locale}: only ${onPage.length} sections found on the page`);
+        assert.deepEqual(onCV.map((section) => section.id), onPage.map((section) => section.id),
+            `${locale}: the CV's sections are not the page's`);
+        for (const [i, section] of onPage.entries()) {
+            assert.equal(withoutLinkWording(onCV[i].markup), withoutLinkWording(section.markup),
+                `${locale}: the #${section.id} section differs from the page's`);
         }
 
-        // And the copy is that locale's, not English's.
-        if (locale !== "en") {
-            assert.ok(!out.includes(esc(catalog.en.about_body)), `English About on the ${locale} CV`);
-        }
+        // The hero's facts too: the same markup, in both.
+        const identity = heroIdentity(buildPageContext({
+            locale, config: loadConfig({ publicDirectory: null, env: {} }), table: catalog[locale],
+        }));
+        assert.ok(pages[locale].includes(identity), `${locale}: the page lacks the hero's facts`);
+        assert.ok(out.includes(identity), `${locale}: the CV lacks the hero's facts`);
+    }
+});
+
+/* The guard on the file itself. Layout belongs in templates.mjs; the moment this
+   file gains a section, a heading or an entry, the site has a second layout to
+   keep in step, and that is the thing this design removes. */
+test("The CV template lays out nothing by hand", () => {
+    const source = readFileSync(join(root, "lib/cv-template.mjs"), "utf8");
+    const markup = source.slice(source.indexOf("export function cv("));
+    const handWritten = [...markup.matchAll(/<(section|article|main|nav|footer|h[1-6]|ul|ol|dl|table)\b/g)]
+        .map((match) => match[1]);
+    assert.deepEqual(handWritten, [], `structural markup in cv-template.mjs: ${handWritten}`);
+
+    // Only the document's <title> may read the catalog directly.
+    const read = [...markup.matchAll(/\bctx\.t\.([A-Za-z0-9_]+)/g)].map((match) => match[1]).sort();
+    assert.deepEqual(read, ["hero_name", "hero_role"], `cv-template.mjs reads the catalog: ${read}`);
+});
+
+/* Worked through end to end: a catalog edit and nothing else reaches the CV. */
+test("A row added to the catalog alone reaches the CV", () => {
+    const config = loadConfig({ publicDirectory: null, env: {} });
+    const table = {
+        ...catalog.en,
+        exp99_role: "ROLE-ADDED", exp99_company: "COMPANY-ADDED", exp99_meta: "META-ADDED", exp99_desc: "DESC-ADDED",
+        language99_name: "LANGUAGE-ADDED", language99_level: "LEVEL-ADDED",
+    };
+    const out = cv(buildPageContext({ locale: "en", config, table }), config);
+    for (const copy of Object.values(table).filter((value) => value.endsWith("-ADDED"))) {
+        assert.ok(out.includes(copy), `${copy} did not reach the CV`);
     }
 });
 
@@ -161,11 +158,11 @@ test("The CV lists every site project, in the site's order, with every link", ()
 
         let cursor = 0;
         for (const card of cards) {
-            const at = out.indexOf(`<p class="cv-entry-title">${esc(card.name)}</p>`, cursor);
+            const at = out.indexOf(`<h3 class="card-title">${esc(card.name)}</h3>`, cursor);
             assert.ok(at > cursor, `${locale} CV lacks ${card.name}, or shows it out of site order`);
             cursor = at;
             for (const { url } of projectLinks(card)) {
-                assert.ok(out.includes(`<a href="${esc(url)}">${esc(displayURL(url))}</a>`),
+                assert.ok(out.includes(`href="${esc(url)}" rel="noopener">${esc(displayURL(url))}</a>`),
                     `${locale} CV lacks the ${card.name} link ${url}`);
             }
         }
@@ -187,16 +184,8 @@ test("Every repository of a multi-repo project is linked", () => {
 const PRE_ESCAPED = new Set([
     "STYLE",                    // a constant stylesheet, no catalog values in it
     "contact",
-    "skills",
-    "experience",
-    "projects",
-    "items",
-    "meta",
-    "paragraphs(ctx.about)",
-    "degrees",
-    "details",
-    "credentials",
-    "languageLine(ctx.languages)",
+    "sections",                 // contentSections; held to `esc` by escaping.test.mjs
+    "heroIdentity(ctx)",        // likewise
 ]);
 
 test("Every interpolation in the CV template is escaped", () => {
@@ -214,7 +203,7 @@ test("Hostile copy is escaped in the rendered CV", () => {
     const table = {
         ...catalog.en, hero_name: poison, exp1_company: poison, about_body: poison, p8_tags: poison,
     };
-    const out = cv(buildCVContext({ locale: "en", config, table }));
+    const out = cv(buildPageContext({ locale: "en", config, table }), config);
 
     assert.ok(out.includes(esc(poison)), "escaped copy missing from the CV");
     assert.ok(!out.includes(poison), "raw hostile copy reached the CV markup");
@@ -249,7 +238,7 @@ test("Contact links are shown bare and linked in full", () => {
 
 test("The skills that link out on the site link out in the CV too", () => {
     for (const [locale, out] of Object.entries(renders)) {
-        assert.match(out, /<a href="https:\/\/vapor\.codes">Vapor 4 [^<]*<\/a>/, `${locale}: Vapor skill unlinked`);
+        assert.match(out, /<a class="chip" href="https:\/\/vapor\.codes"[^>]*>Vapor 4 [^<]*<\/a>/, `${locale}: Vapor skill unlinked`);
     }
 });
 
