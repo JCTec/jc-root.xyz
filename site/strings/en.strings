@@ -50,12 +50,12 @@
 "exp2_meta" = "Remote (US) · Dec 2023 – Nov 2024";
 "exp2_desc" = "Drove a comprehensive atomic design system, raising the bar for UI consistency and reuse across the app. Owned technical direction — MVVM, Clean Architecture, Coordinators — shipped features in UIKit and SwiftUI, ran A/B tests to inform product decisions, and mentored engineers.";
 
-"exp3_role" = "Senior Software Engineer, Technical Lead";
+"exp3_role" = "Senior iOS Engineer";
 "exp3_company" = "Peek.com";
 "exp3_meta" = "Remote · Aug 2021 – Aug 2023";
 "exp3_desc" = "Led the modernization of a decade-old marketplace app, owning the SwiftUI migration end-to-end on a live product. Made the call to rebuild its foundation on MVVM, Clean Architecture and Coordinators. Raised the performance bar with dynamic lists handling 10,000+ items, built an automated testing culture from zero (Robot Pattern + XCUITest), and cut release cycles 30% with GitHub Actions CI/CD. Integrated GraphQL, and WiFi-connected terminal hardware via custom connection managers; mentored engineers.";
 
-"exp4_role" = "Co-founder & Lead Software Engineer";
+"exp4_role" = "Co-founder & Software Engineer";
 "exp4_company" = "Xplain";
 "exp4_meta" = "Remote · Aug 2020 – Aug 2021";
 "exp4_desc" = "Co-founded the company with friends and led its engineering: a 100% Swift product — Vapor backend, iOS front end, shared Swift libraries between the two — shipping two production iOS apps in SwiftUI and UIKit with secure Stripe payment flows.";
