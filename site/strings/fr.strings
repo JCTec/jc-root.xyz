@@ -43,7 +43,7 @@
 "exp1_role" = "Développement iOS indépendant et conseil";
 "exp1_company" = "En autonomie";
 "exp1_meta" = "À distance · Déc. 2024 – Aujourd'hui";
-"exp1_desc" = "Travail indépendant entre apps iOS de clients, produits personnels et étude ciblée, de bout en bout, de l'architecture à la mise en production. J'ai conçu Living Root et j'en suis responsable de bout en bout — client SwiftUI, backend Vapor et firmware MicroPython sur ESP32 — et j'ai poussé cette responsabilité jusqu'au matériel avec un diplôme en hydroponie (Université Anáhuac, fév.–juin 2026) et des boîtiers de capteurs imprimés en 3D. Une immersion délibérée dans les workflows d'agents IA, l'analyse de données et l'outillage moderne m'a amené à intégrer l'IA et des workflows d'agents dans des apps et des outils en production (Claude, OpenAI, xAI, Ollama).";
+"exp1_desc" = "Travail indépendant entre apps iOS de clients, produits personnels et étude ciblée, de bout en bout, de l'architecture à la mise en production : apps natives SwiftUI pour iPhone, iPad et Mac, et Swift open source. Une immersion délibérée dans les workflows d'agents IA, l'analyse de données et l'outillage moderne m'a amené à intégrer l'IA et des workflows d'agents dans des apps et des outils en production (Claude, OpenAI, xAI, Ollama). Voir Travaux sélectionnés pour les projets.";
 
 "exp2_role" = "Ingénieur logiciel Senior";
 "exp2_company" = "Alaska Airlines";
@@ -91,7 +91,7 @@
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
-"p7_desc" = "App de prévisions de vent et de stations en direct pour tous les sports de vent, en développement pour iPhone, iPad et Mac depuis une seule cible SwiftUI native. Elle place plusieurs modèles de prévision côte à côte avec les relevés des stations en direct, et donne à chaque spot enregistré un verdict GO, MARGINAL ou NO à partir de règles fixes et lisibles qui tiennent compte des rafales, des orages et de l'angle du vent par rapport au rivage de ce spot, la règle décisive étant affichée à côté du verdict. La carte anime le vent en particules sur MapKit, avec des couches d'éclairs, de radar et d'orages. Un package Swift maison récupère tout sur l'appareil depuis Open-Meteo et des agences publiques, avec fusion des requêtes, limitation de débit, nouvelles tentatives et cache disque pour que l'app s'ouvre hors ligne. Les alertes se testent elles-mêmes sur les 30 derniers jours.";
+"p7_desc" = "App de prévisions de vent et de stations en direct pour tous les sports de vent, sur iPhone, iPad et Mac depuis une seule cible SwiftUI native. Elle place plusieurs modèles de prévision côte à côte avec les relevés des stations en direct, et donne à chaque spot enregistré un verdict GO, MARGINAL ou NO à partir de règles fixes et lisibles qui tiennent compte des rafales, des orages et de l'angle du vent par rapport au rivage de ce spot, la règle décisive étant affichée à côté du verdict. La carte anime le vent en particules sur MapKit, avec des couches d'éclairs, de radar et d'orages. Un package Swift maison récupère tout sur l'appareil depuis Open-Meteo et des agences publiques, avec fusion des requêtes, limitation de débit, nouvelles tentatives et cache disque pour que l'app s'ouvre hors ligne. Les alertes se testent elles-mêmes sur les 30 derniers jours.";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";

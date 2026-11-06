@@ -42,7 +42,7 @@
 "exp1_role" = "Desarrollo iOS independiente y consultoría";
 "exp1_company" = "Por cuenta propia";
 "exp1_meta" = "Remoto · Dic 2024 – Presente";
-"exp1_desc" = "Trabajo independiente entre apps iOS de clientes, productos propios y estudio enfocado, de principio a fin, de la arquitectura al release. Diseñé Living Root y soy su dueño de extremo a extremo — cliente SwiftUI, backend en Vapor y firmware MicroPython sobre ESP32 — y llevé esa responsabilidad hasta el hardware con un Diplomado en Hidroponía (Universidad Anáhuac, feb–jun 2026) y carcasas de sensores impresas en 3D. Una inmersión deliberada en flujos con agentes de IA, análisis de datos y herramientas modernas me llevó a integrar IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama).";
+"exp1_desc" = "Trabajo independiente entre apps iOS de clientes, productos propios y estudio enfocado, de principio a fin, de la arquitectura al release: apps nativas en SwiftUI para iPhone, iPad y Mac, y Swift de código abierto. Una inmersión deliberada en flujos con agentes de IA, análisis de datos y herramientas modernas me llevó a integrar IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama). Consulta Trabajo seleccionado para ver los proyectos.";
 
 "exp2_role" = "Ingeniero de software Senior";
 "exp2_company" = "Alaska Airlines";
@@ -90,7 +90,7 @@
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
-"p7_desc" = "App de pronóstico de viento y estaciones en vivo para todos los deportes de viento, en desarrollo para iPhone, iPad y Mac desde un único target nativo en SwiftUI. Pone varios modelos de pronóstico lado a lado con lecturas de estaciones en vivo, y da a cada spot guardado un veredicto GO, MARGINAL o NO a partir de reglas fijas y legibles que consideran rachas, tormentas y el ángulo del viento respecto a la costa de ese spot, con la regla decisiva junto al veredicto. El mapa anima el viento como partículas sobre MapKit, con capas de rayos, radar y tormentas. Un paquete Swift propio obtiene todo en el dispositivo desde Open-Meteo y agencias públicas, con fusión de peticiones, limitación de tasa, reintentos y caché en disco para que la app abra sin conexión. Las alertas se ponen a prueba contra los últimos 30 días.";
+"p7_desc" = "App de pronóstico de viento y estaciones en vivo para todos los deportes de viento, en iPhone, iPad y Mac desde un único target nativo en SwiftUI. Pone varios modelos de pronóstico lado a lado con lecturas de estaciones en vivo, y da a cada spot guardado un veredicto GO, MARGINAL o NO a partir de reglas fijas y legibles que consideran rachas, tormentas y el ángulo del viento respecto a la costa de ese spot, con la regla decisiva junto al veredicto. El mapa anima el viento como partículas sobre MapKit, con capas de rayos, radar y tormentas. Un paquete Swift propio obtiene todo en el dispositivo desde Open-Meteo y agencias públicas, con fusión de peticiones, limitación de tasa, reintentos y caché en disco para que la app abra sin conexión. Las alertas se ponen a prueba contra los últimos 30 días.";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";

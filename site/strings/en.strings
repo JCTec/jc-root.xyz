@@ -43,7 +43,7 @@
 "exp1_role" = "Independent iOS Development & Consulting";
 "exp1_company" = "Self-directed";
 "exp1_meta" = "Remote · Dec 2024 – Present";
-"exp1_desc" = "Independent work across client iOS apps, my own products and focused study, owned end-to-end from architecture through release. Architected Living Root end-to-end — SwiftUI client, Vapor backend, MicroPython firmware on ESP32 — and carried that ownership into hardware with a Hydroponics Diploma (Anáhuac University, Feb–Jun 2026) and 3D-printed sensor enclosures. A deliberate immersion in AI agentic workflows, data analysis and modern tooling led to shipping AI and agentic workflows into production apps and tooling (Claude, OpenAI, xAI, Ollama).";
+"exp1_desc" = "Independent work across client iOS apps, my own products and focused study, owned end-to-end from architecture through release: native SwiftUI apps for iPhone, iPad and Mac, and open-source Swift. A deliberate immersion in AI agentic workflows, data analysis and modern tooling led to shipping AI and agentic workflows into production apps and tooling (Claude, OpenAI, xAI, Ollama). See Selected work for the projects.";
 
 "exp2_role" = "Senior Software Engineer";
 "exp2_company" = "Alaska Airlines";
@@ -91,7 +91,7 @@
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
-"p7_desc" = "Wind forecast and live-station app for every wind sport, in development for iPhone, iPad and Mac from one native SwiftUI target. It sets several forecast models side by side with live station readings, and gives each saved spot a GO, MARGINAL or NO verdict from fixed, readable rules covering gusts, storms and the wind's angle to that spot's shoreline, with the deciding rule shown next to the verdict. The map animates wind as particles over MapKit, with lightning, radar and storm layers. An in-house Swift package fetches everything on the device from Open-Meteo and public agencies, with request merging, rate limiting, retries and a disk cache so the app still opens offline. Alerts backtest themselves against the last 30 days.";
+"p7_desc" = "Wind forecast and live-station app for every wind sport, on iPhone, iPad and Mac from one native SwiftUI target. It sets several forecast models side by side with live station readings, and gives each saved spot a GO, MARGINAL or NO verdict from fixed, readable rules covering gusts, storms and the wind's angle to that spot's shoreline, with the deciding rule shown next to the verdict. The map animates wind as particles over MapKit, with lightning, radar and storm layers. An in-house Swift package fetches everything on the device from Open-Meteo and public agencies, with request merging, rate limiting, retries and a disk cache so the app still opens offline. Alerts backtest themselves against the last 30 days.";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
