@@ -121,22 +121,32 @@
 
 // Diplômes et certifications
 "cred_heading" = "Diplômes et certifications";
-"cred1_type" = "Diplôme";
-"cred1_title" = "Intelligence artificielle";
-"cred1_issuer" = "Universidad Anáhuac Mayab";
-"cred1_dates" = "septembre 2026 – aujourd'hui";
-"cred2_type" = "Diplôme";
-"cred2_title" = "Hydroponie";
-"cred2_issuer" = "Universidad Anáhuac";
-"cred2_dates" = "février – juin 2026";
+"cred1_type" = "Conférence";
+"cred1_title" = "Do iOS 2026";
+"cred1_issuer" = "NEMO Science Museum, Amsterdam";
+"cred1_dates" = "11 – 12 novembre 2026";
+"cred1_note" = "Présent aux deux journées de conférences. Au programme : des apps agentiques construites sur les Foundation Models d'Apple ; le fonctionnement interne de SwiftUI comme graphe de dépendances et des systèmes de design SwiftUI à grande échelle ; les App Intents avancés ; le profilage Instruments assisté par des agents ; les interfaces adaptatives et visionOS en production ; un test d'intrusion en direct d'une app iOS ; la préparation des apps de dispositifs médicaux à la FDA ; et Rust pour les développeurs Swift.";
+"cred2_type" = "Atelier";
+"cred2_title" = "Intro to Foundation Models";
+"cred2_issuer" = "Daniel Steinberg · Do iOS 2026, Amsterdam";
+"cred2_dates" = "10 novembre 2026";
+"cred2_note" = "Atelier pratique pour connecter des apps à Apple Intelligence avec le framework Foundation Models. Au programme : sessions, prompts, instructions et appels d'outils sur le modèle embarqué, puis les nouveautés de l'année : Private Cloud Compute, images, profils dynamiques et le framework d'évaluations.";
 "cred3_type" = "Diplôme";
-"cred3_title" = "Entrepreneuriat";
-"cred3_issuer" = "Management Center Innsbruck";
-"cred3_dates" = "2019 – 2020";
-"cred4_type" = "Certification";
-"cred4_title" = "Advanced SwiftUI & Declarative UI Patterns";
-"cred4_issuer" = "tryswift.co";
-"cred4_dates" = "septembre 2020";
+"cred3_title" = "Intelligence artificielle";
+"cred3_issuer" = "Universidad Anáhuac Mayab";
+"cred3_dates" = "septembre 2026 – aujourd'hui";
+"cred4_type" = "Diplôme";
+"cred4_title" = "Hydroponie";
+"cred4_issuer" = "Universidad Anáhuac";
+"cred4_dates" = "février – juin 2026";
+"cred5_type" = "Diplôme";
+"cred5_title" = "Entrepreneuriat";
+"cred5_issuer" = "Management Center Innsbruck";
+"cred5_dates" = "2019 – 2020";
+"cred6_type" = "Certification";
+"cred6_title" = "Advanced SwiftUI & Declarative UI Patterns";
+"cred6_issuer" = "tryswift.co";
+"cred6_dates" = "septembre 2020";
 
 // Langues
 "langs_heading" = "Langues";
@@ -152,7 +162,7 @@
 "stack_core_label" = "Principales";
 "stack_also_label" = "Aussi";
 "stack_core_items" = "Swift|SwiftUI (dont 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift côté serveur)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Systèmes de design atomique|Optimisation des performances|Développement IA / agents (Claude, OpenAI, xAI, Ollama)|IoT / domotique|SwiftData|Accessibilité (a11y)|StoreKit 2|JavaScript|HTML et CSS|Leaf (rendu côté serveur)|Fluent + PostgreSQL|Sécurité web (sessions, CSRF, jetons)|Internationalisation (i18n)|SEO et données structurées";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Systèmes de design atomique|Optimisation des performances|Profilage avec Xcode Instruments|Développement IA / agents (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM embarqué, appels d'outils)|IoT / domotique|SwiftData|App Intents|Accessibilité (a11y)|StoreKit 2|JavaScript|HTML et CSS|Leaf (rendu côté serveur)|Fluent + PostgreSQL|Sécurité web (sessions, CSRF, jetons)|Sécurité et durcissement des apps iOS|Internationalisation (i18n)|SEO et données structurées";
 
 // Contact
 "cta_heading" = "Vous construisez quelque chose pour les plateformes Apple ?";
