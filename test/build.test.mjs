@@ -135,6 +135,12 @@ test("Education, credentials and languages are three sections in every locale", 
             assert.ok(cards.includes(`<h3 class="cred-title">${esc(credential.title)}</h3>`), `${locale}: ${credential.title}`);
         }
         assert.equal((cards.match(/<article class="cred-card">/g) ?? []).length, credentials(t).length);
+        // A credential's note prints when it has one, and only then.
+        const noted = credentials(t).filter((credential) => credential.note);
+        for (const credential of noted) {
+            assert.ok(cards.includes(`<p class="cred-note">${esc(credential.note)}</p>`), `${locale}: ${credential.title} note`);
+        }
+        assert.equal((cards.match(/class="cred-note"/g) ?? []).length, noted.length);
 
         const tiles = section("languages");
         for (const language of languages(t)) {
