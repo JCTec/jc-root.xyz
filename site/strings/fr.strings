@@ -4,7 +4,7 @@
 
 // Méta
 "meta_title" = "Juan Carlos Estévez · Ingénieur iOS Senior disponible | Développeur iOS freelance et à temps plein (Swift, SwiftUI)";
-"meta_description" = "6+ ans d'expérience professionnelle iOS, sur l'App Store depuis 2018. Double nationalité espagnole et mexicaine, titulaire d'un visa américain.";
+"meta_description" = "6+ ans d'expérience professionnelle iOS, sur l'App Store depuis 2018. Double nationalité mexicaine et espagnole, titulaire d'un visa américain.";
 "og_image_alt" = "Juan Carlos Estévez Rodríguez — Ingénieur iOS Senior, disponible";
 
 // Accessibilité
@@ -17,7 +17,7 @@
 "hero_name" = "Juan Carlos Estévez Rodríguez";
 "hero_role" = "Ingénieur iOS Senior";
 "hero_platforms" = "iOS · iPadOS · macOS";
-"hero_status" = "Double nationalité espagnole et mexicaine · Visa américain";
+"hero_status" = "Double nationalité mexicaine et espagnole · Visa américain";
 "hero_cta_projects" = "Voir mes projets →";
 "hero_cta_github" = "GitHub";
 "hero_cta_cv" = "Télécharger le CV";
@@ -34,7 +34,7 @@
 // À propos
 "about_heading" = "À propos";
 "about_body" = "Ingénieur iOS Senior avec plus de 6 ans d'expérience professionnelle, plus 2 années antérieures à livrer du code en production pendant mes études d'ingénieur, achevées en juillet 2021. J'assume l'entière responsabilité des fonctionnalités et de l'architecture, du premier échange jusqu'à la mise en production : je modernise des bases de code héritées, je construis des systèmes de design atomique et je considère les tests comme une part du métier, pas comme une réflexion après coup. Sur l'App Store depuis 2018 avec trois apps publiées sur iPhone, iPad et Mac. Dernièrement, j'ai étendu cette responsabilité au-delà de l'app : workflows d'agents IA, IoT full-stack et intégration matériel-logiciel. Cette responsabilité s'étend aussi au web : je conçois et j'exploite After Dark Stories, un produit Vapor et Leaf avec ses propres comptes, sa facturation et sa modération, et j'écris le JavaScript et le CSS qui l'habillent. Passionné par les technologies de la santé et du bien-être. Quand je ne livre pas, je fais du yoga, de l'escalade ou du kitesurf.";
-"about_availability" = "Disponible dès maintenant, en freelance ou à temps plein. Double nationalité espagnole et mexicaine, titulaire d'un visa américain.";
+"about_availability" = "Disponible dès maintenant, en freelance ou à temps plein. Double nationalité mexicaine et espagnole, titulaire d'un visa américain.";
 
 // Expérience
 "exp_heading" = "Expérience";
