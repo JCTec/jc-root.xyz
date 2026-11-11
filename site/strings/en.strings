@@ -3,9 +3,8 @@
 // (enforced by AppTests). Code and templates reference codes only.
 
 // Meta
-"meta_title" = "Juan Carlos Estévez · Senior iOS Engineer for Hire | Remote & Freelance iOS Developer (Swift, SwiftUI)";
-"meta_description" = "6+ years of professional iOS experience, shipping on the App Store since 2018. Amsterdam, Netherlands; dual Spanish–Mexican citizen with EU work authorization.";
-"meta_home_location" = "Amsterdam, Netherlands";
+"meta_title" = "Juan Carlos Estévez · Senior iOS Engineer for Hire | Freelance & Full-Time iOS Developer (Swift, SwiftUI)";
+"meta_description" = "6+ years of professional iOS experience, shipping on the App Store since 2018. Dual Spanish–Mexican citizen with a US visa.";
 "og_image_alt" = "Juan Carlos Estévez Rodríguez — Senior iOS Engineer, available for hire";
 
 // Accessibility
@@ -18,7 +17,7 @@
 "hero_name" = "Juan Carlos Estévez Rodríguez";
 "hero_role" = "Senior iOS Engineer";
 "hero_platforms" = "iOS · iPadOS · macOS";
-"hero_status" = "Dual Spanish–Mexican citizen · EU work authorization · Remote or relocation";
+"hero_status" = "Dual Spanish–Mexican citizen · US visa";
 "hero_cta_projects" = "View my projects →";
 "hero_cta_github" = "GitHub";
 "hero_cta_cv" = "Download CV";
@@ -35,39 +34,39 @@
 // About
 "about_heading" = "About";
 "about_body" = "Senior iOS Engineer with 6+ years of professional experience, plus 2 earlier years shipping production code while studying for my engineering degree, completed in July 2021. I take full ownership of features and architecture, from the first call to the release: I modernize legacy codebases, build atomic design systems, and treat testing as part of the craft, not an afterthought. On the App Store since 2018 with three shipped apps across iPhone, iPad and Mac. Recently I have carried that ownership past the app layer, into AI agentic workflows, full-stack IoT and hardware-software integration. That ownership runs to the web as well: I build and operate After Dark Stories, a Vapor and Leaf product with its own accounts, billing and moderation, and I write the JavaScript and CSS that front it. Passionate about health and wellness technology. When I'm not shipping, I'm doing yoga, climbing, or kitesurfing.";
-"about_availability" = "Available now, freelance or full-time: remote across the EU and the Americas, or relocation. Dual Spanish–Mexican citizen, authorized to work in the EU.";
+"about_availability" = "Available now, freelance or full-time. Dual Spanish–Mexican citizen with a US visa.";
 
 // Experience
 "exp_heading" = "Experience";
 
 "exp1_role" = "Independent iOS Development & Consulting";
 "exp1_company" = "Self-directed";
-"exp1_meta" = "Remote · Dec 2024 – Present";
+"exp1_meta" = "Dec 2024 – Present";
 "exp1_desc" = "Independent work across client iOS apps, my own products and focused study, owned end-to-end from architecture through release: native SwiftUI apps for iPhone, iPad and Mac, and open-source Swift. A deliberate immersion in AI agentic workflows, data analysis and modern tooling led to shipping AI and agentic workflows into production apps and tooling (Claude, OpenAI, xAI, Ollama). See Selected work for the projects.";
 
 "exp2_role" = "Senior Software Engineer";
 "exp2_company" = "Alaska Airlines";
-"exp2_meta" = "Remote (US) · Dec 2023 – Nov 2024";
+"exp2_meta" = "Dec 2023 – Nov 2024";
 "exp2_desc" = "Drove a comprehensive atomic design system, raising the bar for UI consistency and reuse across the app. Owned technical direction — MVVM, Clean Architecture, Coordinators — shipped features in UIKit and SwiftUI, ran A/B tests to inform product decisions, and mentored engineers.";
 
 "exp3_role" = "Senior iOS Engineer";
 "exp3_company" = "Peek.com";
-"exp3_meta" = "Remote · Aug 2021 – Aug 2023";
+"exp3_meta" = "Aug 2021 – Aug 2023";
 "exp3_desc" = "Led the modernization of a decade-old marketplace app, owning the SwiftUI migration end-to-end on a live product. Made the call to rebuild its foundation on MVVM, Clean Architecture and Coordinators. Raised the performance bar with dynamic lists handling 10,000+ items, built an automated testing culture from zero (Robot Pattern + XCUITest), and cut release cycles 30% with GitHub Actions CI/CD. Integrated GraphQL, and WiFi-connected terminal hardware via custom connection managers; mentored engineers.";
 
 "exp4_role" = "Co-founder & Software Engineer";
 "exp4_company" = "Xplain";
-"exp4_meta" = "Remote · Aug 2020 – Aug 2021";
+"exp4_meta" = "Aug 2020 – Aug 2021";
 "exp4_desc" = "Co-founded the company with friends and led its engineering: a 100% Swift product — Vapor backend, iOS front end, shared Swift libraries between the two — shipping two production iOS apps in SwiftUI and UIKit with secure Stripe payment flows.";
 
 "exp5_role" = "Full Stack Engineer (iOS Focus)";
 "exp5_company" = "Sunwise";
-"exp5_meta" = "Mérida, MX · Jun 2019 – Aug 2020";
+"exp5_meta" = "Jun 2019 – Aug 2020";
 "exp5_desc" = "Delivered production iOS features end-to-end in Swift and Objective-C against REST APIs — full production responsibility, held alongside my final university coursework.";
 
 "exp6_role" = "Full Stack Engineer";
 "exp6_company" = "DaCodes";
-"exp6_meta" = "Mérida, MX · Aug 2018 – Jun 2019";
+"exp6_meta" = "Aug 2018 – Jun 2019";
 "exp6_desc" = "First engineering role: built full-stack applications for agency clients on AWS-backed stacks, concurrent with university coursework.";
 
 // Selected work
@@ -80,10 +79,6 @@
 "p8_tags" = "macOS · Swift 6 · Open Source";
 "p8_name" = "Zhen";
 "p8_desc" = "Fast, native network scanner for the Mac, written entirely in Swift 6 and open-sourced across three repositories. zhen-core is the engine, the zhen command line and a privileged helper in one Swift package: it sweeps a /24 in about three seconds from unprivileged ICMP, the kernel's ARP table and Bonjour, names what it can, and says plainly what it could not work out and why. Its timing model, retransmit early and declare late, is backed by zhen-study, a pre-registered measurement study against other tooling. zhen-app is the macOS 26 SwiftUI app on top: live scans, device history and activity, notarized and collecting nothing. No subprocesses or external binaries; the core builds and tests on Linux in CI.";
-
-"p5_tags" = "iOS · Vapor · ESP32";
-"p5_name" = "Living Root";
-"p5_desc" = "Full-stack hydroponic monitoring system, architected and owned end-to-end across three codebases: a SwiftUI client charting pH, EC, water temperature and level, with SwiftData snapshots so the dashboard still reads offline; a Vapor and PostgreSQL backend serving a session-authenticated admin console and a device telemetry API; and MicroPython firmware on an ESP32 sensor node reading the root zone in real time. Swift on both the app and the server, custom 3D-printed enclosures on the hardware.";
 
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
@@ -123,12 +118,12 @@
 "cred_heading" = "Diplomas & Certifications";
 "cred1_type" = "Conference";
 "cred1_title" = "Do iOS 2026";
-"cred1_issuer" = "NEMO Science Museum, Amsterdam";
+"cred1_issuer" = "NEMO Science Museum";
 "cred1_dates" = "November 11 – 12, 2026";
 "cred1_note" = "Attended both conference days of talks. Covered agentic apps built on Apple's Foundation Models; SwiftUI internals as a dependency graph, and scalable SwiftUI design systems; advanced App Intents; agent-assisted Instruments profiling; adaptive layouts and visionOS in production; live iOS app penetration testing; FDA readiness for medical-device apps; and Rust for Swift developers.";
 "cred2_type" = "Workshop";
 "cred2_title" = "Intro to Foundation Models";
-"cred2_issuer" = "Daniel Steinberg · Do iOS 2026, Amsterdam";
+"cred2_issuer" = "Daniel Steinberg · Do iOS 2026";
 "cred2_dates" = "November 10, 2026";
 "cred2_note" = "Hands-on workshop on connecting apps to Apple Intelligence with the Foundation Models framework. Covered sessions, prompts, instructions and tool calling on the on-device model, then this year's additions: Private Cloud Compute, images, dynamic profiles and the evaluations framework.";
 "cred3_type" = "Diploma";

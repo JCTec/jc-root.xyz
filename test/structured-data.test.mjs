@@ -14,7 +14,6 @@ test("A value containing markup cannot terminate the script element", () => {
         jobTitle: "Ampersand & Angle < Bracket >",
         url: "https://example.com/?a=1&b=2",
         sameAs: ["https://example.com/a&b"],
-        homeLocation: "Amsterdam, Netherlands",
     });
 
     // Nothing that could close the element survives serialization.

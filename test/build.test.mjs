@@ -273,7 +273,8 @@ test("JSON-LD parses, in every locale, with nothing HTML-escaped into it", () =>
         assert.equal(json["@type"], "Person");
         assert.ok(json.name.length > 0);
         assert.equal(json.sameAs.length, 3);
-        assert.equal(json.homeLocation.name, loadCatalog(STRINGS_DIR)[locale].meta_home_location);
+        // The site names no location for the person, the JSON-LD included.
+        assert.equal(json.homeLocation, undefined);
     }
 });
 

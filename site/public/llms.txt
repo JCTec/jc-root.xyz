@@ -1,9 +1,8 @@
 # Juan Carlos Estévez Rodríguez — jc-root.xyz
 
-Senior iOS Engineer, available for hire (remote, freelance or full-time).
-Based in Amsterdam, Netherlands; dual Spanish–Mexican citizen with EU work
-authorization; open to relocation. Working languages: English (C2), Spanish
-(native), French (B2).
+Senior iOS Engineer, available for hire (freelance or full-time).
+Dual Spanish–Mexican citizen with a US visa. Working languages: English
+(C2), Spanish (native), French (B2).
 
 ## Summary
 
@@ -24,9 +23,6 @@ OpenAI, xAI, Ollama), full-stack IoT, and hardware-software integration.
   and CLI (zhen-core), SwiftUI app for macOS 26 (zhen-app) and a
   pre-registered measurement study (zhen-study):
   https://github.com/zhen-swift
-- Living Root — full-stack hydroponic monitoring, owned end-to-end: SwiftUI
-  client, Vapor/PostgreSQL backend, MicroPython ESP32 sensor node:
-  https://github.com/Living-Root
 - After Dark Stories — AI-assisted fiction studio, built and operated solo on
   a 100% Swift server: Vapor, Fluent/PostgreSQL, server-rendered Leaf:
   https://afterdarkstories.mx
