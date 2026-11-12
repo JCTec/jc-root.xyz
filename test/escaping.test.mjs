@@ -32,6 +32,7 @@ const PRE_ESCAPED = new Set([
     "details",              // a degree's optional lines, each esc()'d
     "credentials",
     "noteLine",             // a credential's optional note, esc()'d
+    "sourceLink",           // a credential's optional link, built by cardLink
     "languages",
     "projects",
     "links",

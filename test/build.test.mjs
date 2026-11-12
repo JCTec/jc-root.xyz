@@ -22,7 +22,7 @@ import { build } from "../build.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { loadConfig, UNSET_ENDPOINT } from "../lib/content.mjs";
 import { cvPathFor } from "../lib/cv-content.mjs";
-import { credentials, degrees, languages } from "../lib/education.mjs";
+import { CREDENTIAL_URLS, credentials, degrees, languages } from "../lib/education.mjs";
 import { esc } from "../lib/html.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
 import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
@@ -141,6 +141,12 @@ test("Education, credentials and languages are three sections in every locale", 
             assert.ok(cards.includes(`<p class="cred-note">${esc(credential.note)}</p>`), `${locale}: ${credential.title} note`);
         }
         assert.equal((cards.match(/class="cred-note"/g) ?? []).length, noted.length);
+        // Likewise its link: the card points where the credential can be checked.
+        const linked = credentials(t).filter((credential) => credential.url);
+        for (const credential of linked) {
+            assert.ok(cards.includes(`<a class="card-link" href="${esc(credential.url)}" rel="noopener">`), `${locale}: ${credential.title} link`);
+        }
+        assert.equal((cards.match(/class="card-link"/g) ?? []).length, linked.length);
 
         const tiles = section("languages");
         for (const language of languages(t)) {
@@ -152,6 +158,23 @@ test("Education, credentials and languages are three sections in every locale", 
         assert.ok(!html.includes("edu-line") && !html.includes("langs-line"), `${locale}: old markup`);
         const order = ["education", "credentials", "languages", "skills"].map((id) => html.indexOf(`id="${id}"`));
         assert.deepEqual(order, [...order].sort((a, b) => a - b), `${locale}: sections out of order`);
+    }
+});
+
+/* Credential links are keyed by row number in education.mjs, the catalogs by
+   the same number. A row renumbered in the catalogs and not there would link
+   the wrong entry and still pass the test above; this pins each link to the
+   entry it was written for. */
+test("Each credential link points at the entry it was written for", () => {
+    const titles = Object.fromEntries(credentials(loadCatalog(STRINGS_DIR).en).map((c, i) => [i + 1, c.title]));
+    const expected = { 1: "Do iOS 2026", 2: "Intro to Foundation Models" };
+    assert.deepEqual(Object.keys(CREDENTIAL_URLS).map(Number), Object.keys(expected).map(Number),
+        "a credential link was added or removed: list its row and title here");
+    for (const [row, title] of Object.entries(expected)) {
+        assert.equal(titles[row], title, `cred${row} is linked to ${CREDENTIAL_URLS[row]}`);
+    }
+    for (const url of Object.values(CREDENTIAL_URLS)) {
+        assert.match(url, /^https:\/\//, `${url}: not an https address`);
     }
 });
 

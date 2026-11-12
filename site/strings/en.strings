@@ -118,7 +118,7 @@
 "cred_heading" = "Diplomas & Certifications";
 "cred1_type" = "Conference";
 "cred1_title" = "Do iOS 2026";
-"cred1_issuer" = "NEMO Science Museum";
+"cred1_issuer" = "AppForce1 · NEMO Science Museum, Amsterdam";
 "cred1_dates" = "November 11 – 12, 2026";
 "cred1_note" = "Attended both conference days of talks. Covered agentic apps built on Apple's Foundation Models; SwiftUI internals as a dependency graph, and scalable SwiftUI design systems; advanced App Intents; agent-assisted Instruments profiling; adaptive layouts and visionOS in production; live iOS app penetration testing; FDA readiness for medical-device apps; and Rust for Swift developers.";
 "cred2_type" = "Workshop";
