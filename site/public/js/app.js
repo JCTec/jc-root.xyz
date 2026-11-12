@@ -1,8 +1,8 @@
-/* jc-root.xyz — progressive enhancement only.
+/* jc-root.xyz: progressive enhancement only.
    Layout and content never depend on this file. Bootstrap's vendored bundle
    handles the collapse behavior; this file guards the contact form against
    double submission and reveals the confirmation FormSubmit sends visitors
-   back to. No user-visible strings live in JS — the confirmation copy is in
+   back to. No user-visible strings live in JS: the confirmation copy is in
    the markup, hidden, and comes from the strings catalog like everything else.
 
    The site is served by a static host that renders nothing per request, so

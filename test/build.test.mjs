@@ -7,7 +7,7 @@
  * script the CSP forbids, and an element whose layout lived only in a
  * stylesheet cached separately from the markup that needs it.
  *
- * The header and redirect suites have no counterpart here — there is no
+ * The header and redirect suites have no counterpart here: there is no
  * server left to assert them against. What replaced them is the CSP meta tag
  * test below, and the Cloudflare rules recorded in README.md.
  */
@@ -51,8 +51,8 @@ after(() => rmSync(outDir, { recursive: true, force: true }));
 /** Markup with HTML comments removed.
 
     Tests that scan for tags must not read commented-out markup: a comment is a
-    legitimate place to *mention* a tag — a note explaining that inline
-    <script> is forbidden, say — without the page containing one. */
+    legitimate place to *mention* a tag (a note explaining that inline
+    <script> is forbidden, say) without the page containing one. */
 function strippingComments(html) {
     return html.replace(/<!--[\s\S]*?-->/g, "");
 }
@@ -219,7 +219,7 @@ test("Long-cached assets are always referenced with a ?v= buster", () => {
     }
 });
 
-test("No inline executable <script> — the CSP is script-src 'self'", () => {
+test("No inline executable <script>: the CSP is script-src 'self'", () => {
     const html = strippingComments(en);
     const matches = [...html.matchAll(/<script([^>]*)>/g)];
     assert.ok(matches.length > 0, "expected the page to carry <script> tags");
@@ -322,7 +322,7 @@ test("Discovery surfaces agree with the pages that were emitted", () => {
 
 test("An unconfigured form names the missing variable, not a destination", () => {
     // Built with no environment, the action is a placeholder that is obviously
-    // not a form target. CI refuses to publish it — a form that silently posts
+    // not a form target. CI refuses to publish it: a form that silently posts
     // nowhere looks fine until someone tries to use it.
     assert.ok(en.includes(UNSET_ENDPOINT), "expected the placeholder endpoint");
 });

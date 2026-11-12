@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* jc-root.xyz — the CV, as HTML for a PDF renderer.
+/* jc-root.xyz: the CV, as HTML for a PDF renderer.
  *
  * The CV is the page's own sections under a print stylesheet, rendered from the
  * page's own context. This build emits a single self-contained HTML file per
@@ -12,7 +12,7 @@
  *
  * Usage:  node build-cv.mjs [outDir]     (default: dist-cv)
  *         for f in dist-cv/*.html; do weasyprint "$f" "${f%.html}.pdf"; done
- * Env:    CONTACT_EMAIL — the address on the contact line. Unset, the CV
+ * Env:    CONTACT_EMAIL: the address on the contact line. Unset, the CV
  *         renders without one rather than with a placeholder, which is the
  *         published default.
  */
@@ -55,6 +55,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log(`built ${written.length} file(s) → ${outDir}`);
     for (const name of written) console.log(`  ${name}`);
     if (!config.contactEmail) {
-        console.log("  CONTACT_EMAIL unset — the CV renders without an email address");
+        console.log("  CONTACT_EMAIL unset: the CV renders without an email address");
     }
 }

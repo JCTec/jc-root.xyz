@@ -1,4 +1,4 @@
-/* jc-root.xyz — custom polish layer.
+/* jc-root.xyz: custom polish layer.
    Bootstrap provides structure (grid, flex, collapse); this file owns
    borders, spacing rhythm, typography, and color. Design source: Design.pdf. */
 
@@ -60,8 +60,8 @@ a {
 /* ---- accessibility -------------------------------------------------- */
 
 /* One focus ring for the whole site. Without it every interactive element
-   fell back to the browser default — a blue #005fcc that is off-palette here
-   and only ~3.3:1 against --jc-bg — while .form-control-jc set outline: none
+   fell back to the browser default (a blue #005fcc that is off-palette here
+   and only ~3.3:1 against --jc-bg), while .form-control-jc set outline: none
    and had no ring at all. :where() keeps specificity at 0 so component rules
    still win; :focus-visible so a mouse click does not leave a ring behind. */
 :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {

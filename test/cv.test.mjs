@@ -148,7 +148,7 @@ test("A row added to the catalog alone reaches the CV", () => {
     }
 });
 
-/* A card added to the site must reach the PDF without a second edit — and a
+/* A card added to the site must reach the PDF without a second edit, and a
    catalog project with no card is one neither render target would show. */
 test("The CV lists every site project, in the site's order, with every link", () => {
     for (const [locale, out] of Object.entries(renders)) {
@@ -265,7 +265,7 @@ test("The CV renders one self-contained file per locale, named as it is publishe
 
 /* The site links to each CV by path, and CI decides what the published files
    are called. Those live in two different files and two different languages,
-   and nothing but this test connects them — a rename on one side alone
+   and nothing but this test connects them: a rename on one side alone
    publishes a button that 404s, which no other check here would notice
    because both files remain perfectly valid on their own.
 

@@ -69,7 +69,7 @@ test("Hostile copy is escaped in the markup and intact in the JSON-LD", () => {
     assert.ok(!html.includes("<img src=x"));
     assert.equal(html.match(/<\/script>/g).length, 4, "a value closed a script element");
 
-    // The JSON-LD, meanwhile, must round-trip the value exactly — escaping it
+    // The JSON-LD, meanwhile, must round-trip the value exactly; escaping it
     // as markup there would publish a literal &amp; to crawlers.
     const block = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1];
     assert.equal(JSON.parse(block).name, poison);

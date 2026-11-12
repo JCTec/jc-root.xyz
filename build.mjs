@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* jc-root.xyz — the whole site, built once.
+/* jc-root.xyz: the whole site, built once.
  *
  * The Vapor original did this work per request. Nothing about it was dynamic:
  * no database, no session, no input that reaches the origin. So it happens
@@ -69,7 +69,7 @@ export function build(outDir, { env = process.env } = {}) {
        PAGES_PREVIEW withholds it, and is for exactly one situation: publishing
        to a repository before DNS points at it. A CNAME file claims the domain
        the moment it is deployed, and Pages then redirects its own
-       *.github.io URL to a domain that still resolves somewhere else — so the
+       *.github.io URL to a domain that still resolves somewhere else, so the
        preview you wanted to look at becomes unreachable. Unset it to cut
        over. */
     if (!env.PAGES_PREVIEW) {
@@ -86,7 +86,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const outDir = join(root, process.argv[2] ?? "dist");
     const { config, written } = build(outDir);
     if (process.env.PAGES_PREVIEW) {
-        console.log("  PAGES_PREVIEW set — no CNAME written, the custom domain is not claimed");
+        console.log("  PAGES_PREVIEW set: no CNAME written, the custom domain is not claimed");
     }
     console.log(`built ${written.length} files → ${outDir}`);
     console.log(`  base URL     ${config.siteBaseURL}`);

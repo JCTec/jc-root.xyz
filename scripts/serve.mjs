@@ -5,7 +5,7 @@
  * Not a development convenience only: it applies lib/cache-policy.mjs and the
  * edge headers from lib/headers.mjs, so what a browser sees here is what it
  * would see through Cloudflare in front of GitHub Pages. It also mirrors the
- * two behaviours a static host adds on its own — a directory serves its
+ * two behaviours a static host adds on its own: a directory serves its
  * index.html, and a bare `/es` or `/fr` redirects to `/es/` or `/fr/`.
  *
  * Usage:  node scripts/serve.mjs [dir] [port]      (defaults: dist 8080)

@@ -1,10 +1,10 @@
-// Copia de interfaz en español — debe mantener paridad total de claves con
+// Textos de interfaz en español. Deben mantener paridad total de claves con
 // en.strings (lo verifica AppTests). El código y las plantillas usan códigos.
 
 // Meta
 "meta_title" = "Juan Carlos Estévez · Ingeniero iOS Senior disponible | Desarrollador iOS freelance y de tiempo completo (Swift, SwiftUI)";
-"meta_description" = "6+ años de experiencia profesional en iOS, en el App Store desde 2018. Doble nacionalidad mexicana y española, con visa estadounidense.";
-"og_image_alt" = "Juan Carlos Estévez Rodríguez — Ingeniero iOS Senior, disponible para contratación";
+"meta_description" = "Más de 6 años de experiencia profesional en iOS, en el App Store desde 2018. Doble nacionalidad mexicana y española, con visa estadounidense.";
+"og_image_alt" = "Juan Carlos Estévez Rodríguez, Ingeniero iOS Senior, disponible para contratación";
 
 // Accesibilidad
 "skip_to_content" = "Saltar al contenido";
@@ -32,7 +32,7 @@
 
 // Acerca de
 "about_heading" = "Acerca de";
-"about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, concluida en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera decisión al release: modernizo bases de código legadas, construyo sistemas de diseño atómico y trato el testing como parte del oficio, no como una ocurrencia tardía. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA, IoT full-stack e integración hardware-software. Esa responsabilidad también llega a la web: construyo y opero After Dark Stories, un producto en Vapor y Leaf con cuentas, cobros y moderación propios, y escribo el JavaScript y el CSS que lo visten. Apasionado de la tecnología de salud y bienestar. Cuando no estoy publicando, hago yoga, escalada o kitesurf.";
+"about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, que concluí en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera llamada al lanzamiento: modernizo bases de código heredadas, construyo sistemas de diseño atómico y trato las pruebas como parte del oficio, no como algo secundario. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA, IoT full-stack e integración de hardware y software. Esa responsabilidad también llega a la web: construyo y opero After Dark Stories, un producto en Vapor y Leaf con cuentas, cobros y moderación propios, y escribo el JavaScript y el CSS de su interfaz. Me apasiona la tecnología de salud y bienestar. Cuando no estoy programando, practico yoga, escalada o kitesurf.";
 "about_availability" = "Disponible ahora, freelance o de tiempo completo. Doble nacionalidad mexicana y española, con visa estadounidense.";
 
 // Experiencia
@@ -40,33 +40,33 @@
 
 "exp1_role" = "Desarrollo iOS independiente y consultoría";
 "exp1_company" = "Por cuenta propia";
-"exp1_meta" = "Dic 2024 – Presente";
-"exp1_desc" = "Trabajo independiente entre apps iOS de clientes, productos propios y estudio enfocado, de principio a fin, de la arquitectura al release: apps nativas en SwiftUI para iPhone, iPad y Mac, y Swift de código abierto. Una inmersión deliberada en flujos con agentes de IA, análisis de datos y herramientas modernas me llevó a integrar IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama). Consulta Trabajo seleccionado para ver los proyectos.";
+"exp1_meta" = "dic. 2024 – actualidad";
+"exp1_desc" = "Trabajo independiente con apps iOS de clientes, productos propios y estudio enfocado, a mi cargo de principio a fin, de la arquitectura al lanzamiento: apps nativas en SwiftUI para iPhone, iPad y Mac, y Swift de código abierto. Una inmersión deliberada en flujos con agentes de IA, análisis de datos y herramientas modernas me llevó a integrar IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama). Los proyectos están en la sección Trabajo seleccionado.";
 
-"exp2_role" = "Ingeniero de software Senior";
+"exp2_role" = "Ingeniero de Software Senior";
 "exp2_company" = "Alaska Airlines";
-"exp2_meta" = "Dic 2023 – Nov 2024";
-"exp2_desc" = "Impulsé un sistema de diseño atómico completo que elevó el estándar de consistencia y reutilización de la UI en toda la app. Asumí la dirección técnica del equipo — MVVM, Clean Architecture, Coordinators —, publiqué funcionalidades en UIKit y SwiftUI, ejecuté pruebas A/B para orientar decisiones de producto y mentoricé a otros ingenieros.";
+"exp2_meta" = "dic. 2023 – nov. 2024";
+"exp2_desc" = "Impulsé un sistema de diseño atómico completo que elevó el estándar de coherencia y reutilización de la UI en toda la app. Asumí la dirección técnica (MVVM, Clean Architecture, Coordinators), publiqué funcionalidades en UIKit y SwiftUI, ejecuté pruebas A/B para orientar decisiones de producto y fui mentor de otros ingenieros.";
 
 "exp3_role" = "Ingeniero iOS Senior";
 "exp3_company" = "Peek.com";
-"exp3_meta" = "Ago 2021 – Ago 2023";
-"exp3_desc" = "Formé parte del equipo iOS de una app de marketplace con una década de antigüedad. Contribuí a su migración gradual a SwiftUI sobre MVVM, Clean Architecture y el patrón Coordinator, y a mejorar el rendimiento de listas dinámicas de más de 10,000 elementos. Ayudé con la automatización de pruebas de UI (Robot Pattern + XCUITest) y el CI/CD en GitHub Actions, integré GraphQL y trabajé en la conexión con terminales por WiFi. Lideré un par de funcionalidades más pequeñas de principio a fin.";
+"exp3_meta" = "ago. 2021 – ago. 2023";
+"exp3_desc" = "Formé parte del equipo iOS de una app de marketplace con una década de antigüedad. Contribuí a su migración gradual a SwiftUI sobre MVVM, Clean Architecture y el patrón Coordinator, y a mejorar el rendimiento de listas dinámicas de más de 10,000 elementos. Ayudé con la automatización de pruebas de UI (Robot Pattern + XCUITest) y el CI/CD en GitHub Actions, integré GraphQL y trabajé en la conexión con terminales de hardware por WiFi. Lideré un par de funcionalidades más pequeñas de principio a fin.";
 
 "exp4_role" = "Cofundador e Ingeniero de Software";
 "exp4_company" = "Xplain";
-"exp4_meta" = "Ago 2020 – Ago 2021";
-"exp4_desc" = "Cofundé la empresa con amigos y lideré su ingeniería: un producto 100% Swift — backend en Vapor, front end iOS y librerías Swift compartidas entre ambos — con dos apps iOS en producción en SwiftUI y UIKit y flujos de pago seguros con Stripe.";
+"exp4_meta" = "ago. 2020 – ago. 2021";
+"exp4_desc" = "Cofundé la empresa con amigos y lideré su ingeniería: un producto 100% Swift (backend en Vapor, front end iOS y bibliotecas Swift compartidas entre ambos) con dos apps iOS en producción en SwiftUI y UIKit y flujos de pago seguros con Stripe.";
 
 "exp5_role" = "Ingeniero Full Stack (enfoque iOS)";
 "exp5_company" = "Sunwise";
-"exp5_meta" = "Jun 2019 – Ago 2020";
-"exp5_desc" = "Entregué funcionalidades iOS en producción de principio a fin con Swift y Objective-C contra APIs REST — responsabilidad plena de producción, en paralelo con los últimos cursos de la universidad.";
+"exp5_meta" = "jun. 2019 – ago. 2020";
+"exp5_desc" = "Entregué funcionalidades iOS en producción de principio a fin con Swift y Objective-C sobre APIs REST, con plena responsabilidad de producción, en paralelo con los últimos cursos de la carrera.";
 
 "exp6_role" = "Ingeniero Full Stack";
 "exp6_company" = "DaCodes";
-"exp6_meta" = "Ago 2018 – Jun 2019";
-"exp6_desc" = "Primer puesto de ingeniería: construí aplicaciones full-stack para clientes de agencia sobre stacks respaldados por AWS, en paralelo con la universidad.";
+"exp6_meta" = "ago. 2018 – jun. 2019";
+"exp6_desc" = "Primer puesto de ingeniería: construí aplicaciones full-stack para clientes de agencia sobre infraestructura en AWS, en paralelo con la universidad.";
 
 // Trabajo seleccionado
 "work_heading" = "Trabajo seleccionado";
@@ -77,15 +77,15 @@
 
 "p8_tags" = "macOS · Swift 6 · Código abierto";
 "p8_name" = "Zhen";
-"p8_desc" = "Escáner de red rápido y nativo para Mac, escrito íntegramente en Swift 6 y publicado como código abierto en tres repositorios. zhen-core es el motor, la línea de comandos zhen y un helper privilegiado en un solo paquete Swift: recorre una /24 en unos tres segundos con ICMP sin privilegios, la tabla ARP del kernel y Bonjour, nombra lo que puede y dice con claridad lo que no logró averiguar y por qué. Su modelo de tiempos, retransmitir pronto y declarar tarde, se respalda en zhen-study, un estudio de medición prerregistrado frente a otras herramientas. zhen-app es la app SwiftUI para macOS 26 construida encima: escaneos en vivo, historial y actividad de cada dispositivo, notarizada y sin recopilar nada. Sin subprocesos ni binarios externos; el núcleo compila y pasa sus pruebas en Linux en CI.";
+"p8_desc" = "Escáner de red rápido y nativo para Mac, escrito íntegramente en Swift 6 y publicado como código abierto en tres repositorios. zhen-core reúne el motor, la línea de comandos zhen y un helper privilegiado en un solo paquete Swift: barre una red /24 en unos tres segundos con ICMP sin privilegios, la tabla ARP del kernel y Bonjour, nombra lo que puede y dice con claridad lo que no logró averiguar y por qué. Su modelo de tiempos, retransmitir pronto y declarar tarde, se respalda en zhen-study, un estudio de medición prerregistrado frente a otras herramientas. zhen-app es la app SwiftUI para macOS 26 construida encima: escaneos en vivo, historial y actividad de cada dispositivo, notarizada y sin recopilar nada. Sin subprocesos ni binarios externos; el núcleo compila y pasa sus pruebas en Linux en CI.";
 
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
-"p6_desc" = "Estudio de ficción asistida por IA, construido y operado en solitario sobre un servidor 100% Swift: Vapor, Fluent y PostgreSQL detrás de plantillas Leaf renderizadas en el servidor, con JavaScript que impulsa las interacciones del editor. Las cuentas funcionan con sesiones en base de datos y tokens de acceso y refresco hasheados, con verificación por correo, restablecimiento de contraseña, protección CSRF y contra abuso en el registro; la consola de administración añade acceso break-glass registrado y recepción de reportes. Tres idiomas de interfaz —inglés, español y francés— se resuelven desde un único catálogo de textos. El motor de historias opera detrás de directivas propias de la aplicación, con validación de salida y un clasificador posterior a la generación. Sistema de marca documentado con design tokens, y postura de producción en todo: compresión de respuestas, archivos estáticos con ETag, datos estructurados y sitemap.";
+"p6_desc" = "Estudio de ficción asistida por IA, construido y operado en solitario sobre un servidor 100% Swift: Vapor, Fluent y PostgreSQL detrás de plantillas Leaf renderizadas en el servidor, con JavaScript para las interacciones del editor. Las cuentas funcionan con sesiones en base de datos y tokens de acceso y de refresco con hash, con verificación por correo, restablecimiento de contraseña, protección CSRF y contra abusos en el registro; la consola de administración añade acceso de emergencia (break-glass) registrado y recepción de reportes. Tres idiomas de interfaz (inglés, español y francés) se resuelven desde un único catálogo de textos. El motor de historias opera detrás de directivas propias de la aplicación, con validación de salida y un clasificador posterior a la generación. Sistema de marca documentado con design tokens, y criterio de producción en todo el sistema: compresión de respuestas, archivos estáticos con ETag, datos estructurados y sitemap.";
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
-"p7_desc" = "App de pronóstico de viento y estaciones en vivo para todos los deportes de viento, en iPhone, iPad y Mac desde un único target nativo en SwiftUI. Pone varios modelos de pronóstico lado a lado con lecturas de estaciones en vivo, y da a cada spot guardado un veredicto GO, MARGINAL o NO a partir de reglas fijas y legibles que consideran rachas, tormentas y el ángulo del viento respecto a la costa de ese spot, con la regla decisiva junto al veredicto. El mapa anima el viento como partículas sobre MapKit, con capas de rayos, radar y tormentas. Un paquete Swift propio obtiene todo en el dispositivo desde Open-Meteo y agencias públicas, con fusión de peticiones, limitación de tasa, reintentos y caché en disco para que la app abra sin conexión. Las alertas se ponen a prueba contra los últimos 30 días.";
+"p7_desc" = "App de pronóstico de viento y estaciones en vivo para todos los deportes de viento, en iPhone, iPad y Mac desde un único target nativo en SwiftUI. Pone varios modelos de pronóstico lado a lado con lecturas de estaciones en vivo, y da a cada spot guardado un veredicto GO, MARGINAL o NO a partir de reglas fijas y legibles que consideran rachas, tormentas y el ángulo del viento respecto a la costa de ese spot, con la regla decisiva junto al veredicto. El mapa anima el viento como partículas sobre MapKit, con capas de rayos, radar y tormentas. Un paquete Swift propio obtiene todo en el dispositivo desde Open-Meteo y agencias públicas, con fusión de peticiones, limitación de tasa, reintentos y caché en disco para que la app abra sin conexión. Las alertas se validan contra los datos de los últimos 30 días.";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
@@ -93,7 +93,7 @@
 
 "p2_tags" = "macOS";
 "p2_name" = "MythLog";
-"p2_desc" = "App de macOS con consentimiento primero que registra eventos del sistema — reposo/activación, bloqueo de pantalla, apertura de apps, cambios en archivos vigilados, eventos propios por CLI — en un registro de solo anexado con cadena de hashes HMAC-SHA256 y una línea de tiempo en vivo en SwiftUI. Todo local, sin cuenta ni analítica. macOS 14+.";
+"p2_desc" = "App de macOS basada en el consentimiento que registra eventos del sistema (reposo y activación, bloqueo de pantalla, apertura de apps, cambios en archivos vigilados, eventos propios por CLI) en un registro de solo anexión encadenado con hashes HMAC-SHA256, con una línea de tiempo en vivo en SwiftUI. Todo local, sin cuenta ni analítica. macOS 14+.";
 
 "p3_tags" = "Paquete Swift · Código abierto";
 "p3_name" = "iCalendarKit";
@@ -118,7 +118,7 @@
 "cred1_type" = "Conferencia";
 "cred1_title" = "Do iOS 2026";
 "cred1_issuer" = "AppForce1 · NEMO Science Museum, Ámsterdam";
-"cred1_dates" = "11 – 12 de noviembre de 2026";
+"cred1_dates" = "11 y 12 de noviembre de 2026";
 "cred1_note" = "Asistí a los dos días de charlas de la conferencia. Temas: apps agénticas sobre Foundation Models de Apple; el funcionamiento interno de SwiftUI como grafo de dependencias y sistemas de diseño escalables en SwiftUI; App Intents avanzados; perfilado con Instruments asistido por agentes; diseños adaptativos y visionOS en producción; pruebas de penetración en vivo a una app de iOS; preparación de apps de dispositivos médicos para la FDA; y Rust para desarrolladores de Swift.";
 "cred2_type" = "Taller";
 "cred2_title" = "Intro to Foundation Models";
@@ -153,20 +153,20 @@
 
 // Habilidades
 "stack_heading" = "Habilidades";
-"stack_core_label" = "Principal";
-"stack_also_label" = "También";
+"stack_core_label" = "Principales";
+"stack_also_label" = "Otras";
 "stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift en el servidor)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
 "stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Sistemas de diseño atómico|Optimización de rendimiento|Perfilado con Xcode Instruments|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM en el dispositivo, llamadas a herramientas)|IoT / domótica|SwiftData|App Intents|Accesibilidad (a11y)|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Seguridad y hardening de apps iOS|Internacionalización (i18n)|SEO y datos estructurados";
 
 // Contacto
-"cta_heading" = "¿Construyendo algo para plataformas Apple?";
-"cta_all_links" = "Todos mis contactos";
+"cta_heading" = "¿Estás creando algo para plataformas Apple?";
+"cta_all_links" = "Todos los enlaces de contacto";
 "form_name" = "Nombre";
 "form_email" = "Correo electrónico";
 "form_message" = "Mensaje";
 "form_send" = "Enviar mensaje";
 "form_subject" = "Nuevo mensaje desde jc-root.xyz";
-"form_sent" = "Gracias — tu mensaje va en camino. Te responderé pronto.";
+"form_sent" = "¡Gracias! Tu mensaje va en camino. Te responderé pronto.";
 
 // Pie de página
 "footer_name" = "Juan Carlos Estévez Rodríguez";

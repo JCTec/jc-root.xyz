@@ -27,7 +27,7 @@ test("Every locale keeps full key parity with EN, with non-empty values", () => 
 });
 
 /* Codes assembled at runtime instead of written out, which a static scan
-   cannot see. Every entry is a claim that some loop builds those keys — keep
+   cannot see. Every entry is a claim that some loop builds those keys; keep
    the list short, and keep it honest: it is the only way a genuinely unused
    key can hide from the test below. */
 const DYNAMIC_KEY_PATTERNS = [

@@ -1,5 +1,5 @@
 # One gate, one deploy. The full gate runs on every PR and every push to
-# main; only a green push to main deploys. Merging is the decision —
+# main; only a green push to main deploys. Merging is the decision;
 # deploying is a consequence.
 #
 # The scheduled run is not a health check. The footer year used to be computed
@@ -12,7 +12,7 @@ on:
   push:
     branches: [main]
   schedule:
-    # 04:17 UTC on the 1st of every month — off the hour, so it is not queued
+    # 04:17 UTC on the 1st of every month, off the hour, so it is not queued
     # behind everyone else's midnight cron.
     - cron: "17 4 1 * *"
   workflow_dispatch:
@@ -25,7 +25,7 @@ permissions:
   contents: read
 
 # Actions are pinned to commit SHAs, not tags. A tag is a mutable pointer: if
-# `v4` were moved — by a compromise or a mistake — whatever it pointed at would
+# `v4` were moved (by a compromise or a mistake), whatever it pointed at would
 # run inside the deploy job, which holds `id-token: write` and `pages: write`
 # and can publish to jc-root.xyz. The trailing comment is the human-readable
 # version; update both together.
@@ -53,7 +53,7 @@ jobs:
           find . -maxdepth 1 -name '*.mjs' | xargs -r -n1 node --check
 
       # `git diff --check` with no revision compares the working tree to the
-      # index, which on a fresh checkout is empty — the step could not fail.
+      # index, which on a fresh checkout is empty: the step could not fail.
       # Scan what is actually committed instead, and skip vendored Bootstrap.
       - name: Whitespace and conflict markers
         run: |
@@ -67,7 +67,7 @@ jobs:
 
       - name: Build
         env:
-          # Not a secret — it is a public form endpoint and it ends up in the
+          # Not a secret: it is a public form endpoint and it ends up in the
           # published HTML either way. Setting it here is what keeps the raw
           # address out of the markup and out of the repository. Unset, the
           # build falls back to the email-based endpoint.
@@ -89,14 +89,14 @@ jobs:
       # WeasyPrint is the only part of this pipeline that is not Node, and it
       # is confined to this one step: build-cv.mjs emits one HTML file per
       # locale, which the tests above already asserted against, and this turns
-      # each into a PDF beside it under the same basename — the name the site
+      # each into a PDF beside it under the same basename, the name the site
       # links to, so nothing is renamed afterwards. Pinned to the version that
       # rendered the CV this replaces, so a WeasyPrint release cannot silently
       # repaginate the document.
       - name: Render the CVs
         env:
           # Optional, and normally unset. The published CV reaches people
-          # through jc-root.xyz, LinkedIn and GitHub — the same posture the
+          # through jc-root.xyz, LinkedIn and GitHub, the same posture the
           # site takes, where the contact form is a FormSubmit alias and the
           # raw address appears nowhere. Setting this repository variable adds
           # an address to the PDF; leaving it unset is the supported default.
@@ -127,7 +127,7 @@ jobs:
       - name: The contact form has a destination
         run: |
           if grep -rIq 'FORMSUBMIT_ENDPOINT-is-unset' dist/; then
-            echo "::error::FORMSUBMIT_ENDPOINT is unset — the contact form would be dead on arrival"; exit 1
+            echo "::error::FORMSUBMIT_ENDPOINT is unset; the contact form would be dead on arrival"; exit 1
           fi
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -143,7 +143,7 @@ jobs:
           retention-days: 1
           include-hidden-files: true
 
-  # A green build of main is what gets published — the same bytes the tests
+  # A green build of main is what gets published: the same bytes the tests
   # ran against, not a second build that could differ.
   deploy:
     needs: tests
@@ -169,8 +169,8 @@ jobs:
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       # `include-hidden-files` is not decoration: this action stopped packing
       # dotfiles in v4, and dist/.nojekyll is a dotfile. Without it Pages runs
-      # the upload through Jekyll, which drops vendor/ — the Bootstrap the
-      # whole site is styled with — and the site arrives unstyled.
+      # the upload through Jekyll, which drops vendor/ (the Bootstrap the
+      # whole site is styled with), and the site arrives unstyled.
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: dist
@@ -209,10 +209,10 @@ jobs:
           if ! gh release view cv >/dev/null 2>&1; then
             gh release create cv \
               --title "Curriculum Vitae" \
-              --notes "Rendered from site/strings/ on every push to main. Not edited by hand, and not committed to the repository — see README.md."
+              --notes "Rendered from site/strings/ on every push to main. Not edited by hand, and not committed to the repository; see README.md."
           fi
           # A release asset is served raw, unlike a workflow artifact, which
           # GitHub always zips. So these names are the filenames that land in
-          # someone's Downloads folder — worth more than "cv.pdf" there — and
+          # someone's Downloads folder (worth more than "cv.pdf" there), and
           # they are the same names the site serves, one per locale.
           gh release upload cv *.pdf --clobber

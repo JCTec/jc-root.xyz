@@ -1,11 +1,11 @@
-// English UI copy — source of truth for the key set.
+// English UI copy: the source of truth for the key set.
 // Rules: every key here must exist in every other locale with a non-empty value
 // (enforced by AppTests). Code and templates reference codes only.
 
 // Meta
 "meta_title" = "Juan Carlos Estévez · Senior iOS Engineer for Hire | Freelance & Full-Time iOS Developer (Swift, SwiftUI)";
 "meta_description" = "6+ years of professional iOS experience, shipping on the App Store since 2018. Dual Mexican–Spanish citizen with a US visa.";
-"og_image_alt" = "Juan Carlos Estévez Rodríguez — Senior iOS Engineer, available for hire";
+"og_image_alt" = "Juan Carlos Estévez Rodríguez, Senior iOS Engineer, available for hire";
 
 // Accessibility
 "skip_to_content" = "Skip to content";
@@ -47,7 +47,7 @@
 "exp2_role" = "Senior Software Engineer";
 "exp2_company" = "Alaska Airlines";
 "exp2_meta" = "Dec 2023 – Nov 2024";
-"exp2_desc" = "Drove a comprehensive atomic design system, raising the bar for UI consistency and reuse across the app. Owned technical direction — MVVM, Clean Architecture, Coordinators — shipped features in UIKit and SwiftUI, ran A/B tests to inform product decisions, and mentored engineers.";
+"exp2_desc" = "Drove a comprehensive atomic design system, raising the bar for UI consistency and reuse across the app. Owned technical direction (MVVM, Clean Architecture, Coordinators), shipped features in UIKit and SwiftUI, ran A/B tests to inform product decisions, and mentored engineers.";
 
 "exp3_role" = "Senior iOS Engineer";
 "exp3_company" = "Peek.com";
@@ -57,12 +57,12 @@
 "exp4_role" = "Co-founder & Software Engineer";
 "exp4_company" = "Xplain";
 "exp4_meta" = "Aug 2020 – Aug 2021";
-"exp4_desc" = "Co-founded the company with friends and led its engineering: a 100% Swift product — Vapor backend, iOS front end, shared Swift libraries between the two — shipping two production iOS apps in SwiftUI and UIKit with secure Stripe payment flows.";
+"exp4_desc" = "Co-founded the company with friends and led its engineering: a 100% Swift product (Vapor backend, iOS front end, shared Swift libraries between the two) shipping two production iOS apps in SwiftUI and UIKit with secure Stripe payment flows.";
 
 "exp5_role" = "Full Stack Engineer (iOS Focus)";
 "exp5_company" = "Sunwise";
 "exp5_meta" = "Jun 2019 – Aug 2020";
-"exp5_desc" = "Delivered production iOS features end-to-end in Swift and Objective-C against REST APIs — full production responsibility, held alongside my final university coursework.";
+"exp5_desc" = "Delivered production iOS features end-to-end in Swift and Objective-C against REST APIs, with full production responsibility, held alongside my final university coursework.";
 
 "exp6_role" = "Full Stack Engineer";
 "exp6_company" = "DaCodes";
@@ -82,7 +82,7 @@
 
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
-"p6_desc" = "AI-assisted fiction studio, built and operated solo on a 100% Swift server: Vapor, Fluent and PostgreSQL behind server-rendered Leaf templates, with JavaScript driving the studio's editor interactions. Accounts run on database-backed sessions plus hashed access and refresh tokens, with email verification, password reset, CSRF and registration abuse protection; the admin console adds logged break-glass access and report intake. Three interface locales — English, Spanish and French — resolve from a single copy catalog. The story engine sits behind app-owned directives with output validation and a post-generation classifier. Documented brand system with design tokens, and a production posture throughout: response compression, ETag-backed static files, structured data and sitemap.";
+"p6_desc" = "AI-assisted fiction studio, built and operated solo on a 100% Swift server: Vapor, Fluent and PostgreSQL behind server-rendered Leaf templates, with JavaScript driving the studio's editor interactions. Accounts run on database-backed sessions plus hashed access and refresh tokens, with email verification, password reset, CSRF and registration abuse protection; the admin console adds logged break-glass access and report intake. Three interface locales (English, Spanish and French) resolve from a single copy catalog. The story engine sits behind app-owned directives with output validation and a post-generation classifier. Documented brand system with design tokens, and a production posture throughout: response compression, ETag-backed static files, structured data and sitemap.";
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
@@ -94,11 +94,11 @@
 
 "p2_tags" = "macOS";
 "p2_name" = "MythLog";
-"p2_desc" = "Consent-first macOS app recording system events — sleep/wake, screen lock, app launches, watched-file changes, custom CLI events — into an append-only HMAC-SHA256 hash-chain ledger with a live SwiftUI timeline. Fully local, no account or analytics. macOS 14+.";
+"p2_desc" = "Consent-first macOS app recording system events (sleep/wake, screen lock, app launches, watched-file changes, custom CLI events) into an append-only HMAC-SHA256 hash-chain ledger with a live SwiftUI timeline. Fully local, no account or analytics. macOS 14+.";
 
 "p3_tags" = "Swift Package · Open Source";
 "p3_name" = "iCalendarKit";
-"p3_desc" = "Swift encoder for iCalendar data (RFC 5545) — events, alarms, timezones and recurrence rules. SPM, CI on Linux and macOS, published DocC docs. Co-founder of the swift-calendar org; implemented several features.";
+"p3_desc" = "Swift encoder for iCalendar data (RFC 5545): events, alarms, timezones and recurrence rules. SPM, CI on Linux and macOS, published DocC docs. Co-founder of the swift-calendar org; implemented several features.";
 
 "p4_tags" = "iOS · iPadOS";
 "p4_name" = "iBase";
@@ -167,7 +167,7 @@
 "form_message" = "Message";
 "form_send" = "Send message";
 "form_subject" = "New message from jc-root.xyz";
-"form_sent" = "Thanks — your message is on its way. I'll reply soon.";
+"form_sent" = "Thanks! Your message is on its way. I'll reply soon.";
 
 // Footer
 "footer_name" = "Juan Carlos Estévez Rodríguez";

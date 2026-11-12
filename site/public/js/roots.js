@@ -1,4 +1,4 @@
-/* jc-root.xyz — ambient root filaments.
+/* jc-root.xyz: ambient root filaments.
    Decoration only: pale threads drift in from the viewport edges, fork once or
    twice, and fade out again. Nothing in the layout or content depends on this
    file, and the canvas is inert (pointer-events: none, aria-hidden).
@@ -17,7 +17,7 @@
     }
 
     /* Tuning. Alphas are deliberately near the floor of what reads on
-       #0a0a0b — roughly the weight of --jc-border-soft — so body copy keeps
+       #0a0a0b (roughly the weight of --jc-border-soft), so body copy keeps
        its full contrast. See MASK_MAX for the extra quieting behind text. */
     var STROKE = "214, 224, 216";
     var BASE_ALPHA = 0.15;
@@ -264,7 +264,7 @@
         var steps = Math.floor(accumulator / STEP_MS);
         if (steps > MAX_STEPS_PER_FRAME) {
             /* A long stall (throttled tab, blocked main thread) must not be
-               replayed at speed — drop the backlog instead of banking it. */
+               replayed at speed; drop the backlog instead of banking it. */
             steps = MAX_STEPS_PER_FRAME;
             accumulator = 0;
         } else {
@@ -352,7 +352,7 @@
                 renderStatic();
             }
             /* Live filaments keep their CSS-pixel coordinates, so the next
-               frame simply redraws them against the new bounds — nothing is
+               frame simply redraws them against the new bounds; nothing is
                stretched, and off-screen ones age out on their own. */
         });
     });

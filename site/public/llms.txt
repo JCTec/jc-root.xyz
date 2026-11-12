@@ -1,4 +1,4 @@
-# Juan Carlos Estévez Rodríguez — jc-root.xyz
+# Juan Carlos Estévez Rodríguez · jc-root.xyz
 
 Senior iOS Engineer, available for hire (freelance or full-time).
 Dual Mexican–Spanish citizen with a US visa. Working languages: English
@@ -19,24 +19,24 @@ OpenAI, xAI, Ollama), full-stack IoT, and hardware-software integration.
 
 ## Selected work
 
-- Zhen — fast, native macOS network scanner, open source in Swift 6: engine
+- Zhen: fast, native macOS network scanner, open source in Swift 6, with an engine
   and CLI (zhen-core), SwiftUI app for macOS 26 (zhen-app) and a
   pre-registered measurement study (zhen-study):
   https://github.com/zhen-swift
-- After Dark Stories — AI-assisted fiction studio, built and operated solo on
+- After Dark Stories: AI-assisted fiction studio, built and operated solo on
   a 100% Swift server: Vapor, Fluent/PostgreSQL, server-rendered Leaf:
   https://afterdarkstories.mx
-- Sideshore — wind forecast and live-station app: native SwiftUI for iOS,
+- Sideshore: wind forecast and live-station app in native SwiftUI for iOS,
   iPadOS and macOS 26, MapKit, on-device data layer over Open-Meteo and NOAA:
   https://apps.apple.com/app/sideshore/id6820650870
   https://jctec.github.io/sideshore-site/
-- Tapper Counters — SwiftUI tap-to-count app (iOS, iPadOS):
+- Tapper Counters: SwiftUI tap-to-count app (iOS, iPadOS):
   https://apps.apple.com/mx/app/tapper-counters/id6475695007
-- MythLog — consent-first macOS system event ledger (HMAC hash chain):
+- MythLog: consent-first macOS system event ledger (HMAC hash chain):
   https://apps.apple.com/mx/app/mythlog/id6797111874
-- iCalendarKit — open-source Swift iCalendar (RFC 5545) encoder:
+- iCalendarKit: open-source Swift iCalendar (RFC 5545) encoder:
   https://github.com/swift-calendar/icalendarkit
-- iBase — number-base converter, on the App Store since 2018:
+- iBase: number-base converter, on the App Store since 2018:
   https://apps.apple.com/us/app/id1346871946
 
 ## Links

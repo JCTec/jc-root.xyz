@@ -1,6 +1,6 @@
 # Git guesses text-vs-binary by looking for a NUL byte in the first 8000
 # bytes, and some PDF writers put their entire header and cross-reference
-# table in plain ASCII — so a perfectly ordinary PDF can read as text. The CI
+# table in plain ASCII, so a perfectly ordinary PDF can read as text. The CI
 # whitespace scan is `git grep -I`, which honours this attribute and nothing
 # else: without the line below it walks into a PDF's xref table, finds the
 # trailing spaces the format requires there, and fails the build.

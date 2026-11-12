@@ -1,11 +1,11 @@
-// Textes d'interface en français — doit conserver la parité totale des clés
+// Textes d'interface en français. Ils doivent conserver la parité totale des clés
 // avec en.strings (vérifiée par la suite de tests). Le code et les gabarits
 // n'utilisent que des codes.
 
 // Méta
 "meta_title" = "Juan Carlos Estévez · Ingénieur iOS Senior disponible | Développeur iOS freelance et à temps plein (Swift, SwiftUI)";
-"meta_description" = "6+ ans d'expérience professionnelle iOS, sur l'App Store depuis 2018. Double nationalité mexicaine et espagnole, titulaire d'un visa américain.";
-"og_image_alt" = "Juan Carlos Estévez Rodríguez — Ingénieur iOS Senior, disponible";
+"meta_description" = "Plus de 6 ans d'expérience professionnelle sur iOS, sur l'App Store depuis 2018. Double nationalité mexicaine et espagnole, titulaire d'un visa américain.";
+"og_image_alt" = "Juan Carlos Estévez Rodríguez, Ingénieur iOS Senior, disponible";
 
 // Accessibilité
 "skip_to_content" = "Aller au contenu";
@@ -33,40 +33,40 @@
 
 // À propos
 "about_heading" = "À propos";
-"about_body" = "Ingénieur iOS Senior avec plus de 6 ans d'expérience professionnelle, plus 2 années antérieures à livrer du code en production pendant mes études d'ingénieur, achevées en juillet 2021. J'assume l'entière responsabilité des fonctionnalités et de l'architecture, du premier échange jusqu'à la mise en production : je modernise des bases de code héritées, je construis des systèmes de design atomique et je considère les tests comme une part du métier, pas comme une réflexion après coup. Sur l'App Store depuis 2018 avec trois apps publiées sur iPhone, iPad et Mac. Dernièrement, j'ai étendu cette responsabilité au-delà de l'app : workflows d'agents IA, IoT full-stack et intégration matériel-logiciel. Cette responsabilité s'étend aussi au web : je conçois et j'exploite After Dark Stories, un produit Vapor et Leaf avec ses propres comptes, sa facturation et sa modération, et j'écris le JavaScript et le CSS qui l'habillent. Passionné par les technologies de la santé et du bien-être. Quand je ne livre pas, je fais du yoga, de l'escalade ou du kitesurf.";
+"about_body" = "Ingénieur iOS Senior avec plus de 6 ans d'expérience professionnelle, auxquels s'ajoutent 2 années à livrer du code en production pendant mes études d'ingénieur, achevées en juillet 2021. J'assume l'entière responsabilité des fonctionnalités et de l'architecture, du premier échange jusqu'à la mise en production : je modernise des bases de code héritées, je construis des systèmes de design atomique et je considère les tests comme une part du métier, pas comme une étape de dernière minute. Sur l'App Store depuis 2018 avec trois apps publiées sur iPhone, iPad et Mac. Dernièrement, j'ai étendu cette responsabilité au-delà de l'app : workflows d'agents IA, IoT full-stack et intégration matériel-logiciel. Cette responsabilité s'étend aussi au web : je conçois et j'exploite After Dark Stories, un produit Vapor et Leaf avec ses propres comptes, sa facturation et sa modération, et j'écris le JavaScript et le CSS de son interface. Passionné par les technologies de la santé et du bien-être. En dehors du code, je pratique le yoga, l'escalade et le kitesurf.";
 "about_availability" = "Disponible dès maintenant, en freelance ou à temps plein. Double nationalité mexicaine et espagnole, titulaire d'un visa américain.";
 
 // Expérience
 "exp_heading" = "Expérience";
 
 "exp1_role" = "Développement iOS indépendant et conseil";
-"exp1_company" = "En autonomie";
-"exp1_meta" = "Déc. 2024 – Aujourd'hui";
-"exp1_desc" = "Travail indépendant entre apps iOS de clients, produits personnels et étude ciblée, de bout en bout, de l'architecture à la mise en production : apps natives SwiftUI pour iPhone, iPad et Mac, et Swift open source. Une immersion délibérée dans les workflows d'agents IA, l'analyse de données et l'outillage moderne m'a amené à intégrer l'IA et des workflows d'agents dans des apps et des outils en production (Claude, OpenAI, xAI, Ollama). Voir Travaux sélectionnés pour les projets.";
+"exp1_company" = "À mon compte";
+"exp1_meta" = "déc. 2024 – aujourd'hui";
+"exp1_desc" = "Travail indépendant entre apps iOS de clients, produits personnels et étude ciblée, mené de bout en bout, de l'architecture à la mise en production : apps natives SwiftUI pour iPhone, iPad et Mac, et Swift open source. Une immersion délibérée dans les workflows d'agents IA, l'analyse de données et l'outillage moderne m'a amené à intégrer l'IA et des workflows d'agents dans des apps et des outils en production (Claude, OpenAI, xAI, Ollama). Les projets figurent dans la section Travaux sélectionnés.";
 
 "exp2_role" = "Ingénieur logiciel Senior";
 "exp2_company" = "Alaska Airlines";
-"exp2_meta" = "Déc. 2023 – Nov. 2024";
-"exp2_desc" = "J'ai piloté un système de design atomique complet, relevant le niveau de cohérence et de réutilisation de l'interface dans toute l'app. J'ai assumé la direction technique — MVVM, Clean Architecture, Coordinators —, livré des fonctionnalités en UIKit et SwiftUI, mené des tests A/B pour orienter les décisions produit et encadré des ingénieurs.";
+"exp2_meta" = "déc. 2023 – nov. 2024";
+"exp2_desc" = "J'ai piloté un système de design atomique complet, relevant le niveau de cohérence et de réutilisation de l'interface dans toute l'app. J'ai assumé la direction technique (MVVM, Clean Architecture, Coordinators), livré des fonctionnalités en UIKit et SwiftUI, mené des tests A/B pour orienter les décisions produit et encadré des ingénieurs.";
 
 "exp3_role" = "Ingénieur iOS Senior";
 "exp3_company" = "Peek.com";
-"exp3_meta" = "Août 2021 – Août 2023";
-"exp3_desc" = "J'ai fait partie de l'équipe iOS d'une app de marketplace vieille de dix ans. J'ai contribué à sa migration progressive vers SwiftUI, sur une base MVVM, Clean Architecture et Coordinators, ainsi qu'au travail de performance sur des listes dynamiques de plus de 10 000 éléments. J'ai participé à l'automatisation des tests d'interface (Robot Pattern + XCUITest) et à la CI/CD GitHub Actions, intégré GraphQL et travaillé sur la connexion de terminaux en WiFi. J'ai mené de bout en bout quelques fonctionnalités de moindre envergure.";
+"exp3_meta" = "août 2021 – août 2023";
+"exp3_desc" = "J'ai fait partie de l'équipe iOS d'une app de marketplace vieille de dix ans. J'ai contribué à sa migration progressive vers SwiftUI, sur une base MVVM, Clean Architecture et Coordinators, ainsi qu'au travail de performance sur des listes dynamiques de plus de 10 000 éléments. J'ai participé à l'automatisation des tests d'interface (Robot Pattern + XCUITest) et à la CI/CD GitHub Actions, intégré GraphQL et travaillé sur la connexion de terminaux matériels en Wi-Fi. J'ai mené de bout en bout quelques fonctionnalités de moindre envergure.";
 
 "exp4_role" = "Cofondateur et Ingénieur logiciel";
 "exp4_company" = "Xplain";
-"exp4_meta" = "Août 2020 – Août 2021";
-"exp4_desc" = "J'ai cofondé l'entreprise avec des amis et dirigé son ingénierie : un produit 100 % Swift — backend Vapor, front end iOS et bibliothèques Swift partagées entre les deux — avec deux apps iOS en production en SwiftUI et UIKit et des flux de paiement sécurisés via Stripe.";
+"exp4_meta" = "août 2020 – août 2021";
+"exp4_desc" = "J'ai cofondé l'entreprise avec des amis et dirigé son ingénierie : un produit 100 % Swift (backend Vapor, front end iOS et bibliothèques Swift partagées entre les deux) avec deux apps iOS en production en SwiftUI et UIKit et des flux de paiement sécurisés via Stripe.";
 
 "exp5_role" = "Ingénieur Full Stack (orienté iOS)";
 "exp5_company" = "Sunwise";
-"exp5_meta" = "Juin 2019 – Août 2020";
-"exp5_desc" = "J'ai livré des fonctionnalités iOS en production de bout en bout, en Swift et Objective-C sur des API REST — pleine responsabilité de production, en parallèle de mes derniers cours à l'université.";
+"exp5_meta" = "juin 2019 – août 2020";
+"exp5_desc" = "J'ai livré des fonctionnalités iOS en production de bout en bout, en Swift et Objective-C sur des API REST, avec la pleine responsabilité de la production, en parallèle de mes derniers cours à l'université.";
 
 "exp6_role" = "Ingénieur Full Stack";
 "exp6_company" = "DaCodes";
-"exp6_meta" = "Août 2018 – Juin 2019";
+"exp6_meta" = "août 2018 – juin 2019";
 "exp6_desc" = "Premier poste d'ingénieur : conception d'applications full-stack pour des clients d'agence sur des stacks adossées à AWS, en parallèle de mes études.";
 
 // Travaux sélectionnés
@@ -82,7 +82,7 @@
 
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
-"p6_desc" = "Studio de fiction assistée par IA, conçu et exploité en solo sur un serveur 100 % Swift : Vapor, Fluent et PostgreSQL derrière des templates Leaf rendus côté serveur, avec du JavaScript pour les interactions de l'éditeur. Les comptes reposent sur des sessions en base de données et des jetons d'accès et de rafraîchissement hachés, avec vérification par e-mail, réinitialisation du mot de passe, protection CSRF et contre les abus à l'inscription ; la console d'administration ajoute un accès break-glass journalisé et la réception des signalements. Trois langues d'interface — anglais, espagnol et français — sont résolues depuis un catalogue de textes unique. Le moteur d'histoires opère derrière des directives propres à l'application, avec validation des sorties et un classificateur post-génération. Système de marque documenté avec design tokens, et une posture de production de bout en bout : compression des réponses, fichiers statiques avec ETag, données structurées et sitemap.";
+"p6_desc" = "Studio de fiction assistée par IA, conçu et exploité en solo sur un serveur 100 % Swift : Vapor, Fluent et PostgreSQL derrière des templates Leaf rendus côté serveur, avec du JavaScript pour les interactions de l'éditeur. Les comptes reposent sur des sessions en base de données et des jetons d'accès et de rafraîchissement hachés, avec vérification par e-mail, réinitialisation du mot de passe, protection CSRF et contre les abus à l'inscription ; la console d'administration ajoute un accès d'urgence (break-glass) journalisé et la réception des signalements. Trois langues d'interface (anglais, espagnol et français) sont résolues depuis un catalogue de textes unique. Le moteur d'histoires opère derrière des directives propres à l'application, avec validation des sorties et un classificateur post-génération. Système de marque documenté avec design tokens, et une rigueur de production de bout en bout : compression des réponses, fichiers statiques avec ETag, données structurées et sitemap.";
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
@@ -94,11 +94,11 @@
 
 "p2_tags" = "macOS";
 "p2_name" = "MythLog";
-"p2_desc" = "App macOS fondée sur le consentement qui enregistre les événements système — veille/réveil, verrouillage de l'écran, lancement d'apps, modifications de fichiers surveillés, événements personnalisés en CLI — dans un journal en ajout seul chaîné par hachage HMAC-SHA256, avec une chronologie SwiftUI en direct. Entièrement local, sans compte ni analytique. macOS 14+.";
+"p2_desc" = "App macOS fondée sur le consentement qui enregistre les événements système (veille et réveil, verrouillage de l'écran, lancement d'apps, modifications de fichiers surveillés, événements personnalisés en CLI) dans un journal en ajout seul chaîné par hachage HMAC-SHA256, avec une chronologie SwiftUI en direct. Entièrement local, sans compte ni analytique. macOS 14+.";
 
 "p3_tags" = "Paquet Swift · Open Source";
 "p3_name" = "iCalendarKit";
-"p3_desc" = "Encodeur Swift pour les données iCalendar (RFC 5545) : événements, alarmes, fuseaux horaires et règles de récurrence. SPM, CI sur Linux et macOS, documentation DocC publiée. Cofondateur de l’organisation swift-calendar ; j’ai implémenté plusieurs fonctionnalités.";
+"p3_desc" = "Encodeur Swift pour les données iCalendar (RFC 5545) : événements, alarmes, fuseaux horaires et règles de récurrence. SPM, CI sur Linux et macOS, documentation DocC publiée. Cofondateur de l'organisation swift-calendar ; j'ai implémenté plusieurs fonctionnalités.";
 
 "p4_tags" = "iOS · iPadOS";
 "p4_name" = "iBase";
@@ -119,8 +119,8 @@
 "cred1_type" = "Conférence";
 "cred1_title" = "Do iOS 2026";
 "cred1_issuer" = "AppForce1 · NEMO Science Museum, Amsterdam";
-"cred1_dates" = "11 – 12 novembre 2026";
-"cred1_note" = "Présent aux deux journées de conférences. Au programme : des apps agentiques construites sur les Foundation Models d'Apple ; le fonctionnement interne de SwiftUI comme graphe de dépendances et des systèmes de design SwiftUI à grande échelle ; les App Intents avancés ; le profilage Instruments assisté par des agents ; les interfaces adaptatives et visionOS en production ; un test d'intrusion en direct d'une app iOS ; la préparation des apps de dispositifs médicaux à la FDA ; et Rust pour les développeurs Swift.";
+"cred1_dates" = "11 et 12 novembre 2026";
+"cred1_note" = "J'ai assisté aux deux journées de conférences. Au programme : des apps agentiques construites sur les Foundation Models d'Apple ; le fonctionnement interne de SwiftUI comme graphe de dépendances et des systèmes de design SwiftUI à grande échelle ; les App Intents avancés ; le profilage Instruments assisté par des agents ; les interfaces adaptatives et visionOS en production ; un test d'intrusion en direct d'une app iOS ; la préparation des apps de dispositifs médicaux à la FDA ; et Rust pour les développeurs Swift.";
 "cred2_type" = "Atelier";
 "cred2_title" = "Intro to Foundation Models";
 "cred2_issuer" = "Daniel Steinberg · Do iOS 2026";
@@ -155,19 +155,19 @@
 // Compétences
 "stack_heading" = "Compétences";
 "stack_core_label" = "Principales";
-"stack_also_label" = "Aussi";
+"stack_also_label" = "Autres";
 "stack_core_items" = "Swift|SwiftUI (dont 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift côté serveur)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
 "stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Systèmes de design atomique|Optimisation des performances|Profilage avec Xcode Instruments|Développement IA / agents (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM embarqué, appels d'outils)|IoT / domotique|SwiftData|App Intents|Accessibilité (a11y)|StoreKit 2|JavaScript|HTML et CSS|Leaf (rendu côté serveur)|Fluent + PostgreSQL|Sécurité web (sessions, CSRF, jetons)|Sécurité et durcissement des apps iOS|Internationalisation (i18n)|SEO et données structurées";
 
 // Contact
 "cta_heading" = "Vous construisez quelque chose pour les plateformes Apple ?";
-"cta_all_links" = "Tous mes contacts";
+"cta_all_links" = "Tous les liens de contact";
 "form_name" = "Nom";
 "form_email" = "E-mail";
 "form_message" = "Message";
 "form_send" = "Envoyer le message";
 "form_subject" = "Nouveau message depuis jc-root.xyz";
-"form_sent" = "Merci — votre message est en route. Je vous répondrai bientôt.";
+"form_sent" = "Merci ! Votre message est en route. Je vous répondrai bientôt.";
 
 // Pied de page
 "footer_name" = "Juan Carlos Estévez Rodríguez";

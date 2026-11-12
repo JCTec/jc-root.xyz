@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* jc-root.xyz — the checks that need a real browser.
+/* jc-root.xyz: the checks that need a real browser.
  *
  * `node --test` can assert what the build emits. It cannot compute layout,
  * run requestAnimationFrame, resolve a focus ring, or model a visitor whose
@@ -267,10 +267,10 @@ try {
 
     await check("survives a returning visitor's stale CSS/JS (today's markup, HEAD's assets)", () => {
         assert(stale.canvasPosition === "fixed",
-            `canvas fell into normal flow (position: ${stale.canvasPosition}) — its layout depends on a separately cached file`);
+            `canvas fell into normal flow (position: ${stale.canvasPosition}); its layout depends on a separately cached file`);
         assert(stale.canvasPointerEvents === "none", `canvas became interactive (${stale.canvasPointerEvents})`);
         assert(stale.heroTop < stale.viewportHeight,
-            `hero pushed to ${stale.heroTop}px, below the fold — something new is taking up layout space`);
+            `hero pushed to ${stale.heroTop}px, below the fold; something new is taking up layout space`);
         assert(!stale.overflowsHorizontally, "page scrolls horizontally with stale assets");
         return `hero at ${stale.heroTop}px, doc ${stale.docHeight}px`;
     });
@@ -312,7 +312,7 @@ try {
         const first = await page.eval(CANVAS_HASH);
         const frames = await page.eval(countFrames(1500));
         const second = await page.eval(CANVAS_HASH);
-        assert(first === second, "canvas changed between samples — it is still animating");
+        assert(first === second, "canvas changed between samples; it is still animating");
         assert(frames === 0, `${frames} frame callbacks scheduled under reduced motion`);
         await page.send("Emulation.setEmulatedMedia", { features: [] });
     });
@@ -356,7 +356,7 @@ try {
         await page.eval(`window.dispatchEvent(new PageTransitionEvent("pageshow", { persisted: true })); "ok"`);
         await sleep(200);
         assert((await page.eval(`document.querySelector(".contact-form button[type=submit]").disabled`)) === false,
-            "button is still disabled after a restored pageshow — the form is dead on back-navigation");
+            "button is still disabled after a restored pageshow; the form is dead on back-navigation");
     });
 
     /* The one behaviour that moved from the server into JavaScript when the
@@ -388,7 +388,7 @@ try {
     try { page?.ws.close(); } catch { /* already gone */ }
     proc.kill();
     // Chrome keeps writing to its profile for a moment after SIGTERM; removing
-    // it too early races that. Wait for exit, then clean up best-effort — a
+    // it too early races that. Wait for exit, then clean up best-effort: a
     // leftover temp directory must never fail the run.
     await new Promise((resolve) => {
         const done = setTimeout(resolve, 3000);

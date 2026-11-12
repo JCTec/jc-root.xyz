@@ -4,7 +4,7 @@
    App Store listing, an email, or a regulator, and they have to render
    correctly years from now with no dependency on how the marketing site
    happens to be styled that week. The palette is copied from site.css rather
-   than imported for the same reason — nothing here breaks if that file moves.
+   than imported for the same reason: nothing here breaks if that file moves.
 
    Static files under site/public/ are copied into dist/ verbatim; there is no
    template and no build step behind these pages. */
@@ -67,7 +67,7 @@ h2 {
     border-top: 1px solid var(--border);
 }
 
-/* The numbers are part of the document — a policy gets cited by section. */
+/* The numbers are part of the document: a policy gets cited by section. */
 h2 .n {
     font-family: var(--mono);
     font-size: 0.9rem;
@@ -152,7 +152,7 @@ a {
     word-break: break-all;
 }
 
-/* An aside the document carries but does not argue — set quieter than body
+/* An aside the document carries but does not argue, set quieter than body
    copy so it does not read as another clause. */
 .note {
     font-size: 0.875rem;
