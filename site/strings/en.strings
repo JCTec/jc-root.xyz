@@ -52,7 +52,7 @@
 "exp3_role" = "Senior iOS Engineer";
 "exp3_company" = "Peek.com";
 "exp3_meta" = "Aug 2021 – Aug 2023";
-"exp3_desc" = "Led the modernization of a decade-old marketplace app, owning the SwiftUI migration end-to-end on a live product. Made the call to rebuild its foundation on MVVM, Clean Architecture and Coordinators. Raised the performance bar with dynamic lists handling 10,000+ items, built an automated testing culture from zero (Robot Pattern + XCUITest), and cut release cycles 30% with GitHub Actions CI/CD. Integrated GraphQL, and WiFi-connected terminal hardware via custom connection managers; mentored engineers.";
+"exp3_desc" = "Worked on the iOS team of a decade-old marketplace app. Contributed to its gradual SwiftUI migration on top of MVVM, Clean Architecture and Coordinators, and to performance work on dynamic lists of 10,000+ items. Helped with UI test automation (Robot Pattern + XCUITest) and GitHub Actions CI/CD, integrated GraphQL, and worked on connecting WiFi terminal hardware. Led a couple of smaller features from start to finish.";
 
 "exp4_role" = "Co-founder & Software Engineer";
 "exp4_company" = "Xplain";
@@ -98,7 +98,7 @@
 
 "p3_tags" = "Swift Package · Open Source";
 "p3_name" = "iCalendarKit";
-"p3_desc" = "Swift encoder for iCalendar data (RFC 5545) — events, alarms, timezones and recurrence rules. SPM, CI on Linux and macOS, published DocC docs. Creator and co-founder of the swift-calendar org.";
+"p3_desc" = "Swift encoder for iCalendar data (RFC 5545) — events, alarms, timezones and recurrence rules. SPM, CI on Linux and macOS, published DocC docs. Co-founder of the swift-calendar org; implemented several features.";
 
 "p4_tags" = "iOS · iPadOS";
 "p4_name" = "iBase";

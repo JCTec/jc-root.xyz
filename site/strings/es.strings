@@ -51,7 +51,7 @@
 "exp3_role" = "Ingeniero iOS Senior";
 "exp3_company" = "Peek.com";
 "exp3_meta" = "Ago 2021 – Ago 2023";
-"exp3_desc" = "Lideré la modernización de una app de marketplace con una década de antigüedad y fui dueño de la migración a SwiftUI de principio a fin, sobre un producto vivo en producción. Tomé la decisión de reconstruir sus cimientos sobre MVVM, Clean Architecture y el patrón Coordinator. Elevé el estándar de rendimiento con listas dinámicas de más de 10,000 elementos, construí una cultura de pruebas automatizadas desde cero (Robot Pattern + XCUITest) y reduje los ciclos de release un 30% con CI/CD en GitHub Actions. Integré GraphQL y terminales conectadas por WiFi mediante gestores de conexión propios; mentoricé a ingenieros.";
+"exp3_desc" = "Formé parte del equipo iOS de una app de marketplace con una década de antigüedad. Contribuí a su migración gradual a SwiftUI sobre MVVM, Clean Architecture y el patrón Coordinator, y a mejorar el rendimiento de listas dinámicas de más de 10,000 elementos. Ayudé con la automatización de pruebas de UI (Robot Pattern + XCUITest) y el CI/CD en GitHub Actions, integré GraphQL y trabajé en la conexión con terminales por WiFi. Lideré un par de funcionalidades más pequeñas de principio a fin.";
 
 "exp4_role" = "Cofundador e Ingeniero de Software";
 "exp4_company" = "Xplain";
@@ -97,7 +97,7 @@
 
 "p3_tags" = "Paquete Swift · Código abierto";
 "p3_name" = "iCalendarKit";
-"p3_desc" = "Codificador Swift para datos iCalendar (RFC 5545): eventos, alarmas, zonas horarias y reglas de recurrencia. SPM, CI en Linux y macOS, documentación DocC publicada. Creador y cofundador de la organización swift-calendar.";
+"p3_desc" = "Codificador Swift para datos iCalendar (RFC 5545): eventos, alarmas, zonas horarias y reglas de recurrencia. SPM, CI en Linux y macOS, documentación DocC publicada. Cofundador de la organización swift-calendar; implementé varias funcionalidades.";
 
 "p4_tags" = "iOS · iPadOS";
 "p4_name" = "iBase";
