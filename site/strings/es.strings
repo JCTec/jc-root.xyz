@@ -81,7 +81,7 @@
 
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
-"p6_desc" = "Estudio de ficción asistida por IA, construido y operado en solitario sobre Swift en el servidor (Vapor, Fluent, PostgreSQL, Leaf), con cuentas, autenticación por tokens, cobros y moderación en tres idiomas. iBase: convertidor entre binario, octal, decimal y hexadecimal, en el App Store desde 2018.";
+"p6_desc" = "Estudio de ficción asistida por IA, construido y operado en solitario sobre Swift en el servidor (Vapor, Fluent, PostgreSQL, Leaf), con cuentas, autenticación por tokens, cobros y moderación en tres idiomas.";
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
@@ -98,6 +98,10 @@
 "p3_tags" = "Paquete Swift · Código abierto";
 "p3_name" = "iCalendarKit";
 "p3_desc" = "Codificador Swift para datos iCalendar (RFC 5545): eventos, alarmas, zonas horarias y reglas de recurrencia. SPM, CI en Linux y macOS, documentación DocC publicada. Cofundador de la organización swift-calendar; implementé varias funcionalidades.";
+
+"p4_tags" = "iOS · iPadOS";
+"p4_name" = "iBase";
+"p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018, en inglés y español.";
 
 // Educación
 "edu_heading" = "Educación";

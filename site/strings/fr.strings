@@ -82,7 +82,7 @@
 
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
-"p6_desc" = "Studio de fiction assistée par IA, conçu et exploité en solo sur Swift côté serveur (Vapor, Fluent, PostgreSQL, Leaf), avec comptes, authentification par jetons, facturation et modération en trois langues. iBase : convertisseur binaire, octal, décimal et hexadécimal, sur l'App Store depuis 2018.";
+"p6_desc" = "Studio de fiction assistée par IA, conçu et exploité en solo sur Swift côté serveur (Vapor, Fluent, PostgreSQL, Leaf), avec comptes, authentification par jetons, facturation et modération en trois langues.";
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
@@ -99,6 +99,10 @@
 "p3_tags" = "Paquet Swift · Open Source";
 "p3_name" = "iCalendarKit";
 "p3_desc" = "Encodeur Swift pour les données iCalendar (RFC 5545) : événements, alarmes, fuseaux horaires et règles de récurrence. SPM, CI sur Linux et macOS, documentation DocC publiée. Cofondateur de l'organisation swift-calendar ; j'ai implémenté plusieurs fonctionnalités.";
+
+"p4_tags" = "iOS · iPadOS";
+"p4_name" = "iBase";
+"p4_desc" = "Convertisseur rapide et simple entre binaire, octal, décimal et hexadécimal. Sur l'App Store depuis 2018, en anglais et en espagnol.";
 
 // Formation
 "edu_heading" = "Formation";
