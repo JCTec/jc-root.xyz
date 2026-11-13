@@ -46,7 +46,7 @@
 "exp2_role" = "Ingeniero de Software Senior";
 "exp2_company" = "Alaska Airlines";
 "exp2_meta" = "dic. 2023 – nov. 2024";
-"exp2_desc" = "Trabajé en el software para iPad de las estaciones de autoservicio de etiquetas de equipaje de Alaska, en los vestíbulos de aeropuertos de todo Estados Unidos. Fui responsable de la accesibilidad de la estación e impulsé la adopción de a11y en el equipo: integré el teclado asistivo de Storm Interface con VoiceOver, asignando sus teclas como entrada de teclado para controlar la navegación y la voz. Construí la capa de red local de la estación, con el iPad gestionando las conexiones TCP con la carcasa del escáner Aila y con la impresora de etiquetas de equipaje, e implementé de principio a fin la lectura MRZ de pasaportes en el hardware de Aila. Mantuve aplicaciones anteriores construidas sobre frameworks internos propios de escaneo de pasaportes.";
+"exp2_desc" = "Trabajé en el software para iPad de las estaciones de autoservicio de etiquetas de equipaje de Alaska, en los vestíbulos de aeropuertos de todo Estados Unidos. Fui responsable de la accesibilidad de la estación e impulsé la adopción de a11y en el equipo: integré el teclado asistivo de Storm Interface con VoiceOver, asignando sus teclas como entrada de teclado para controlar la navegación y la voz. Construí la capa de red local de la estación, con el iPad gestionando las conexiones TCP con la carcasa del escáner Aila y con la impresora de etiquetas de equipaje, e implementé de principio a fin la lectura MRZ de pasaportes en el hardware de Aila. Desarrollé la app para funcionar dentro del parque de iPads de las estaciones, gestionado por MDM. Mantuve aplicaciones anteriores construidas sobre frameworks internos propios de escaneo de pasaportes.";
 
 "exp3_role" = "Ingeniero iOS Senior";
 "exp3_company" = "Peek.com";
@@ -156,7 +156,7 @@
 "stack_core_label" = "Principales";
 "stack_also_label" = "Otras";
 "stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift en el servidor)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Optimización de rendimiento|Perfilado con Xcode Instruments|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM en el dispositivo, llamadas a herramientas)|IoT / domótica|SwiftData|App Intents|Accesibilidad (a11y, VoiceOver)|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Seguridad y hardening de apps iOS|Internacionalización (i18n)|SEO y datos estructurados|Flutter (Dart)";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Optimización de rendimiento|Perfilado con Xcode Instruments|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM en el dispositivo, llamadas a herramientas)|IoT / domótica|SwiftData|App Intents|Accesibilidad (a11y, VoiceOver)|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Seguridad y hardening de apps iOS|Internacionalización (i18n)|SEO y datos estructurados|Flutter (Dart)|Dispositivos gestionados por MDM";
 
 // Contacto
 "cta_heading" = "¿Estás creando algo para plataformas Apple?";

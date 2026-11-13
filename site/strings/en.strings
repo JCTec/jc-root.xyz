@@ -47,7 +47,7 @@
 "exp2_role" = "Senior Software Engineer";
 "exp2_company" = "Alaska Airlines";
 "exp2_meta" = "Dec 2023 – Nov 2024";
-"exp2_desc" = "Worked on the iPad software behind Alaska's self-service bag tag stations in airport lobbies across the US. Owned accessibility for the station and drove a11y adoption on the team: integrated the Storm Interface assistive keypad with VoiceOver, mapping its keys as keyboard input to drive navigation and speech. Built the station's local-network layer, with the iPad managing TCP connections to the Aila scanner enclosure and the bag tag printer, and implemented MRZ passport reading on the Aila hardware end to end. Maintained older applications built on custom in-house passport-scanning frameworks.";
+"exp2_desc" = "Worked on the iPad software behind Alaska's self-service bag tag stations in airport lobbies across the US. Owned accessibility for the station and drove a11y adoption on the team: integrated the Storm Interface assistive keypad with VoiceOver, mapping its keys as keyboard input to drive navigation and speech. Built the station's local-network layer, with the iPad managing TCP connections to the Aila scanner enclosure and the bag tag printer, and implemented MRZ passport reading on the Aila hardware end to end. Built the app to work within the stations' MDM-managed iPad setup. Maintained older applications built on custom in-house passport-scanning frameworks.";
 
 "exp3_role" = "Senior iOS Engineer";
 "exp3_company" = "Peek.com";
@@ -157,7 +157,7 @@
 "stack_core_label" = "Core";
 "stack_also_label" = "Also";
 "stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (server-side Swift)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Performance optimization|Xcode Instruments profiling|AI / agentic development (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (on-device LLM, tool calling)|IoT / home automation|SwiftData|App Intents|Accessibility (a11y, VoiceOver)|StoreKit 2|JavaScript|HTML & CSS|Leaf (server-rendered)|Fluent + PostgreSQL|Web security (sessions, CSRF, token auth)|iOS app security & hardening|Internationalization (i18n)|SEO & structured data|Flutter (Dart)";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Performance optimization|Xcode Instruments profiling|AI / agentic development (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (on-device LLM, tool calling)|IoT / home automation|SwiftData|App Intents|Accessibility (a11y, VoiceOver)|StoreKit 2|JavaScript|HTML & CSS|Leaf (server-rendered)|Fluent + PostgreSQL|Web security (sessions, CSRF, token auth)|iOS app security & hardening|Internationalization (i18n)|SEO & structured data|Flutter (Dart)|MDM-managed devices";
 
 // Contact
 "cta_heading" = "Building something for Apple platforms?";
