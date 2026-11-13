@@ -3,7 +3,7 @@
 
 // Meta
 "meta_title" = "Juan Carlos Estévez · Ingeniero iOS Senior disponible | Desarrollador iOS freelance y de tiempo completo (Swift, SwiftUI)";
-"meta_description" = "Más de 6 años de experiencia profesional en iOS, en el App Store desde 2018. Doble nacionalidad mexicana y española, con visa estadounidense.";
+"meta_description" = "Más de 6 años de experiencia profesional en iOS, en el App Store desde 2018. Doble nacionalidad mexicana y española.";
 "og_image_alt" = "Juan Carlos Estévez Rodríguez, Ingeniero iOS Senior, disponible para contratación";
 
 // Accesibilidad
@@ -16,7 +16,7 @@
 "hero_name" = "Juan Carlos Estévez Rodríguez";
 "hero_role" = "Ingeniero iOS Senior";
 "hero_platforms" = "iOS · iPadOS · macOS";
-"hero_status" = "Doble nacionalidad mexicana y española · Visa estadounidense";
+"hero_status" = "Doble nacionalidad mexicana y española";
 "hero_cta_projects" = "Ver mis proyectos →";
 "hero_cta_github" = "GitHub";
 "hero_cta_cv" = "Descargar CV";
@@ -34,7 +34,7 @@
 "about_heading" = "Acerca de";
 "about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, que concluí en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera llamada al lanzamiento: modernizo bases de código heredadas, construyo pensando en la accesibilidad y trato las pruebas como parte del oficio, no como algo secundario. En el App Store desde 2018 con cuatro apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA e integración de hardware y software. Esa responsabilidad también llega a la web: construyo y opero After Dark Stories, un producto en Vapor y Leaf con cuentas, cobros y moderación propios, y escribo el JavaScript y el CSS de su interfaz.";
 "about_personal" = "Me apasiona la tecnología de salud y bienestar. Cuando no estoy programando, practico yoga, escalada o kitesurf.";
-"about_availability" = "Disponible ahora, freelance o de tiempo completo. Doble nacionalidad mexicana y española, con visa estadounidense.";
+"about_availability" = "Disponible ahora, freelance o de tiempo completo. Doble nacionalidad mexicana y española.";
 
 // Experiencia
 "exp_heading" = "Experiencia";
@@ -52,7 +52,7 @@
 "exp3_role" = "Ingeniero iOS Senior";
 "exp3_company" = "Peek.com";
 "exp3_meta" = "ago. 2021 – ago. 2023";
-"exp3_desc" = "Formé parte del equipo iOS de una app de marketplace con una década de antigüedad. Contribuí a su migración gradual a SwiftUI sobre MVVM, Clean Architecture y el patrón Coordinator, y a mejorar el rendimiento de listas dinámicas de más de 10,000 elementos. Ayudé con la automatización de pruebas de UI (Robot Pattern + XCUITest) y el CI/CD en GitHub Actions, integré GraphQL y trabajé en la conexión con terminales de hardware por WiFi. Lideré un par de funcionalidades más pequeñas de principio a fin.";
+"exp3_desc" = "Construí la cuadrícula de reservas: una vista de filas y columnas totalmente dinámica, dirigida por el servidor y renderizada en tiempo real, que maneja hasta 10,000 reservas sin perder sombras ni animaciones. Hoy se usa en todo Estados Unidos. Migré partes de una app de marketplace con una década de antigüedad a SwiftUI como parte de su migración gradual, sobre MVVM, Clean Architecture y el patrón Coordinator. Optimicé listas dinámicas de más de 10,000 elementos. Escribí pruebas de UI automatizadas (Robot Pattern + XCUITest) y trabajé en el pipeline de CI/CD en GitHub Actions. Integré GraphQL y conecté hardware de terminales WiFi a la app. Dirigí funcionalidades de principio a fin como líder de proyecto.";
 
 "exp4_role" = "Cofundador e Ingeniero de Software";
 "exp4_company" = "Xplain";
@@ -107,6 +107,7 @@
 // Educación
 "edu_heading" = "Educación";
 "deg1_title" = "Maestría en Ciberseguridad";
+"deg1_school" = "Next Educación";
 "deg1_dates" = "octubre de 2026 – actualidad";
 "deg1_status" = "En curso";
 "deg2_title" = "Ingeniería en Informática y Negocios Digitales";
@@ -156,8 +157,8 @@
 "stack_heading" = "Habilidades";
 "stack_core_label" = "Principales";
 "stack_also_label" = "Otras";
-"stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift en el servidor)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Optimización de rendimiento|Perfilado con Xcode Instruments|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM en el dispositivo, llamadas a herramientas)|IoT / domótica|SwiftData|App Intents|Accesibilidad (a11y, VoiceOver)|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Seguridad y hardening de apps iOS|Internacionalización (i18n)|SEO y datos estructurados|Flutter (Dart)|Dispositivos gestionados por MDM";
+"stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Objective-C|Combine|Swift Concurrency|Vapor 4 (Swift en el servidor)|MVVM|Clean Architecture|Coordinators|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Optimización de rendimiento|Perfilado con Xcode Instruments|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM en el dispositivo, llamadas a herramientas)|SwiftData|App Intents|Accesibilidad (a11y, VoiceOver)|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Seguridad y hardening de apps iOS|Internacionalización (i18n)|SEO y datos estructurados|Flutter (Dart)|Dispositivos gestionados por MDM";
 
 // Contacto
 "cta_heading" = "¿Estás creando algo para plataformas Apple?";
