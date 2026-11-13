@@ -199,10 +199,12 @@ test("Every asset each page references is actually in the output", () => {
 test("Each page's download button points at its own locale's CV", () => {
     for (const [locale, html] of Object.entries(pages)) {
         const own = cvPathFor(locale, cvPath);
-        assert.ok(html.includes(`href="${own}"`), `${locale} page does not link ${own}`);
+        // Stamped with ?v=; cv.test.mjs checks the stamp is the CV's own.
+        assert.match(html, new RegExp(`href="${own.replace(/\./g, "\\.")}\\?v=[0-9a-f]{12}"`),
+            `${locale} page does not link ${own}?v=…`);
         for (const other of LOCALES.filter((code) => code !== locale)) {
             const theirs = cvPathFor(other, cvPath);
-            assert.ok(!html.includes(`href="${theirs}"`), `${locale} page links the ${other} CV`);
+            assert.ok(!html.includes(`href="${theirs}`), `${locale} page links the ${other} CV`);
         }
     }
 });

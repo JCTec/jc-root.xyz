@@ -167,6 +167,15 @@ pages**. CI checks both on the rendered files and fails the build otherwise,
 so a copy change that pushes a locale onto a third page is caught before it
 publishes; tighten the copy, or the print stylesheet, to fix it.
 
+**The Download CV link is stamped.** The PDF keeps one name on every release,
+so each page links it as `…-cv.pdf?v=<stamp>`, twelve hex characters of a
+SHA-256 over the CV's HTML (`cvVersion`, computed in `buildPageContext` from
+the same render WeasyPrint is given). Edit the copy and the stamp changes, so
+the next click is a URL no browser or CDN has cached; the page itself is never
+cached, so a visitor always has the current link. A build that changes nothing
+keeps the stamp. `test/cv.test.mjs` checks each page links its CV under the
+hash of the CV that build renders.
+
 **The PDFs are never committed.** They are build outputs like
 `dist/index.html`; a binary in the tree would start drifting from the catalog
 that generates it the first time someone edited the strings and forgot to
@@ -308,7 +317,15 @@ equivalent at all. The rule above is the only thing delivering them.
 | `/vendor/*`, `/icons/*`, `/favicon.ico` | `public, max-age=31536000, immutable` |
 | `*.css`, `*.js`, `*.webmanifest` | `public, max-age=86400, stale-while-revalidate=604800` |
 | `/robots.txt`, `/sitemap.xml`, `/llms.txt` | `public, max-age=3600` |
+| `*.pdf` (the CVs, the privacy policies) | `no-cache, must-revalidate` |
 | everything else (HTML) | `no-cache, must-revalidate` |
+
+The rules are defined in `lib/edge-rules.mjs`, and `test/cache-policy.test.mjs`
+checks that every kind of path the site serves matches exactly one of them,
+sending the policy above. A path no rule matches gets Cloudflare's default
+instead (a four-hour browser cache for a PDF), which is how returning visitors
+once kept getting an old CV. After changing a rule, re-run
+`scripts/cloudflare-headers.mjs`: the edge only changes when that runs.
 
 **DNSSEC is enabled at Cloudflare and `pending`.** It stays inert (and the
 zone stays exactly as secure as it was) until the DS record below is published

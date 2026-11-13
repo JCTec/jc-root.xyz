@@ -25,6 +25,7 @@ import {
     CV_EMAIL,
     cvOutputName,
     cvPathFor,
+    cvVersion,
     displayURL,
     sentences,
     shortDate,
@@ -407,9 +408,30 @@ test("The files CI publishes are the files the site links to", () => {
     assert.ok(!/\bmv\b.*\.pdf/.test(workflow), "ci.yml renames a PDF; the render already named it");
 });
 
-/* The CVs are linked without a ?v= buster, so they must not be long-cached:
-   an edited catalog has to reach a returning visitor, not sit behind a year
-   of immutability. */
+/* The PDF keeps one name on every release, so the page links it with a ?v=
+   stamp of the CV itself. What this guards is the failure that happened: a
+   new CV deployed, and a returning visitor handed the old one from a cache. */
+test("Each page links its CV stamped with a hash of the CV it will download", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        const href = `href="${cvPathFor(locale, cvPath)}?v=${cvVersion(out)}"`;
+        assert.ok(pages[locale].includes(href), `${locale}: the page does not link ${href}`);
+    }
+    assert.match(cvVersion("x"), /^[0-9a-f]{12}$/);
+});
+
+test("Editing the copy changes the CV's stamp; rebuilding without an edit does not", () => {
+    const config = loadConfig({ publicDirectory: null, env: {} });
+    const stamp = (table) => buildPageContext({ locale: "en", config, table }).cvHref;
+    assert.equal(stamp(catalog.en), stamp({ ...catalog.en }), "a rebuild with no edit changed the stamp");
+    assert.notEqual(stamp(catalog.en), stamp({ ...catalog.en, about_body: catalog.en.about_body + " Edited." }),
+        "editing About did not change the stamp");
+    assert.notEqual(stamp(catalog.en), stamp({ ...catalog.en, exp2_desc: catalog.en.exp2_desc + " Edited." }),
+        "editing a role did not change the stamp");
+});
+
+/* And at the bare URL, which bookmarks and pasted links still use, the CVs
+   must not be long-cached either: an edited catalog has to reach a returning
+   visitor. The edge rule that applies this is checked in cache-policy.test. */
 test("The published CVs revalidate rather than caching", () => {
     for (const locale of LOCALES) {
         assert.equal(cachePolicyForPath(cvPathFor(locale, cvPath)), "no-cache, must-revalidate");

@@ -15,8 +15,7 @@
  * Re-running is safe: it updates the ruleset it created rather than adding a
  * second one.
  */
-import { cachePolicyForPath } from "../lib/cache-policy.mjs";
-import { EDGE_HEADERS } from "../lib/headers.mjs";
+import { edgeRules } from "../lib/edge-rules.mjs";
 
 const PHASE = "http_response_headers_transform";
 const RULESET_NAME = "Site headers (jc-root.xyz)";
@@ -24,52 +23,8 @@ const zoneName = process.env.CLOUDFLARE_ZONE ?? "jc-root.xyz";
 const token = process.env.CLOUDFLARE_API_TOKEN;
 const dryRun = process.argv.includes("--dry-run");
 
-const P = "http.request.uri.path";
-const setHeaders = (headers) => ({
-    action: "rewrite",
-    action_parameters: {
-        headers: Object.fromEntries(
-            Object.entries(headers).map(([name, value]) => [name, { operation: "set", value }]),
-        ),
-    },
-});
-const cacheRule = (expression, samplePath, description) => ({
-    ...setHeaders({ "Cache-Control": cachePolicyForPath(samplePath) }),
-    expression,
-    description,
-    enabled: true,
-});
-
-/* Mutually exclusive by construction, so rule order cannot change the answer. */
-export const rules = [
-    {
-        ...setHeaders(EDGE_HEADERS),
-        expression: "true",
-        description: "Security headers on every response",
-        enabled: true,
-    },
-    cacheRule(
-        `starts_with(${P}, "/vendor/") or starts_with(${P}, "/icons/") or ${P} == "/favicon.ico"`,
-        "/vendor/x.css",
-        "Vendored assets and icons: immutable for a year",
-    ),
-    cacheRule(
-        `(ends_with(${P}, ".css") or ends_with(${P}, ".js") or ends_with(${P}, ".webmanifest"))`
-            + ` and not starts_with(${P}, "/vendor/") and not starts_with(${P}, "/icons/")`,
-        "/css/site.css",
-        "Site CSS/JS: revalidate daily, keyed on ?v=",
-    ),
-    cacheRule(
-        `${P} in {"/robots.txt" "/sitemap.xml" "/llms.txt"}`,
-        "/robots.txt",
-        "Discovery surfaces: an hour",
-    ),
-    cacheRule(
-        `ends_with(${P}, "/") or ends_with(${P}, ".html")`,
-        "/",
-        "HTML is never publicly cached",
-    ),
-];
+/* The rules live in lib/edge-rules.mjs, where the test suite can check them. */
+export const rules = edgeRules();
 
 if (dryRun) {
     for (const rule of rules) {
