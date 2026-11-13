@@ -32,7 +32,7 @@
 
 // Acerca de
 "about_heading" = "Acerca de";
-"about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, que concluí en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera llamada al lanzamiento: modernizo bases de código heredadas, construyo sistemas de diseño atómico y trato las pruebas como parte del oficio, no como algo secundario. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA, IoT full-stack e integración de hardware y software. Esa responsabilidad también llega a la web: construyo y opero After Dark Stories, un producto en Vapor y Leaf con cuentas, cobros y moderación propios, y escribo el JavaScript y el CSS de su interfaz. Me apasiona la tecnología de salud y bienestar. Cuando no estoy programando, practico yoga, escalada o kitesurf.";
+"about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, que concluí en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera llamada al lanzamiento: modernizo bases de código heredadas, construyo pensando en la accesibilidad y trato las pruebas como parte del oficio, no como algo secundario. En el App Store desde 2018 con tres apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA, IoT full-stack e integración de hardware y software. Esa responsabilidad también llega a la web: construyo y opero After Dark Stories, un producto en Vapor y Leaf con cuentas, cobros y moderación propios, y escribo el JavaScript y el CSS de su interfaz. Me apasiona la tecnología de salud y bienestar. Cuando no estoy programando, practico yoga, escalada o kitesurf.";
 "about_availability" = "Disponible ahora, freelance o de tiempo completo. Doble nacionalidad mexicana y española, con visa estadounidense.";
 
 // Experiencia
@@ -41,12 +41,12 @@
 "exp1_role" = "Desarrollo iOS independiente y consultoría";
 "exp1_company" = "Por cuenta propia";
 "exp1_meta" = "dic. 2024 – actualidad";
-"exp1_desc" = "Trabajo independiente con apps iOS de clientes, productos propios y estudio enfocado, a mi cargo de principio a fin, de la arquitectura al lanzamiento: apps nativas en SwiftUI para iPhone, iPad y Mac, y Swift de código abierto. Una inmersión deliberada en flujos con agentes de IA, análisis de datos y herramientas modernas me llevó a integrar IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama). Los proyectos están en la sección Trabajo seleccionado.";
+"exp1_desc" = "Diseñé, construí y publiqué Sideshore en el App Store: una app de pronóstico de viento y estaciones en vivo para iPhone, iPad y Mac desde un único target nativo en SwiftUI, con un paquete Swift propio que gestiona toda la red en el dispositivo (fusión de peticiones, limitación de tasa, reintentos y caché en disco para uso sin conexión). Construí y publiqué como código abierto Zhen, un escáner de red nativo para macOS escrito íntegramente en Swift 6: el motor, la línea de comandos y un helper privilegiado en un solo paquete Swift, una app SwiftUI notarizada encima y un estudio de medición prerregistrado que respalda su modelo de tiempos. Publiqué MythLog en el Mac App Store. Entregué de principio a fin un proyecto para un cliente: una app de libro para un escritor, desarrollada en Flutter. Integré IA y flujos con agentes en apps y herramientas de producción (Claude, OpenAI, xAI, Ollama), y me formé en el framework Foundation Models de Apple. También construyo y opero After Dark Stories, un producto web en producción sobre Swift en el servidor.";
 
 "exp2_role" = "Ingeniero de Software Senior";
 "exp2_company" = "Alaska Airlines";
 "exp2_meta" = "dic. 2023 – nov. 2024";
-"exp2_desc" = "Impulsé un sistema de diseño atómico completo que elevó el estándar de coherencia y reutilización de la UI en toda la app. Asumí la dirección técnica (MVVM, Clean Architecture, Coordinators), publiqué funcionalidades en UIKit y SwiftUI, ejecuté pruebas A/B para orientar decisiones de producto y fui mentor de otros ingenieros.";
+"exp2_desc" = "Trabajé en el software para iPad de las estaciones de autoservicio de etiquetas de equipaje de Alaska, en los vestíbulos de aeropuertos de todo Estados Unidos. Fui responsable de la accesibilidad de la estación e impulsé la adopción de a11y en el equipo: integré el teclado asistivo de Storm Interface con VoiceOver, asignando sus teclas como entrada de teclado para controlar la navegación y la voz. Construí la capa de red local de la estación, con el iPad gestionando las conexiones TCP con la carcasa del escáner Aila y con la impresora de etiquetas de equipaje, e implementé de principio a fin la lectura MRZ de pasaportes en el hardware de Aila. Mantuve aplicaciones anteriores construidas sobre frameworks internos propios de escaneo de pasaportes.";
 
 "exp3_role" = "Ingeniero iOS Senior";
 "exp3_company" = "Peek.com";
@@ -81,7 +81,7 @@
 
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
-"p6_desc" = "Estudio de ficción asistida por IA, construido y operado en solitario sobre un servidor 100% Swift: Vapor, Fluent y PostgreSQL detrás de plantillas Leaf renderizadas en el servidor, con JavaScript para las interacciones del editor. Las cuentas funcionan con sesiones en base de datos y tokens de acceso y de refresco con hash, con verificación por correo, restablecimiento de contraseña, protección CSRF y contra abusos en el registro; la consola de administración añade acceso de emergencia (break-glass) registrado y recepción de reportes. Tres idiomas de interfaz (inglés, español y francés) se resuelven desde un único catálogo de textos. El motor de historias opera detrás de directivas propias de la aplicación, con validación de salida y un clasificador posterior a la generación. Sistema de marca documentado con design tokens, y criterio de producción en todo el sistema: compresión de respuestas, archivos estáticos con ETag, datos estructurados y sitemap.";
+"p6_desc" = "Estudio de ficción asistida por IA, construido y operado en solitario sobre Swift en el servidor (Vapor, Fluent, PostgreSQL, Leaf), con cuentas, autenticación por tokens, cobros y moderación en tres idiomas. iBase: convertidor entre binario, octal, decimal y hexadecimal, en el App Store desde 2018.";
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
@@ -98,10 +98,6 @@
 "p3_tags" = "Paquete Swift · Código abierto";
 "p3_name" = "iCalendarKit";
 "p3_desc" = "Codificador Swift para datos iCalendar (RFC 5545): eventos, alarmas, zonas horarias y reglas de recurrencia. SPM, CI en Linux y macOS, documentación DocC publicada. Cofundador de la organización swift-calendar; implementé varias funcionalidades.";
-
-"p4_tags" = "iOS · iPadOS";
-"p4_name" = "iBase";
-"p4_desc" = "Convertidor rápido y simple entre binario, octal, decimal y hexadecimal. En el App Store desde 2018, en inglés y español.";
 
 // Educación
 "edu_heading" = "Educación";
@@ -156,7 +152,7 @@
 "stack_core_label" = "Principales";
 "stack_also_label" = "Otras";
 "stack_core_items" = "Swift|SwiftUI (incl. 6)|UIKit|Combine|Swift Concurrency|Vapor 4 (Swift en el servidor)|MVVM|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Sistemas de diseño atómico|Optimización de rendimiento|Perfilado con Xcode Instruments|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM en el dispositivo, llamadas a herramientas)|IoT / domótica|SwiftData|App Intents|Accesibilidad (a11y)|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Seguridad y hardening de apps iOS|Internacionalización (i18n)|SEO y datos estructurados";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Optimización de rendimiento|Perfilado con Xcode Instruments|Desarrollo con IA / agentes (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM en el dispositivo, llamadas a herramientas)|IoT / domótica|SwiftData|App Intents|Accesibilidad (a11y, VoiceOver)|StoreKit 2|JavaScript|HTML y CSS|Leaf (renderizado en servidor)|Fluent + PostgreSQL|Seguridad web (sesiones, CSRF, tokens)|Seguridad y hardening de apps iOS|Internacionalización (i18n)|SEO y datos estructurados|Flutter (Dart)";
 
 // Contacto
 "cta_heading" = "¿Estás creando algo para plataformas Apple?";
