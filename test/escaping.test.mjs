@@ -28,6 +28,10 @@ const PRE_ESCAPED = new Set([
     "langToggle",
     "label",                // langToggle's esc(t["lang_" + locale]); cardLink's escaped parts
     "experience",
+    "description",          // a role's description: esc()'d paragraph, or its bullets
+    "bullets(job.description)", // one <li> per sentence, each esc()'d
+    "aboutBody",            // esc(about_body), plus esc(about_personal) on the page
+    "mailto",               // the CV's address on the status line, esc()'d; empty on the page
     "degrees",
     "details",              // a degree's optional lines, each esc()'d
     "credentials",

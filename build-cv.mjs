@@ -1,20 +1,18 @@
 #!/usr/bin/env node
 /* jc-root.xyz: the CV, as HTML for a PDF renderer.
  *
- * The CV is the page's own sections under a print stylesheet, rendered from the
- * page's own context. This build emits a single self-contained HTML file per
- * locale, which WeasyPrint turns into the PDF the site serves and the `cv`
- * release carries.
+ * The CV is the page's own sections in their print form (contentSections with
+ * `print`) under a print stylesheet, rendered from the page's own context.
+ * This build emits a single self-contained HTML file per locale, which
+ * WeasyPrint turns into the tagged PDF the site serves and the `cv` release
+ * carries.
  *
  * Splitting the render from the rasterization is what keeps the repository
  * dependency-free. Node produces the HTML and the test suite asserts against
  * it; the only thing that needs Python is the last step, and it happens in CI.
  *
- * Usage:  node build-cv.mjs [outDir]     (default: dist-cv)
- *         for f in dist-cv/*.html; do weasyprint "$f" "${f%.html}.pdf"; done
- * Env:    CONTACT_EMAIL: the address on the contact line. Unset, the CV
- *         renders without one rather than with a placeholder, which is the
- *         published default.
+ * Usage:  node build-cv.mjs [outDir]     (default: dist-cv; relative to the repo)
+ *         for f in dist-cv/*.html; do weasyprint --pdf-tags "$f" "${f%.html}.pdf"; done
  */
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -51,10 +49,7 @@ export function buildCV(outDir, { env = process.env } = {}) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
     const outDir = join(root, process.argv[2] ?? "dist-cv");
-    const { config, written } = buildCV(outDir);
+    const { written } = buildCV(outDir);
     console.log(`built ${written.length} file(s) → ${outDir}`);
     for (const name of written) console.log(`  ${name}`);
-    if (!config.contactEmail) {
-        console.log("  CONTACT_EMAIL unset: the CV renders without an email address");
-    }
 }

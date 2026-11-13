@@ -1,11 +1,14 @@
-/* The CV build: the page's own sections under a print stylesheet.
+/* The CV build: the page's own sections, in their print form, under a print
+ * stylesheet.
  *
  * Two failures these tests exist to catch. One is mundane and expensive: a date
  * or a project updated on jc-root.xyz, a PDF still saying the old thing, and
  * nobody noticing until someone reads both. The other is how that starts: a
  * second, hand-written layout of the CV that every site change has to be
- * repeated in. So nothing here lists what the page contains; it compares the
- * two renders.
+ * repeated in. The CV is laid out for paper (its own section order, bullets,
+ * one-line credentials, short dates) by the same function that lays out the
+ * page, and these tests hold it to the page's facts: every section, role,
+ * sentence, project, link, credential, skill and language the page shows.
  */
 
 import assert from "node:assert/strict";
@@ -19,16 +22,19 @@ import { build } from "../build.mjs";
 import { buildPageContext, loadConfig } from "../lib/content.mjs";
 import {
     contactEntries,
+    CV_EMAIL,
     cvOutputName,
     cvPathFor,
     displayURL,
+    sentences,
+    shortDate,
 } from "../lib/cv-content.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { cv } from "../lib/cv-template.mjs";
 import { esc } from "../lib/html.mjs";
 import { projectCards, projectLinks } from "../lib/projects.mjs";
 import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
-import { heroIdentity } from "../lib/templates.mjs";
+import { heroIdentity, PRINT_SECTION_ORDER } from "../lib/templates.mjs";
 
 const catalog = loadCatalog(STRINGS_DIR);
 const root = join(import.meta.dirname, "..");
@@ -87,35 +93,139 @@ test("The site's catalog is the only catalog", () => {
 const sectionsOf = (markup) => [...markup.matchAll(/<section[^>]* id="([^"]+)">[\s\S]*?<\/section>/g)]
     .map((match) => ({ id: match[1], markup: match[0] }));
 
-/** A section with its card links' wording removed: the page's "Visit X →" and
-    the CV's bare URL are the one difference the two renders are allowed. */
-const withoutLinkWording = (markup) =>
-    markup.replace(/(<a class="card-link"[^>]*>)[^<]*<\/a>/g, "$1</a>");
+/** The render context the CV for `locale` was built from. */
+const contextFor = (locale) => buildPageContext({
+    locale, config: loadConfig({ publicDirectory: null, env: {} }), table: catalog[locale],
+});
 
-/* The contact form is the page's one section with nothing to print. Everything
-   else on the page is on the CV, in the same order, as the same markup. This
-   is what makes the PDF automatic: no list of sections or fields exists to
-   update, and a section added to the page outside contentSections fails here. */
-test("The CV is the page's sections, not a second layout of them", () => {
+/** The text of every element of one class in a render, unescaped back to copy
+    only as far as comparing against `esc(copy)` requires: callers compare
+    escaped forms. */
+const textsOf = (markup, className) =>
+    [...markup.matchAll(new RegExp(`class="${className}">([^<]*)<`, "g"))].map((match) => match[1]);
+
+/* The contact form is the page's one section with nothing to print. Every
+   other section of the page is on the CV, in the CV's order: About, Skills,
+   Experience, Selected Work, Education, Diplomas & Certifications, Languages.
+   A section added to the page and missing from that list still prints, after
+   them; this is what fails if one is dropped instead. */
+test("The CV prints every section the page has, in the CV's order", () => {
     for (const [locale, out] of Object.entries(renders)) {
         assert.ok(out.includes(`<html lang="${locale}">`));
 
-        const onPage = sectionsOf(pages[locale]).filter((section) => section.id !== "contact");
-        const onCV = sectionsOf(out);
+        const onPage = sectionsOf(pages[locale]).map((section) => section.id).filter((id) => id !== "contact");
+        const onCV = sectionsOf(out).map((section) => section.id);
         assert.ok(onPage.length >= 7, `${locale}: only ${onPage.length} sections found on the page`);
-        assert.deepEqual(onCV.map((section) => section.id), onPage.map((section) => section.id),
-            `${locale}: the CV's sections are not the page's`);
-        for (const [i, section] of onPage.entries()) {
-            assert.equal(withoutLinkWording(onCV[i].markup), withoutLinkWording(section.markup),
-                `${locale}: the #${section.id} section differs from the page's`);
-        }
+        const expected = [...PRINT_SECTION_ORDER, ...onPage.filter((id) => !PRINT_SECTION_ORDER.includes(id))];
+        assert.deepEqual(onCV, expected, `${locale}: the CV's sections are not the page's, in the CV's order`);
+    }
+    assert.deepEqual(PRINT_SECTION_ORDER,
+        ["about", "skills", "experience", "projects", "education", "credentials", "languages"]);
+});
 
-        // The hero's facts too: the same markup, in both.
-        const identity = heroIdentity(buildPageContext({
-            locale, config: loadConfig({ publicDirectory: null, env: {} }), table: catalog[locale],
-        }));
-        assert.ok(pages[locale].includes(identity), `${locale}: the page lacks the hero's facts`);
-        assert.ok(out.includes(identity), `${locale}: the CV lacks the hero's facts`);
+/* Same words, laid out for paper: a role's description is one bullet per
+   sentence, and joined back the bullets are the description. */
+test("Every role prints with its dates and company, its description as one bullet per sentence", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        for (const job of contextFor(locale).experience) {
+            assert.ok(out.includes(`<h3 class="exp-role">${esc(job.role)}</h3>`), `${locale}: ${job.role} missing`);
+            assert.ok(out.includes(`<p class="exp-company">${esc(job.company)}</p>`), `${locale}: ${job.company} missing`);
+            assert.ok(out.includes(`<p class="exp-meta">${esc(shortDate(job.meta, locale))}</p>`),
+                `${locale}: ${job.role} dates missing`);
+            const bullets = sentences(job.description);
+            assert.equal(bullets.join(" "), job.description, `${locale}: ${job.role} does not split into its own words`);
+            const list = `<ul class="exp-bullets">${bullets.map((b) => `\n                        <li>${esc(b)}</li>`).join("")}`;
+            assert.ok(out.includes(list), `${locale}: ${job.role} is not printed as one bullet per sentence`);
+        }
+        assert.ok(!out.includes(`class="exp-desc">${esc(contextFor(locale).experience[0].description)}`),
+            `${locale}: a role's description printed as a paragraph`);
+    }
+});
+
+/* The page closes About with two personal sentences; the CV leaves them out. */
+test("About prints without its personal sentences, which stay on the page", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        const t = catalog[locale];
+        assert.ok(out.includes(`<p class="about-body">${esc(t.about_body)}</p>`), `${locale}: CV About body`);
+        assert.ok(!out.includes(esc(t.about_personal)), `${locale}: the CV prints the personal sentences`);
+        assert.ok(pages[locale].includes(`<p class="about-body">${esc(t.about_body)} ${esc(t.about_personal)}</p>`),
+            `${locale}: the page lost About's personal sentences`);
+        assert.ok(out.includes(`<p class="about-availability">${esc(t.about_availability)}</p>`));
+    }
+});
+
+/* One line each, "Title (Type): Issuer · Date · link", and no note. */
+test("Every credential prints as one line with its link and without its note", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        assert.ok(!out.includes("cred-note"), `${locale}: a credential note reached the CV`);
+        for (const credential of contextFor(locale).credentials) {
+            const line = `<span class="cred-title">${esc(credential.title)}</span> (${esc(credential.type)}): `
+                + `${esc(credential.issuer)} · ${esc(shortDate(credential.dates, locale))}`;
+            assert.ok(out.includes(line), `${locale}: ${credential.title} is not one line`);
+            if (credential.url) {
+                assert.ok(out.includes(`href="${esc(credential.url)}" rel="noopener">${esc(displayURL(credential.url))}</a></p>`),
+                    `${locale}: ${credential.title} link missing from its line`);
+            }
+            if (credential.note) {
+                assert.ok(pages[locale].includes(esc(credential.note)), `${locale}: the page lost ${credential.title}'s note`);
+            }
+        }
+    }
+});
+
+/* One date style throughout the CV: month and year, short. */
+test("Every date on the CV is in the short form", () => {
+    const longForms = {
+        en: /\b(January|February|March|April|June|July|August|September|October|November|December)\b/,
+        es: /(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/,
+        fr: /(janvier|février|avril|juillet|septembre|octobre|novembre|décembre)/,
+    };
+    for (const [locale, out] of Object.entries(renders)) {
+        // A credential's date is the last "·" part of its line once the link is gone.
+        const credentialDates = [...out.matchAll(/<p class="cred-line">([\s\S]*?)<\/p>/g)]
+            .map((m) => m[1].replace(/<a[^>]*>[\s\S]*?<\/a>/g, "").replace(/<[^>]+>/g, "").split(" · ").pop().trim());
+        const dates = [...textsOf(out, "exp-meta"), ...credentialDates]
+            .map((date) => date.replace(/&#39;/g, "'").replace(/&amp;/g, "&"));
+        assert.ok(dates.length >= 14, `${locale}: found only ${dates.length} dates`);
+        for (const date of dates) {
+            assert.doesNotMatch(date, longForms[locale], `${locale}: "${date}" is a long-form date`);
+            assert.doesNotMatch(date, /(?<!\d)\d{1,2}(?!\d)/, `${locale}: "${date}" carries a day`);
+        }
+    }
+    assert.equal(shortDate("October 2026 – present", "en"), "Oct 2026 – present");
+    assert.equal(shortDate("November 11 – 12, 2026", "en"), "Nov 2026");
+    assert.equal(shortDate("11 y 12 de noviembre de 2026", "es"), "nov. 2026");
+    assert.equal(shortDate("2017 – julio de 2021", "es"), "2017 – jul. 2021");
+    assert.equal(shortDate("10 novembre 2026", "fr"), "nov. 2026");
+    assert.equal(shortDate("février – juin 2026", "fr"), "févr. – juin 2026");
+    assert.equal(shortDate("Dec 2023 – Nov 2024", "en"), "Dec 2023 – Nov 2024");
+});
+
+test("Every degree, skill and language the page shows is on the CV", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        const ctx = contextFor(locale);
+        for (const degree of ctx.degrees) {
+            assert.ok(out.includes(`<h3 class="exp-role">${esc(degree.title)}</h3>`), `${locale}: ${degree.title}`);
+        }
+        for (const { text } of [...ctx.stackCore, ...ctx.stackAlso]) {
+            assert.ok(out.includes(`>${esc(text)}</`), `${locale}: skill ${text} missing`);
+        }
+        for (const language of ctx.languages) {
+            assert.ok(out.includes(`<dt class="language-name">${esc(language.name)}</dt>`), `${locale}: ${language.name}`);
+        }
+    }
+});
+
+/* The header is the page's hero facts, with the address on the citizenship
+   line. The page itself never shows the address. */
+test("The CV header carries the address on the citizenship line; the page does not", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        const ctx = contextFor(locale);
+        assert.ok(out.includes(heroIdentity(ctx, { email: CV_EMAIL })), `${locale}: the CV lacks the hero's facts`);
+        assert.ok(out.includes(`<p class="hero-status">${esc(ctx.t.hero_status)} · <a href="mailto:${CV_EMAIL}">${CV_EMAIL}</a></p>`),
+            `${locale}: the address is not on the citizenship line`);
+        assert.ok(pages[locale].includes(heroIdentity(ctx)), `${locale}: the page lacks the hero's facts`);
+        assert.ok(!pages[locale].includes(CV_EMAIL), `${locale}: the page shows the address`);
     }
 });
 
@@ -185,7 +295,7 @@ const PRE_ESCAPED = new Set([
     "STYLE",                    // a constant stylesheet, no catalog values in it
     "contact",
     "sections",                 // contentSections; held to `esc` by escaping.test.mjs
-    "heroIdentity(ctx)",        // likewise
+    "identity",                 // heroIdentity; likewise
 ]);
 
 test("Every interpolation in the CV template is escaped", () => {
@@ -212,16 +322,10 @@ test("Hostile copy is escaped in the rendered CV", () => {
     assert.equal(out.match(/<\/style>/g).length, 1, "a value closed the style element");
 });
 
-test("The CV carries no email address unless one was supplied", () => {
-    assert.ok(
-        !/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(html),
-        "an address reached a CV built with no CONTACT_EMAIL",
-    );
-
-    const config = loadConfig({ publicDirectory: null, env: { CONTACT_EMAIL: "a@b.example" } });
-    const entries = contactEntries(config);
-    assert.equal(entries[0].href, "mailto:a@b.example");
-    assert.equal(entries[0].text, "a@b.example");
+test("The contact line is the site and the profiles, the address being in the header", () => {
+    const entries = contactEntries(loadConfig({ publicDirectory: null, env: { CONTACT_EMAIL: "a@b.example" } }));
+    assert.ok(entries.every((entry) => !entry.href.startsWith("mailto:")), "an address reached the contact line");
+    assert.ok(!html.includes("a@b.example"));
 });
 
 test("Contact links are shown bare and linked in full", () => {
@@ -285,8 +389,13 @@ test("The files CI publishes are the files the site links to", () => {
     }
 
     // What Pages serves: every render, copied into dist/ under its own name.
-    assert.ok(workflow.includes('.venv/bin/weasyprint "$html" "${html%.html}.pdf"'),
-        "ci.yml does not render each HTML to a PDF of the same basename");
+    assert.ok(workflow.includes('.venv/bin/weasyprint --pdf-tags "$html" "${html%.html}.pdf"'),
+        "ci.yml does not render each HTML to a tagged PDF of the same basename");
+    // Tagged for accessibility, and held to two pages: both are checked on
+    // the rendered PDFs, the only place either can be seen.
+    assert.match(workflow, /pdfinfo "\$pdf"/, "ci.yml does not inspect the rendered PDFs");
+    assert.match(workflow, /-gt 2/, "ci.yml does not hold the CV to two pages");
+    assert.match(workflow, /Tagged:/, "ci.yml does not check the PDFs are tagged");
     assert.ok(workflow.includes("run: cp dist-cv/*.pdf dist/"),
         "ci.yml never copies the rendered PDFs into dist/ unrenamed");
 

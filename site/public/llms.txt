@@ -14,8 +14,8 @@ Vapor 3), MVVM, XCTest + XCUITest (Robot Pattern), Swift Package Manager,
 GitHub Actions CI/CD. Modernizes legacy codebases, builds for
 accessibility, treats testing as part of the craft. On the App Store since
 2018 with apps for iOS, iPadOS and macOS in ten languages. Recently
-expanded into AI agentic workflows (Claude, OpenAI, xAI, Ollama),
-full-stack IoT, and hardware-software integration.
+expanded into AI agentic workflows (Claude, OpenAI, xAI, Ollama) and
+hardware-software integration.
 
 ## Selected work
 

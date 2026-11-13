@@ -95,7 +95,7 @@ node scripts/browser-check.mjs
 | `CANONICAL_HOST` | `jc-root.xyz` | The custom domain. Written to `dist/CNAME` and used to derive the base URL. |
 | `SITE_BASE_URL` | `https://$CANONICAL_HOST` | Base for canonical/hreflang/sitemap/og URLs. Override to build a preview. |
 | `ASSET_VERSION` | derived from `site/public/` | Stamp for `?v=` cache busting. Normally leave unset: the build hashes the bytes of `site/public/`, so the stamp cannot disagree with the assets it names. Setting it **overrides** that: a stale value pins every asset URL. |
-| `CONTACT_EMAIL` | unset | Two uses, both build-time: the one-time FormSubmit activation build (which has to email the real address before FormSubmit will issue an alias), and, optionally, the CV's contact line. **Normally leave it unset**; the published CV carries no address by design. It never reaches `dist/` either way: CI fails the build if an address does. |
+| `CONTACT_EMAIL` | unset | Build-time, for the one-time FormSubmit activation build only (FormSubmit has to email the real address before it will issue an alias). **Normally leave it unset.** The CV's address is not this variable: it is `CV_EMAIL` in `lib/cv-content.mjs`. |
 | `FORMSUBMIT_ENDPOINT` | `https://formsubmit.co/<CONTACT_EMAIL>` | Contact-form POST target. **After FormSubmit activation, set this** so the address leaves the HTML entirely. In CI it is the repository variable of the same name. |
 | `BUILD_YEAR` | the current year | Footer copyright. Baked in at build time; see the scheduled rebuild below. |
 | `PAGES_PREVIEW` | unset | When set, `dist/CNAME` is **not** written. Only for publishing before DNS points at the repository: a CNAME file claims the domain on deploy, and Pages then redirects its own `*.github.io` URL to a host that still resolves elsewhere, making the preview unreachable. |
@@ -119,38 +119,53 @@ language of the PDF.
 
 **Develop the site and the PDF follows.** Add a string, a field or a whole
 section to `contentSections` in `lib/templates.mjs` and it is in the PDF on the
-next push. Do not touch the CV to do it. Only three things are CV-specific:
+next push. Do not touch the CV to do it. Only these things are CV-specific:
 
 ```
 lib/cv-template.mjs   the print stylesheet, and the wrapper around the page's
                       sections. It lays out no content; it styles by element,
                       so a new section prints properly without a rule of its
                       own. Add a rule only to refine how something looks.
-lib/cv-content.mjs    how a URL reads on paper, the contact line, file names
-contentSections(ctx, { linkLabel })   the one difference from the page: a card's
-                      "Visit X →" button is printed as its bare, clickable URL
+lib/cv-content.mjs    how a URL, a date and a description read on paper, the
+                      contact line, the header's address (CV_EMAIL), file names
+contentSections(ctx, { linkLabel, print })   the CV's form of the page's
+                      sections, laid out by the same function as the page
 ```
 
-`test/cv.test.mjs` holds the render to that. Each locale's CV must carry the
-same sections as its page, in the same order, as the same markup apart from
-that link wording; the contact form is the only section left out. Structural
-markup in `cv-template.mjs`, a section added to the page outside
-`contentSections`, or a `cv.*.strings` file reappearing in `site/strings/` all
-fail the suite.
+`print` is where the CV differs from the page, and the only place:
+
+- Sections in the CV's order (`PRINT_SECTION_ORDER`): About, Skills,
+  Experience, Selected Work, Education, Diplomas & Certifications, Languages.
+  A section missing from that list still prints, after them.
+- About without its personal sentences (`about_personal`, which the page shows).
+- A role's description as one bullet per sentence, in the same words.
+- One line per credential, "Title (Type): Issuer · Date · link", without its note.
+- Every date in the short form ("Oct 2026", "oct. 2026"), via `shortDate`.
+- Each card written in the order it reads, which is the order a tagged PDF
+  follows; a card's "Visit X →" button printed as its bare, clickable URL.
+
+`test/cv.test.mjs` holds the render to the page's facts: every section but the
+contact form, in the CV's order; every role, sentence, project, link,
+credential, degree, skill and language. Structural markup in
+`cv-template.mjs`, a section added to the page outside `contentSections`, or a
+`cv.*.strings` file reappearing in `site/strings/` all fail the suite.
 
 Rendering is two steps, and only the second one is not Node:
 
 ```sh
-CONTACT_EMAIL=you@example.com node build-cv.mjs   # → dist-cv/juan-carlos-estevez-cv{,.es,.fr}.html
-for f in dist-cv/*.html; do weasyprint "$f" "${f%.html}.pdf"; done   # pip install weasyprint==69.0
+node build-cv.mjs   # → dist-cv/juan-carlos-estevez-cv{,.es,.fr}.html
+for f in dist-cv/*.html; do weasyprint --pdf-tags "$f" "${f%.html}.pdf"; done   # pip install weasyprint==69.0
 ```
 
 Splitting it that way is what keeps this repository dependency-free. Node emits
 one self-contained HTML file per locale (no stylesheet link, no assets,
 nothing to cache), and the test suite asserts against *those*. WeasyPrint only
 rasterizes, it runs in CI, and it is pinned so a release of it cannot silently
-repaginate the document. There is no page limit: the CV is as long as the
-site's copy makes it.
+repaginate the document. The PDFs are tagged (`--pdf-tags`: real headings,
+lists and reading order for screen readers), and **each must fit on two
+pages**. CI checks both on the rendered files and fails the build otherwise,
+so a copy change that pushes a locale onto a third page is caught before it
+publishes; tighten the copy, or the print stylesheet, to fix it.
 
 **The PDFs are never committed.** They are build outputs like
 `dist/index.html`; a binary in the tree would start drifting from the catalog
@@ -180,14 +195,11 @@ Two consequences worth knowing:
   workflow to check CI copies and uploads every PDF unrenamed. A rename on
   either side alone fails the suite rather than publishing a button that 404s.
 
-**The published CV carries no email address.** That is the same posture the
-site takes (the contact form posts to a FormSubmit alias and the raw address
-appears nowhere), and it is why the contact line is `jc-root.xyz`, LinkedIn and
-GitHub. All three reach a person; none of them can be scraped off a PDF that
-gets forwarded around.
-
-The address is not in the catalog. Setting `CONTACT_EMAIL` adds one to the PDF
-for a build you want it in: a copy sent directly to someone, say.
+**The CV carries an email address; the page does not.** The CV prints
+`CV_EMAIL` (`lib/cv-content.mjs`) on the header's citizenship line, and the
+contact line under it is `jc-root.xyz`, LinkedIn and GitHub. The page keeps
+its posture: the contact form posts to a FormSubmit alias and the raw address
+appears nowhere on it, which `test/cv.test.mjs` checks.
 
 A new site locale gets its CV with no extra file: `build-cv.mjs` loops the
 same `LOCALES` the site does, over the same catalogs.
