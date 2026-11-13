@@ -96,8 +96,9 @@ jobs:
       #
       # Tagged (--pdf-tags) so the PDF carries its headings, lists and reading
       # order for screen readers. Then each PDF is held to what only the
-      # rendered file can show: that it is tagged, and that it fits on two
-      # pages. A copy change that tips a locale onto a third page fails here.
+      # rendered file can show: that it is tagged, and (test/rendered/) that
+      # it is exactly two pages. A copy change that tips a locale onto a
+      # third page, or a section lost down to one, fails here.
       - name: Render the CVs
         run: |
           sudo apt-get update
@@ -113,13 +114,11 @@ jobs:
             pages=$(pdfinfo "$pdf" | awk '/^Pages:/ {print $2}')
             tagged=$(pdfinfo "$pdf" | awk '/^Tagged:/ {print $2}')
             echo "$pdf: $pages pages, tagged: $tagged"
-            if [ "$pages" -gt 2 ]; then
-              echo "::error::$pdf is $pages pages; the CV must fit on two"; exit 1
-            fi
             if [ "$tagged" != "yes" ]; then
               echo "::error::$pdf is not a tagged PDF"; exit 1
             fi
           done
+          node --test test/rendered/*.test.mjs
 
       # Published from this site rather than from a GitHub release. A release
       # asset on a private repository is served only to an authenticated

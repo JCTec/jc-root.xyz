@@ -30,7 +30,7 @@ const PRE_ESCAPED = new Set([
     "experience",
     "description",          // a role's description: esc()'d paragraph, or its bullets
     "bullets(job.description)", // one <li> per sentence, each esc()'d
-    "aboutBody",            // esc(about_body), plus esc(about_personal) on the page
+    "aboutBody",            // esc(about_body) and esc(about_personal)
     "availability",         // esc(about_availability), plus esc(about_citizenship) on the page
     "mailto",               // the CV's address on the status line, esc()'d; empty on the page
     "degrees",
@@ -43,6 +43,7 @@ const PRE_ESCAPED = new Set([
     "links",
     "chips(ctx.stackCore)",
     "chips(ctx.stackAlso)",
+    "chips(ctx.stackMedia)",
     "heroIdentity(ctx)",    // the hero's facts, each esc()'d where they are written
     "contentSections(ctx)", // the page's sections, each esc()'d where they are written
     "ctx.jsonLD",           // raw on purpose; structured-data.mjs escaped it

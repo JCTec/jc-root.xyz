@@ -9,10 +9,16 @@ Dual Mexican–Spanish citizen. Working languages: English (C2), Spanish
 6+ years of professional iOS experience plus 2 earlier years shipping
 production code. Takes full ownership of features and architecture, from
 the first call through release. Specialties: Swift, SwiftUI (incl. 6),
-UIKit, Objective-C, Combine, Swift Concurrency, Vapor 4 (server-side
-Swift, since Vapor 3), MVVM, Clean Architecture, Coordinators, XCTest +
-XCUITest (Robot Pattern), Swift Package Manager, GitHub Actions CI/CD. Modernizes legacy codebases, builds for
-accessibility, treats testing as part of the craft. On the App Store since
+UIKit, Objective-C, Combine, Swift Concurrency (async/await, Swift 6
+strict concurrency), Vapor 4 (server-side Swift, since Vapor 3), MVVM,
+Clean Architecture, Coordinators, XCTest + XCUITest (Robot Pattern), Swift
+Package Manager, GitHub Actions CI/CD, Accessibility (a11y, VoiceOver),
+Internationalization (i18n).
+Media and creative tools: Final Cut Pro, GarageBand, ffmpeg (scripted video automation).
+Modernizes legacy codebases, builds for
+accessibility, treats testing as part of the craft. At Alaska Airlines,
+made an assistive hardware keypad drive VoiceOver on airport bag tag
+stations. On the App Store since
 2018 with apps for iOS, iPadOS and macOS in ten languages. Recently
 expanded into AI agentic workflows (Claude, OpenAI, xAI, Ollama) and
 hardware-software integration.
@@ -25,7 +31,8 @@ hardware-software integration.
   https://jctec.github.io/sideshore-site/
 - Zhen: fast, native macOS network scanner, open source in Swift 6, with an engine
   and CLI (zhen-core), SwiftUI app for macOS 26 (zhen-app) and a
-  pre-registered measurement study (zhen-study):
+  pre-registered measurement study (zhen-study); async/await and actors
+  throughout, under Swift 6 strict checking:
   https://github.com/zhen-swift
 - After Dark Stories: AI-assisted fiction studio built and operated solo on
   server-side Swift (Vapor, Fluent, PostgreSQL, Leaf), with accounts, token

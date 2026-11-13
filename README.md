@@ -69,10 +69,15 @@ production.
 
 ## Testing
 
-Two layers, split by what each can actually see.
+Three layers, split by what each can actually see.
 
 **`node --test test/*.test.mjs`**: hermetic, fast, runs in CI on every push.
 Invariants of the build and of the markup it emits.
+
+**`node --test test/rendered/*.test.mjs`**: the rendered CVs, which the
+hermetic suite cannot see. Needs the PDFs in `dist-cv/` (WeasyPrint 69.0,
+`--pdf-tags`) and poppler's `pdfinfo`; CI runs it right after rendering them.
+Each locale's CV must be exactly two pages.
 
 **`node scripts/browser-check.mjs`**: needs a running server and a local
 Chrome, so it stays out of CI (adding a browser there would mean a third-party
@@ -137,7 +142,7 @@ contentSections(ctx, { linkLabel, print })   the CV's form of the page's
 - Sections in the CV's order (`PRINT_SECTION_ORDER`): About, Skills,
   Experience, Selected Work, Education, Diplomas & Certifications, Languages.
   A section missing from that list still prints, after them.
-- About without its personal sentences (`about_personal`, which the page shows).
+- About's availability line without the citizenship, which the CV's header already carries.
 - A role's description as one bullet per sentence, in the same words.
 - One line per credential, "Title (Type): Issuer · Date · link", without its note.
 - Every date in the short form ("Oct 2026", "oct. 2026"), via `shortDate`.

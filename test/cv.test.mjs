@@ -143,14 +143,13 @@ test("Every role prints with its dates and company, its description as one bulle
     }
 });
 
-/* The page closes About with two personal sentences; the CV leaves them out. */
-test("About prints without its personal sentences, which stay on the page", () => {
+/* About closes with its personal sentence on the page and on the CV alike. */
+test("About prints with its personal sentence, as on the page", () => {
     for (const [locale, out] of Object.entries(renders)) {
         const t = catalog[locale];
-        assert.ok(out.includes(`<p class="about-body">${esc(t.about_body)}</p>`), `${locale}: CV About body`);
-        assert.ok(!out.includes(esc(t.about_personal)), `${locale}: the CV prints the personal sentences`);
-        assert.ok(pages[locale].includes(`<p class="about-body">${esc(t.about_body)} ${esc(t.about_personal)}</p>`),
-            `${locale}: the page lost About's personal sentences`);
+        const about = `<p class="about-body">${esc(t.about_body)} ${esc(t.about_personal)}</p>`;
+        assert.ok(out.includes(about), `${locale}: the CV's About is not the page's`);
+        assert.ok(pages[locale].includes(about), `${locale}: the page lost About's personal sentence`);
         // Availability ends at itself on paper; the citizenship is in the header.
         assert.ok(out.includes(`<p class="about-availability">${esc(t.about_availability)}</p>`),
             `${locale}: the CV's availability line is not just the availability sentence`);
@@ -225,7 +224,7 @@ test("Every degree, skill and language the page shows is on the CV", () => {
         for (const degree of ctx.degrees) {
             assert.ok(out.includes(`<h3 class="exp-role">${esc(degree.title)}</h3>`), `${locale}: ${degree.title}`);
         }
-        for (const { text } of [...ctx.stackCore, ...ctx.stackAlso]) {
+        for (const { text } of [...ctx.stackCore, ...ctx.stackAlso, ...ctx.stackMedia]) {
             assert.ok(out.includes(`>${esc(text)}</`), `${locale}: skill ${text} missing`);
         }
         for (const language of ctx.languages) {
@@ -409,11 +408,17 @@ test("The files CI publishes are the files the site links to", () => {
     // What Pages serves: every render, copied into dist/ under its own name.
     assert.ok(workflow.includes('.venv/bin/weasyprint --pdf-tags "$html" "${html%.html}.pdf"'),
         "ci.yml does not render each HTML to a tagged PDF of the same basename");
-    // Tagged for accessibility, and held to two pages: both are checked on
-    // the rendered PDFs, the only place either can be seen.
+    // Tagged for accessibility, and held to exactly two pages: both are
+    // checked on the rendered PDFs, the only place either can be seen. The
+    // page count is test/rendered/, which must run after the render and
+    // before the PDFs are published.
     assert.match(workflow, /pdfinfo "\$pdf"/, "ci.yml does not inspect the rendered PDFs");
-    assert.match(workflow, /-gt 2/, "ci.yml does not hold the CV to two pages");
     assert.match(workflow, /Tagged:/, "ci.yml does not check the PDFs are tagged");
+    const render = workflow.indexOf(".venv/bin/weasyprint --pdf-tags");
+    const pages = workflow.indexOf("node --test test/rendered/*.test.mjs");
+    const publish = workflow.indexOf("run: cp dist-cv/*.pdf dist/");
+    assert.ok(pages > render && pages < publish,
+        "ci.yml does not hold the rendered CVs to two pages before publishing them");
     assert.ok(workflow.includes("run: cp dist-cv/*.pdf dist/"),
         "ci.yml never copies the rendered PDFs into dist/ unrenamed");
 
