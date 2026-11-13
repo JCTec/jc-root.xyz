@@ -151,7 +151,24 @@ test("About prints without its personal sentences, which stay on the page", () =
         assert.ok(!out.includes(esc(t.about_personal)), `${locale}: the CV prints the personal sentences`);
         assert.ok(pages[locale].includes(`<p class="about-body">${esc(t.about_body)} ${esc(t.about_personal)}</p>`),
             `${locale}: the page lost About's personal sentences`);
-        assert.ok(out.includes(`<p class="about-availability">${esc(t.about_availability)}</p>`));
+        // Availability ends at itself on paper; the citizenship is in the header.
+        assert.ok(out.includes(`<p class="about-availability">${esc(t.about_availability)}</p>`),
+            `${locale}: the CV's availability line is not just the availability sentence`);
+        assert.ok(pages[locale].includes(
+            `<p class="about-availability">${esc(t.about_availability)} ${esc(t.about_citizenship)}</p>`),
+            `${locale}: the page lost the citizenship sentence`);
+    }
+});
+
+/* On paper a degree reads like the others: title, then its school, then the
+   in-progress marker. The page keeps the marker as a badge under the title. */
+test("A degree under way prints its school before its status", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        for (const degree of contextFor(locale).degrees.filter((d) => d.school && d.status)) {
+            const school = out.indexOf(`<p class="exp-company">${esc(degree.school)}</p>`);
+            const status = out.indexOf(`<p class="degree-status">${esc(degree.status)}</p>`);
+            assert.ok(school > 0 && status > school, `${locale}: ${degree.title} prints its status before its school`);
+        }
     }
 });
 

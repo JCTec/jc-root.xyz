@@ -35,7 +35,8 @@
 "about_heading" = "About";
 "about_body" = "Senior iOS Engineer with 6+ years of professional experience, plus 2 earlier years shipping production code while studying for my engineering degree, completed in July 2021. I take full ownership of features and architecture, from the first call to the release: I modernize legacy codebases, build for accessibility, and treat testing as part of the craft, not an afterthought. On the App Store since 2018 with four shipped apps across iPhone, iPad and Mac. Recently I have carried that ownership past the app layer, into AI agentic workflows and hardware-software integration. That ownership runs to the web as well: I build and operate After Dark Stories, a Vapor and Leaf product with its own accounts, billing and moderation, and I write the JavaScript and CSS that front it.";
 "about_personal" = "Passionate about health and wellness technology. When I'm not shipping, I'm doing yoga, climbing, or kitesurfing.";
-"about_availability" = "Available now, freelance or full-time. Dual Mexican–Spanish citizen.";
+"about_availability" = "Available now, freelance or full-time.";
+"about_citizenship" = "Dual Mexican–Spanish citizen.";
 
 // Experience
 "exp_heading" = "Experience";
@@ -53,7 +54,7 @@
 "exp3_role" = "Senior iOS Engineer";
 "exp3_company" = "Peek.com";
 "exp3_meta" = "Aug 2021 – Aug 2023";
-"exp3_desc" = "Built the bookings grid: a fully dynamic rows-and-columns view, server-driven and rendered in real time, that handles up to 10,000 bookings with shadows and animations intact. Now in use across the US. Migrated parts of a decade-old marketplace app to SwiftUI as part of its gradual migration, on MVVM, Clean Architecture and Coordinators. Optimized dynamic lists of 10,000+ items. Wrote automated UI tests (Robot Pattern + XCUITest) and worked on the GitHub Actions CI/CD pipeline. Integrated GraphQL and connected WiFi terminal hardware to the app. Led features from start to finish as project lead.";
+"exp3_desc" = "Built the bookings grid: a fully dynamic rows-and-columns view, server-driven and rendered in real time, that handles up to 10,000 bookings with shadows and animations intact, now in use across the US. Migrated parts of a decade-old marketplace app to SwiftUI as part of its gradual migration, on MVVM, Clean Architecture and Coordinators. Optimized dynamic lists of 10,000+ items. Wrote automated UI tests (Robot Pattern + XCUITest) and worked on the GitHub Actions CI/CD pipeline. Integrated GraphQL and connected WiFi terminal hardware to the app. Led features from start to finish as project lead.";
 
 "exp4_role" = "Co-founder & Software Engineer";
 "exp4_company" = "Xplain";

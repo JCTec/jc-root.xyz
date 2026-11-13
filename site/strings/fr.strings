@@ -35,7 +35,8 @@
 "about_heading" = "À propos";
 "about_body" = "Ingénieur iOS Senior avec plus de 6 ans d'expérience professionnelle, auxquels s'ajoutent 2 années à livrer du code en production pendant mes études d'ingénieur, achevées en juillet 2021. J'assume l'entière responsabilité des fonctionnalités et de l'architecture, du premier échange jusqu'à la mise en production : je modernise des bases de code héritées, je construis en pensant à l'accessibilité et je considère les tests comme une part du métier, pas comme une étape de dernière minute. Sur l'App Store depuis 2018 avec quatre apps publiées sur iPhone, iPad et Mac. Dernièrement, j'ai étendu cette responsabilité au-delà de l'app : workflows d'agents IA et intégration matériel-logiciel. Cette responsabilité s'étend aussi au web : je conçois et j'exploite After Dark Stories, un produit Vapor et Leaf avec ses propres comptes, sa facturation et sa modération, et j'écris le JavaScript et le CSS de son interface.";
 "about_personal" = "Passionné par les technologies de la santé et du bien-être. En dehors du code, je pratique le yoga, l'escalade et le kitesurf.";
-"about_availability" = "Disponible dès maintenant, en freelance ou à temps plein. Double nationalité mexicaine et espagnole.";
+"about_availability" = "Disponible dès maintenant, en freelance ou à temps plein.";
+"about_citizenship" = "Double nationalité mexicaine et espagnole.";
 
 // Expérience
 "exp_heading" = "Expérience";
@@ -53,7 +54,7 @@
 "exp3_role" = "Ingénieur iOS Senior";
 "exp3_company" = "Peek.com";
 "exp3_meta" = "août 2021 – août 2023";
-"exp3_desc" = "J'ai construit la grille des réservations : une vue en lignes et en colonnes entièrement dynamique, pilotée par le serveur et rendue en temps réel, qui gère jusqu'à 10 000 réservations sans sacrifier les ombres ni les animations. Elle est aujourd'hui utilisée à travers les États-Unis. J'ai migré des parties d'une app de marketplace vieille de dix ans vers SwiftUI dans le cadre de sa migration progressive, sur une base MVVM, Clean Architecture et Coordinators. J'ai optimisé des listes dynamiques de plus de 10 000 éléments. J'ai écrit des tests d'interface automatisés (Robot Pattern + XCUITest) et travaillé sur le pipeline CI/CD GitHub Actions. J'ai intégré GraphQL et connecté du matériel de terminaux Wi-Fi à l'app. J'ai mené des fonctionnalités de bout en bout en tant que chef de projet.";
+"exp3_desc" = "J'ai construit la grille des réservations : une vue en lignes et en colonnes entièrement dynamique, pilotée par le serveur et rendue en temps réel, qui gère jusqu'à 10 000 réservations sans sacrifier les ombres ni les animations, et aujourd'hui utilisée à travers les États-Unis. J'ai migré des parties d'une app de marketplace vieille de dix ans vers SwiftUI dans le cadre de sa migration progressive, sur une base MVVM, Clean Architecture et Coordinators. J'ai optimisé des listes dynamiques de plus de 10 000 éléments. J'ai écrit des tests d'interface automatisés (Robot Pattern + XCUITest) et travaillé sur le pipeline CI/CD GitHub Actions. J'ai intégré GraphQL et connecté du matériel de terminaux Wi-Fi à l'app. J'ai mené des fonctionnalités de bout en bout en tant que chef de projet.";
 
 "exp4_role" = "Cofondateur et Ingénieur logiciel";
 "exp4_company" = "Xplain";
