@@ -35,6 +35,9 @@ const PRE_ESCAPED = new Set([
     "mailto",               // the CV's address on the status line, esc()'d; empty on the page
     "degrees",
     "details",              // a degree's optional lines, each esc()'d
+    "schoolLine",           // a degree's school and how it is taken, each esc()'d
+    "printedLink",          // a degree's optional link, built by cardLink: on paper
+    "pageLink",             // the same link on the page
     "credentials",
     "noteLine",             // a credential's optional note, esc()'d
     "sourceLink",           // a credential's optional link, built by cardLink

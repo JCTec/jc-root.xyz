@@ -34,7 +34,7 @@ const DYNAMIC_KEY_PATTERNS = [
     // content.mjs builds these for each row of the work history.
     /^exp[0-9]+_(role|company|meta|desc)$/,
     // education.mjs builds these for each degree, credential and language.
-    /^deg[0-9]+_(title|dates|school|note|status)$/,
+    /^deg[0-9]+_(title|dates|school|mode|note|status)$/,
     /^cred[0-9]+_(type|title|issuer|dates|note)$/,
     /^language[0-9]+_(name|level)$/,
     // templates.mjs builds `lang_<locale>` for each entry in LOCALES.

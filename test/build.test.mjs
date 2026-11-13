@@ -22,7 +22,7 @@ import { build } from "../build.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { loadConfig, UNSET_ENDPOINT } from "../lib/content.mjs";
 import { cvPathFor } from "../lib/cv-content.mjs";
-import { CREDENTIAL_URLS, credentials, degrees, languages } from "../lib/education.mjs";
+import { CREDENTIAL_URLS, credentials, DEGREE_URLS, degrees, languages } from "../lib/education.mjs";
 import { esc } from "../lib/html.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
 import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
@@ -176,6 +176,22 @@ test("Each credential link points at the entry it was written for", () => {
     for (const url of Object.values(CREDENTIAL_URLS)) {
         assert.match(url, /^https:\/\//, `${url}: not an https address`);
     }
+});
+
+/* The same pin for degrees, whose links go to the school's own site. */
+test("Each degree link points at the entry it was written for", () => {
+    const titles = Object.fromEntries(degrees(loadCatalog(STRINGS_DIR).en).map((d, i) => [i + 1, d.title]));
+    const expected = { 1: "M.S. in Cybersecurity" };
+    assert.deepEqual(Object.keys(DEGREE_URLS).map(Number), Object.keys(expected).map(Number),
+        "a degree link was added or removed: list its row and title here");
+    for (const [row, title] of Object.entries(expected)) {
+        assert.equal(titles[row], title, `deg${row} is linked to ${DEGREE_URLS[row]}`);
+    }
+    for (const url of Object.values(DEGREE_URLS)) {
+        assert.match(url, /^https:\/\//, `${url}: not an https address`);
+    }
+    assert.ok(en.includes('href="https://nexteducacion.com/"'), "the M.S. does not link its school");
+    assert.ok(en.includes("Next Educación · Online · Madrid, Spain"), "the M.S. does not say how it is taken");
 });
 
 test("Every asset each page references is actually in the output", () => {

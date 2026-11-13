@@ -164,9 +164,28 @@ test("About prints with its personal sentence, as on the page", () => {
 test("A degree under way prints its school before its status", () => {
     for (const [locale, out] of Object.entries(renders)) {
         for (const degree of contextFor(locale).degrees.filter((d) => d.school && d.status)) {
-            const school = out.indexOf(`<p class="exp-company">${esc(degree.school)}</p>`);
+            const school = out.indexOf(`<p class="exp-company">${esc(degree.school)}`);
             const status = out.indexOf(`<p class="degree-status">${esc(degree.status)}</p>`);
             assert.ok(school > 0 && status > school, `${locale}: ${degree.title} prints its status before its school`);
+        }
+    }
+});
+
+/* "School · how it is taken · link" on one line, so a degree's link costs the
+   CV no line of its own. */
+test("A degree's school line carries how it is taken and its link", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        for (const degree of contextFor(locale).degrees.filter((d) => d.school)) {
+            const start = out.indexOf(`<p class="exp-company">${esc(degree.school)}`);
+            const line = out.slice(start, out.indexOf("</p>", start));
+            if (degree.mode) {
+                assert.ok(line.includes(`${esc(degree.school)} · ${esc(degree.mode)}`),
+                    `${locale}: ${degree.title} lost how it is taken`);
+            }
+            if (degree.url) {
+                assert.ok(line.includes(`href="${esc(degree.url)}" rel="noopener">${esc(displayURL(degree.url))}</a>`),
+                    `${locale}: ${degree.title} link missing from its school line`);
+            }
         }
     }
 });
