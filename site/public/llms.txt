@@ -39,13 +39,13 @@ hardware-software integration.
   auth, billing and moderation in three locales:
   https://afterdarkstories.mx
 - MythLog: consent-first macOS system event ledger (HMAC hash chain):
-  https://apps.apple.com/mx/app/mythlog/id6797111874
+  https://apps.apple.com/app/mythlog/id6797111874
 - Tapper Counters: SwiftUI tap-to-count app (iOS, iPadOS):
-  https://apps.apple.com/mx/app/tapper-counters/id6475695007
+  https://apps.apple.com/app/tapper-counters/id6475695007
 - iCalendarKit: open-source Swift iCalendar (RFC 5545) encoder:
   https://github.com/swift-calendar/icalendarkit
 - iBase: number-base converter, on the App Store since 2018:
-  https://apps.apple.com/us/app/id1346871946
+  https://apps.apple.com/app/ibase/id1346871946
 
 ## Links
 
