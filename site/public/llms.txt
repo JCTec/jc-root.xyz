@@ -21,7 +21,9 @@ made an assistive hardware keypad drive VoiceOver on airport bag tag
 stations. On the App Store since
 2018 with multilingual apps for iOS, iPadOS and macOS. Recently
 expanded into AI agentic workflows (Claude, OpenAI, xAI, Ollama) and
-hardware-software integration.
+hardware-software integration. Owns two products end to end: Sideshore
+(wind forecast, native SwiftUI on iOS, iPadOS and macOS) and Zhen
+(open-source macOS network scanner in Swift 6).
 
 ## Selected work
 
