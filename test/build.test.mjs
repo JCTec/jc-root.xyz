@@ -22,7 +22,7 @@ import { build } from "../build.mjs";
 import { cachePolicyForPath } from "../lib/cache-policy.mjs";
 import { loadConfig, UNSET_ENDPOINT } from "../lib/content.mjs";
 import { cvPathFor } from "../lib/cv-content.mjs";
-import { CREDENTIAL_URLS, credentials, DEGREE_URLS, degrees, languages } from "../lib/education.mjs";
+import { CREDENTIAL_URLS, credentials, DEGREE_URLS, degrees, EVENT_URLS, events, languages } from "../lib/education.mjs";
 import { esc } from "../lib/html.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
 import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
@@ -111,8 +111,9 @@ test("A skill that links out does so in every locale, as a chip", () => {
 
 /* Education, diplomas and languages were one block of sentences. Each is its
    own section now, its rows counted from the catalog, so a fourth language
-   is a strings edit and nothing else. */
-test("Education, credentials and languages are three sections in every locale", () => {
+   is a strings edit and nothing else. Conferences and workshops have their
+   own section too, apart from the diplomas, laid out like them. */
+test("Education, credentials, events and languages are four sections in every locale", () => {
     const catalog = loadCatalog(STRINGS_DIR);
     for (const [locale, html] of Object.entries(pages)) {
         const t = catalog[locale];
@@ -130,23 +131,26 @@ test("Education, credentials and languages are three sections in every locale", 
         assert.ok(underway.length > 0, `${locale}: no degree is marked in progress`);
         assert.equal((education.match(/class="degree-status"/g) ?? []).length, underway.length);
 
-        const cards = section("credentials");
-        for (const credential of credentials(t)) {
-            assert.ok(cards.includes(`<h3 class="cred-title">${esc(credential.title)}</h3>`), `${locale}: ${credential.title}`);
+        for (const [id, entries] of [["credentials", credentials(t)], ["events", events(t)]]) {
+            const cards = section(id);
+            assert.ok(entries.length > 0, `${locale}: no ${id}`);
+            for (const credential of entries) {
+                assert.ok(cards.includes(`<h3 class="cred-title">${esc(credential.title)}</h3>`), `${locale}: ${credential.title}`);
+            }
+            assert.equal((cards.match(/<article class="cred-card">/g) ?? []).length, entries.length);
+            // A card's note prints when it has one, and only then.
+            const noted = entries.filter((credential) => credential.note);
+            for (const credential of noted) {
+                assert.ok(cards.includes(`<p class="cred-note">${esc(credential.note)}</p>`), `${locale}: ${credential.title} note`);
+            }
+            assert.equal((cards.match(/class="cred-note"/g) ?? []).length, noted.length);
+            // Likewise its link: the card points where the entry can be checked.
+            const linked = entries.filter((credential) => credential.url);
+            for (const credential of linked) {
+                assert.ok(cards.includes(`<a class="card-link" href="${esc(credential.url)}" rel="noopener">`), `${locale}: ${credential.title} link`);
+            }
+            assert.equal((cards.match(/class="card-link"/g) ?? []).length, linked.length);
         }
-        assert.equal((cards.match(/<article class="cred-card">/g) ?? []).length, credentials(t).length);
-        // A credential's note prints when it has one, and only then.
-        const noted = credentials(t).filter((credential) => credential.note);
-        for (const credential of noted) {
-            assert.ok(cards.includes(`<p class="cred-note">${esc(credential.note)}</p>`), `${locale}: ${credential.title} note`);
-        }
-        assert.equal((cards.match(/class="cred-note"/g) ?? []).length, noted.length);
-        // Likewise its link: the card points where the credential can be checked.
-        const linked = credentials(t).filter((credential) => credential.url);
-        for (const credential of linked) {
-            assert.ok(cards.includes(`<a class="card-link" href="${esc(credential.url)}" rel="noopener">`), `${locale}: ${credential.title} link`);
-        }
-        assert.equal((cards.match(/class="card-link"/g) ?? []).length, linked.length);
 
         const tiles = section("languages");
         for (const language of languages(t)) {
@@ -156,7 +160,7 @@ test("Education, credentials and languages are three sections in every locale", 
 
         // Nothing left over from the single block, and the order is the CV's.
         assert.ok(!html.includes("edu-line") && !html.includes("langs-line"), `${locale}: old markup`);
-        const order = ["education", "credentials", "languages", "skills"].map((id) => html.indexOf(`id="${id}"`));
+        const order = ["education", "credentials", "events", "languages", "skills"].map((id) => html.indexOf(`id="${id}"`));
         assert.deepEqual(order, [...order].sort((a, b) => a - b), `${locale}: sections out of order`);
     }
 });
@@ -165,16 +169,22 @@ test("Education, credentials and languages are three sections in every locale", 
    the same number. A row renumbered in the catalogs and not there would link
    the wrong entry and still pass the test above; this pins each link to the
    entry it was written for. */
-test("Each credential link points at the entry it was written for", () => {
-    const titles = Object.fromEntries(credentials(loadCatalog(STRINGS_DIR).en).map((c, i) => [i + 1, c.title]));
-    const expected = { 1: "Do iOS 2026", 2: "Intro to Foundation Models" };
-    assert.deepEqual(Object.keys(CREDENTIAL_URLS).map(Number), Object.keys(expected).map(Number),
-        "a credential link was added or removed: list its row and title here");
-    for (const [row, title] of Object.entries(expected)) {
-        assert.equal(titles[row], title, `cred${row} is linked to ${CREDENTIAL_URLS[row]}`);
-    }
-    for (const url of Object.values(CREDENTIAL_URLS)) {
-        assert.match(url, /^https:\/\//, `${url}: not an https address`);
+test("Each credential and event link points at the entry it was written for", () => {
+    const en = loadCatalog(STRINGS_DIR).en;
+    const pinned = [
+        ["cred", CREDENTIAL_URLS, credentials(en), {}],
+        ["event", EVENT_URLS, events(en), { 1: "Do iOS 2026", 2: "Intro to Foundation Models" }],
+    ];
+    for (const [prefix, urls, entries, expected] of pinned) {
+        const titles = Object.fromEntries(entries.map((c, i) => [i + 1, c.title]));
+        assert.deepEqual(Object.keys(urls).map(Number), Object.keys(expected).map(Number),
+            `a ${prefix} link was added or removed: list its row and title here`);
+        for (const [row, title] of Object.entries(expected)) {
+            assert.equal(titles[row], title, `${prefix}${row} is linked to ${urls[row]}`);
+        }
+        for (const url of Object.values(urls)) {
+            assert.match(url, /^https:\/\//, `${url}: not an https address`);
+        }
     }
 });
 

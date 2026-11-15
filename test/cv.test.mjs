@@ -121,7 +121,7 @@ test("The CV prints every section the page has, in the CV's order", () => {
         assert.deepEqual(onCV, expected, `${locale}: the CV's sections are not the page's, in the CV's order`);
     }
     assert.deepEqual(PRINT_SECTION_ORDER,
-        ["about", "skills", "experience", "projects", "education", "credentials", "languages"]);
+        ["about", "skills", "experience", "projects", "education", "credentials", "events", "languages"]);
 });
 
 /* Same words, laid out for paper: a role's description is one bullet per
@@ -143,13 +143,15 @@ test("Every role prints with its dates and company, its description as one bulle
     }
 });
 
-/* About closes with its personal sentence on the page and on the CV alike. */
-test("About prints with its personal sentence, as on the page", () => {
+/* About is three paragraphs, the personal one last, on the page and on the
+   CV alike. */
+test("About prints as its three paragraphs, as on the page", () => {
     for (const [locale, out] of Object.entries(renders)) {
         const t = catalog[locale];
-        const about = `<p class="about-body">${esc(t.about_body)} ${esc(t.about_personal)}</p>`;
+        const about = [t.about_intro, t.about_work, t.about_personal]
+            .map((paragraph) => `<p class="about-body">${esc(paragraph)}</p>`).join("\n            ");
         assert.ok(out.includes(about), `${locale}: the CV's About is not the page's`);
-        assert.ok(pages[locale].includes(about), `${locale}: the page lost About's personal sentence`);
+        assert.ok(pages[locale].includes(about), `${locale}: the page's About is not its three paragraphs`);
         // Availability ends at itself on paper; the citizenship is in the header.
         assert.ok(out.includes(`<p class="about-availability">${esc(t.about_availability)}</p>`),
             `${locale}: the CV's availability line is not just the availability sentence`);
@@ -190,11 +192,13 @@ test("A degree's school line carries how it is taken and its link", () => {
     }
 });
 
-/* One line each, "Title (Type): Issuer · Date · link", and no note. */
-test("Every credential prints as one line with its link and without its note", () => {
+/* One line each, "Title (Type): Issuer · Date · link", and no note: the
+   conferences and workshops as well as the diplomas. */
+test("Every credential and event prints as one line with its link and without its note", () => {
     for (const [locale, out] of Object.entries(renders)) {
         assert.ok(!out.includes("cred-note"), `${locale}: a credential note reached the CV`);
-        for (const credential of contextFor(locale).credentials) {
+        const { credentials, events } = contextFor(locale);
+        for (const credential of [...credentials, ...events]) {
             const line = `<span class="cred-title">${esc(credential.title)}</span> (${esc(credential.type)}): `
                 + `${esc(credential.issuer)} · ${esc(shortDate(credential.dates, locale))}`;
             assert.ok(out.includes(line), `${locale}: ${credential.title} is not one line`);
@@ -347,7 +351,7 @@ test("Hostile copy is escaped in the rendered CV", () => {
     const poison = `</style><img src=x onerror=alert(1)> & "quoted" 'single'`;
     const config = loadConfig({ publicDirectory: null, env: {} });
     const table = {
-        ...catalog.en, hero_name: poison, exp1_company: poison, about_body: poison, p8_tags: poison,
+        ...catalog.en, hero_name: poison, exp1_company: poison, about_intro: poison, p8_tags: poison,
     };
     const out = cv(buildPageContext({ locale: "en", config, table }), config);
 
@@ -464,7 +468,7 @@ test("Editing the copy changes the CV's stamp; rebuilding without an edit does n
     const config = loadConfig({ publicDirectory: null, env: {} });
     const stamp = (table) => buildPageContext({ locale: "en", config, table }).cvHref;
     assert.equal(stamp(catalog.en), stamp({ ...catalog.en }), "a rebuild with no edit changed the stamp");
-    assert.notEqual(stamp(catalog.en), stamp({ ...catalog.en, about_body: catalog.en.about_body + " Edited." }),
+    assert.notEqual(stamp(catalog.en), stamp({ ...catalog.en, about_intro: catalog.en.about_intro + " Edited." }),
         "editing About did not change the stamp");
     assert.notEqual(stamp(catalog.en), stamp({ ...catalog.en, exp2_desc: catalog.en.exp2_desc + " Edited." }),
         "editing a role did not change the stamp");

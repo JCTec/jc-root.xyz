@@ -33,7 +33,8 @@
 
 // About
 "about_heading" = "About";
-"about_body" = "Senior iOS Engineer with 6+ years of professional experience, plus 2 earlier years shipping production code while studying for my engineering degree, completed in July 2021. I take full ownership of features and architecture, from the first call to the release: I modernize legacy codebases, build for accessibility, and treat testing as part of the craft, not an afterthought. At Alaska Airlines I made an assistive hardware keypad drive VoiceOver on airport bag tag stations. On the App Store since 2018 with four shipped apps across iPhone, iPad and Mac. Recently I have carried that ownership past the app layer, into AI agentic workflows and hardware-software integration. I own two products end to end: Sideshore, a wind forecast app on iPhone, iPad and Mac from one native SwiftUI target, and Zhen, an open-source macOS network scanner written entirely in Swift 6.";
+"about_intro" = "Senior iOS Engineer with 6+ years of professional experience, plus 2 earlier years shipping production code while earning my engineering degree. I own features and architecture from the first call to the release: I modernize legacy codebases, build for accessibility, and treat testing as part of the craft.";
+"about_work" = "At Alaska Airlines I made an assistive hardware keypad drive VoiceOver on airport bag tag stations. I have been on the App Store since 2018 with four apps across iPhone, iPad and Mac, and own two products end to end: Sideshore, a wind forecast app in native SwiftUI, and Zhen, an open-source macOS network scanner in Swift 6. Lately that ownership reaches into AI agentic workflows and hardware-software integration.";
 "about_personal" = "Away from the keyboard I cut video in Final Cut Pro, a habit since my student films, make music in GarageBand while learning piano, and do yoga, climbing and kitesurfing.";
 "about_availability" = "Available now, freelance or full-time.";
 "about_citizenship" = "Dual Mexican–Spanish citizen.";
@@ -69,7 +70,7 @@
 "exp6_role" = "Full Stack Engineer";
 "exp6_company" = "DaCodes";
 "exp6_meta" = "Aug 2018 – Jun 2019";
-"exp6_desc" = "First engineering role: built full-stack applications for agency clients on AWS-backed stacks, concurrent with university coursework.";
+"exp6_desc" = "First engineering role: built full-stack applications for agency clients on AWS, concurrent with university coursework.";
 
 // Selected work
 "work_heading" = "Selected work";
@@ -88,7 +89,7 @@
 
 "p7_tags" = "iOS · iPadOS · macOS";
 "p7_name" = "Sideshore";
-"p7_desc" = "Wind forecast and live-station app for every wind sport, on iPhone, iPad and Mac from one native SwiftUI target. It sets several forecast models side by side with live station readings, and gives each saved spot a GO, MARGINAL or NO verdict from fixed, readable rules covering gusts, storms and the wind's angle to that spot's shoreline, with the deciding rule shown next to the verdict. The map animates wind as particles over MapKit, with lightning, radar and storm layers. An in-house Swift package fetches everything on the device from Open-Meteo and public agencies, with request merging, rate limiting, retries and a disk cache so the app still opens offline. Alerts backtest themselves against the last 30 days.";
+"p7_desc" = "Wind forecast and live-station app for every wind sport, on iPhone, iPad and Mac from one native SwiftUI target. It sets several forecast models side by side with live station readings, and gives each saved spot a GO, MARGINAL or NO verdict from fixed, readable rules covering gusts, storms and the wind's angle to that spot's shoreline, with the deciding rule shown next to the verdict. The map animates wind as particles over MapKit, with lightning, radar and storm layers. An in-house Swift package fetches everything on the device from Open-Meteo and public agencies, with request merging, rate limiting, retries and a disk cache so the app still opens offline. Alerts backtest against the last 30 days.";
 
 "p1_tags" = "iOS · iPadOS";
 "p1_name" = "Tapper Counters";
@@ -120,32 +121,35 @@
 
 // Diplomas & certifications
 "cred_heading" = "Diplomas & Certifications";
-"cred1_type" = "Conference";
-"cred1_title" = "Do iOS 2026";
-"cred1_issuer" = "AppForce1 · NEMO Science Museum, Amsterdam";
-"cred1_dates" = "November 11 – 12, 2026";
-"cred1_note" = "Attended both conference days of talks. Covered agentic apps built on Apple's Foundation Models; SwiftUI internals as a dependency graph, and scalable SwiftUI design systems; advanced App Intents; agent-assisted Instruments profiling; adaptive layouts and visionOS in production; live iOS app penetration testing; FDA readiness for medical-device apps; and Rust for Swift developers.";
-"cred2_type" = "Workshop";
-"cred2_title" = "Intro to Foundation Models";
-"cred2_issuer" = "Daniel Steinberg · Do iOS 2026";
-"cred2_dates" = "November 10, 2026";
-"cred2_note" = "Hands-on workshop on connecting apps to Apple Intelligence with the Foundation Models framework. Covered sessions, prompts, instructions and tool calling on the on-device model, then this year's additions: Private Cloud Compute, images, dynamic profiles and the evaluations framework.";
+"cred1_type" = "Diploma";
+"cred1_title" = "Artificial Intelligence";
+"cred1_issuer" = "Universidad Anáhuac Mayab";
+"cred1_dates" = "September 2026 – present";
+"cred2_type" = "Diploma";
+"cred2_title" = "Hydroponics";
+"cred2_issuer" = "Universidad Anáhuac";
+"cred2_dates" = "February – June 2026";
 "cred3_type" = "Diploma";
-"cred3_title" = "Artificial Intelligence";
-"cred3_issuer" = "Universidad Anáhuac Mayab";
-"cred3_dates" = "September 2026 – present";
-"cred4_type" = "Diploma";
-"cred4_title" = "Hydroponics";
-"cred4_issuer" = "Universidad Anáhuac";
-"cred4_dates" = "February – June 2026";
-"cred5_type" = "Diploma";
-"cred5_title" = "Entrepreneurship";
-"cred5_issuer" = "Management Center Innsbruck";
-"cred5_dates" = "2019 – 2020";
-"cred6_type" = "Certification";
-"cred6_title" = "Advanced SwiftUI & Declarative UI Patterns";
-"cred6_issuer" = "tryswift.co";
-"cred6_dates" = "September 2020";
+"cred3_title" = "Entrepreneurship";
+"cred3_issuer" = "Management Center Innsbruck";
+"cred3_dates" = "2019 – 2020";
+"cred4_type" = "Certification";
+"cred4_title" = "Advanced SwiftUI & Declarative UI Patterns";
+"cred4_issuer" = "tryswift.co";
+"cred4_dates" = "September 2020";
+
+// Conferences & workshops
+"events_heading" = "Conferences & Workshops";
+"event1_type" = "Conference";
+"event1_title" = "Do iOS 2026";
+"event1_issuer" = "AppForce1 · NEMO Science Museum, Amsterdam";
+"event1_dates" = "November 11 – 12, 2026";
+"event1_note" = "Attended both conference days of talks. Covered agentic apps built on Apple's Foundation Models; SwiftUI internals as a dependency graph, and scalable SwiftUI design systems; advanced App Intents; agent-assisted Instruments profiling; adaptive layouts and visionOS in production; live iOS app penetration testing; FDA readiness for medical-device apps; and Rust for Swift developers.";
+"event2_type" = "Workshop";
+"event2_title" = "Intro to Foundation Models";
+"event2_issuer" = "Daniel Steinberg · Do iOS 2026";
+"event2_dates" = "November 10, 2026";
+"event2_note" = "Hands-on workshop on connecting apps to Apple Intelligence with the Foundation Models framework. Covered sessions, prompts, instructions and tool calling on the on-device model, then this year's additions: Private Cloud Compute, images, dynamic profiles and the evaluations framework.";
 
 // Languages
 "langs_heading" = "Languages";

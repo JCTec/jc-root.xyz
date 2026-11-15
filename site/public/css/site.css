@@ -248,6 +248,10 @@ a {
     margin-bottom: 0;
 }
 
+.about-body + .about-body {
+    margin-top: 0.9rem;
+}
+
 .about-availability {
     font-family: var(--jc-font-mono);
     font-size: 0.7rem;
@@ -322,11 +326,17 @@ a {
     margin: 0.5rem 0 0;
 }
 
-/* ---- diplomas & certifications -------------------------------------- */
+/* ---- diplomas & certifications, conferences & workshops ------------- */
 
 .cred-section {
     background: var(--jc-surface);
     padding: 2.25rem 0 2.75rem;
+}
+
+/* Conferences & workshops: the same cards and background, set off from the
+   diplomas above by a rule, so Languages and Skills keep alternating. */
+.events-section {
+    border-top: 1px solid var(--jc-border-soft);
 }
 
 .cred-grid {
