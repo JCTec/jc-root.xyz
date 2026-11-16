@@ -1,8 +1,8 @@
 /* jc-root.xyz: progressive enhancement only.
    Layout and content never depend on this file. Bootstrap's vendored bundle
-   handles the collapse behavior; this file guards the contact form against
-   double submission and reveals the confirmation FormSubmit sends visitors
-   back to. No user-visible strings live in JS: the confirmation copy is in
+   handles the collapse behavior; this file closes the phone menu once a link
+   in it is followed, guards the contact form against double submission and
+   reveals the confirmation FormSubmit sends visitors back to. No user-visible strings live in JS: the confirmation copy is in
    the markup, hidden, and comes from the strings catalog like everything else.
 
    The site is served by a static host that renders nothing per request, so
@@ -29,6 +29,31 @@
     }
 
     revealConfirmation();
+
+    /* The phone menu is a <details>, so it opens and closes without this. A
+       link inside it scrolls the page but would leave it open over the
+       section it just jumped to; close it then, and on Escape, handing focus
+       back to its toggle so the next Tab continues from there. */
+    function wirePhoneMenu() {
+        var menu = document.querySelector(".nav-menu");
+        if (!menu) {
+            return;
+        }
+        var toggle = menu.querySelector("summary");
+        menu.addEventListener("click", function (event) {
+            if (event.target.closest("a")) {
+                menu.open = false;
+            }
+        });
+        menu.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && menu.open) {
+                menu.open = false;
+                toggle.focus();
+            }
+        });
+    }
+
+    wirePhoneMenu();
 
     var form = document.querySelector(".contact-form");
     if (!form) {

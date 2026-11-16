@@ -158,6 +158,25 @@ a {
     color: var(--jc-accent-ink);
 }
 
+/* A finger needs 44px (WCAG 2.5.5); a mouse keeps the compact button. */
+@media (pointer: coarse) {
+    .btn-jc {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+    }
+}
+
+/* On a phone the hero's three buttons stack full width: no button sits half
+   off the screen, and each is a target that is hard to miss. */
+@media (max-width: 575.98px) {
+    .hero-actions > .btn-jc {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+}
+
 /* ---- hero ----------------------------------------------------------- */
 
 .hero {
@@ -455,6 +474,118 @@ a {
     font-size: 1rem;
     letter-spacing: -0.02em;
     text-decoration: none;
+}
+
+/* Brand on the left; links and tools on the right. Nothing here may be wider
+   than a 320px phone: the bar used to be one unbreakable row, about 450px of
+   it, which widened the whole page and left it panning sideways. */
+.nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-links {
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.nav-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+}
+
+@media (min-width: 768px) {
+    .nav-tools {
+        margin-left: 0;
+    }
+}
+
+/* ---- phone menu ----------------------------------------------------- */
+
+.nav-menu-toggle {
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--jc-font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--jc-text);
+    border: 1px solid var(--jc-border);
+    border-radius: 3px;
+    padding: 0.3rem 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-menu-toggle::-webkit-details-marker {
+    display: none;
+}
+
+/* A chevron that turns when the menu opens; the open state itself is
+   announced by <details>, so this is decoration only. */
+.nav-menu-toggle::after {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-0.1rem) rotate(45deg);
+}
+
+.nav-menu[open] > .nav-menu-toggle::after {
+    transform: translateY(0.1rem) rotate(-135deg);
+}
+
+/* Drops down under the whole bar: positioned against the sticky nav. */
+.nav-menu-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--jc-bg);
+    border-bottom: 1px solid var(--jc-border);
+    padding: 0.25rem 1.5rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-menu-panel .nav-link-mono {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.8rem;
+    border-bottom: 1px solid var(--jc-border-soft);
+}
+
+.nav-menu-panel .nav-link-mono:last-child {
+    border-bottom: 0;
+}
+
+/* Touch screens get 44px targets in the bar too (WCAG 2.5.5); a mouse
+   keeps the compact bar. */
+@media (pointer: coarse) {
+    .nav-menu-toggle,
+    .lang-toggle {
+        min-height: 44px;
+    }
+
+    .lang-toggle {
+        display: inline-flex;
+        align-items: center;
+        padding-block: 0;
+    }
+
+    .lang-link,
+    .lang-current {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding-inline: 0.2rem;
+    }
 }
 
 .lang-toggle {

@@ -222,6 +222,34 @@ test("Every asset each page references is actually in the output", () => {
     }
 });
 
+/* A tap on a phone should save the PDF, not open a viewer: the button carries
+   `download`, named after the file itself, without the ?v= stamp. */
+test("The download button saves the CV under its own filename", () => {
+    for (const [locale, html] of Object.entries(pages)) {
+        const file = cvPathFor(locale, cvPath).split("/").pop();
+        assert.match(html, new RegExp(`\\?v=[0-9a-f]{12}" download="${file.replace(/\./g, "\\.")}" type="application/pdf">`),
+            `${locale}: the CV link does not download ${file}`);
+    }
+});
+
+/* The bar keeps to a phone's width by folding the section links into a
+   <details> menu below the md breakpoint. Both copies must stay in step: the
+   same targets, the same words, in the same order. */
+test("The phone menu and the inline nav link the same sections", () => {
+    for (const [locale, html] of Object.entries(pages)) {
+        const block = (cls) => html.match(new RegExp(`<div class="${cls}[^"]*">([\\s\\S]*?)</div>`))?.[1] ?? "";
+        const links = (markup) => [...markup.matchAll(/<a class="nav-link-mono" href="([^"]+)">([^<]+)<\/a>/g)]
+            .map((m) => `${m[1]} ${m[2]}`);
+        const inline = links(block("nav-links"));
+        assert.deepEqual(inline.map((l) => l.split(" ")[0]), ["#about", "#experience", "#projects", "#contact"],
+            `${locale}: inline nav`);
+        assert.deepEqual(links(block("nav-menu-panel")), inline, `${locale}: the phone menu differs from the inline nav`);
+        assert.match(html, /<details class="nav-menu d-md-none">\s*<summary class="nav-menu-toggle">[^<]+<\/summary>/,
+            `${locale}: no phone menu`);
+        assert.match(html, /<div class="nav-links d-none d-md-flex">/, `${locale}: inline nav not hidden on phones`);
+    }
+});
+
 test("Each page's download button points at its own locale's CV", () => {
     for (const [locale, html] of Object.entries(pages)) {
         const own = cvPathFor(locale, cvPath);

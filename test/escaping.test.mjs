@@ -26,6 +26,8 @@ const PRE_ESCAPED = new Set([
     "body",                 // the rendered <body> contents
     "alternateLinks(ctx)",  // hreflang <link>s, escaped as they are built
     "langToggle",
+    "navInline",            // the section links, each esc()'d
+    "navMenu",              // the same links in the phone menu
     "label",                // langToggle's esc(t["lang_" + locale]); cardLink's escaped parts
     "experience",
     "description",          // a role's description: esc()'d paragraph, or its bullets
