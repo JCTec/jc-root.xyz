@@ -56,7 +56,7 @@
 // Acerca de
 "about_heading" = "Acerca de";
 "about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, que concluí en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera llamada al lanzamiento: modernizo bases de código heredadas, construyo pensando en la accesibilidad y trato las pruebas como parte del oficio, no como algo secundario. En Alaska Airlines hice que un teclado físico asistivo controlara VoiceOver en las estaciones de etiquetas de equipaje de los aeropuertos. En el App Store desde 2018 con cuatro apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA e integración de hardware y software. Tengo dos productos propios de principio a fin: Sideshore, una app de pronóstico de viento para iPhone, iPad y Mac desde un único target nativo en SwiftUI, y Zhen, un escáner de red de código abierto para macOS escrito íntegramente en Swift 6.";
-"about_personal" = "Lejos del teclado edito video en Final Cut Pro, como solía hacer con cortos en mis años de estudiante, hago música en GarageBand y practico escalada.";
+"about_personal" = "Lejos del teclado edito video en Final Cut Pro, como solía hacer con cortos en mis años de estudiante, hago música en GarageBand y practico escalada en roca.";
 "about_availability" = "Disponible ahora, freelance o de tiempo completo.";
 "about_citizenship" = "Doble nacionalidad mexicana y española.";
 
