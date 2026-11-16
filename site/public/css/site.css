@@ -32,6 +32,22 @@
     color-scheme: dark;
 }
 
+/* The page never scrolls sideways: anything wider than the viewport is cut
+   off at its edge instead of widening the page. `clip`, not `hidden`: hidden
+   on <body> would make it a scroll container of its own and quietly break
+   the sticky nav; clip creates none. Browsers too old for clip (before
+   Safari 16) get `hidden` on <html> alone, which the viewport takes over
+   without touching the nav. Content that overflows is a layout bug to fix,
+   not something this hides on purpose. */
+html {
+    overflow-x: hidden;
+    overflow-x: clip;
+}
+
+body {
+    overflow-x: clip;
+}
+
 html {
     scroll-behavior: smooth;
     /* Stops iOS inflating body copy when the phone is turned to landscape. */
