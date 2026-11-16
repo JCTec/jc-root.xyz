@@ -224,3 +224,13 @@ jobs:
           # someone's Downloads folder (worth more than "cv.pdf" there), and
           # they are the same names the site serves, one per locale.
           gh release upload cv *.pdf --clobber
+          # Replacing the files alone left the release looking months old: the
+          # tag stayed on the commit that first created it, and GitHub dates a
+          # release by when it was published. So point the tag at the commit
+          # these PDFs were rendered from, and republish (draft, then public
+          # again) so the release reads as today's, Latest, with its source.
+          gh api -X PATCH "repos/$GH_REPO/git/refs/tags/cv" -f sha="$GITHUB_SHA" -F force=true >/dev/null
+          gh release edit cv --draft=true >/dev/null
+          gh release edit cv --draft=false --latest \
+            --title "Curriculum Vitae · $(date -u +%F)" \
+            --notes "The CV in English, Spanish and French, rendered from site/strings/ by CI from commit ${GITHUB_SHA:0:7}. Refreshed on every push to main; not edited by hand. The same files the site's Download CV button serves." >/dev/null
