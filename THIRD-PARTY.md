@@ -17,6 +17,28 @@ dependency is findable without opening a minified file. Only the minified CSS
 and the bundled JS are vendored: no source maps, RTL builds, or examples. See
 "Upgrading Bootstrap" in `README.md` for the update procedure.
 
+## OpenDyslexic (reading settings font)
+
+- **Files:** `site/public/vendor/fonts/opendyslexic-regular.77bda89f.woff2`,
+  `site/public/vendor/fonts/opendyslexic-bold.77bda89f.woff2`
+- **License:** SIL Open Font License 1.1, © Abbie Gonzalez, Reserved Font
+  Name OpenDyslexic; full text in `site/public/vendor/fonts/OpenDyslexic-OFL.txt`
+- **Source:** https://github.com/antijingoist/opendyslexic, `compiled/` at
+  commit `77bda89f3f2069c78d81d33de43b461c2de6c48e` (the short hash is in the
+  filenames, since `/vendor/` is cached as immutable)
+
+## Atkinson Hyperlegible (reading settings font)
+
+- **Files:** `site/public/vendor/fonts/atkinson-hyperlegible-latin-400.5.3.0.woff2`,
+  `site/public/vendor/fonts/atkinson-hyperlegible-latin-700.5.3.0.woff2`
+- **License:** SIL Open Font License 1.1, © 2020 Braille Institute of
+  America, Inc.; full text in `site/public/vendor/fonts/AtkinsonHyperlegible-OFL.txt`
+- **Source:** `@fontsource/atkinson-hyperlegible` 5.3.0 (Latin subset, which
+  covers English, Spanish and French), version in the filenames
+
+Both are unmodified and served only when a visitor picks them in the reading
+settings; the browser never fetches a face no text uses.
+
 ## Everything else
 
 There is nothing else. The build has no dependencies: no `node_modules`, no

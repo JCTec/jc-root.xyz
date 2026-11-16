@@ -22,6 +22,9 @@
     --jc-outline-strong: #5a5a63;
     --jc-chip-text: #d8d8dc;
     --jc-font-display: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    /* The JC monogram is a mark, not reading text: it keeps this face when a
+       reading font replaces --jc-font-display. */
+    --jc-font-brand: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --jc-font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
 
     /* The palette is dark-only, so say so: this is what makes the UA paint
@@ -47,6 +50,9 @@ body {
     color: var(--jc-text);
     font-family: var(--jc-font-display);
     -webkit-font-smoothing: antialiased;
+    /* A word longer than its column breaks rather than widening the page:
+       rare at the default size, routine at 150% or in a wide face. */
+    overflow-wrap: break-word;
 }
 
 .page-col {
@@ -188,6 +194,7 @@ a {
 }
 
 .hero-ghost {
+    font-family: var(--jc-font-brand);
     position: absolute;
     top: -1rem;
     right: -6rem;
@@ -215,6 +222,7 @@ a {
 }
 
 .hero-logo {
+    font-family: var(--jc-font-brand);
     font-size: clamp(4.5rem, 14vw, 7rem);
     font-weight: 900;
     line-height: 0.9;
@@ -358,13 +366,13 @@ a {
 
 .cred-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.75rem;
 }
 
 @media (min-width: 576px) {
     .cred-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -472,6 +480,8 @@ a {
 }
 
 .nav-brand {
+    font-family: var(--jc-font-brand);
+    margin-right: auto;
     font-weight: 900;
     font-size: 1rem;
     letter-spacing: -0.02em;
@@ -484,26 +494,19 @@ a {
 .nav-bar {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 1rem;
 }
 
 .nav-links {
     align-items: center;
     gap: 1rem;
-    margin-left: auto;
 }
 
 .nav-tools {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-left: auto;
-}
-
-@media (min-width: 768px) {
-    .nav-tools {
-        margin-left: 0;
-    }
 }
 
 /* ---- phone menu ----------------------------------------------------- */
@@ -626,7 +629,9 @@ a {
 }
 
 .ghost-heading {
-    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    /* Capped at 12vw so a single long word ("seleccionado", "sélectionnés")
+       still fits a phone when the reading settings scale the text up. */
+    font-size: min(clamp(2.5rem, 8vw, 3.5rem), 12vw);
     font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--jc-text);
@@ -702,6 +707,8 @@ a {
     border: 1px solid var(--jc-field-border);
     border-radius: 3px;
     padding: 0.4rem 0.65rem;
+    /* The longest chips wrap inside themselves rather than outgrow a phone. */
+    max-width: 100%;
 }
 
 /* A chip that links out reads like the rest until touched. */
@@ -807,4 +814,288 @@ textarea.form-control-jc {
     letter-spacing: 0.06em;
     color: var(--jc-faint);
     margin-bottom: 0;
+}
+
+/* ---- reading settings ----------------------------------------------- */
+
+/* Self-hosted (the CSP allows fonts from 'self' only) and fetched by the
+   browser only once a face is actually used, so a visitor who never picks
+   one downloads nothing. Versioned filenames: /vendor/ is cached for a year.
+   Licences (SIL OFL 1.1) sit beside the files; see THIRD-PARTY.md. */
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("../vendor/fonts/opendyslexic-regular.77bda89f.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "OpenDyslexic";
+    src: url("../vendor/fonts/opendyslexic-bold.77bda89f.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Atkinson Hyperlegible";
+    src: url("../vendor/fonts/atkinson-hyperlegible-latin-400.5.3.0.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Atkinson Hyperlegible";
+    src: url("../vendor/fonts/atkinson-hyperlegible-latin-700.5.3.0.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Font: one face for everything, labels included, so a reader who needs it
+   never meets a line in the old monospace. */
+:root[data-font="opendyslexic"] {
+    --jc-font-display: "OpenDyslexic", system-ui, sans-serif;
+    --jc-font-mono: "OpenDyslexic", system-ui, sans-serif;
+}
+
+:root[data-font="atkinson"] {
+    --jc-font-display: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --jc-font-mono: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+/* Text size: every size in this file is in rem, so the root scales them all. */
+:root[data-size="115"] { font-size: 115%; }
+:root[data-size="130"] { font-size: 130%; }
+:root[data-size="150"] { font-size: 150%; }
+
+/* Contrast: white on black, every grey near white, borders that read. Applied
+   when chosen, and when the system asks for more contrast unless the visitor
+   explicitly chose Standard. The two blocks are the same palette. */
+:root[data-contrast="high"] {
+    --jc-bg: #000000;
+    --jc-surface: #000000;
+    --jc-card: #000000;
+    --jc-border: #8e8e96;
+    --jc-border-soft: #5c5c64;
+    --jc-text: #ffffff;
+    --jc-muted: #f2f2f3;
+    --jc-faint: #e2e2e6;
+    --jc-accent: #ffb554;
+    --jc-accent-bright: #ffc77a;
+    --jc-field: #000000;
+    --jc-field-border: #c8c8d0;
+    --jc-outline: #c8c8d0;
+    --jc-outline-strong: #ffffff;
+    --jc-chip-text: #ffffff;
+}
+
+@media (prefers-contrast: more) {
+    :root:not([data-contrast="standard"]) {
+        --jc-bg: #000000;
+        --jc-surface: #000000;
+        --jc-card: #000000;
+        --jc-border: #8e8e96;
+        --jc-border-soft: #5c5c64;
+        --jc-text: #ffffff;
+        --jc-muted: #f2f2f3;
+        --jc-faint: #e2e2e6;
+        --jc-accent: #ffb554;
+        --jc-accent-bright: #ffc77a;
+        --jc-field: #000000;
+        --jc-field-border: #c8c8d0;
+        --jc-outline: #c8c8d0;
+        --jc-outline-strong: #ffffff;
+        --jc-chip-text: #ffffff;
+    }
+
+    :root:not([data-contrast="standard"]) .site-nav {
+        background: #000000;
+    }
+
+    :root:not([data-contrast="standard"]) .hero-ghost,
+    :root:not([data-contrast="standard"]) .roots-canvas {
+        display: none !important;
+    }
+}
+
+/* The decoration goes: the ghosted monogram and the drifting roots sit behind
+   text, which is the one place high contrast cannot have anything. The
+   canvas carries an inline style, hence !important. */
+:root[data-contrast="high"] .site-nav {
+    background: #000000;
+}
+
+:root[data-contrast="high"] .hero-ghost,
+:root[data-contrast="high"] .roots-canvas {
+    display: none !important;
+}
+
+/* Spacing: WCAG 1.4.12's text-spacing values, and no forced capitals
+   (all-caps runs are the hardest words to tell apart by shape). */
+:root[data-spacing="wide"] body {
+    letter-spacing: 0.04em;
+    word-spacing: 0.16em;
+}
+
+/* Reading text only: the JC monogram keeps its tight lines. Paragraph space
+   in rem, so it is the body's measure and not a multiple of a large face. */
+:root[data-spacing="wide"] :where(p:not(.hero-logo), li, dd, label, legend, .chip) {
+    line-height: 1.9;
+}
+
+:root[data-spacing="wide"] :where(p:not(.hero-logo), ul) {
+    margin-bottom: 1.25rem;
+}
+
+:root[data-spacing="wide"] :where(*) {
+    text-transform: none;
+}
+
+/* A larger size or a wider face can make the bar's contents outgrow a phone;
+   let the tools wrap under the brand, and among themselves, rather than push
+   the page sideways. Section headings hyphenate (in the page's own language)
+   once the text is scaled or reset in another face; the name never does. */
+.nav-bar,
+.nav-tools {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+}
+
+.nav-tools {
+    justify-content: flex-end;
+}
+
+:root[data-size] :where(h2, h3),
+:root[data-font] :where(h2, h3) {
+    hyphens: auto;
+}
+
+/* The toggle: "Aa", its full name for screen readers in a visually hidden
+   span, so a voice-control user can say what they see. */
+.reading-toggle {
+    font-family: var(--jc-font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--jc-text);
+    background: transparent;
+    border: 1px solid var(--jc-border);
+    border-radius: 3px;
+    min-width: 2.25rem;
+    padding: 0.35rem 0.5rem;
+}
+
+.reading-toggle:hover,
+.reading-toggle[aria-expanded="true"] {
+    border-color: var(--jc-accent);
+    color: var(--jc-accent);
+}
+
+@media (pointer: coarse) {
+    .reading-toggle {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Drops down under the bar like the phone menu, and scrolls on its own when
+   a large text size makes it taller than the screen. */
+.reading-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    background: var(--jc-bg);
+    border-bottom: 1px solid var(--jc-border);
+    padding: 1rem 0 1.25rem;
+}
+
+.reading-title {
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+}
+
+.reading-group {
+    margin-bottom: 0.9rem;
+}
+
+.reading-legend {
+    font-family: var(--jc-font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--jc-muted);
+    margin-bottom: 0.4rem;
+    float: none;
+}
+
+.reading-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Each option is a real radio, kept focusable but drawn as a segment: the
+   label's span carries the look, the checked state and the focus ring. */
+.reading-option {
+    position: relative;
+    margin: 0;
+}
+
+.reading-option input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.reading-option span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--jc-outline);
+    border-radius: 3px;
+    font-size: 0.95rem;
+    color: var(--jc-text);
+    cursor: pointer;
+}
+
+.reading-option input:checked + span {
+    border-color: var(--jc-accent);
+    box-shadow: inset 0 0 0 1px var(--jc-accent);
+    color: var(--jc-accent);
+    font-weight: 700;
+}
+
+.reading-option input:focus-visible + span {
+    outline: 2px solid var(--jc-accent);
+    outline-offset: 2px;
+}
+
+/* Each font option is set in its own face: the choice previews itself. */
+.reading-option[data-value="opendyslexic"] span {
+    font-family: "OpenDyslexic", system-ui, sans-serif;
+}
+
+.reading-option[data-value="atkinson"] span {
+    font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+.reading-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.reading-note {
+    font-size: 0.8rem;
+    color: var(--jc-faint);
+    margin: 0.75rem 0 0;
 }

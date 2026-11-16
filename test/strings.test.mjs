@@ -38,6 +38,8 @@ const DYNAMIC_KEY_PATTERNS = [
     /^cred[0-9]+_(type|title|issuer|dates|note)$/,
     /^event[0-9]+_(type|title|issuer|dates|note)$/,
     /^language[0-9]+_(name|level)$/,
+    // templates.mjs builds these for each group and value in READING_SETTINGS.
+    /^reading_(font|size|contrast|spacing)(_[a-z0-9]+)?$/,
     // templates.mjs builds `lang_<locale>` for each entry in LOCALES.
     /^lang_[a-z]+$/,
 ];

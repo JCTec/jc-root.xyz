@@ -28,6 +28,8 @@ const PRE_ESCAPED = new Set([
     "langToggle",
     "navInline",            // the section links, each esc()'d
     "navMenu",              // the same links in the phone menu
+    "readingGroups",        // the reading settings' radio groups, each label esc()'d
+    "options",              // one group's radio options, each esc()'d
     "label",                // langToggle's esc(t["lang_" + locale]); cardLink's escaped parts
     "experience",
     "description",          // a role's description: esc()'d paragraph, or its bullets
@@ -79,7 +81,8 @@ test("Hostile copy is escaped in the markup and intact in the JSON-LD", () => {
     // Specifically: no injected element, and no stray element terminator that
     // could close the <script> the JSON-LD lives in.
     assert.ok(!html.includes("<img src=x"));
-    assert.equal(html.match(/<\/script>/g).length, 4, "a value closed a script element");
+    // Five: the JSON-LD, reading.js in <head>, and the three deferred scripts.
+    assert.equal(html.match(/<\/script>/g).length, 5, "a value closed a script element");
 
     // The JSON-LD, meanwhile, must round-trip the value exactly; escaping it
     // as markup there would publish a literal &amp; to crawlers.

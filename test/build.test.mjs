@@ -26,6 +26,7 @@ import { CREDENTIAL_URLS, credentials, DEGREE_URLS, degrees, EVENT_URLS, events,
 import { esc } from "../lib/html.mjs";
 import { CSP_META, REFERRER_POLICY } from "../lib/headers.mjs";
 import { homePath, loadCatalog, LOCALES } from "../lib/strings.mjs";
+import { READING_SETTINGS } from "../lib/templates.mjs";
 import { STRINGS_DIR } from "../build.mjs";
 
 let outDir;
@@ -247,6 +248,59 @@ test("The phone menu and the inline nav link the same sections", () => {
         assert.match(html, /<details class="nav-menu d-md-none">\s*<summary class="nav-menu-toggle">[^<]+<\/summary>/,
             `${locale}: no phone menu`);
         assert.match(html, /<div class="nav-links d-none d-md-flex">/, `${locale}: inline nav not hidden on phones`);
+    }
+});
+
+/* The reading settings ship hidden and reading.js reveals them, so a page
+   without JavaScript never shows controls that do nothing. Every option is a
+   radio labelled from the catalog, in READING_SETTINGS order. */
+test("Each page offers the reading settings, hidden until reading.js runs", () => {
+    const catalog = loadCatalog(STRINGS_DIR);
+    for (const [locale, html] of Object.entries(pages)) {
+        const t = catalog[locale];
+        assert.match(html, new RegExp(`<button class="reading-toggle" type="button" aria-expanded="false" aria-controls="reading-panel" hidden>Aa<span class="visually-hidden"> ${esc(t.reading_title)}</span></button>`),
+            `${locale}: reading toggle`);
+        const panel = html.match(/<div class="reading-panel" id="reading-panel" role="region" aria-labelledby="reading-title" hidden>([\s\S]*?)\n    <\/div>\n<\/nav>/)?.[1];
+        assert.ok(panel, `${locale}: no hidden reading panel inside the nav`);
+        for (const [group, values] of READING_SETTINGS) {
+            assert.ok(panel.includes(`<legend class="reading-legend">${esc(t["reading_" + group])}</legend>`), `${locale}: ${group} legend`);
+            const radios = [...panel.matchAll(new RegExp(`<input type="radio" name="reading-${group}" value="([^"]+)"><span>([^<]+)</span>`, "g"))];
+            assert.deepEqual(radios.map((m) => m[1]), values, `${locale}: ${group} options`);
+            assert.deepEqual(radios.map((m) => m[2]), values.map((value) => esc(t["reading_" + group + "_" + value])),
+                `${locale}: ${group} labels`);
+        }
+        // Applied before the first paint: in <head>, and neither deferred nor async.
+        const head = html.split("</head>")[0];
+        assert.match(head, /<script src="\/js\/reading\.js\?v=[^"]+"><\/script>/, `${locale}: reading.js is not a blocking <head> script`);
+    }
+});
+
+/* Each setting is a data-<group> attribute that site.css must style: a value
+   offered in the panel with no rule behind it would do nothing. */
+test("site.css styles every non-default reading setting", () => {
+    const css = readFileSync(join(outDir, "css/site.css"), "utf8");
+    for (const [group, values] of READING_SETTINGS) {
+        for (const value of values.slice(1)) {
+            assert.ok(css.includes(`[data-${group}="${value}"]`), `no rule for data-${group}="${value}"`);
+        }
+    }
+});
+
+/* Fonts are referenced from the stylesheet, not the page, so the page-asset
+   test above cannot see them. Each url() resolves against /css/ and must be
+   in the output, under /vendor/ (immutable, so the filename carries the
+   version), beside its licence. */
+test("Every url() in site.css is in the output", () => {
+    const css = readFileSync(join(outDir, "css/site.css"), "utf8");
+    const urls = [...css.matchAll(/url\("([^"]+)"\)/g)].map((m) => m[1]);
+    assert.ok(urls.length >= 4, `expected the reading fonts, found ${urls.length} url()s`);
+    for (const url of urls) {
+        const path = join(outDir, "css", url);
+        assert.ok(existsSync(path), `site.css references ${url}, which is not in the output`);
+        assert.match(url, /^\.\.\/vendor\/fonts\/[a-z0-9-]+\.[0-9a-f.]+\.woff2$/, `${url}: not a versioned vendored font`);
+    }
+    for (const licence of ["OpenDyslexic-OFL.txt", "AtkinsonHyperlegible-OFL.txt"]) {
+        assert.ok(existsSync(join(outDir, "vendor/fonts", licence)), `vendor/fonts/${licence} missing`);
     }
 });
 

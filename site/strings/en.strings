@@ -28,6 +28,28 @@
 "nav_projects" = "Projects";
 "nav_contact" = "Contact";
 "nav_menu" = "Menu";
+
+// Reading settings
+"reading_title" = "Reading settings";
+"reading_font" = "Font";
+"reading_font_default" = "Default";
+"reading_font_opendyslexic" = "OpenDyslexic";
+"reading_font_atkinson" = "Atkinson Hyperlegible";
+"reading_size" = "Text size";
+"reading_size_100" = "100%";
+"reading_size_115" = "115%";
+"reading_size_130" = "130%";
+"reading_size_150" = "150%";
+"reading_contrast" = "Contrast";
+"reading_contrast_standard" = "Standard";
+"reading_contrast_high" = "High";
+"reading_spacing" = "Spacing";
+"reading_spacing_standard" = "Standard";
+"reading_spacing_wide" = "Wide";
+"reading_reset" = "Reset";
+"reading_close" = "Close";
+"reading_note" = "Saved in this browser only.";
+
 "lang_en" = "EN";
 "lang_es" = "ES";
 "lang_fr" = "FR";
