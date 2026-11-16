@@ -23,7 +23,8 @@ const catalog = loadCatalog(STRINGS_DIR);
 /* Claims removed from the site. When a claim comes off the page, add it here
    so it cannot linger in llms.txt. */
 const RETIRED = [/atomic design/i, /A\/B test/i, /full-stack IoT/i, /US visa/i,
-    /health and wellness/i, /dynamic lists/i, /ten languages/i, /hydropon/i];
+    /health and wellness/i, /dynamic lists/i, /ten languages/i, /hydropon/i,
+    /piano/i, /yoga/i, /kitesurf/i];
 
 /** The project names under "## Selected work", in the order listed. */
 function selectedWork(text) {
