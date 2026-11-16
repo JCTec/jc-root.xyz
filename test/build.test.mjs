@@ -223,6 +223,21 @@ test("Every asset each page references is actually in the output", () => {
     }
 });
 
+/* Google shows about 60 characters of a title and 155 of a description and
+   cuts the rest; the titles were once over 110. Keyword first, and short
+   enough to be read whole. The JSON-LD names the role both ways. */
+test("Titles and descriptions fit a search result, and the JSON-LD carries both role wordings", () => {
+    const catalog = loadCatalog(STRINGS_DIR);
+    for (const [locale, html] of Object.entries(pages)) {
+        const t = catalog[locale];
+        assert.ok([...t.meta_title].length <= 70, `${locale}: meta_title is ${[...t.meta_title].length} characters`);
+        assert.ok([...t.meta_description].length <= 160, `${locale}: meta_description is ${[...t.meta_description].length} characters`);
+        const ld = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+        assert.deepEqual(ld.jobTitle, [t.hero_role, t.job_title_alt], `${locale}: jobTitle`);
+        assert.equal(ld.description, t.meta_description, `${locale}: description`);
+    }
+});
+
 /* A tap on a phone should save the PDF, not open a viewer: the button carries
    `download`, named after the file itself, without the ?v= stamp. */
 test("The download button saves the CV under its own filename", () => {

@@ -28,6 +28,20 @@ test("A value containing markup cannot terminate the script element", () => {
     assert.equal(json.url, "https://example.com/?a=1&b=2");
 });
 
+test("Several wordings of the role and a description serialize as given", () => {
+    const json = JSON.parse(homePerson({
+        name: "N",
+        jobTitle: ["Senior iOS Engineer", "Senior iOS Developer"],
+        description: "Freelance, full-time or remote & more",
+        url: "https://example.com/",
+        sameAs: [],
+    }));
+    assert.deepEqual(json.jobTitle, ["Senior iOS Engineer", "Senior iOS Developer"]);
+    assert.equal(json.description, "Freelance, full-time or remote & more");
+    // Without one, there is no empty description key.
+    assert.ok(!("description" in JSON.parse(homePerson({ name: "N", jobTitle: "T", url: "u", sameAs: [] }))));
+});
+
 test("Serialization is a function of the values alone", () => {
     // Sorted at every level, so two builds of identical content produce an
     // identical page and no cache is invalidated by key ordering.

@@ -2,9 +2,9 @@
 // en.strings (lo verifica AppTests). El código y las plantillas usan códigos.
 
 // Meta
-"meta_title" = "Juan Carlos Estévez · Ingeniero iOS Senior disponible | Desarrollador iOS freelance y de tiempo completo (Swift, SwiftUI)";
-"meta_description" = "Ingeniero iOS Senior con más de 6 años publicando en iPhone, iPad y Mac. Swift 6, SwiftUI, accesibilidad y VoiceOver, Swift en el servidor. En el App Store desde 2018.";
-"og_image_alt" = "Juan Carlos Estévez Rodríguez, Ingeniero iOS Senior, disponible para contratación";
+"meta_title" = "Desarrollador iOS Senior freelance y remoto | Juan Carlos Estévez";
+"meta_description" = "Desarrollador iOS Senior freelance, de tiempo completo o remoto: más de 6 años publicando apps Swift y SwiftUI en iPhone, iPad y Mac, con accesibilidad.";
+"og_image_alt" = "Juan Carlos Estévez Rodríguez, Desarrollador iOS Senior, disponible para contratación";
 
 // Accesibilidad
 "skip_to_content" = "Saltar al contenido";
@@ -14,7 +14,10 @@
 "site_label" = "JC-ROOT.XYZ";
 "brand_short" = "JC";
 "hero_name" = "Juan Carlos Estévez Rodríguez";
-"hero_role" = "Ingeniero iOS Senior";
+"hero_role" = "Desarrollador iOS Senior";
+// The other wording of the role, for structured data only: search engines
+// read both, the page shows hero_role.
+"job_title_alt" = "Ingeniero iOS Senior";
 "hero_platforms" = "iOS · iPadOS · macOS";
 "hero_status" = "Doble nacionalidad mexicana y española";
 "hero_cta_projects" = "Ver mis proyectos →";
@@ -55,9 +58,9 @@
 
 // Acerca de
 "about_heading" = "Acerca de";
-"about_body" = "Ingeniero iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, que concluí en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera llamada al lanzamiento: modernizo bases de código heredadas, construyo pensando en la accesibilidad y trato las pruebas como parte del oficio, no como algo secundario. En Alaska Airlines hice que un teclado físico asistivo controlara VoiceOver en las estaciones de etiquetas de equipaje de los aeropuertos. En el App Store desde 2018 con cuatro apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA e integración de hardware y software. Tengo dos productos propios de principio a fin: Sideshore, una app de pronóstico de viento para iPhone, iPad y Mac desde un único target nativo en SwiftUI, y Zhen, un escáner de red de código abierto para macOS escrito íntegramente en Swift 6.";
+"about_body" = "Desarrollador iOS Senior con más de 6 años de experiencia profesional, más 2 años previos publicando código en producción mientras cursaba la carrera de ingeniería, que concluí en julio de 2021. Asumo la responsabilidad completa de funcionalidades y arquitectura, de la primera llamada al lanzamiento: modernizo bases de código heredadas, construyo pensando en la accesibilidad y trato las pruebas como parte del oficio, no como algo secundario. En Alaska Airlines hice que un teclado físico asistivo controlara VoiceOver en las estaciones de etiquetas de equipaje de los aeropuertos. En el App Store desde 2018 con cuatro apps publicadas en iPhone, iPad y Mac. Últimamente he llevado esa responsabilidad más allá de la app: flujos de trabajo con agentes de IA e integración de hardware y software. Tengo dos productos propios de principio a fin: Sideshore, una app de pronóstico de viento para iPhone, iPad y Mac desde un único target nativo en SwiftUI, y Zhen, un escáner de red de código abierto para macOS escrito íntegramente en Swift 6.";
 "about_personal" = "Lejos del teclado edito video en Final Cut Pro, como solía hacer con cortos en mis años de estudiante, hago música en GarageBand y practico escalada en roca.";
-"about_availability" = "Disponible ahora, freelance o de tiempo completo.";
+"about_availability" = "Disponible ahora: freelance, de tiempo completo o remoto.";
 "about_citizenship" = "Doble nacionalidad mexicana y española.";
 
 // Experiencia
