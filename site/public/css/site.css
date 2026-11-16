@@ -248,10 +248,6 @@ a {
     margin-bottom: 0;
 }
 
-.about-body + .about-body {
-    margin-top: 0.9rem;
-}
-
 .about-availability {
     font-family: var(--jc-font-mono);
     font-size: 0.7rem;

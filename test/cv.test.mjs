@@ -143,15 +143,13 @@ test("Every role prints with its dates and company, its description as one bulle
     }
 });
 
-/* About is three paragraphs, the personal one last, on the page and on the
-   CV alike. */
-test("About prints as its three paragraphs, as on the page", () => {
+/* About closes with its personal sentence on the page and on the CV alike. */
+test("About prints with its personal sentence, as on the page", () => {
     for (const [locale, out] of Object.entries(renders)) {
         const t = catalog[locale];
-        const about = [t.about_intro, t.about_work, t.about_personal]
-            .map((paragraph) => `<p class="about-body">${esc(paragraph)}</p>`).join("\n            ");
+        const about = `<p class="about-body">${esc(t.about_body)} ${esc(t.about_personal)}</p>`;
         assert.ok(out.includes(about), `${locale}: the CV's About is not the page's`);
-        assert.ok(pages[locale].includes(about), `${locale}: the page's About is not its three paragraphs`);
+        assert.ok(pages[locale].includes(about), `${locale}: the page lost About's personal sentence`);
         // Availability ends at itself on paper; the citizenship is in the header.
         assert.ok(out.includes(`<p class="about-availability">${esc(t.about_availability)}</p>`),
             `${locale}: the CV's availability line is not just the availability sentence`);
@@ -351,7 +349,7 @@ test("Hostile copy is escaped in the rendered CV", () => {
     const poison = `</style><img src=x onerror=alert(1)> & "quoted" 'single'`;
     const config = loadConfig({ publicDirectory: null, env: {} });
     const table = {
-        ...catalog.en, hero_name: poison, exp1_company: poison, about_intro: poison, p8_tags: poison,
+        ...catalog.en, hero_name: poison, exp1_company: poison, about_body: poison, p8_tags: poison,
     };
     const out = cv(buildPageContext({ locale: "en", config, table }), config);
 
@@ -468,7 +466,7 @@ test("Editing the copy changes the CV's stamp; rebuilding without an edit does n
     const config = loadConfig({ publicDirectory: null, env: {} });
     const stamp = (table) => buildPageContext({ locale: "en", config, table }).cvHref;
     assert.equal(stamp(catalog.en), stamp({ ...catalog.en }), "a rebuild with no edit changed the stamp");
-    assert.notEqual(stamp(catalog.en), stamp({ ...catalog.en, about_intro: catalog.en.about_intro + " Edited." }),
+    assert.notEqual(stamp(catalog.en), stamp({ ...catalog.en, about_body: catalog.en.about_body + " Edited." }),
         "editing About did not change the stamp");
     assert.notEqual(stamp(catalog.en), stamp({ ...catalog.en, exp2_desc: catalog.en.exp2_desc + " Edited." }),
         "editing a role did not change the stamp");

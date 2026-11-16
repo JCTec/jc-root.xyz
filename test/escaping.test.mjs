@@ -30,7 +30,7 @@ const PRE_ESCAPED = new Set([
     "experience",
     "description",          // a role's description: esc()'d paragraph, or its bullets
     "bullets(job.description)", // one <li> per sentence, each esc()'d
-    "aboutBody",            // About's three paragraphs, each esc()'d
+    "aboutBody",            // esc(about_body) and esc(about_personal)
     "availability",         // esc(about_availability), plus esc(about_citizenship) on the page
     "mailto",               // the CV's address on the status line, esc()'d; empty on the page
     "degrees",
@@ -67,7 +67,7 @@ test("Every interpolation in the template is escaped", () => {
 test("Hostile copy is escaped in the markup and intact in the JSON-LD", () => {
     const poison = `</script><img src=x onerror=alert(1)> & "quoted" 'single'`;
     const catalog = loadCatalog(STRINGS_DIR);
-    const table = { ...catalog.en, hero_name: poison, about_intro: poison, brand_short: poison };
+    const table = { ...catalog.en, hero_name: poison, about_body: poison, brand_short: poison };
     const config = loadConfig({ publicDirectory: null, env: { ASSET_VERSION: "testtesttest" } });
     const html = home(buildPageContext({ locale: "en", config, table }));
 
