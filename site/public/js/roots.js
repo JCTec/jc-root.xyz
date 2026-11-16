@@ -16,13 +16,14 @@
         return;
     }
 
-    /* Tuning. Alphas are deliberately near the floor of what reads on
-       #0a0a0b (roughly the weight of --jc-border-soft), so body copy keeps
-       its full contrast. See MASK_MAX for the extra quieting behind text. */
+    /* Tuning. Alphas sit low on #0a0a0b, so body copy keeps its full
+       contrast; all three were raised by a fifth together (from 0.15, 0.035,
+       0.045) so the roots read a little whiter while each generation keeps
+       its share. See MASK_MAX for the extra quieting behind text. */
     var STROKE = "214, 224, 216";
-    var BASE_ALPHA = 0.15;
-    var GEN_FALLOFF = 0.035;
-    var MIN_ALPHA = 0.045;
+    var BASE_ALPHA = 0.18;
+    var GEN_FALLOFF = 0.042;
+    var MIN_ALPHA = 0.054;
     var MAX_FILAMENTS = 120;
     var MAX_DPR = 2;
     var STEP_MS = 1000 / 30;   /* growth is wall-clock paced, not frame paced */
