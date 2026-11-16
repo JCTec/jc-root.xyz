@@ -224,7 +224,7 @@ test("Every date on the CV is in the short form", () => {
             .map((m) => m[1].replace(/<a[^>]*>[\s\S]*?<\/a>/g, "").replace(/<[^>]+>/g, "").split(" · ").pop().trim());
         const dates = [...textsOf(out, "exp-meta"), ...credentialDates]
             .map((date) => date.replace(/&#39;/g, "'").replace(/&amp;/g, "&"));
-        assert.ok(dates.length >= 14, `${locale}: found only ${dates.length} dates`);
+        assert.ok(dates.length >= 13, `${locale}: found only ${dates.length} dates`);
         for (const date of dates) {
             assert.doesNotMatch(date, longForms[locale], `${locale}: "${date}" is a long-form date`);
             assert.doesNotMatch(date, /(?<!\d)\d{1,2}(?!\d)/, `${locale}: "${date}" carries a day`);

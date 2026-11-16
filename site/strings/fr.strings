@@ -125,17 +125,13 @@
 "cred1_issuer" = "Universidad Anáhuac Mayab";
 "cred1_dates" = "septembre 2026 – aujourd'hui";
 "cred2_type" = "Diplôme";
-"cred2_title" = "Hydroponie";
-"cred2_issuer" = "Universidad Anáhuac";
-"cred2_dates" = "février – juin 2026";
-"cred3_type" = "Diplôme";
-"cred3_title" = "Entrepreneuriat";
-"cred3_issuer" = "Management Center Innsbruck";
-"cred3_dates" = "2019 – 2020";
-"cred4_type" = "Certification";
-"cred4_title" = "Advanced SwiftUI & Declarative UI Patterns";
-"cred4_issuer" = "tryswift.co";
-"cred4_dates" = "septembre 2020";
+"cred2_title" = "Entrepreneuriat";
+"cred2_issuer" = "Management Center Innsbruck";
+"cred2_dates" = "2019 – 2020";
+"cred3_type" = "Certification";
+"cred3_title" = "Advanced SwiftUI & Declarative UI Patterns";
+"cred3_issuer" = "tryswift.co";
+"cred3_dates" = "septembre 2020";
 
 // Conférences et ateliers
 "events_heading" = "Conférences et ateliers";
