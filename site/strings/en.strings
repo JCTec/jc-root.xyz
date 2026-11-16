@@ -72,7 +72,7 @@
 "exp2_role" = "Senior Software Engineer";
 "exp2_company" = "Alaska Airlines";
 "exp2_meta" = "Dec 2023 – Nov 2024";
-"exp2_desc" = "Worked on the iPad software behind Alaska's self-service bag tag stations, about 330 stations in 79 airports across the US. Owned accessibility for the station and drove a11y adoption on the team: integrated the Storm Interface assistive keypad with VoiceOver, mapping its keys as keyboard input to drive navigation and speech. Built the station's local-network layer, with the iPad managing TCP connections to the Aila scanner enclosure and the bag tag printer, and implemented MRZ passport reading on the Aila hardware end to end. Built the app to work within the stations' MDM-managed iPad setup. Maintained older applications built on custom in-house passport-scanning frameworks.";
+"exp2_desc" = "Worked on the iPad software behind Alaska's self-service bag tag stations, about 330 stations in 79 airports across the US. Owned accessibility for the station and drove a11y adoption on the team: integrated the Storm Interface assistive keypad with VoiceOver, mapping its keys as keyboard input to drive navigation and speech. Worked on the station's local-network layer, with the iPad managing TCP connections to the Aila scanner enclosure and the bag tag printer, and implemented MRZ passport reading on the Aila hardware end to end. Adapted the existing app to the stations' MDM-managed iPad setup. Maintained older applications built on custom in-house passport-scanning frameworks.";
 
 "exp3_role" = "Senior iOS Engineer";
 "exp3_company" = "Peek.com";
