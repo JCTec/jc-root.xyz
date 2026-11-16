@@ -931,22 +931,20 @@ textarea.form-control-jc {
         background: #000000;
     }
 
-    :root:not([data-contrast="standard"]) .hero-ghost,
-    :root:not([data-contrast="standard"]) .roots-canvas {
-        display: none !important;
+    :root:not([data-contrast="standard"]) .hero-ghost {
+        display: none;
     }
 }
 
-/* The decoration goes: the ghosted monogram and the drifting roots sit behind
-   text, which is the one place high contrast cannot have anything. The
-   canvas carries an inline style, hence !important. */
+/* The ghosted monogram goes: it sits directly behind the hero's text. The
+   mycelium stays in every mode: it is faint, already quieted behind the text
+   column by roots.js, and part of what the site is. */
 :root[data-contrast="high"] .site-nav {
     background: #000000;
 }
 
-:root[data-contrast="high"] .hero-ghost,
-:root[data-contrast="high"] .roots-canvas {
-    display: none !important;
+:root[data-contrast="high"] .hero-ghost {
+    display: none;
 }
 
 /* Spacing: WCAG 1.4.12's text-spacing values, and no forced capitals
