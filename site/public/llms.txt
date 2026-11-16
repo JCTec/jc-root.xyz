@@ -36,6 +36,12 @@ hardware-software integration. Owns two products end to end: Sideshore
   pre-registered measurement study (zhen-study); async/await and actors
   throughout, under Swift 6 strict checking:
   https://github.com/zhen-swift
+- jc-root.xyz: this site, open source; a static build in plain Node with no
+  npm dependencies that generates the page, structured data and CV in three
+  languages; accessible by design (AAA contrast, reading settings with
+  OpenDyslexic or Atkinson Hyperlegible, text size, high contrast, WCAG text
+  spacing):
+  https://github.com/JCTec/jc-root.xyz
 - After Dark Stories: AI-assisted fiction studio built and operated solo on
   server-side Swift (Vapor, Fluent, PostgreSQL, Leaf), with accounts, token
   auth, billing and moderation in three locales:

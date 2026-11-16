@@ -305,7 +305,7 @@ test("The CV lists every site project, in the site's order, with every link", ()
             `${locale}: projects in the catalog with no card, or cards with no copy`);
 
         let cursor = 0;
-        for (const card of cards) {
+        for (const card of cards.filter((c) => !c.webOnly)) {
             const at = out.indexOf(`<h3 class="card-title">${esc(card.name)}</h3>`, cursor);
             assert.ok(at > cursor, `${locale} CV lacks ${card.name}, or shows it out of site order`);
             cursor = at;
@@ -313,6 +313,18 @@ test("The CV lists every site project, in the site's order, with every link", ()
                 assert.ok(out.includes(`href="${esc(url)}" rel="noopener">${esc(displayURL(url))}</a>`),
                     `${locale} CV lacks the ${card.name} link ${url}`);
             }
+        }
+    }
+});
+
+/* A webOnly card is the page's alone: on the site, absent from every CV. */
+test("A webOnly project is on the page and off the CV", () => {
+    for (const [locale, out] of Object.entries(renders)) {
+        const webOnly = projectCards(resolver(catalog[locale])).filter((card) => card.webOnly);
+        assert.ok(webOnly.length > 0, `${locale}: expected this site's own card to be webOnly`);
+        for (const card of webOnly) {
+            assert.ok(!out.includes(`<h3 class="card-title">${esc(card.name)}</h3>`), `${locale} CV shows ${card.name}`);
+            assert.ok(pages[locale].includes(`<h3 class="card-title">${esc(card.name)}</h3>`), `${locale} page lacks ${card.name}`);
         }
     }
 });

@@ -108,6 +108,10 @@
 "p8_name" = "Zhen";
 "p8_desc" = "Fast, native network scanner for the Mac, written entirely in Swift 6 and open-sourced across three repositories. zhen-core is the engine, the zhen command line and a privileged helper in one Swift package: it sweeps a /24 in about three seconds from unprivileged ICMP, the kernel's ARP table and Bonjour, names what it can, and says plainly what it could not work out and why. Its timing model, retransmit early and declare late, is backed by zhen-study, a pre-registered measurement study against other tooling. zhen-app is the macOS 26 SwiftUI app on top: live scans, device history and activity, notarized and collecting nothing. No subprocesses or external binaries; the core builds and tests on Linux in CI. Concurrency is async/await and actors throughout, under Swift 6 strict checking.";
 
+"p9_tags" = "Web · Accessibility · Open Source";
+"p9_name" = "jc-root.xyz";
+"p9_desc" = "This site, open source: a static build in plain Node with no npm dependencies that generates the page, its structured data and the CV PDF in three languages from one set of strings. Accessible by design: AAA text contrast, 44px touch targets, readable without JavaScript, and reading settings for OpenDyslexic or Atkinson Hyperlegible, text size up to 150%, high contrast and WCAG text spacing.";
+
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
 "p6_desc" = "AI-assisted fiction studio built and operated solo on server-side Swift (Vapor, Fluent, PostgreSQL, Leaf), with accounts, token auth, billing and moderation in three locales.";

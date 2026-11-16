@@ -107,6 +107,10 @@
 "p8_name" = "Zhen";
 "p8_desc" = "Escáner de red rápido y nativo para Mac, escrito íntegramente en Swift 6 y publicado como código abierto en tres repositorios. zhen-core reúne el motor, la línea de comandos zhen y un helper privilegiado en un solo paquete Swift: barre una red /24 en unos tres segundos con ICMP sin privilegios, la tabla ARP del kernel y Bonjour, nombra lo que puede y dice con claridad lo que no logró averiguar y por qué. Su modelo de tiempos, retransmitir pronto y declarar tarde, se respalda en zhen-study, un estudio de medición prerregistrado frente a otras herramientas. zhen-app es la app SwiftUI para macOS 26 construida encima: escaneos en vivo, historial y actividad de cada dispositivo, notarizada y sin recopilar nada. Sin subprocesos ni binarios externos; el núcleo compila y pasa sus pruebas en Linux en CI. La concurrencia es async/await y actores en todo el código, bajo la verificación estricta de Swift 6.";
 
+"p9_tags" = "Web · Accesibilidad · Código abierto";
+"p9_name" = "jc-root.xyz";
+"p9_desc" = "Este sitio, de código abierto: una compilación estática en Node sin dependencias npm que genera la página, sus datos estructurados y el CV en PDF en tres idiomas a partir de un único conjunto de textos. Accesible por diseño: contraste de texto AAA, áreas táctiles de 44 px, legible sin JavaScript y ajustes de lectura con OpenDyslexic o Atkinson Hyperlegible, tamaño de texto de hasta 150 %, alto contraste y espaciado de texto WCAG.";
+
 "p6_tags" = "Vapor · Leaf · JavaScript";
 "p6_name" = "After Dark Stories";
 "p6_desc" = "Estudio de ficción asistida por IA, construido y operado en solitario sobre Swift en el servidor (Vapor, Fluent, PostgreSQL, Leaf), con cuentas, autenticación por tokens, cobros y moderación en tres idiomas.";
