@@ -80,7 +80,7 @@
 "exp3_role" = "Ingénieur iOS Senior";
 "exp3_company" = "Peek.com";
 "exp3_meta" = "août 2021 – août 2023";
-"exp3_desc" = "J'ai construit la grille des réservations : une vue en lignes et en colonnes entièrement dynamique, pilotée par le serveur et rendue en temps réel, qui gère jusqu'à 10 000 réservations sans sacrifier les ombres ni les animations, et aujourd'hui utilisée à travers les États-Unis. J'ai migré des parties d'une app de marketplace vieille de dix ans vers SwiftUI dans le cadre de sa migration progressive, sur une base MVVM, Clean Architecture et Coordinators. J'ai écrit des tests d'interface automatisés (Robot Pattern + XCUITest) et travaillé sur le pipeline CI/CD GitHub Actions. J'ai intégré GraphQL et connecté du matériel de terminaux Wi-Fi à l'app. J'ai mené des fonctionnalités de bout en bout en tant que chef de projet. J'ai accompagné des ingénieurs de l'équipe en tant que mentor.";
+"exp3_desc" = "J'ai construit la grille des réservations : une vue en lignes et en colonnes entièrement dynamique, pilotée par le serveur et rendue en temps réel, qui gère jusqu'à 10 000 réservations sans sacrifier les ombres ni les animations, et aujourd'hui utilisée à travers les États-Unis. J'ai migré des parties d'une app de marketplace vieille de dix ans vers SwiftUI dans le cadre de sa migration progressive, sur une base MVVM, Clean Architecture et Coordinators. J'ai écrit des tests d'interface automatisés (Robot Pattern + XCUITest) et travaillé sur le pipeline CI/CD GitHub Actions. J'ai intégré GraphQL et connecté du matériel de terminaux Wi-Fi à l'app. J'ai travaillé avec RxSwift et Realm sur la couche de base de données locale de l'app. J'ai mené des fonctionnalités de bout en bout en tant que chef de projet. J'ai accompagné des ingénieurs de l'équipe en tant que mentor.";
 
 "exp4_role" = "Cofondateur et Ingénieur logiciel";
 "exp4_company" = "Xplain";
@@ -191,7 +191,7 @@
 "stack_also_label" = "Autres";
 "stack_media_label" = "Médias et outils créatifs";
 "stack_core_items" = "Swift|SwiftUI (dont 6)|UIKit|Objective-C|Combine|Swift Concurrency (async/await, concurrence stricte de Swift 6)|Vapor 4 (Swift côté serveur)|MVVM|Clean Architecture|Coordinators|XCTest + XCUITest (Robot Pattern)|Swift Package Manager|GitHub Actions CI/CD|Accessibilité (a11y, VoiceOver)|Internationalisation (i18n)";
-"stack_also_items" = "GraphQL|REST|Firebase|Realm|Stripe|Optimisation des performances|Profilage avec Xcode Instruments|Développement IA / agents (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM embarqué, appels d'outils)|SwiftData|App Intents|StoreKit 2|JavaScript|HTML et CSS|Leaf (rendu côté serveur)|Fluent + PostgreSQL|Sécurité web (sessions, CSRF, jetons)|Sécurité et durcissement des apps iOS|SEO et données structurées|Flutter (Dart)|Appareils gérés par MDM";
+"stack_also_items" = "GraphQL|REST|Firebase|Realm|RxSwift|Stripe|Optimisation des performances|Profilage avec Xcode Instruments|Développement IA / agents (Claude, OpenAI, xAI, Ollama)|Apple Foundation Models (LLM embarqué, appels d'outils)|SwiftData|App Intents|StoreKit 2|JavaScript|HTML et CSS|Leaf (rendu côté serveur)|Fluent + PostgreSQL|Sécurité web (sessions, CSRF, jetons)|Sécurité et durcissement des apps iOS|SEO et données structurées|Flutter (Dart)|Appareils gérés par MDM";
 "stack_media_items" = "Final Cut Pro|GarageBand|ffmpeg (automatisation vidéo par scripts)";
 
 // Contact
